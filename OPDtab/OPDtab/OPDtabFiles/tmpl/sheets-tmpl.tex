@@ -1,0 +1,59 @@
+\documentclass[8pt,landscape,paper=a4,ngerman]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel,scrtime}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+\usepackage[breakall]{truncate}
+\usepackage{geometry}
+\geometry{vmargin=0.5cm,lmargin=0.2cm,rmargin=0.5cm}
+\usepackage{color,graphicx}
+\renewcommand{\TruncateMarker}{.}
+\newcommand{\cut}[1]{\truncate{0.98\linewidth}{#1}}
+
+\newcommand{\myROOMNO}{}
+\newcommand{\myROUNDNO}{}
+\newcommand{\myGOV}{}
+\newcommand{\myGOVOne}{}
+\newcommand{\myGOVTwo}{}
+\newcommand{\myGOVThree}{}
+\newcommand{\myOPP}{}
+\newcommand{\myOPPOne}{}
+\newcommand{\myOPPTwo}{}
+\newcommand{\myOPPThree}{}
+\newcommand{\myFREEOne}{}
+\newcommand{\myFREETwo}{}
+\newcommand{\myFREEThree}{}
+\newcommand{\myCHAIR}{}
+\newcommand{\myJUDGES}{}
+\newcommand{\myMOTION}{}
+
+\pagestyle{empty}
+\begin{document}
+<!-BEGIN:ROOMS->
+\noindent
+\renewcommand{\myROOMNO}{\Huge\bfseries [ROOMNO]}
+\renewcommand{\myROUNDNO}{[ROUNDNO]}
+\renewcommand{\myGOV}{[GOV]}
+\renewcommand{\myGOVOne}{[GOV1]}
+\renewcommand{\myGOVTwo}{[GOV2]}
+\renewcommand{\myGOVThree}{[GOV3]}
+\renewcommand{\myOPP}{[OPP]}
+\renewcommand{\myOPPOne}{[OPP1]}
+\renewcommand{\myOPPTwo}{[OPP2]}
+\renewcommand{\myOPPThree}{[OPP3]}
+\renewcommand{\myFREEOne}{[FREE1]}
+\renewcommand{\myFREETwo}{[FREE2]}
+\renewcommand{\myFREEThree}{[FREE3]}
+\renewcommand{\myCHAIR}{[CHAIR]}
+\renewcommand{\myJUDGES}{<!-BEGIN:JUDGES->[V]\\<!-END:JUDGES->}
+\renewcommand{\myMOTION}{[MOTION]}
+\input{sheet-background.pdf_tex}
+\newpage
+<!-END:ROOMS->
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

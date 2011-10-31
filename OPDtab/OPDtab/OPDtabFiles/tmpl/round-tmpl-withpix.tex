@@ -1,0 +1,97 @@
+\documentclass[ngerman,12pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline}[frame number]
+\usefonttheme{default}
+
+\renewcommand{\tabularxcolumn}[1]{>{\centering}m{#1}}
+\begin{document}
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge\bfseries Setzung für\\
+    <!-BEGIN:ROUNDNAME->[V]<!-END:ROUNDNAME->
+    %\includegraphics[width=1.1\linewidth,height=10em]{Runde5}
+  \end{center}  
+  \vfill
+\end{frame}
+
+%%%%%%%%%%% ROOMS %%%%%%%%%%%%%
+
+<!-BEGIN:ROOMS->
+\begin{frame}
+  \begin{center}
+    {\large\bfseries Raum [ROOMNO]: [ROOMDESC]}
+  \end{center}
+  \vspace{-1em}
+  \begin{center}
+    [ROOMTITLE]
+  \end{center}
+  \begin{tabularx}{1\linewidth}{XcX}
+    \multicolumn{1}{l}{\small Regierung:} & & \multicolumn{1}{l}{\small Opposition:}\\
+    {\bfseries [GOV]} & vs. &
+    {\bfseries [OPP]} \tabularnewline
+    \multicolumn{3}{l}{\vspace{-0.5em}}\tabularnewline
+    \multicolumn{1}{l}{
+      \includegraphics[height=3em]{[EXTRAGOV1]}\hspace{0.5em}
+      \includegraphics[height=3em]{[EXTRAGOV2]}\hspace{0.5em}
+      \includegraphics[height=3em]{[EXTRAGOV3]}} & &
+    \multicolumn{1}{r}{
+      \includegraphics[height=3em]{[EXTRAOPP1]}\hspace{0.5em}
+      \includegraphics[height=3em]{[EXTRAOPP2]}\hspace{0.5em}
+      \includegraphics[height=3em]{[EXTRAOPP3]}}
+  \end{tabularx}
+  %\vspace{0.5em}
+  \begin{columns}[T]
+    \begin{column}{0.5\linewidth}
+      \begin{tabularx}{1.1\linewidth}{l>{\hsize=1.5\hsize\raggedright}X>{\hsize=0.5\hsize}X}
+        \multicolumn{3}{l}{\small Freie Redner:}\tabularnewline
+        1. & {\bfseries [FREE1]} &
+        \includegraphics[height=3em]{[EXTRAFREE1]}\tabularnewline 
+        2. & {\bfseries [FREE2]} &
+        \includegraphics[height=3em]{[EXTRAFREE2]}\tabularnewline 
+        3. & {\bfseries [FREE3]} &
+        \includegraphics[height=3em]{[EXTRAFREE3]}\tabularnewline 
+      \end{tabularx}      
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{tabularx}{1.15\linewidth}{>{\hsize=1.5\hsize\raggedright}X>{\hsize=0.5\hsize}X}
+        \multicolumn{2}{l}{\small Juroren:}\tabularnewline
+        <!-BEGIN:JUDGES->
+        \small{\bfseries [NAME]} [TAG] &
+        \includegraphics[height=2em]{[EXTRA]} \tabularnewline 
+        <!-END:JUDGES->
+      \end{tabularx}
+    \end{column}
+  \end{columns}
+\end{frame}
+<!-END:ROOMS->
+%%%%%%%%%%% ROOMS %%%%%%%%%%%%%
+
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge
+  Dieses Haus würde die freien Redner wegschicken!
+  \end{center}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge
+  Das wirkliche Thema lautet:\\ \pause
+  <!-BEGIN:MOTION-> [V] <!-END:MOTION->
+  \end{center}
+  \vfill
+\end{frame}
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

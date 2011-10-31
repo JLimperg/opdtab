@@ -1,0 +1,93 @@
+\documentclass[8pt,landscape,paper=a4]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+\usepackage[breakall]{truncate}
+\usepackage{geometry}
+\geometry{vmargin=0.2cm,lmargin=0.2cm,rmargin=0.5cm}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+\usepackage{xifthen}
+%\usepackage{tikz}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}p{0.08\linewidth}}
+\newcolumntype{Z}{@{\hspace{2pt}}>{\raggedright\arraybackslash}p{0.0552\linewidth}@{\hspace{2pt}}}
+\newcommand{\numToColor}[2]{\ifthenelse{#1<0}{%
+    \renewcommand{#2}{red!30}
+  }{%
+    \ifthenelse{#1=0}{%
+      \renewcommand{#2}{white}
+    }{%
+      \renewcommand{#2}{yellow!40}
+    }%
+  }%
+}%
+\newcommand{\numToText}[1]{%
+  \ifthenelse{#1>0}{%
+    #1%
+  }{%
+    \phantom{0}%
+  }%
+}
+\newcommand{\myColOne}{white}
+\newcommand{\myColTwo}{white}
+\newcommand{\myColThree}{white}
+
+\newcommand{\conflictInd}[3]{%
+  \numToColor{#1}{\myColOne}
+  \numToColor{#2}{\myColTwo}
+  \numToColor{#3}{\myColThree}
+  \footnotesize
+  \raisebox{-0.8em}{\fcolorbox{black}{\myColOne}{\numToText{#1}}}
+  \raisebox{-0.8em}{\fcolorbox{black}{\myColTwo}{\numToText{#2}}}
+  \raisebox{-0.8em}{\fcolorbox{black}{\myColThree}{\numToText{#3}}}
+}
+\renewcommand{\TruncateMarker}{.}
+\newcommand{\cut}[1]{\truncate{1.05\linewidth}{#1}}
+\newcommand{\team}[4]{
+  \par\noindent\baselineskip5pt\footnotesize%
+  \textbf{\cut{#1}}\newline%
+  \cut{#2}\newline%
+  \cut{#3}\newline%
+  \cut{#4}%
+}
+\newcommand{\freeSpkr}[3]{
+  \par\noindent\baselineskip5pt\footnotesize
+  \vphantom{0}
+  \cut{#1}\newline
+  \cut{#2}\newline
+  \cut{#3}%
+}
+\pagestyle{empty}
+\begin{document}
+<!-BEGIN:PAGES->
+\begin{tabularx}{\linewidth}{Y|ZZZ|ZZZ|ZZZ|ZZZ|ZZZ|}
+  \multicolumn{1}{c}{}
+  <!-BEGIN:ROOMS->
+  & \multicolumn{3}{c}{\textbf{Raum [V]}}
+  <!-END:ROOMS->
+  \\  
+  <!-BEGIN:TEAMS->
+  & \team{[GOV]}{[GOV1]}{[GOV2]}{[GOV3]}
+  & \freeSpkr{[FREE1]}{[FREE2]}{[FREE3]}
+  & \team{[OPP]}{[OPP1]}{[OPP2]}{[OPP3]}
+  <!-END:TEAMS->
+  \\ \hline
+  <!-BEGIN:JUDGES->
+  \textbf{\cut{[NAME]}}\newline
+  [NFIRSTJUDGE] / [NJUDGE] / [NCHAIR]
+  <!-BEGIN:CONFLICTIND->
+  & \conflictInd{[V1]}{[V2]}{[V3]} & \conflictInd{[V4]}{[V5]}{[V6]} & \conflictInd{[V7]}{[V8]}{[V9]}
+  <!-END:CONFLICTIND->
+  \\ \hline
+  <!-END:JUDGES-> 
+\end{tabularx}
+\newpage
+<!-END:PAGES->
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

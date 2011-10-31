@@ -1,0 +1,52 @@
+\documentclass[ngerman,twocolumn,paper=a4,12pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+\usepackage{supertabular,booktabs,amsmath}
+
+\setkomafont{paragraph}{\normalfont\bfseries\large}
+
+\begin{document}
+\begin{center}
+  \bfseries\huge{}
+  <!-BEGIN:TITLE->[V]<!-END:TITLE->\\
+  Tab
+\end{center}
+\paragraph{Teams}
+\begin{center}
+  \begin{supertabular}{lp{0.75\linewidth}r}
+    \toprule
+    <!-BEGIN:TEAMS->
+    [POS] & [NAME] \vspace{-0.5em} \newline{\scriptsize
+      $<!-BEGIN:POINTSPERROUNDTEAM->[POINTS]\![PLUSSIGN]\!<!-END:POINTSPERROUNDTEAM->$
+    } & \makebox[0pt][r]{$^{\text{\emph{[BREAKMARK]}}}$} [POINTS]\\
+    <!-END:TEAMS->
+    \bottomrule
+  \end{supertabular}
+\end{center}
+
+\paragraph{Redner}
+\begin{center}
+  \begin{supertabular}{lp{0.7\linewidth}r}
+    \toprule
+    <!-BEGIN:SPEAKERS->
+    [POS] & [NAME] \vspace{-0.5em} \newline {\scriptsize
+      \emph{[TEAMNAME]}\vspace{-0.8em}\newline
+      $<!-BEGIN:POINTSPERROUNDSPEAKER->[POINTS]\![PLUSSIGN]\!<!-END:POINTSPERROUNDSPEAKER->\to
+      [AVERAGEPOINTS]
+      $
+    } & \makebox[0pt][r]{$^{\text{\emph{[BREAKMARK]}}}$} [POINTS] \\
+    <!-END:SPEAKERS->
+    \bottomrule
+  \end{supertabular}
+\end{center}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

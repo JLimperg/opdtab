@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OPDtabData</RootNamespace>
+    <AssemblyName>OPDtabData</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AppSettings.cs">
+      <DeployService-Deploy>true</DeployService-Deploy>
+    </Compile>
+    <Compile Include="Tournament.cs" />
+    <Compile Include="Debaters\DebaterPattern.cs" />
+    <Compile Include="Debaters\Name.cs" />
+    <Compile Include="Debaters\Club.cs" />
+    <Compile Include="Debaters\Role.cs" />
+    <Compile Include="Tournament\RoomData.cs" />
+    <Compile Include="Tournament\TeamData.cs" />
+    <Compile Include="Common\IMySearchable.cs" />
+    <Compile Include="Tournament\RoundData.cs" />
+    <Compile Include="Debaters\AbstractDebater.cs" />
+    <Compile Include="Debaters\EditableDebater.cs" />
+    <Compile Include="Debaters\Debater.cs" />
+    <Compile Include="Debaters\RoundDebater.cs" />
+    <Compile Include="Tournament\IRoundEditCbItem.cs" />
+    <Compile Include="Common\MiscHelpers.cs" />
+    <Compile Include="Tournament\RoundResultData.cs" />
+    <Compile Include="Tournament\IRoomMember.cs" />
+    <Compile Include="Tournament\RoomConflict.cs" />
+    <Compile Include="Common\MyDictionary.cs" />
+    <Compile Include="Algorithms\AlgoThreePreRounds.cs" />
+    <Compile Include="Algorithms\Algorithms.cs" />
+    <Compile Include="Algorithms\AlgoJudges.cs" />
+    <Compile Include="Tournament\RankingData.cs" />
+    <Compile Include="Algorithms\AlgoBreakround.cs" />
+    <Compile Include="Algorithms\AlgoFreeSpeakers.cs" />
+    <Compile Include="TemplateParser\TmplParser.cs" />
+    <Compile Include="TemplateParser\TemplatePool.cs" />
+    <Compile Include="TemplateParser\DoubleLinkedList.cs" />
+    <Compile Include="Algorithms\AlgoData.cs" />
+    <Compile Include="Tournament\EqualPointsResolver.cs" />
+    <Compile Include="Algorithms\AlgoBreakroundOnRound.cs" />
+    <Compile Include="Algorithms\AlgoShuffle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Debaters\" />
+    <Folder Include="Tournament\" />
+    <Folder Include="Algorithms\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj">
+      <Project>{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}</Project>
+      <Name>LumenWorks.Framework.IO</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFF08B04-7815-4C08-9373-D8176666AD65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OPDtabGui</RootNamespace>
+    <AssemblyName>OPDtabGui</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.EditDebaters.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.EditGeneral.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.GenerateRound.cs" />
+    <Compile Include="Widgets\Team.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.Team.cs" />
+    <Compile Include="Data\EditDebaters.cs" />
+    <Compile Include="Data\EditGeneral.cs" />
+    <Compile Include="Common\CellRendererTextAdv.cs" />
+    <Compile Include="Data\ImportCSV.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.ImportCSV.cs" />
+    <Compile Include="Widgets\Room.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.Room.cs" />
+    <Compile Include="Common\DragDropHelpers.cs" />
+    <Compile Include="Rounds\GenerateRound.cs" />
+    <Compile Include="Widgets\DebaterWidget.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.DebaterWidget.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.MyButton.cs" />
+    <Compile Include="Common\MiscHelpers.cs" />
+    <Compile Include="Rounds\EditRoundResults.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.EditRoundResults.cs" />
+    <Compile Include="Widgets\RoundResultSheet.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.RoundResultSheet.cs" />
+    <Compile Include="Widgets\IDragDropWidget.cs" />
+    <Compile Include="MyWidgets\MyButton.cs" />
+    <Compile Include="MyWidgets\MyGridLine.cs" />
+    <Compile Include="MyWidgets\MyIntLabel.cs" />
+    <Compile Include="MyWidgets\MySpinButton.cs" />
+    <Compile Include="Widgets\IResultDataWidget.cs" />
+    <Compile Include="MyWidgets\MyConflictButton.cs" />
+    <Compile Include="Data\LoadBackup.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.LoadBackup.cs" />
+    <Compile Include="Rounds\ShowRanking.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.ShowRanking.cs" />
+    <Compile Include="Widgets\AlgoProgress.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.AlgoProgress.cs" />
+    <Compile Include="Widgets\RoundResultSetBest.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.RoundResultSetBest.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.DebaterPool.cs" />
+    <Compile Include="Widgets\DebaterPool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\OPDtabFiles\icons\AppIcon.png" />
+    <EmbeddedResource Include="Icons\weather-clear.png" />
+    <EmbeddedResource Include="Icons\weather-clear-night.png" />
+    <EmbeddedResource Include="Icons\go-next.png" />
+    <EmbeddedResource Include="Icons\go-down.png" />
+    <EmbeddedResource Include="Icons\applications-other.png" />
+    <EmbeddedResource Include="Icons\dialog-information.png" />
+    <EmbeddedResource Include="Icons\software-update-available.png" />
+    <EmbeddedResource Include="Icons\software-update-urgent.png" />
+    <EmbeddedResource Include="Icons\help-browser.png" />
+    <EmbeddedResource Include="Icons\face-smile.png" />
+    <EmbeddedResource Include="Icons\go-previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OPDtabData\OPDtabData.csproj">
+      <Project>{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}</Project>
+      <Name>OPDtabData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj">
+      <Project>{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}</Project>
+      <Name>LumenWorks.Framework.IO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Widgets\" />
+    <Folder Include="Common\" />
+    <Folder Include="Data\" />
+    <Folder Include="Rounds\" />
+    <Folder Include="MyWidgets\" />
+    <Folder Include="Icons\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

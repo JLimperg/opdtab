@@ -1,0 +1,29 @@
+\documentclass[ngerman,paper=a4,10pt,landscape]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+\usepackage{supertabular}
+
+%\setkomafont{paragraph}{\normalfont\bfseries\large}
+
+\begin{document}
+\tablehead{\textbf{Pos} & \textbf{Name} &  \textbf{Club} & \textbf{Age} 
+  & \textbf{Role} & \textbf{BlackList} & \textbf{WhiteList} &
+  \textbf{ExtraInfo}\\ \hline}
+\tabletail{\hline \multicolumn{8}{r}{\emph{Continued}}\\}
+\tablelasttail{\hline}
+\begin{supertabular}{rp{0.15\linewidth}p{0.15\linewidth}lp{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}l}
+    <!-BEGIN:DEBATERS->
+    [NUM] & [NAME] & [CLUB] & [AGE] & [ROLE] & [BLACKLIST] &
+    [WHITELIST] & [EXTRAINFO]\\
+    <!-END:DEBATERS->
+ \end{supertabular}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

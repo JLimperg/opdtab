@@ -1,0 +1,108 @@
+\documentclass[german,12pt,t]{beamer}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{arev}
+\usepackage{babel,csquotes}
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline}[frame number]
+\usefonttheme{default}
+\useinnertheme{rounded}
+\usecolortheme{rose,seahorse}
+\logo{\LARGE\color{gray}\emph{<!-BEGIN:TITLE->[V]<!-END:TITLE->} \pgfimage[height=1.5cm]{logo}}
+\begin{document}
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge\bfseries{} <!-BEGIN:ROUNDNAME->[V]<!-END:ROUNDNAME->\\
+    Setzung
+  \end{center}  
+  \vfill
+\end{frame}
+
+%%%%%%%%%%% ROOMS %%%%%%%%%%%%%
+
+
+<!-BEGIN:ROOMS->
+\begin{frame}[squeeze]
+  \frametitle{Raum [ROOMNO]: [ROOMDESC]}
+  \framesubtitle{[ROOMTITLE]}
+  \vspace{-1.5em}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \begin{block}{\small Regierung}
+        \centering
+        \textbf{[GOV]}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{block}{\small Opposition}
+        \centering
+        \textbf{[OPP]}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.5em}
+  \begin{columns}
+     \begin{column}{0.5\linewidth}
+       \begin{block}{\small Freie Redner}
+         \begin{enumerate}
+         \item [FREE1]
+         \item [FREE2]
+         \item [FREE3]
+         \end{enumerate}
+       \end{block}
+     \end{column}
+     \begin{column}{0.5\linewidth}
+       \begin{block}{\small Juroren}
+         \begin{itemize}
+           <!-BEGIN:JUDGES->
+         \item [NAME] {\small [TAG]} 
+           <!-END:JUDGES->
+         \end{itemize}
+       \end{block}
+     \end{column}
+   \end{columns}
+\end{frame}
+<!-END:ROOMS->
+%%%%%%%%%%% ROOMS %%%%%%%%%%%%%
+
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge
+    Freie Redner bitte den Raum verlassen! 
+  \end{center}
+  \vfill
+\end{frame}
+
+
+\begin{frame}
+  \vfill
+  \begin{center}
+    \huge
+    Das Thema lautet:
+  \end{center}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \vfill
+  <!-BEGIN:MOTION-> 
+  \begin{center}
+    \small\enquote{[V1]} [V2]
+  \end{center}
+  \pause
+  \begin{center}
+    \Huge [V3]
+  \end{center}
+  <!-END:MOTION->
+  \vfill
+\end{frame}
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

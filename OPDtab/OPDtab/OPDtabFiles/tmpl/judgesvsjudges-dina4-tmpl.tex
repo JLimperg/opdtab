@@ -1,0 +1,103 @@
+\documentclass[8pt,landscape,paper=a4]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+\usepackage[breakall]{truncate}
+\usepackage{geometry}
+\geometry{vmargin=0.2cm,lmargin=0.2cm,rmargin=0.5cm}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+\usepackage{xifthen}
+%\usepackage{tikz}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}p{0.08\linewidth}}
+\newcolumntype{Z}{@{\hspace{0.5pt}}>{\raggedright\arraybackslash}p{0.036\linewidth}@{\hspace{0pt}}}
+
+\newcommand{\numToColor}[2]{\ifthenelse{#1<0}{%
+    \renewcommand{#2}{black!30}
+  }{%
+    \ifthenelse{#1=0}{%
+      \renewcommand{#2}{white}
+    }{%
+      \renewcommand{#2}{yellow!40}
+    }%
+  }%
+}%
+\newcommand{\numToText}[1]{%
+  \ifthenelse{#1>0}{%
+    #1%
+  }{%
+    \phantom{0}%
+  }%
+}
+\newcommand{\myColOne}{white}
+\newcommand{\myColTwo}{white}
+
+\newcommand{\conflictInd}[2]{%
+  \numToColor{#1}{\myColOne}
+  \numToColor{#2}{\myColTwo}
+  \footnotesize
+%  \hspace{1.4em}
+%  \begin{tikzpicture}[baseline=8pt]
+%    \node[fill=\myColOne, draw, text width=0.9em, align=center] at (0,0) {\numToText{#1}};
+%    \node[fill=\myColTwo, draw, text width=0.9em, align=center] at (0,0.35) {\numToText{#2}};
+%  \end{tikzpicture}
+  \fboxsep0.3em
+  \hspace{1.6em}\fcolorbox{black}{\myColOne}{\numToText{#1}}
+  \par
+  \hspace{1.6em}\fcolorbox{black}{\myColTwo}{\numToText{#2}}
+}
+
+\newcommand{\displayStats}[3]{%
+  {\small $#1$}{\footnotesize $\pm #2$}\newline
+  {\small $#3$}
+}
+\renewcommand{\TruncateMarker}{.}
+\newcommand{\cut}[1]{\truncate{1.05\linewidth}{#1}}
+\newcommand{\team}[4]{
+  \par\noindent\baselineskip5pt\footnotesize%
+  \textbf{\cut{#1}}\newline%
+  \cut{#2}\newline%
+  \cut{#3}\newline%
+  \cut{#4}%
+}
+\newcommand{\freeSpkr}[3]{
+  \par\noindent\baselineskip5pt\footnotesize
+  \vphantom{0}
+  \cut{#1}\newline
+  \cut{#2}\newline
+  \cut{#3}%
+}
+\pagestyle{empty}
+\begin{document}
+<!-BEGIN:PAGES->
+\begin{tabularx}{\linewidth}{Y|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|Z|}
+  \multicolumn{1}{c}{}
+  <!-BEGIN:ROUNDNAMES->
+  & \multicolumn{1}{c}{\textbf{[V]}}
+  <!-END:ROUNDNAMES->
+  <!-BEGIN:JUDGESSHORT->
+  & \multicolumn{1}{c}{\textbf{[V]}}
+  <!-END:JUDGESSHORT->
+  \\ \hline
+  <!-BEGIN:JUDGES->
+  \textbf{\cut{[NAME]}}
+  <!-BEGIN:JUDGESTATS->
+  & \displayStats{[V1]}{[V2]}{[V3]}
+  <!-END:JUDGESTATS->
+  <!-BEGIN:CONFLICTIND->
+  & \conflictInd{[V1]}{[V2]}
+  <!-END:CONFLICTIND->
+  \\ \hline 
+  <!-END:JUDGES->  
+\end{tabularx}
+\newpage
+<!-END:PAGES->
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
