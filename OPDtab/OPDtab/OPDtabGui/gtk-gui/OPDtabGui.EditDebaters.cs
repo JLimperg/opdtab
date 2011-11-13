@@ -11,6 +11,7 @@ namespace OPDtabGui
 		private global::Gtk.Button btnDebaterRemove;
 		private global::Gtk.Alignment cEntryFilter;
 		private global::Gtk.Label lblDebatersInfo;
+		private global::Gtk.Button btnExportCSV;
 		private global::Gtk.Button btnExportPDF;
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.TreeView treeDebaters;
@@ -108,22 +109,34 @@ namespace OPDtabGui
 			w21.Expand = false;
 			w21.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnExportPDF = new global::Gtk.Button ();
-			this.btnExportPDF.CanFocus = true;
-			this.btnExportPDF.Name = "btnExportPDF";
-			this.btnExportPDF.UseUnderline = true;
-			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString ("Export PDF");
-			this.hbox1.Add (this.btnExportPDF);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
+			this.btnExportCSV = new global::Gtk.Button ();
+			this.btnExportCSV.CanFocus = true;
+			this.btnExportCSV.Name = "btnExportCSV";
+			this.btnExportCSV.UseUnderline = true;
+			this.btnExportCSV.Label = global::Mono.Unix.Catalog.GetString ("Export as CSV");
+			this.hbox1.Add (this.btnExportCSV);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
 			w22.PackType = ((global::Gtk.PackType)(1));
 			w22.Position = 3;
 			w22.Expand = false;
 			w22.Fill = false;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w23.Position = 0;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.btnExportPDF = new global::Gtk.Button ();
+			this.btnExportPDF.CanFocus = true;
+			this.btnExportPDF.Name = "btnExportPDF";
+			this.btnExportPDF.UseUnderline = true;
+			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString ("Export as PDF");
+			this.hbox1.Add (this.btnExportPDF);
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
+			w23.PackType = ((global::Gtk.PackType)(1));
+			w23.Position = 4;
 			w23.Expand = false;
 			w23.Fill = false;
+			this.vbox1.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w24.Position = 0;
+			w24.Expand = false;
+			w24.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -136,8 +149,8 @@ namespace OPDtabGui
 			this.treeDebaters.RulesHint = true;
 			this.GtkScrolledWindow.Add (this.treeDebaters);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
-			w25.Position = 1;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			w26.Position = 1;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -149,6 +162,7 @@ namespace OPDtabGui
 			this.btnDebaterAdd.Clicked += new global::System.EventHandler (this.OnBtnDebaterAddClicked);
 			this.btnDebaterRemove.Clicked += new global::System.EventHandler (this.OnBtnDebaterRemoveClicked);
 			this.btnExportPDF.Clicked += new global::System.EventHandler (this.OnBtnExportPDFClicked);
+			this.btnExportCSV.Clicked += new global::System.EventHandler (this.OnBtnExportCSVClicked);
 		}
 	}
 }

@@ -454,16 +454,23 @@ namespace OPDtabGui
 			Tournament.I.Debaters = list;
 			ShowRanking.I.UpdateAll();
 		}
-						
+		
+		protected void OnBtnExportCSVClicked (object sender, System.EventArgs e)
+		{
+			DoTheExport(MiscHelpers.TemplateType.CSV);
+		}
+		
 		protected void OnBtnExportPDFClicked (object sender, System.EventArgs e)
 		{
+			DoTheExport(MiscHelpers.TemplateType.PDF);			
+		}
+		
+		void DoTheExport(MiscHelpers.TemplateType type) {
 			TreeModel model = treeDebaters.Model;
-			Console.WriteLine("clicked: "+model.IterNChildren());
-			
 			TreeIter iter;
 			if(model.GetIterFirst(out iter)) {
 				try {
-					ITemplate tmpl = MiscHelpers.GetTemplate("debaters");
+					ITemplate tmpl = MiscHelpers.GetTemplate("debaters", type);
 					ITmplBlock tmplDebaters = tmpl.ParseBlock("DEBATERS");
 					int n=0;
 					do {
@@ -474,30 +481,36 @@ namespace OPDtabGui
 						tmplDebaters.Assign("NAME",d.Name.ToString());
 						tmplDebaters.Assign("CLUB",d.Club.ToString());
 						tmplDebaters.Assign("AGE",d.Age.ToString());
-						tmplDebaters.Assign("ROLE",EscapeString(d.Role.ToString()));
-						tmplDebaters.Assign("BLACKLIST",EscapeString(d.BlackList.ToString()));
-						tmplDebaters.Assign("WHITELIST",EscapeString(d.WhiteList.ToString()));
-						tmplDebaters.Assign("EXTRAINFO",EscapeString(d.ExtraInfo.ToString()));
+						tmplDebaters.Assign("ROLE",EscapeString(d.Role.ToString(), type));
+						tmplDebaters.Assign("BLACKLIST",EscapeString(d.BlackList.ToString(), type));
+						tmplDebaters.Assign("WHITELIST",EscapeString(d.WhiteList.ToString(), type));
+						tmplDebaters.Assign("EXTRAINFO",EscapeString(d.ExtraInfo.ToString(), type));
 						tmplDebaters.Out();
 					}
 					while(model.IterNext(ref iter));
-					MiscHelpers.MakePDFfromTemplate(null);				
-					MiscHelpers.ShowMessage(this, "PDF successfully generated.", MessageType.Info);
-		
+					MiscHelpers.AskShowTemplate(this,
+						"Debaters successfully generated, see "+
+						"pdfs/debaters.(pdf|csv)",
+						MiscHelpers.MakeExportFromTemplate()
+						);
 				}
 				catch(Exception ex) {
-					MiscHelpers.ShowMessage(this, "Could not generate PDF: "+ex.Message, MessageType.Error);
+					MiscHelpers.ShowMessage(this, "Could not export Debaters: "+ex.Message, MessageType.Error);
 				}
-			}
-			
+			}	
 		}
 		
-		string EscapeString(string s) {
-			foreach(string c in new string[] {"#"}) {
+		string EscapeString(string s, MiscHelpers.TemplateType type) {
+			string[] escapedChars = type == MiscHelpers.TemplateType.CSV ? 
+				new string[] {"\""} :
+				new string[] {"#"};
+			foreach(string c in escapedChars) {
 				s = s.Replace(c, "\\"+c);
 			}
 			return s;
 		}
+
+		
 	}
 }
 

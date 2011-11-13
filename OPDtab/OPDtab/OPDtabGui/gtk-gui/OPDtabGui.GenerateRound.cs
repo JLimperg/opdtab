@@ -867,6 +867,7 @@ namespace OPDtabGui
 			this.expander7 = new global::Gtk.Expander (null);
 			this.expander7.CanFocus = true;
 			this.expander7.Name = "expander7";
+			this.expander7.Expanded = true;
 			// Container child expander7.Gtk.Container+ContainerChild
 			this.vbox6 = new global::Gtk.VBox ();
 			this.vbox6.Name = "vbox6";

@@ -9,7 +9,9 @@ namespace OPDtabData
 		int totalPoints;
 		double avgPoints;
 		List<RoundResultData> results;	
-		SortedDictionary<string, int> roundPoints;
+		// do not use SortedDictionary for roundPoints
+		// this keeps the added entries in the correct order (in Ranking PDF)
+		Dictionary<string, int> roundPoints;
 		SortedDictionary<string, bool> availRounds;
 		bool resolved;
 		
@@ -47,7 +49,7 @@ namespace OPDtabData
 		void UpdatePointsArray(bool includeTeam) {
 			points = new List<int>();
 			SortedDictionary<string, int> teamPoints = new SortedDictionary<string, int>();
-			roundPoints = new SortedDictionary<string, int>();
+			roundPoints = new Dictionary<string, int>();
 			int n = 0;
 			foreach(RoundResultData rr in results) {
 				if(!availRounds.ContainsKey(rr.RoundName))

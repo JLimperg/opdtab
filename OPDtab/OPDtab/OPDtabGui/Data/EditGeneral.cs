@@ -10,13 +10,18 @@ namespace OPDtabGui
 	{
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
+			// only close window if change of data file is successful
 			args.RetVal = true;
 			try {
+				// tournament file changed?
 				if(AppSettings.I.TournamentFile != entryTournamentFile.Text) {
 					Tournament.I.Save(entryTournamentFile.Text);
 					AppSettings.I.TournamentFile = entryTournamentFile.Text;
 				}
+				// save other stuff
+				AppSettings.I.DeleteTexFile = cbDeleteTexFile.Active;
 				Tournament.I.Title = entryTournamentTitle.Text;
+				// can close window
 				args.RetVal = false;
 			}
 			catch(Exception e) {
@@ -32,10 +37,18 @@ namespace OPDtabGui
 			this.Build ();
 			entryTournamentTitle.Text = Tournament.I.Title;
 			entryTournamentFile.Text = AppSettings.I.TournamentFile;
+			cbDeleteTexFile.Active = AppSettings.I.DeleteTexFile;
 		}
 		
-		protected virtual void OnBtnExportRoundDataClicked (object sender, System.EventArgs e)
+		// TODO finish implementation of export of all data...
+		// the problem is, that it is 3 dimensional: 
+		// speakers, judges, rounds are the "axes"
+			
+		
+		/*protected virtual void OnBtnExportRoundDataClicked (object sender, System.EventArgs e)
 		{
+			
+			
 			FileChooserDialog dlg = new FileChooserDialog("Choose CSV file", this, FileChooserAction.Save, 
 			                                              "Cancel",ResponseType.Cancel,
 		                            					  "Save",ResponseType.Accept);
@@ -59,10 +72,7 @@ namespace OPDtabGui
 				tw.Close();
 			}
 			dlg.Destroy();
-		}
-		
-		
-		
+		}*/
 	}
 }
 

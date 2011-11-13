@@ -99,17 +99,34 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Button" id="btnExportCSV">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Export as CSV</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnExportCSVClicked" />
+              </widget>
+              <packing>
+                <property name="PackType">End</property>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Button" id="btnExportPDF">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Export PDF</property>
+                <property name="Label" translatable="yes">Export as PDF</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnExportPDFClicked" />
               </widget>
               <packing>
                 <property name="PackType">End</property>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -145,7 +162,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="OPDtabGui.EditGeneral" design-size="476 117">
+  <widget class="Gtk.Window" id="OPDtabGui.EditGeneral" design-size="476 142">
     <property name="MemberName" />
     <property name="Title" translatable="yes">EditGeneral</property>
     <property name="Icon">resource:OPDtabGui.AppIcon.png</property>
@@ -252,27 +269,39 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HButtonBox" id="hbuttonbox1">
+          <widget class="Gtk.HBox" id="hbox1">
             <property name="MemberName" />
-            <property name="Size">1</property>
-            <property name="LayoutStyle">Start</property>
+            <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Button" id="btnExportRoundData">
+              <widget class="Gtk.CheckButton" id="cbDeleteTexFile">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Export RoundData</property>
+                <property name="Label" translatable="yes">Delete Tex File after PDF Generation</property>
+                <property name="DrawIndicator">True</property>
+                <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnExportRoundDataClicked" />
               </widget>
               <packing>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
               </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HButtonBox" id="hbuttonbox1">
+            <property name="MemberName" />
+            <property name="Size">0</property>
+            <property name="LayoutStyle">Start</property>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -1854,6 +1883,7 @@
                                       <widget class="Gtk.Expander" id="expander7">
                                         <property name="MemberName" />
                                         <property name="CanFocus">True</property>
+                                        <property name="Expanded">True</property>
                                         <child>
                                           <widget class="Gtk.VBox" id="vbox6">
                                             <property name="MemberName" />
@@ -1867,7 +1897,6 @@
                                                     <property name="MemberName" />
                                                     <property name="CanFocus">True</property>
                                                     <property name="Label" translatable="yes">A4</property>
-                                                    <property name="Active">True</property>
                                                     <property name="DrawIndicator">True</property>
                                                     <property name="HasLabel">True</property>
                                                     <property name="UseUnderline">True</property>
@@ -2679,6 +2708,7 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Team Member/Parse</property>
+                    <property name="Active">True</property>
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
@@ -4997,7 +5027,7 @@
             <child>
               <widget class="Gtk.HButtonBox" id="hbuttonbox1">
                 <property name="MemberName" />
-                <property name="Size">2</property>
+                <property name="Size">3</property>
                 <property name="LayoutStyle">Start</property>
                 <child>
                   <widget class="Gtk.Button" id="btnExportPDF">
@@ -5014,6 +5044,21 @@
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.Button" id="btnExportCSV">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Export as CSV</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBtnExportCSVClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.Button" id="btnUpdate">
                     <property name="MemberName" />
                     <property name="Tooltip" translatable="yes" />
@@ -5025,7 +5070,7 @@
                     <signal name="Clicked" handler="OnBtnUpdateClicked" />
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">2</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>

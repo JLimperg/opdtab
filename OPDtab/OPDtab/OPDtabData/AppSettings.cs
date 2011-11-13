@@ -56,16 +56,19 @@ namespace OPDtabData
 			};
 		}
 		
-		[NonSerialized] static int VERSION = 7;
+		[NonSerialized] static int VERSION = 8;
 		[NonSerialized] static AppSettings instance;
 		string tournamentFile;
+		bool deleteTexFile;
 		EditDebatersClass editDebaters;
 		GenerateRoundClass generateRound;
 		//static public TemplatePool Tmpl;
 		
 		public AppSettings() {
+			// defaults
 			tournamentFile = Path.Combine(Directory.GetCurrentDirectory(),
 			                              Path.Combine("data","tournament.dat"));
+			deleteTexFile = true;
 			editDebaters = new EditDebatersClass();
 			generateRound = new GenerateRoundClass();
 		}
@@ -87,7 +90,15 @@ namespace OPDtabData
 				tournamentFile = value;
 			}
 		}
-		
+
+		public bool DeleteTexFile {
+			get {
+				return this.deleteTexFile;
+			}
+			set {
+				deleteTexFile = value;
+			}
+		}		
 		public EditDebatersClass EditDebaters {
 			get {
 				return this.editDebaters;

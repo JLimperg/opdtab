@@ -94,5 +94,15 @@
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
       <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
     </None>
+    <None Include="tmpl\debaters-tmpl.csv">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
+    </None>
+    <None Include="tmpl\ranking-tmpl.csv">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
+    </None>
   </ItemGroup>
 </Project>

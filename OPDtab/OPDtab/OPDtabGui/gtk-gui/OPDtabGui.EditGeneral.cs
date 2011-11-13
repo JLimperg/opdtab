@@ -10,8 +10,9 @@ namespace OPDtabGui
 		private global::Gtk.Entry entryTournamentTitle;
 		private global::Gtk.Label label3;
 		private global::Gtk.Label label4;
+		private global::Gtk.HBox hbox1;
+		private global::Gtk.CheckButton cbDeleteTexFile;
 		private global::Gtk.HButtonBox hbuttonbox1;
-		private global::Gtk.Button btnExportRoundData;
 		
 		protected virtual void Build ()
 		{
@@ -81,33 +82,41 @@ namespace OPDtabGui
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
-			this.hbuttonbox1.Name = "hbuttonbox1";
-			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
-			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.btnExportRoundData = new global::Gtk.Button ();
-			this.btnExportRoundData.CanFocus = true;
-			this.btnExportRoundData.Name = "btnExportRoundData";
-			this.btnExportRoundData.UseUnderline = true;
-			this.btnExportRoundData.Label = global::Mono.Unix.Catalog.GetString ("Export RoundData");
-			this.hbuttonbox1.Add (this.btnExportRoundData);
-			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnExportRoundData]));
-			w6.Expand = false;
-			w6.Fill = false;
-			this.vbox1.Add (this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox1]));
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.cbDeleteTexFile = new global::Gtk.CheckButton ();
+			this.cbDeleteTexFile.CanFocus = true;
+			this.cbDeleteTexFile.Name = "cbDeleteTexFile";
+			this.cbDeleteTexFile.Label = global::Mono.Unix.Catalog.GetString ("Delete Tex File after PDF Generation");
+			this.cbDeleteTexFile.DrawIndicator = true;
+			this.cbDeleteTexFile.UseUnderline = true;
+			this.hbox1.Add (this.cbDeleteTexFile);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cbDeleteTexFile]));
+			w6.Position = 0;
+			this.vbox1.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
 			w7.Position = 1;
 			w7.Expand = false;
 			w7.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
+			this.hbuttonbox1.Name = "hbuttonbox1";
+			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
+			this.vbox1.Add (this.hbuttonbox1);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox1]));
+			w8.Position = 2;
+			w8.Expand = false;
+			w8.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 476;
-			this.DefaultHeight = 117;
+			this.DefaultHeight = 142;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-			this.btnExportRoundData.Clicked += new global::System.EventHandler (this.OnBtnExportRoundDataClicked);
 		}
 	}
 }

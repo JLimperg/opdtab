@@ -196,22 +196,76 @@ namespace OPDtabGui
 			table.NColumns -= n;
 		}
 		
+		// TODO Refactor the Template machine!
+		
+		public enum TemplateType { 
+			// There are PDF/tex templates and 
+			// simple csv templates for tabular output
+			PDF=0, CSV=1	
+		};
+		
 		static string templateName = null;
+		static TemplateType templateType;
 		static ITemplate currTmpl = null;
 		
 		public static ITemplate GetTemplate(string name) {
+			// PDF is default
+			return GetTemplate(name, TemplateType.PDF);
+		}
+		public static ITemplate GetTemplate(string name, TemplateType type) {
 			templateName = name;
-			currTmpl = TemplatePool.Singleton().GetTemplate(templateName+"-tmpl.tex");
+			templateType = type;
+			if(type == TemplateType.CSV)
+				currTmpl = TemplatePool.Singleton().GetTemplate(templateName+"-tmpl.csv");
+			else // default is PDF 
+				currTmpl = TemplatePool.Singleton().GetTemplate(templateName+"-tmpl.tex");
 			return currTmpl;
 		}
-				
-		public static void MakePDFfromTemplate(string prefix) {
-			MakePDFfromTemplate(prefix, true);	
+		
+		public static string MakeExportFromTemplate() {
+			if(templateType == TemplateType.CSV) 
+				return MakeCSVfromTemplate();	
+			else
+				return MakePDFfromTemplate(null, false);
 		}
 		
-		public static void MakePDFfromTemplate(string prefix, bool runtwice) {
-			if(templateName == null || currTmpl == null)
-				return;
+		static string MakeCSVfromTemplate() {
+			// check if in correct state
+			if(templateName == null || currTmpl == null 
+				|| templateType != TemplateType.CSV)
+				return null;
+			
+			StreamWriter outfile = null;
+			string oldDir = Directory.GetCurrentDirectory();
+			try {
+				ITmplBlock tmplDoc = currTmpl.ParseBlock();
+				tmplDoc.Out();
+				// we export CSVs also to pdfs directory. historically inconsistent.
+				string workingDir = Path.Combine(oldDir, "pdfs");
+				//Directory.SetCurrentDirectory(workingDir);
+				string csvFile = Path.Combine(workingDir, templateName+".csv");
+				outfile = new StreamWriter(csvFile);
+				outfile.Write(tmplDoc.BlockString);	
+				outfile.Close();
+				return csvFile;
+			}
+			finally {
+				if(outfile != null)
+					outfile.Close();
+				templateName=null;
+				currTmpl=null;
+			}	
+		}
+				
+		public static string MakePDFfromTemplate(string prefix) {
+			return MakePDFfromTemplate(prefix, true);	
+		}
+		
+		public static string MakePDFfromTemplate(string prefix, bool runtwice) {
+			// check if in correct state
+			if(templateName == null || currTmpl == null 
+				|| templateType != TemplateType.PDF)
+				return null;
 			
 			StreamWriter outfile = null;
 			string oldDir = Directory.GetCurrentDirectory();
@@ -244,6 +298,13 @@ namespace OPDtabGui
 					if(File.Exists(fN))
 						File.Delete(fN);
 				}
+				// also cleanup generated tex file?
+				if(AppSettings.I.DeleteTexFile) {
+					string fN = Path.Combine(workingDir, fileName+".tex"); 
+					if(File.Exists(fN))
+						File.Delete(fN);	
+				}
+				return Path.Combine(workingDir, fileName+".pdf");
 			}
 			finally {
 				if(outfile != null)
@@ -253,6 +314,18 @@ namespace OPDtabGui
 				currTmpl=null;
 			}
 				
+		}
+		
+		public static void AskShowTemplate(Window w, string msg, string fileName) {
+			Console.WriteLine("message: "+msg);
+			if(fileName == null)
+				return;
+			if(AskYesNo(w, GLib.Markup.EscapeText(msg)+"\nShow the file in default viewer?")==ResponseType.Yes) {
+				System.Diagnostics.Process proc = new System.Diagnostics.Process();
+				proc.EnableRaisingEvents=false; 
+				proc.StartInfo.FileName = fileName;
+				proc.Start();		
+			}
 		}
 		
 		public static Gdk.Pixbuf LoadIcon(string resource) {

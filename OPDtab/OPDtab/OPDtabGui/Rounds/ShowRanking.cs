@@ -380,10 +380,19 @@ namespace OPDtabGui
 			}
 		}
 		
+		protected void OnBtnExportCSVClicked (object sender, System.EventArgs e)
+		{
+			DoTheExport(MiscHelpers.TemplateType.CSV);
+		}
+		
 		protected virtual void OnBtnExportPDFClicked (object sender, System.EventArgs e)
 		{
+			DoTheExport(MiscHelpers.TemplateType.PDF);		
+		}
+			
+		void DoTheExport(MiscHelpers.TemplateType type) {
 			try {
-				ITemplate tmpl = MiscHelpers.GetTemplate("ranking");
+				ITemplate tmpl = MiscHelpers.GetTemplate("ranking", type);
 				ITmplBlock tmplTitle = tmpl.ParseBlock("TITLE");
 				tmplTitle.Assign("V",Tournament.I.Title);
 				tmplTitle.Out();
@@ -448,7 +457,8 @@ namespace OPDtabGui
 					}
 					else {
 						for(int i=0;i<item.Points.Count;i++) {
-							tmplPointsPerRound.Assign("POINTS",OPDtabData.MiscHelpers.IntToStr(item.Points[i]));
+							tmplPointsPerRound.Assign("POINTS",
+								OPDtabData.MiscHelpers.IntToStr(item.Points[i]));
 							tmplPointsPerRound.Assign("PLUSSIGN",i==item.Points.Count-1?"":"+");
 							tmplPointsPerRound.Out();	
 						}
@@ -457,15 +467,19 @@ namespace OPDtabGui
 					tmplSpeakers.Out();
 					pos++;
 				}	
-				MiscHelpers.MakePDFfromTemplate(null);				
-				MiscHelpers.ShowMessage(this, "Ranking PDF successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this, 
+					"Ranking Export successfully generated, see pdfs/ranking.(pdf|csv).",
+					MiscHelpers.MakeExportFromTemplate()
+					);
+								
+				//MiscHelpers.ShowMessage(this, , MessageType.Info);
 			
 			}
 			catch(Exception ex) {
-				MiscHelpers.ShowMessage(this, "Could not generate Ranking as PDF: "+ex.Message, MessageType.Error);
-			}		
+				MiscHelpers.ShowMessage(this, "Could not export Ranking: "+ex.Message, MessageType.Error);
+			}	
 		}
-				
+		
 		protected virtual void OnBtnUpdateClicked (object sender, System.EventArgs e)
 		{
 			UpdateAll();
@@ -709,6 +723,8 @@ namespace OPDtabGui
 				}
 			}
 		}
+
+		
 	}
 }
 

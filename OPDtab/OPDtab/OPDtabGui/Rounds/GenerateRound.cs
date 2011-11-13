@@ -789,8 +789,11 @@ namespace OPDtabGui
 			try {
 				ITemplate tmplRound = MiscHelpers.GetTemplate("round");
 				WorkOnTemplate(rd, tmplRound);				
-				MiscHelpers.MakePDFfromTemplate(rd.RoundName);				
-				MiscHelpers.ShowMessage(this, "Round PDF successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this,
+					"Round PDF successfully generated, see "+
+					"pdfs/<RoundName>-round.pdf",
+					MiscHelpers.MakePDFfromTemplate(rd.RoundName)
+					);
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not generate Round Presentation as PDF: "+ex.Message, MessageType.Error);
@@ -944,9 +947,11 @@ namespace OPDtabGui
 					tmplRooms.Out();
 					
 				}
-				
-				MiscHelpers.MakePDFfromTemplate(rd.RoundName);			
-				MiscHelpers.ShowMessage(this, "Sheets successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this,
+					"Sheets successfully generated, see "+
+					"pdfs/<RoundName>-sheets.pdf",
+					MiscHelpers.MakePDFfromTemplate(rd.RoundName)
+					);
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not generate Sheets as PDF: "+ex.Message, MessageType.Error);
@@ -1000,8 +1005,11 @@ namespace OPDtabGui
 			}
 			
 			try {
-				MiscHelpers.MakePDFfromTemplate(null,false);				
-				MiscHelpers.ShowMessage(this, "RoundsOverview PDF successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this,
+					"RoundsOverview PDF successfully generated, " +
+				 	"see pdfs/roundsoverview.pdf",
+					MiscHelpers.MakePDFfromTemplate(null,false)
+					);
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not generate RoundsOverview as PDF: "+ex.Message, MessageType.Error);
@@ -1014,7 +1022,6 @@ namespace OPDtabGui
 			
 			for(int round=roundsStart;round<roundsStart+roundsN;round++) {
 				RoundData rd = rounds[round];
-				Console.WriteLine(rd.Rooms.Count);
 				ITmplBlock tmplRounds = tmplRoundsOverview.ParseBlock("ROUNDS");
 				for(int roomIdx=roomsStart;roomIdx<roomsStart+roomsN;roomIdx++) {
 					if(roomIdx<rd.Rooms.Count) {
@@ -1095,8 +1102,11 @@ namespace OPDtabGui
 			}
 			
 			try {
-				MiscHelpers.MakePDFfromTemplate(rd.RoundName,false);				
-				MiscHelpers.ShowMessage(this, "JudgeVsTeams PDF successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this,
+					"JudgeVsTeams PDF successfully generated, see "+
+					"pdfs/<RoundName>-judgesvsteams-<size>.pdf",
+					MiscHelpers.MakePDFfromTemplate(rd.RoundName,false)
+					);
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not generate JudgesVsTeams as PDF: "+ex.Message, MessageType.Error);
@@ -1249,8 +1259,11 @@ namespace OPDtabGui
 			}
 			
 			try {
-				MiscHelpers.MakePDFfromTemplate(null,false);				
-				MiscHelpers.ShowMessage(this, "JudgeVsJudges PDF successfully generated.", MessageType.Info);
+				MiscHelpers.AskShowTemplate(this,
+					"JudgeVsJudges PDF successfully generated, see "+
+					"pdfs/judgesvsjudges-<size>.pdf",
+					MiscHelpers.MakePDFfromTemplate(null,false)
+					);
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not generate JudgeVsJudges as PDF: "+ex.Message, MessageType.Error);
