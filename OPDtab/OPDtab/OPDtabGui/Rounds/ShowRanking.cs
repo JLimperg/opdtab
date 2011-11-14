@@ -17,7 +17,7 @@ namespace OPDtabGui
 		bool isConsistent;
 		
 		// some arrays for marking
-		// used in PDF export
+		// used in ranking export
 		List<int> mBreakingTeams = new List<int>();
 		List<int> mTeamSpeakers = new List<int>();
 		List<int> mBestSpeakers = new List<int>();
@@ -393,6 +393,8 @@ namespace OPDtabGui
 		void DoTheExport(MiscHelpers.TemplateType type) {
 			try {
 				ITemplate tmpl = MiscHelpers.GetTemplate("ranking", type);
+				string separator = type == MiscHelpers.TemplateType.PDF ? 
+					"+" : "\",\"";
 				ITmplBlock tmplTitle = tmpl.ParseBlock("TITLE");
 				tmplTitle.Assign("V",Tournament.I.Title);
 				tmplTitle.Out();
@@ -413,16 +415,26 @@ namespace OPDtabGui
 						tmplTeams.Assign("BREAKMARK", "");
 					tmplTeams.Assign("POINTS", OPDtabData.MiscHelpers.IntToStr(item.TotalPoints));
 					ITmplBlock tmplPointsPerRound = tmpl.ParseBlock("POINTSPERROUNDTEAM");
+					int nPoints=0;
 					if(item.RoundPoints.Count==0) {
 						tmplPointsPerRound.Assign("POINTS","?");
-						tmplPointsPerRound.Assign("PLUSSIGN","");
+						tmplPointsPerRound.Assign("SEP","");
 						tmplPointsPerRound.Out();
 					}
 					else {
 						for(int i=0;i<item.RoundPoints.Count;i++) {
 							tmplPointsPerRound.Assign("POINTS",OPDtabData.MiscHelpers.IntToStr(item.RoundPoints[i]));
-							tmplPointsPerRound.Assign("PLUSSIGN",i==item.RoundPoints.Count-1?"":"+");
+							tmplPointsPerRound.Assign("SEP",i==item.RoundPoints.Count-1?"":separator);
 							tmplPointsPerRound.Out();	
+							nPoints++;
+						}
+					}
+					if(type == MiscHelpers.TemplateType.CSV)  {
+						// in CSV mode pad with more separators	
+						for(int i=nPoints;i<Tournament.I.Rounds.Count;i++) {
+							tmplPointsPerRound.Assign("POINTS","");
+							tmplPointsPerRound.Assign("SEP",separator);
+							tmplPointsPerRound.Out();
 						}
 					}
 					tmplTeams.Out();
@@ -449,18 +461,29 @@ namespace OPDtabGui
 					else
 						tmplSpeakers.Assign("BREAKMARK", "");
 					tmplSpeakers.Assign("TEAMNAME",rd.Role.TeamName);
+					
 					ITmplBlock tmplPointsPerRound = tmpl.ParseBlock("POINTSPERROUNDSPEAKER");
+					int nPoints = 0;
 					if(item.Points==null) {
 						tmplPointsPerRound.Assign("POINTS","?");
-						tmplPointsPerRound.Assign("PLUSSIGN","");
+						tmplPointsPerRound.Assign("SEP","");
 						tmplPointsPerRound.Out();
 					}
 					else {
 						for(int i=0;i<item.Points.Count;i++) {
 							tmplPointsPerRound.Assign("POINTS",
 								OPDtabData.MiscHelpers.IntToStr(item.Points[i]));
-							tmplPointsPerRound.Assign("PLUSSIGN",i==item.Points.Count-1?"":"+");
-							tmplPointsPerRound.Out();	
+							tmplPointsPerRound.Assign("SEP",i==item.Points.Count-1?"":separator);
+							tmplPointsPerRound.Out();
+							nPoints++;
+						}
+					}
+					if(type == MiscHelpers.TemplateType.CSV)  {
+						// in CSV mode pad with more separators	
+						for(int i=nPoints;i<Tournament.I.Rounds.Count;i++) {
+							tmplPointsPerRound.Assign("POINTS","");
+							tmplPointsPerRound.Assign("SEP",separator);
+							tmplPointsPerRound.Out();
 						}
 					}
 					tmplSpeakers.Assign("AVERAGEPOINTS",item.AvgPoints<0?"?":String.Format("{0:0.00}",item.AvgPoints));
@@ -470,10 +493,7 @@ namespace OPDtabGui
 				MiscHelpers.AskShowTemplate(this, 
 					"Ranking Export successfully generated, see pdfs/ranking.(pdf|csv).",
 					MiscHelpers.MakeExportFromTemplate()
-					);
-								
-				//MiscHelpers.ShowMessage(this, , MessageType.Info);
-			
+					);			
 			}
 			catch(Exception ex) {
 				MiscHelpers.ShowMessage(this, "Could not export Ranking: "+ex.Message, MessageType.Error);

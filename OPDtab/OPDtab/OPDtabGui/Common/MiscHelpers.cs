@@ -317,7 +317,6 @@ namespace OPDtabGui
 		}
 		
 		public static void AskShowTemplate(Window w, string msg, string fileName) {
-			Console.WriteLine("message: "+msg);
 			if(fileName == null)
 				return;
 			if(AskYesNo(w, GLib.Markup.EscapeText(msg)+"\nShow the file in default viewer?")==ResponseType.Yes) {
