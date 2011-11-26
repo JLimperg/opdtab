@@ -24,9 +24,9 @@ namespace OPDtabGui
 				d.Name.LastName.Substring(0,1)+". ";
 			return dw;
 		}
-		
+				
 		public DebaterWidget(RoundDebater rd) : this(rd, false, false) {
-			
+			// defaults
 		}
 		
 		public DebaterWidget(RoundDebater rd, bool canFocus, bool showDebaterName) 

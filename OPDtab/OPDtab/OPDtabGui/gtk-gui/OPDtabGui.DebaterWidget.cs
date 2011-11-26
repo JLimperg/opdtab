@@ -48,6 +48,7 @@ namespace OPDtabGui
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.lblQualiInd = new global::Gtk.Label ();
 			this.lblQualiInd.Name = "lblQualiInd";
+			this.lblQualiInd.LabelProp = "";
 			this.alignment1.Add (this.lblQualiInd);
 			this.hbox.Add (this.alignment1);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alignment1]));
@@ -76,6 +77,7 @@ namespace OPDtabGui
 			this.label2 = new global::Gtk.Label ();
 			this.label2.WidthRequest = 10;
 			this.label2.Name = "label2";
+			this.label2.LabelProp = "";
 			this.hboxInfo.Add (this.label2);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxInfo [this.label2]));
 			w7.Position = 0;

@@ -10,8 +10,9 @@ namespace OPDtabGui
 		private global::Gtk.Alignment alConflictBtn;
 		private global::Gtk.Alignment alignment2;
 		private global::Gtk.Label lblQualiInd;
-		private global::Gtk.HBox hboxTeamMembers;
-		private global::Gtk.Label label2;
+		private global::Gtk.VBox vboxInfos;
+		private global::Gtk.Label lblFullTeamName;
+		private global::Gtk.Alignment alignment3;
 		private global::Gtk.VBox vboxTeamMembers;
 		
 		protected virtual void Build ()
@@ -47,6 +48,7 @@ namespace OPDtabGui
 			// Container child alignment2.Gtk.Container+ContainerChild
 			this.lblQualiInd = new global::Gtk.Label ();
 			this.lblQualiInd.Name = "lblQualiInd";
+			this.lblQualiInd.LabelProp = "";
 			this.alignment2.Add (this.lblQualiInd);
 			this.hbox.Add (this.alignment2);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alignment2]));
@@ -59,29 +61,32 @@ namespace OPDtabGui
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox.Gtk.Box+BoxChild
-			this.hboxTeamMembers = new global::Gtk.HBox ();
-			this.hboxTeamMembers.Name = "hboxTeamMembers";
-			this.hboxTeamMembers.Spacing = 6;
-			// Container child hboxTeamMembers.Gtk.Box+BoxChild
-			this.label2 = new global::Gtk.Label ();
-			this.label2.WidthRequest = 10;
-			this.label2.Name = "label2";
-			this.hboxTeamMembers.Add (this.label2);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hboxTeamMembers [this.label2]));
+			this.vboxInfos = new global::Gtk.VBox ();
+			this.vboxInfos.Name = "vboxInfos";
+			// Container child vboxInfos.Gtk.Box+BoxChild
+			this.lblFullTeamName = new global::Gtk.Label ();
+			this.lblFullTeamName.Name = "lblFullTeamName";
+			this.lblFullTeamName.Xalign = 0F;
+			this.lblFullTeamName.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
+			this.vboxInfos.Add (this.lblFullTeamName);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vboxInfos [this.lblFullTeamName]));
 			w6.Position = 0;
 			w6.Expand = false;
 			w6.Fill = false;
-			// Container child hboxTeamMembers.Gtk.Box+BoxChild
+			// Container child vboxInfos.Gtk.Box+BoxChild
+			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment3.Name = "alignment3";
+			this.alignment3.LeftPadding = ((uint)(10));
+			// Container child alignment3.Gtk.Container+ContainerChild
 			this.vboxTeamMembers = new global::Gtk.VBox ();
 			this.vboxTeamMembers.Name = "vboxTeamMembers";
-			this.hboxTeamMembers.Add (this.vboxTeamMembers);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxTeamMembers [this.vboxTeamMembers]));
-			w7.Position = 1;
-			this.vbox.Add (this.hboxTeamMembers);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hboxTeamMembers]));
+			this.alignment3.Add (this.vboxTeamMembers);
+			this.vboxInfos.Add (this.alignment3);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vboxInfos [this.alignment3]));
 			w8.Position = 1;
-			w8.Expand = false;
-			w8.Fill = false;
+			this.vbox.Add (this.vboxInfos);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vboxInfos]));
+			w9.Position = 1;
 			this.Add (this.vbox);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

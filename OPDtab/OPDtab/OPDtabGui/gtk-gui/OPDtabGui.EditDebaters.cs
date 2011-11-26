@@ -9,6 +9,7 @@ namespace OPDtabGui
 		private global::Gtk.HButtonBox hbuttonbox1;
 		private global::Gtk.Button btnDebaterAdd;
 		private global::Gtk.Button btnDebaterRemove;
+		private global::Gtk.Button btnSwapRoles;
 		private global::Gtk.Alignment cEntryFilter;
 		private global::Gtk.Label lblDebatersInfo;
 		private global::Gtk.Button btnExportCSV;
@@ -88,26 +89,52 @@ namespace OPDtabGui
 			w18.Position = 1;
 			w18.Expand = false;
 			w18.Fill = false;
+			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+			this.btnSwapRoles = new global::Gtk.Button ();
+			this.btnSwapRoles.CanFocus = true;
+			this.btnSwapRoles.Name = "btnSwapRoles";
+			this.btnSwapRoles.UseUnderline = true;
+			// Container child btnSwapRoles.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w19 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w20 = new global::Gtk.HBox ();
+			w20.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w21 = new global::Gtk.Image ();
+			w21.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			w20.Add (w21);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w23 = new global::Gtk.Label ();
+			w23.LabelProp = global::Mono.Unix.Catalog.GetString ("Swap Roles");
+			w23.UseUnderline = true;
+			w20.Add (w23);
+			w19.Add (w20);
+			this.btnSwapRoles.Add (w19);
+			this.hbuttonbox1.Add (this.btnSwapRoles);
+			global::Gtk.ButtonBox.ButtonBoxChild w27 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnSwapRoles]));
+			w27.Position = 2;
+			w27.Expand = false;
+			w27.Fill = false;
 			this.hbox1.Add (this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbuttonbox1]));
-			w19.Position = 0;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbuttonbox1]));
+			w28.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.cEntryFilter = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.cEntryFilter.Name = "cEntryFilter";
 			this.hbox1.Add (this.cEntryFilter);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cEntryFilter]));
-			w20.PackType = ((global::Gtk.PackType)(1));
-			w20.Position = 1;
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cEntryFilter]));
+			w29.PackType = ((global::Gtk.PackType)(1));
+			w29.Position = 1;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.lblDebatersInfo = new global::Gtk.Label ();
 			this.lblDebatersInfo.Name = "lblDebatersInfo";
 			this.lblDebatersInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("lblDebatersInfo");
 			this.hbox1.Add (this.lblDebatersInfo);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblDebatersInfo]));
-			w21.PackType = ((global::Gtk.PackType)(1));
-			w21.Position = 2;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblDebatersInfo]));
+			w30.PackType = ((global::Gtk.PackType)(1));
+			w30.Position = 2;
+			w30.Expand = false;
+			w30.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnExportCSV = new global::Gtk.Button ();
 			this.btnExportCSV.CanFocus = true;
@@ -115,11 +142,11 @@ namespace OPDtabGui
 			this.btnExportCSV.UseUnderline = true;
 			this.btnExportCSV.Label = global::Mono.Unix.Catalog.GetString ("Export as CSV");
 			this.hbox1.Add (this.btnExportCSV);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
-			w22.PackType = ((global::Gtk.PackType)(1));
-			w22.Position = 3;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
+			w31.PackType = ((global::Gtk.PackType)(1));
+			w31.Position = 3;
+			w31.Expand = false;
+			w31.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnExportPDF = new global::Gtk.Button ();
 			this.btnExportPDF.CanFocus = true;
@@ -127,16 +154,16 @@ namespace OPDtabGui
 			this.btnExportPDF.UseUnderline = true;
 			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString ("Export as PDF");
 			this.hbox1.Add (this.btnExportPDF);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
-			w23.PackType = ((global::Gtk.PackType)(1));
-			w23.Position = 4;
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
+			w32.PackType = ((global::Gtk.PackType)(1));
+			w32.Position = 4;
+			w32.Expand = false;
+			w32.Fill = false;
 			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w24.Position = 0;
-			w24.Expand = false;
-			w24.Fill = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w33.Position = 0;
+			w33.Expand = false;
+			w33.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -149,8 +176,8 @@ namespace OPDtabGui
 			this.treeDebaters.RulesHint = true;
 			this.GtkScrolledWindow.Add (this.treeDebaters);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
-			w26.Position = 1;
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			w35.Position = 1;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -161,6 +188,7 @@ namespace OPDtabGui
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.btnDebaterAdd.Clicked += new global::System.EventHandler (this.OnBtnDebaterAddClicked);
 			this.btnDebaterRemove.Clicked += new global::System.EventHandler (this.OnBtnDebaterRemoveClicked);
+			this.btnSwapRoles.Clicked += new global::System.EventHandler (this.OnBtnSwapRolesClicked);
 			this.btnExportPDF.Clicked += new global::System.EventHandler (this.OnBtnExportPDFClicked);
 			this.btnExportCSV.Clicked += new global::System.EventHandler (this.OnBtnExportCSVClicked);
 		}

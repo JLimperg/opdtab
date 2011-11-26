@@ -20,14 +20,18 @@ namespace OPDtabGui
 			this.Build ();	
 			RoundResultData.UpdateStats();
 					
-			// small setups
 			settings = AppSettings.I.GenerateRound;
+			// small setups
 			textRoomDetails.Buffer.Text = Tournament.I.RoomDetails;
+			sbRandomSeed.Value = settings.randomSeed;
+			sbMonteCarloSteps.Value = settings.monteCarloSteps;
+			
 			// algoProgress
 			algoProgress = new AlgoProgress();
 			ebAlgoProgress.Add(algoProgress);
 			MiscHelpers.SetIsShown(ebAlgoProgress, false);
-			// debaterpool
+			
+			// debaterpool Widget
 			debaterpool = new DebaterPool();
 			ebDebaterPool.Add(debaterpool);
 			ebDebaterPool.ShowAll();
@@ -38,6 +42,7 @@ namespace OPDtabGui
 			SetupConflictExpander();
 			SetupAlgorithmSb();
 			SetupBreakroundPresets();
+			// use full screen, hopefully that's enough :)
 			Maximize();
 		}	
 		
@@ -115,7 +120,7 @@ namespace OPDtabGui
 			// Widgets for Rooms			
 			MiscHelpers.ClearContainer(vboxRooms);
 			foreach(RoomData roomData in rd.Rooms) 
-				vboxRooms.PackStart(new Room(roomData), 
+				vboxRooms.PackStart(new Room(roomData, cbCompactView.Active), 
 				                    false, false, 0);
 			vboxRooms.ShowAll();
 		}
@@ -601,7 +606,7 @@ namespace OPDtabGui
 		protected virtual void OnBtnAlgoBreakroundClicked (object sender, System.EventArgs e)
 		{
 			if(OPDtabData.MiscHelpers.SanitizeString(textviewBreakConfig.Buffer.Text)=="") {
-				MiscHelpers.ShowMessage(this, "Please enter config.", MessageType.Error);
+				MiscHelpers.ShowMessage(this, "Please select config.", MessageType.Error);
 				return;	
 			}
 			// since the text buffer isn't empty, cbBreakPresets has selection.
@@ -613,6 +618,11 @@ namespace OPDtabGui
 				   == ResponseType.No)
 					return;
 			}
+			// Ask again!
+			if(MiscHelpers.AskYesNo(this, "Is the Ranking <b>updated and doublechecked</b>?")
+				== ResponseType.No)
+				return;
+			
 			try {			
 				bool overwrite = cbAlgoOverwriteExisting.Active && storeRounds.IterNChildren()>0;
 				int nRounds = AlgoBreakround.ParsePlacing(textviewBreakConfig.Buffer.Text);
@@ -1374,13 +1384,58 @@ namespace OPDtabGui
 					tmpl.Assign("V"+(i+1).ToString(),
 					                      RoundResultData.StatAsString(stats[i]));									
 			}	
-		}				
+		}					
+	
+		protected void OnSbMonteCarloStepsValueChanged (object sender, System.EventArgs e)
+		{
+			settings.monteCarloSteps = sbMonteCarloSteps.ValueAsInt;
+		}
+
+		protected void OnSbRandomSeedValueChanged (object sender, System.EventArgs e)
+		{
+			settings.randomSeed = sbRandomSeed.ValueAsInt;
+		}
+		
+		// global flag for handling the FocusIn/FocusOut events 
+		bool disableFocusEvents = false;
+		
+		protected void OnTextMotionFocusInEvent (object o, Gtk.FocusInEventArgs args)
+		{
+			if(disableFocusEvents)
+				return;
+			disableFocusEvents = true;
+			cMotionSmall.Remove(frameMotion);
+			cMotionBig.Add(frameMotion);
+			// removing the widget makes it loose the focus...
+			// so correct for this
+			textMotion.GrabFocus();
+			disableFocusEvents = false;
+			// small cosmetics
+			alignmentDisplay.TopPadding = 0;
+			cMotionBig.BottomPadding = 6;
+		}
+		
+		protected void OnTextMotionFocusOutEvent (object o, Gtk.FocusOutEventArgs args)
+		{
+			if(disableFocusEvents)
+				return;
+			disableFocusEvents = true;
+			cMotionBig.Remove(frameMotion);
+			cMotionSmall.Add(frameMotion);
+			disableFocusEvents = false;
+			// small cosmetics			
+			alignmentDisplay.TopPadding = 6;
+			cMotionBig.BottomPadding = 0;
+		}
+
 
 		
-		
-		
-		
-	
+		protected void OnCbCompactViewToggled (object sender, System.EventArgs e)
+		{
+			foreach(Room room in vboxRooms) {
+				room.Small = cbCompactView.Active;	
+			}
+		}
 	}
 }
 

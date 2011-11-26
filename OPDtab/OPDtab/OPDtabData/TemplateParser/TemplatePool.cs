@@ -91,8 +91,9 @@ namespace OPDtabData
 		public ITemplate GetTemplate(string tmplFileName)
 		{
 			TmplParser tmpl = null;
-			if((tmpl = SearchInPool(tmplFileName, true)) != null)
-				return (ITemplate)tmpl.Clone();
+			// do not use cached templates
+			//if((tmpl = SearchInPool(tmplFileName, true)) != null)
+			//	return (ITemplate)tmpl.Clone();
 
 			tmpl = new TmplParser(tmplFileName);
 			if(tmpl.Initialize(this) == false)

@@ -123,7 +123,7 @@ namespace OPDtabData
 					return null;
 			}
 			set {
-				throw new NotImplementedException ();
+				teamMembers[index] = value;
 			}
 		}
 		

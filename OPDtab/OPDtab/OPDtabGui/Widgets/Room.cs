@@ -17,13 +17,16 @@ namespace OPDtabGui
 		List<Container> widgetsContainer;
 		AppSettings.GenerateRoundClass settings;
 		int penalty;
+		bool small;
 		
-		public Room (RoomData rd)
+		
+		public Room (RoomData rd, bool s)
 		{
 			this.Build();
 			roomData = rd;
 			settings = AppSettings.I.GenerateRound;
 			penalty = -1;
+			small = s;
 			// generate widget containers
 			widgetsContainer = new List<Container>();
 			foreach(string sec in sections) 
@@ -42,13 +45,12 @@ namespace OPDtabGui
 		}
 		
 		void UpdateGuiSection(string section, int i, object data) {
-			
 			Container c = (Container)GetField("c"+section);		
-			
 			if(data == null) { 				
 				SetDummyLabel(c, section);		
 			} 
 			else if(data is List<RoundDebater>) {
+				// Judges or FreeSpeakers (variable number...)
 				MiscHelpers.ClearContainer(c);
 				List<RoundDebater> list = (List<RoundDebater>)data;
 				if(list.Count==0)
@@ -56,6 +58,7 @@ namespace OPDtabGui
 				else {
 					foreach(RoundDebater d in list)
 						UpdateGuiSection(section,c.Children.Length,d);
+					// append label for adding by D&D
 					if(section == "Judges" || list.Count<3)
 						SetDummyLabel(c, section, "Drag here to add");
 				}
@@ -63,10 +66,18 @@ namespace OPDtabGui
 			else { 
 				IDragDropWidget w = null;
 					
-				if(data is TeamData)
-					w = new Team((TeamData)data, null);
-				else if(data is RoundDebater)
-					w = new DebaterWidget((RoundDebater)data);
+				if(data is TeamData) {
+					if(small)
+						w = Team.Small((TeamData)data);
+					else		
+						w = new Team((TeamData)data, null);
+				}
+				else if(data is RoundDebater) {
+					if(small)
+						w = DebaterWidget.Small((RoundDebater)data, false);
+					else
+						w = new DebaterWidget((RoundDebater)data);
+				}
 				else
 					throw new NotImplementedException("Don't know how to create widget for data");
 				
@@ -106,7 +117,6 @@ namespace OPDtabGui
 				double sumAvgTeam = 0.0;
 				int nAvgSpkr = 0;
 				int nAvgTeam = 0;
-				//double sumAvgTeam = 0.0;
 				
 				foreach(RoundDebater rd in roomData.Judges) {
 					Debater d = Tournament.I.FindDebater(rd);
@@ -184,7 +194,7 @@ namespace OPDtabGui
 				text = "Drag Judge here";
 				break;
 			}
-			SetDummyLabel(c,section, text);
+			SetDummyLabel(c, section, text);
 		}
 		
 		void SetDummyLabel(Container c, string section, string text) {	
@@ -211,6 +221,7 @@ namespace OPDtabGui
 		void SetItem(string section, int i, object data) {
 			Type type = roomData.GetType().GetProperty(section).PropertyType;			
 			if(type == typeof(List<RoundDebater>)) {
+				// a judge (not as chair) is set
 				List<RoundDebater> list = (List<RoundDebater>)roomData.GetType().
 					GetProperty(section).GetValue(roomData, null);
 				
@@ -223,7 +234,8 @@ namespace OPDtabGui
 				else
 					throw new IndexOutOfRangeException("Index too large.");
 			}
-			else {					
+			else {
+				// everything else by calling
 				roomData.GetType().InvokeMember(section,
 				                       	BindingFlags.SetProperty, null, roomData,
 				                        new object[] {data});
@@ -350,6 +362,16 @@ namespace OPDtabGui
 			return match;
 		}
 		#endregion
+
+		public bool Small {
+			get {
+				return this.small;
+			}
+			set {
+				small = value;
+				UpdateGui();
+			}
+		}
 }
 }
 

@@ -50,6 +50,7 @@ namespace OPDtabGui
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
+			this.label1.LabelProp = "";
 			this.vbox1.Add (this.label1);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.label1]));
 			w3.Position = 1;
@@ -84,6 +85,7 @@ namespace OPDtabGui
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
+			this.label2.LabelProp = "";
 			this.vbox2.Add (this.label2);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label2]));
 			w9.Position = 1;

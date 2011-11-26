@@ -20,6 +20,21 @@ namespace OPDtabGui
 		MyButton btnExpand;	
 		MyConflictButton btnConflict;
 		
+		public static Team Small(TeamData td) {
+			Team t = new Team(td, null);
+			// generate abbreviated team name
+			string abbrTeamName = "";
+			foreach(string s in OPDtabData.MiscHelpers.StringToWords(td.TeamName)) {
+				//Console.WriteLine(td.TeamName+" "+s);
+				string tmp = s.Length>2 ? s.Substring(0,2)+". " : s;
+				abbrTeamName = abbrTeamName + tmp;	
+			}
+			t.btnExpand.LabelText = abbrTeamName;
+			t.lblFullTeamName.Markup = "<small>"+GLib.Markup.EscapeText(td.TeamName)+"</small>";
+			MiscHelpers.SetIsShown(t.lblFullTeamName, true);
+			return t;
+		}
+		
 		public Team(TeamData td) : this(td, null, false) {
 		}
 		
@@ -30,7 +45,8 @@ namespace OPDtabGui
 		public Team(TeamData td, SetDataTriggerHandler dataHandler, bool canFocus) { 
 			this.Build();
 			teamData = td;
-			MiscHelpers.SetIsShown(hboxTeamMembers, false);
+			MiscHelpers.SetIsShown(vboxInfos, false);
+			MiscHelpers.SetIsShown(lblFullTeamName, false);
 			if(teamData == null) {
 				Label lbl = new Label();
 				lbl.Markup = "<i>No Team</i>";
@@ -44,7 +60,7 @@ namespace OPDtabGui
 			btnExpand.Clicked += OnBtnExpandClicked;
 			alBtn.Add(btnExpand);
 			alBtn.ShowAll();	
-			// conflict..
+			// conflict...not shown by default
 			btnConflict = new MyConflictButton();
 			alConflictBtn.Add(btnConflict);
 			// when members are draggable, team is also draggable.
@@ -59,8 +75,7 @@ namespace OPDtabGui
 		}
 			
 		void SetupTeamMembers(SetDataTriggerHandler dataHandler) {
-			foreach(RoundDebater d in teamData) {
-				
+			foreach(RoundDebater d in teamData) {				
 				DebaterWidget dw = new DebaterWidget(d);					
 				if(dataHandler != null) {
 					dw.SetupDragDropSource("TeamMember", d);
@@ -100,7 +115,7 @@ namespace OPDtabGui
 			
 		protected virtual void OnBtnExpandClicked (object sender, System.EventArgs e)
 		{
-			MiscHelpers.SetIsShown(hboxTeamMembers, btnExpand.Toggled);
+			MiscHelpers.SetIsShown(vboxInfos, btnExpand.Toggled);
 		}
 		
 		public DebaterWidget FindTeamMember(RoundDebater d) {
@@ -176,7 +191,7 @@ namespace OPDtabGui
 				}
 			}
 			bool toggled = flag && key != "";
-			MiscHelpers.SetIsShown(hboxTeamMembers, toggled);
+			MiscHelpers.SetIsShown(vboxInfos, toggled);
 			btnExpand.Toggled = toggled;
 			return flag;
 		}

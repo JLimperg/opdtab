@@ -14,13 +14,13 @@ namespace OPDtabData
 		uint age;
 		Club club;
 		Role role;
-		
+
 		public AbstractDebater() {
 			name = new Name();
 			club = new Club();
 			role = new Role();
 		}
-		
+				
 		public AbstractDebater(AbstractDebater d) {
 			// make a nice copy, but be lazy and use Parse methods...
 			name = new Name(d.Name.ToString());

@@ -24,7 +24,9 @@ namespace OPDtabData
 		}
 		
 		[Serializable]
-		public class GenerateRoundClass {			
+		public class GenerateRoundClass {
+			public int randomSeed = 1337;
+			public int monteCarloSteps = 1000;
 			/* hint:
 				JudgeVsTeam=0, 
 				JudgeVsFree=1,
@@ -56,7 +58,7 @@ namespace OPDtabData
 			};
 		}
 		
-		[NonSerialized] static int VERSION = 8;
+		[NonSerialized] static int VERSION = 9;
 		[NonSerialized] static AppSettings instance;
 		string tournamentFile;
 		bool deleteTexFile;

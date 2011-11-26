@@ -48,6 +48,7 @@ namespace OPDtabGui
 			SetupDebaterColumn("WhiteList", false);
 			SetupDebaterColumn("ExtraInfo", false);
 			treeDebaters.HeadersClickable = true;
+			treeDebaters.Selection.Mode = SelectionMode.Multiple;
 			
 			treeDebaters.Columns[editDebatersSettings.sortCol].SortIndicator = true;
 			treeDebaters.Columns[editDebatersSettings.sortCol].SortOrder = editDebatersSettings.sortOrder;
@@ -410,23 +411,125 @@ namespace OPDtabGui
 		
 		protected virtual void OnBtnDebaterRemoveClicked (object sender, System.EventArgs e)
 		{
-			TreePath path;
-			TreeViewColumn col;
-			treeDebaters.GetCursor(out path, out col);
+			if(treeDebaters.Selection.CountSelectedRows() == 0)
+				return;
 			
-			if(path != null) {
-				if(Tournament.I.Rounds.Count>0 && 
-				   MiscHelpers.AskYesNo(this, "Deleting with existing rounds can lead to inconsistent data. "+
-				                        "Better try renaming. Continue?")==ResponseType.No)
-					return;
-				TreeIter iter = TreeIter.Zero;
+			// display warning and hint
+			if(MiscHelpers.AskYesNo(this, "Deleting with existing rounds can lead to inconsistent data. "+
+		                        "Better try renaming of existing debaters or swapping their roles. Continue anyway?")
+				== ResponseType.No) {
+				return;
+			}		
+							
+			// delete the selected rows
+			List<TreeIter> storeIters = new List<TreeIter>();
+			foreach(TreePath path in treeDebaters.Selection.GetSelectedRows()) {
+				TreeIter iter;
 				if(treeDebaters.Model.GetIter(out iter, path)) {
-					iter = ConvertModelIterToStoreIter(iter);
-					store.Remove(ref iter);
-					UpdateDebatersInfo();
+					TreeIter storeIter = ConvertModelIterToStoreIter(iter);			
+					storeIters.Add(storeIter);
 				}
 			}
+			foreach(TreeIter iter in storeIters) {
+				RemoveDebaterFromRounds(iter);
+				TreeIter refIter = iter;
+				store.Remove(ref refIter);
+			}				
+			UpdateDebatersInfo();
 		}
+		
+		void RemoveDebaterFromRounds(TreeIter storeIter) {
+			EditableDebater d = (EditableDebater)store.GetValue(storeIter, 0);
+			
+			// removing a judge from existing rounds is easy
+			// but everything else is not (consider non-complete teams...)
+			// so, we rely on the issued warning and hope the user knows 
+			// what to do
+			if(!d.Role.IsJudge)
+				return;
+			
+			foreach(RoundData round in Tournament.I.Rounds) {
+				RoundDebater rd = round.AllJudges.Find(delegate(RoundDebater obj) {
+					return obj.Equals(d);
+					});	
+				// d is Judge, so check Chair and Judges in rooms
+				foreach(RoomData room in round.Rooms) {
+					if(rd.Equals(room.Chair))
+						
+						room.Chair = null;
+					else 
+						// if judge isn't there, can't be removed...
+						room.Judges.Remove(rd);
+				}		
+				// remove from all judges
+				round.AllJudges.Remove(rd);	
+			}
+		}
+		
+		protected void OnBtnSwapRolesClicked (object sender, System.EventArgs e)
+		{
+			TreePath[] r = treeDebaters.Selection.GetSelectedRows();
+			if(r.Length != 2) {
+				MiscHelpers.ShowMessage(this, "Select exactly two Debaters to swap.",
+					MessageType.Error);
+				return;
+			}
+						
+			TreeIter iter1;
+			TreeIter iter2;
+			if(!treeDebaters.Model.GetIter(out iter1, r[0]) 
+				|| !treeDebaters.Model.GetIter(out iter2, r[1])) {
+				// this should never happen
+				return;	
+			}
+			// get the references in the store
+			TreeIter storeIter1 = ConvertModelIterToStoreIter(iter1);
+			TreeIter storeIter2 = ConvertModelIterToStoreIter(iter2);
+			EditableDebater d1 = (EditableDebater)
+				store.GetValue(storeIter1, 0);
+			EditableDebater d2 = (EditableDebater)
+				store.GetValue(storeIter2, 0);
+			Console.WriteLine("Swapping: "+d1+" "+d2);
+			
+			// swapping it in the store
+			Role tmp = d2.Role;
+			d2.Role = d1.Role;
+			d1.Role = tmp;	
+						
+			// update in existing rounds (this is ugly due to our data model)
+			// this resets the info about available judges...
+			// any other approach wouldn't be future-proof
+								
+			foreach(RoundData round in Tournament.I.Rounds) {
+				// always create new instance for each round
+				RoundDebater rd1 = new RoundDebater(d1);
+				RoundDebater rd2 = new RoundDebater(d2);
+				
+				// search for d1, replace by d2 and vice versa
+				// this should work since d1 and d2 have already swapped roles
+				foreach(RoomData room in round.Rooms) 
+					room.ReplaceRoomMember(rd1, RoundDebater.Dummy());
+				foreach(RoomData room in round.Rooms) 
+					room.ReplaceRoomMember(rd2, rd1);
+				foreach(RoomData room in round.Rooms) 
+					room.ReplaceRoomMember(RoundDebater.Dummy(), rd2);
+				
+				// update also allArrays, the following UpdateAllArrays
+				// relies on consistent arrays
+				round.ReplaceInAllArrays(rd1, RoundDebater.Dummy());
+				round.ReplaceInAllArrays(rd2, new RoundDebater(rd1));
+				round.ReplaceInAllArrays(RoundDebater.Dummy(), new RoundDebater(rd2));
+				
+				// since complicated things can happen above
+				// we make the arrays consistent by brute force
+				round.UpdateAllArrays();
+			}
+			
+			// tell the treeview to update, don't know why path and iter is necessary
+			store.EmitRowChanged(store.GetPath(storeIter1), storeIter1);
+			store.EmitRowChanged(store.GetPath(storeIter2), storeIter2);
+		}
+		
 		
 		protected virtual void OnEntryDebatersFilterChanged (object sender, System.EventArgs e)
 		{
@@ -510,6 +613,7 @@ namespace OPDtabGui
 			return s;
 		}
 
+		
 		
 	}
 }

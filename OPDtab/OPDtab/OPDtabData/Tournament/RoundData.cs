@@ -101,10 +101,11 @@ namespace OPDtabData
 				foreach(RoundDebater rd in room.GetRoomMembers()) {
 					if(rd==null)
 						continue;
+					// check both cases
 					if(rd.Role.IsJudge) {
 						RoundDebater judge = allJudges.Find(delegate(RoundDebater rd_) {
 							return rd_.Equals(rd);	
-						});
+						});						
 						// judge should always be found, 
 						// is not shown in pool
 						judge.IsShown = false;
@@ -128,6 +129,29 @@ namespace OPDtabData
 			}
 		}
 		
+		public bool ReplaceInAllArrays(RoundDebater old, RoundDebater rd) {
+			// don't rely on the role of old, might have changed.
+			
+			// search in AllTeams
+			foreach(TeamData team in allTeams) {
+				for(int i=0;i<team.Count;i++) {
+					if(old.Equals(team[i])) { 
+						team[i] = rd;
+						return true;
+					}
+				}
+			}
+			// search in AllJudges
+			for(int i=0;i<allJudges.Count;i++) {
+				if(old.Equals(allJudges[i])) {
+					allJudges[i] = rd;
+					return true;
+				}
+			}			
+			// none found
+			return false;
+		}
+		
 		public void MergeDebaters(List<Debater> debaters) {
 			int num = 0;
 			foreach(Debater d in debaters) {
@@ -141,7 +165,10 @@ namespace OPDtabData
 					if(!IsDebaterInList(allJudges, d))
 						allJudges.Add(new RoundDebater(d, true));
 				}
-			}			
+			}
+			// sort after merging, does it break anything?
+			allJudges.Sort();
+			allTeams.Sort(); 			
 			// add some empty rooms
 			AddEmptyRooms(num);			
 		}

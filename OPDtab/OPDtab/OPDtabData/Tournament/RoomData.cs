@@ -194,7 +194,7 @@ namespace OPDtabData
 				tmp.Add(null);
 			tmp.Add(opp[2]);
 			tmp.Add(gov[2]);
-			// this is a bit tricky sind Gov/Opp are
+			// this is a bit tricky
 			tmp.Add(Gov);
 			tmp.Add(Opp);
 			return tmp;
@@ -271,6 +271,45 @@ namespace OPDtabData
 			foreach(RoundDebater rd in judges)
 				roomMembers.Add(rd);
 			return roomMembers;	
+		}
+		
+		public bool ReplaceRoomMember(RoundDebater old, RoundDebater rd) {
+			// don't rely on the role of old, might have changed.
+			// search gov/opp
+			
+			for(int i=0;i<3;i++) {
+				if(old.Equals(gov[i])) {
+					Console.WriteLine("Gov: "+old+" -> "+rd);
+					gov[i] = rd;
+					return true;
+				}
+				if(old.Equals(opp[i])) {
+					Console.WriteLine("Opp: "+old+" -> "+rd);
+					opp[i] = rd;
+					return true;
+				}
+			}
+			// search free
+			for(int i=0;i<freeSpeakers.Count;i++) {
+				if(old.Equals(freeSpeakers[i])) {
+					Console.WriteLine("Free: "+old+" -> "+rd);
+					freeSpeakers[i] = rd;
+					return true;
+				}
+			}
+			// search chair and judges
+			if(old.Equals(chair)) {
+				Console.WriteLine("Chair: "+old+" -> "+rd);
+				chair = rd;	
+			}
+			for(int i=0;i<judges.Count;i++) {
+				if(old.Equals(judges[i])) {
+					Console.WriteLine("Judge: "+old+" -> "+rd);
+					judges[i] = rd;
+					return true;
+				}	
+			}
+			return false;
 		}
 		
 		#region Conflict Algorithms
