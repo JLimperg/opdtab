@@ -18,7 +18,7 @@ namespace OPDtabGui
 			this.hbox = new global::Gtk.HBox ();
 			this.hbox.Name = "hbox";
 			this.hbox.Spacing = 3;
-			this.hbox.BorderWidth = ((uint)(5));
+			this.hbox.BorderWidth = ((uint)(3));
 			// Container child hbox.Gtk.Box+BoxChild
 			this.image = new global::Gtk.Image ();
 			this.image.Name = "image";
@@ -30,6 +30,7 @@ namespace OPDtabGui
 			// Container child hbox.Gtk.Box+BoxChild
 			this.label = new global::Gtk.Label ();
 			this.label.Name = "label";
+			this.label.Xalign = 0F;
 			this.label.LabelProp = "";
 			this.hbox.Add (this.label);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox [this.label]));

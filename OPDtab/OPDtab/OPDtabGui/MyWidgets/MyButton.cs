@@ -24,6 +24,7 @@ namespace OPDtabGui
 			image.Pixbuf = icon2;
 			
 			DragBegin += delegate(object s, DragBeginArgs args) {
+				// generate nice dragging icon
 				Gdk.Pixbuf pb = Gdk.Pixbuf.FromDrawable(label.GdkWindow,
 				                                        label.Colormap,
 			                              	     		label.Allocation.X,

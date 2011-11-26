@@ -30,10 +30,33 @@ namespace OPDtabGui
 		public static void ClearContainer(Container c) {
 			foreach(Widget w in c.AllChildren)
 				c.Remove(w);
+			if(c is Table) {
+				((Table)c).NRows = 1;
+				((Table)c).NColumns = 1;
+			}
 		}
 		
-		public static void AddToContainer(Container c, Widget w) {			
-			if(c is Bin) {
+		public static void AddToContainer(Container c, Widget w, bool small) {			
+			if(c is Table) { // Table is also a Box, but not a Bin
+				Table t = (Table)c;
+				if(small) {
+					// horizontal add
+					if(t.Children.Length>0)
+						t.NColumns++;
+					Alignment al = new Alignment(0, 0.5f, 1.0f, 1.0f);
+					al.Add(w);
+					t.Attach(al, t.NColumns-1, t.NColumns, 0, 1,
+						AttachOptions.Shrink, AttachOptions.Fill | AttachOptions.Expand, 0,0);
+					w.WidthRequest = 100;
+				}
+				else {
+					// vertical add
+					if(t.Children.Length>0)
+						t.NRows++;	
+					t.Attach(w, 0, 1, t.NRows-1, t.NRows);
+				}
+			}
+			else if(c is Bin) {
 				if(c.Children.Length>0)
 					c.Remove(c.Children[0]);
 				c.Child = w;
@@ -45,6 +68,12 @@ namespace OPDtabGui
 			c.ShowAll();
 		}
 		
+		public static void AddToContainer(Container c, Widget w) {
+			if(c is Table)
+				throw new NotImplementedException();
+			AddToContainer(c, w, false);
+		}
+					
 		public static void SetIsShown(Widget w, bool flag) {
 			if(flag) {
 				w.NoShowAll = false;

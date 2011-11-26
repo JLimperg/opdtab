@@ -5,7 +5,8 @@ using Gtk;
 namespace OPDtabGui
 {
 	[System.ComponentModel.ToolboxItem(true)]
-	public partial class DebaterWidget : Gtk.Bin, IDragDropWidget, IResultDataWidget, IMySearchable
+	public partial class DebaterWidget : Gtk.Bin, IDragDropWidget, 
+	IResultDataWidget, IMySearchable
 	{
 		MyButton btnExpand;
 		MyConflictButton btnConflict;
@@ -126,7 +127,8 @@ namespace OPDtabGui
 			if(Debater != null) {
 				HBox c = infoWidgets["roleAndClub"] as HBox;
 				if(Debater.Role.IsTeamMember)
-					SetMarkup(c.Children[1], Debater.Role.TeamName+"\n"+Debater.Club.Name);
+					SetMarkup(c.Children[1], GLib.Markup.EscapeText(Debater.Role.TeamName)
+						+"\n"+GLib.Markup.EscapeText(Debater.Club.Name));
 				else if(Debater.Role.IsJudge) {
 					HBox hboxStars = c.Children[0] as HBox;
 					foreach(Widget w in hboxStars)

@@ -5,44 +5,52 @@ namespace OPDtabGui
 	public partial class Room
 	{
 		private global::Gtk.Alignment alignment1;
-		private global::Gtk.Frame frame4;
+		private global::Gtk.VBox vbox6;
+		private global::Gtk.Frame frameBig;
 		private global::Gtk.Alignment GtkAlignment;
 		private global::Gtk.VBox vbox3;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Frame frameGov;
-		private global::Gtk.Alignment cGovOld;
-		private global::Gtk.VBox vbox4;
+		private global::Gtk.Alignment cGovBig;
 		private global::Gtk.EventBox cGov;
 		private global::Gtk.Label GtkLabel1;
 		private global::Gtk.Frame frameOpp;
-		private global::Gtk.Alignment cOppOld;
-		private global::Gtk.VBox vbox5;
+		private global::Gtk.Alignment cOppBig;
 		private global::Gtk.EventBox cOpp;
 		private global::Gtk.Label GtkLabel2;
 		private global::Gtk.HBox hbox8;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.Frame frame3;
-		private global::Gtk.Alignment GtkAlignment3;
-		private global::Gtk.VBox cFreeSpeakers;
+		private global::Gtk.Alignment cFreeSpeakersBig;
+		private global::Gtk.Table cFreeSpeakers;
 		private global::Gtk.Label GtkLabel3;
 		private global::Gtk.Frame frame5;
 		private global::Gtk.Alignment GtkAlignment4;
 		private global::Gtk.EventBox ebStatus;
-		private global::Gtk.VBox vbox6;
+		private global::Gtk.VBox vbox7;
 		private global::Gtk.Label lblConflictStatus;
 		private global::Gtk.Label lblJudgeStats;
 		private global::Gtk.Table tableJudgeStars;
 		private global::Gtk.Label GtkLabel5;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.Frame frame2;
-		private global::Gtk.Alignment GtkAlignment2;
+		private global::Gtk.Alignment cChairBig;
 		private global::Gtk.Alignment cChair;
 		private global::Gtk.Label GtkLabel4;
 		private global::Gtk.Frame frame1;
-		private global::Gtk.Alignment GtkAlignment1;
-		private global::Gtk.VBox cJudges;
+		private global::Gtk.Alignment cJudgesBig;
+		private global::Gtk.Table cJudges;
 		private global::Gtk.Label GtkLabel;
 		private global::Gtk.Label labelRoomName;
+		private global::Gtk.Alignment alignSmall;
+		private global::Gtk.HBox hboxSmall;
+		private global::Gtk.Label labelRoomNo;
+		private global::Gtk.EventBox cGovSmall;
+		private global::Gtk.EventBox cOppSmall;
+		private global::Gtk.EventBox cFreeSpeakersSmall;
+		private global::Gtk.EventBox cChairSmall;
+		private global::Gtk.EventBox cJudgesSmall;
+		private global::Gtk.Label label5;
 		
 		protected virtual void Build ()
 		{
@@ -55,10 +63,13 @@ namespace OPDtabGui
 			this.alignment1.Name = "alignment1";
 			this.alignment1.BottomPadding = ((uint)(10));
 			// Container child alignment1.Gtk.Container+ContainerChild
-			this.frame4 = new global::Gtk.Frame ();
-			this.frame4.Name = "frame4";
-			this.frame4.LabelXalign = 0.5F;
-			// Container child frame4.Gtk.Container+ContainerChild
+			this.vbox6 = new global::Gtk.VBox ();
+			this.vbox6.Name = "vbox6";
+			// Container child vbox6.Gtk.Box+BoxChild
+			this.frameBig = new global::Gtk.Frame ();
+			this.frameBig.Name = "frameBig";
+			this.frameBig.LabelXalign = 0.5F;
+			// Container child frameBig.Gtk.Container+ContainerChild
 			this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 			this.GtkAlignment.Name = "GtkAlignment";
 			this.GtkAlignment.BorderWidth = ((uint)(5));
@@ -76,64 +87,50 @@ namespace OPDtabGui
 			this.frameGov.Name = "frameGov";
 			this.frameGov.BorderWidth = ((uint)(2));
 			// Container child frameGov.Gtk.Container+ContainerChild
-			this.cGovOld = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.cGovOld.Name = "cGovOld";
-			this.cGovOld.LeftPadding = ((uint)(12));
-			this.cGovOld.RightPadding = ((uint)(6));
-			// Container child cGovOld.Gtk.Container+ContainerChild
-			this.vbox4 = new global::Gtk.VBox ();
-			this.vbox4.Name = "vbox4";
-			// Container child vbox4.Gtk.Box+BoxChild
+			this.cGovBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cGovBig.Name = "cGovBig";
+			this.cGovBig.LeftPadding = ((uint)(12));
+			this.cGovBig.RightPadding = ((uint)(6));
+			// Container child cGovBig.Gtk.Container+ContainerChild
 			this.cGov = new global::Gtk.EventBox ();
 			this.cGov.Name = "cGov";
-			this.vbox4.Add (this.cGov);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.cGov]));
-			w1.Position = 0;
-			w1.Expand = false;
-			w1.Fill = false;
-			this.cGovOld.Add (this.vbox4);
-			this.frameGov.Add (this.cGovOld);
+			this.cGovBig.Add (this.cGov);
+			this.frameGov.Add (this.cGovBig);
 			this.GtkLabel1 = new global::Gtk.Label ();
 			this.GtkLabel1.Name = "GtkLabel1";
 			this.GtkLabel1.LabelProp = global::Mono.Unix.Catalog.GetString ("Government");
 			this.frameGov.LabelWidget = this.GtkLabel1;
 			this.hbox5.Add (this.frameGov);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.frameGov]));
-			w4.Position = 0;
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.frameGov]));
+			w3.Position = 0;
+			w3.Expand = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.frameOpp = new global::Gtk.Frame ();
 			this.frameOpp.Name = "frameOpp";
 			this.frameOpp.BorderWidth = ((uint)(2));
 			// Container child frameOpp.Gtk.Container+ContainerChild
-			this.cOppOld = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.cOppOld.Name = "cOppOld";
-			this.cOppOld.LeftPadding = ((uint)(12));
-			this.cOppOld.RightPadding = ((uint)(6));
-			// Container child cOppOld.Gtk.Container+ContainerChild
-			this.vbox5 = new global::Gtk.VBox ();
-			this.vbox5.Name = "vbox5";
-			// Container child vbox5.Gtk.Box+BoxChild
+			this.cOppBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cOppBig.Name = "cOppBig";
+			this.cOppBig.LeftPadding = ((uint)(12));
+			this.cOppBig.RightPadding = ((uint)(6));
+			// Container child cOppBig.Gtk.Container+ContainerChild
 			this.cOpp = new global::Gtk.EventBox ();
 			this.cOpp.Name = "cOpp";
-			this.vbox5.Add (this.cOpp);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.cOpp]));
-			w5.Position = 0;
-			w5.Expand = false;
-			w5.Fill = false;
-			this.cOppOld.Add (this.vbox5);
-			this.frameOpp.Add (this.cOppOld);
+			this.cOppBig.Add (this.cOpp);
+			this.frameOpp.Add (this.cOppBig);
 			this.GtkLabel2 = new global::Gtk.Label ();
 			this.GtkLabel2.Name = "GtkLabel2";
 			this.GtkLabel2.LabelProp = global::Mono.Unix.Catalog.GetString ("Opposition");
 			this.frameOpp.LabelWidget = this.GtkLabel2;
 			this.hbox5.Add (this.frameOpp);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.frameOpp]));
-			w8.Position = 1;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.frameOpp]));
+			w6.Position = 1;
+			w6.Expand = false;
 			this.vbox3.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox5]));
-			w9.Position = 0;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox5]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox8 = new global::Gtk.HBox ();
 			this.hbox8.Name = "hbox8";
@@ -147,24 +144,23 @@ namespace OPDtabGui
 			this.frame3.Name = "frame3";
 			this.frame3.BorderWidth = ((uint)(2));
 			// Container child frame3.Gtk.Container+ContainerChild
-			this.GtkAlignment3 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment3.Name = "GtkAlignment3";
-			this.GtkAlignment3.LeftPadding = ((uint)(12));
-			this.GtkAlignment3.RightPadding = ((uint)(6));
-			// Container child GtkAlignment3.Gtk.Container+ContainerChild
-			this.cFreeSpeakers = new global::Gtk.VBox ();
+			this.cFreeSpeakersBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cFreeSpeakersBig.Name = "cFreeSpeakersBig";
+			this.cFreeSpeakersBig.LeftPadding = ((uint)(12));
+			this.cFreeSpeakersBig.RightPadding = ((uint)(6));
+			// Container child cFreeSpeakersBig.Gtk.Container+ContainerChild
+			this.cFreeSpeakers = new global::Gtk.Table (((uint)(1)), ((uint)(1)), false);
 			this.cFreeSpeakers.Name = "cFreeSpeakers";
-			this.GtkAlignment3.Add (this.cFreeSpeakers);
-			this.frame3.Add (this.GtkAlignment3);
+			this.cFreeSpeakersBig.Add (this.cFreeSpeakers);
+			this.frame3.Add (this.cFreeSpeakersBig);
 			this.GtkLabel3 = new global::Gtk.Label ();
 			this.GtkLabel3.Name = "GtkLabel3";
 			this.GtkLabel3.LabelProp = global::Mono.Unix.Catalog.GetString ("Free Speakers");
 			this.frame3.LabelWidget = this.GtkLabel3;
 			this.vbox2.Add (this.frame3);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.frame3]));
-			w12.Position = 0;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.frame3]));
+			w10.Position = 0;
+			w10.Expand = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.frame5 = new global::Gtk.Frame ();
 			this.frame5.Name = "frame5";
@@ -176,40 +172,40 @@ namespace OPDtabGui
 			this.ebStatus = new global::Gtk.EventBox ();
 			this.ebStatus.Name = "ebStatus";
 			// Container child ebStatus.Gtk.Container+ContainerChild
-			this.vbox6 = new global::Gtk.VBox ();
-			this.vbox6.Name = "vbox6";
-			this.vbox6.Spacing = 6;
-			// Container child vbox6.Gtk.Box+BoxChild
+			this.vbox7 = new global::Gtk.VBox ();
+			this.vbox7.Name = "vbox7";
+			this.vbox7.Spacing = 6;
+			// Container child vbox7.Gtk.Box+BoxChild
 			this.lblConflictStatus = new global::Gtk.Label ();
 			this.lblConflictStatus.Name = "lblConflictStatus";
 			this.lblConflictStatus.Xalign = 0F;
 			this.lblConflictStatus.LabelProp = global::Mono.Unix.Catalog.GetString ("label5");
-			this.vbox6.Add (this.lblConflictStatus);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.lblConflictStatus]));
-			w13.Position = 0;
-			w13.Expand = false;
-			w13.Fill = false;
-			// Container child vbox6.Gtk.Box+BoxChild
+			this.vbox7.Add (this.lblConflictStatus);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblConflictStatus]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
+			// Container child vbox7.Gtk.Box+BoxChild
 			this.lblJudgeStats = new global::Gtk.Label ();
 			this.lblJudgeStats.Name = "lblJudgeStats";
 			this.lblJudgeStats.Xalign = 0F;
 			this.lblJudgeStats.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
-			this.vbox6.Add (this.lblJudgeStats);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.lblJudgeStats]));
-			w14.Position = 1;
-			w14.Expand = false;
-			w14.Fill = false;
-			// Container child vbox6.Gtk.Box+BoxChild
+			this.vbox7.Add (this.lblJudgeStats);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblJudgeStats]));
+			w12.Position = 1;
+			w12.Expand = false;
+			w12.Fill = false;
+			// Container child vbox7.Gtk.Box+BoxChild
 			this.tableJudgeStars = new global::Gtk.Table (((uint)(3)), ((uint)(5)), false);
 			this.tableJudgeStars.Name = "tableJudgeStars";
 			this.tableJudgeStars.RowSpacing = ((uint)(6));
 			this.tableJudgeStars.ColumnSpacing = ((uint)(6));
-			this.vbox6.Add (this.tableJudgeStars);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.tableJudgeStars]));
-			w15.Position = 2;
-			w15.Expand = false;
-			w15.Fill = false;
-			this.ebStatus.Add (this.vbox6);
+			this.vbox7.Add (this.tableJudgeStars);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.tableJudgeStars]));
+			w13.Position = 2;
+			w13.Expand = false;
+			w13.Fill = false;
+			this.ebStatus.Add (this.vbox7);
 			this.GtkAlignment4.Add (this.ebStatus);
 			this.frame5.Add (this.GtkAlignment4);
 			this.GtkLabel5 = new global::Gtk.Label ();
@@ -217,11 +213,12 @@ namespace OPDtabGui
 			this.GtkLabel5.LabelProp = global::Mono.Unix.Catalog.GetString ("Status");
 			this.frame5.LabelWidget = this.GtkLabel5;
 			this.vbox2.Add (this.frame5);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.frame5]));
-			w19.Position = 1;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.frame5]));
+			w17.Position = 1;
+			w17.Expand = false;
 			this.hbox8.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vbox2]));
-			w20.Position = 0;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vbox2]));
+			w18.Position = 0;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
@@ -230,58 +227,138 @@ namespace OPDtabGui
 			this.frame2 = new global::Gtk.Frame ();
 			this.frame2.Name = "frame2";
 			// Container child frame2.Gtk.Container+ContainerChild
-			this.GtkAlignment2 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment2.Name = "GtkAlignment2";
-			this.GtkAlignment2.LeftPadding = ((uint)(12));
-			this.GtkAlignment2.RightPadding = ((uint)(6));
-			// Container child GtkAlignment2.Gtk.Container+ContainerChild
+			this.cChairBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cChairBig.Name = "cChairBig";
+			this.cChairBig.LeftPadding = ((uint)(12));
+			this.cChairBig.RightPadding = ((uint)(6));
+			// Container child cChairBig.Gtk.Container+ContainerChild
 			this.cChair = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 			this.cChair.Name = "cChair";
-			this.GtkAlignment2.Add (this.cChair);
-			this.frame2.Add (this.GtkAlignment2);
+			this.cChairBig.Add (this.cChair);
+			this.frame2.Add (this.cChairBig);
 			this.GtkLabel4 = new global::Gtk.Label ();
 			this.GtkLabel4.Name = "GtkLabel4";
 			this.GtkLabel4.LabelProp = global::Mono.Unix.Catalog.GetString ("Chair");
 			this.frame2.LabelWidget = this.GtkLabel4;
 			this.vbox1.Add (this.frame2);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame2]));
-			w23.Position = 0;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame2]));
+			w21.Position = 0;
+			w21.Expand = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.frame1 = new global::Gtk.Frame ();
 			this.frame1.Name = "frame1";
 			// Container child frame1.Gtk.Container+ContainerChild
-			this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-			this.GtkAlignment1.Name = "GtkAlignment1";
-			this.GtkAlignment1.LeftPadding = ((uint)(12));
-			this.GtkAlignment1.RightPadding = ((uint)(6));
-			// Container child GtkAlignment1.Gtk.Container+ContainerChild
-			this.cJudges = new global::Gtk.VBox ();
+			this.cJudgesBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cJudgesBig.Name = "cJudgesBig";
+			this.cJudgesBig.LeftPadding = ((uint)(12));
+			this.cJudgesBig.RightPadding = ((uint)(6));
+			// Container child cJudgesBig.Gtk.Container+ContainerChild
+			this.cJudges = new global::Gtk.Table (((uint)(1)), ((uint)(1)), false);
 			this.cJudges.Name = "cJudges";
-			this.GtkAlignment1.Add (this.cJudges);
-			this.frame1.Add (this.GtkAlignment1);
+			this.cJudgesBig.Add (this.cJudges);
+			this.frame1.Add (this.cJudgesBig);
 			this.GtkLabel = new global::Gtk.Label ();
 			this.GtkLabel.Name = "GtkLabel";
 			this.GtkLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Judges");
 			this.frame1.LabelWidget = this.GtkLabel;
 			this.vbox1.Add (this.frame1);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
-			w26.Position = 1;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
+			w24.Position = 1;
+			w24.Expand = false;
+			w24.Fill = false;
 			this.hbox8.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vbox1]));
-			w27.Position = 1;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vbox1]));
+			w25.Position = 1;
 			this.vbox3.Add (this.hbox8);
-			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox8]));
-			w28.Position = 1;
-			w28.Expand = false;
-			w28.Fill = false;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox8]));
+			w26.Position = 1;
+			w26.Expand = false;
+			w26.Fill = false;
 			this.GtkAlignment.Add (this.vbox3);
-			this.frame4.Add (this.GtkAlignment);
+			this.frameBig.Add (this.GtkAlignment);
 			this.labelRoomName = new global::Gtk.Label ();
 			this.labelRoomName.Name = "labelRoomName";
 			this.labelRoomName.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>RoomName</b>");
 			this.labelRoomName.UseMarkup = true;
-			this.frame4.LabelWidget = this.labelRoomName;
-			this.alignment1.Add (this.frame4);
+			this.frameBig.LabelWidget = this.labelRoomName;
+			this.vbox6.Add (this.frameBig);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.frameBig]));
+			w29.Position = 0;
+			// Container child vbox6.Gtk.Box+BoxChild
+			this.alignSmall = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignSmall.Name = "alignSmall";
+			this.alignSmall.LeftPadding = ((uint)(10));
+			// Container child alignSmall.Gtk.Container+ContainerChild
+			this.hboxSmall = new global::Gtk.HBox ();
+			this.hboxSmall.Name = "hboxSmall";
+			this.hboxSmall.Spacing = 6;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.labelRoomNo = new global::Gtk.Label ();
+			this.labelRoomNo.Name = "labelRoomNo";
+			this.labelRoomNo.Xalign = 0F;
+			this.labelRoomNo.LabelProp = global::Mono.Unix.Catalog.GetString ("label3");
+			this.hboxSmall.Add (this.labelRoomNo);
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.labelRoomNo]));
+			w30.Position = 0;
+			w30.Expand = false;
+			w30.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.cGovSmall = new global::Gtk.EventBox ();
+			this.cGovSmall.WidthRequest = 150;
+			this.cGovSmall.Name = "cGovSmall";
+			this.hboxSmall.Add (this.cGovSmall);
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cGovSmall]));
+			w31.Position = 1;
+			w31.Expand = false;
+			w31.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.cOppSmall = new global::Gtk.EventBox ();
+			this.cOppSmall.WidthRequest = 150;
+			this.cOppSmall.Name = "cOppSmall";
+			this.hboxSmall.Add (this.cOppSmall);
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cOppSmall]));
+			w32.Position = 2;
+			w32.Expand = false;
+			w32.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.cFreeSpeakersSmall = new global::Gtk.EventBox ();
+			this.cFreeSpeakersSmall.Name = "cFreeSpeakersSmall";
+			this.hboxSmall.Add (this.cFreeSpeakersSmall);
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cFreeSpeakersSmall]));
+			w33.Position = 3;
+			w33.Expand = false;
+			w33.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.cChairSmall = new global::Gtk.EventBox ();
+			this.cChairSmall.WidthRequest = 100;
+			this.cChairSmall.Name = "cChairSmall";
+			this.hboxSmall.Add (this.cChairSmall);
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cChairSmall]));
+			w34.Position = 4;
+			w34.Expand = false;
+			w34.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.cJudgesSmall = new global::Gtk.EventBox ();
+			this.cJudgesSmall.Name = "cJudgesSmall";
+			this.hboxSmall.Add (this.cJudgesSmall);
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cJudgesSmall]));
+			w35.Position = 5;
+			w35.Expand = false;
+			w35.Fill = false;
+			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.LabelProp = "";
+			this.hboxSmall.Add (this.label5);
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.label5]));
+			w36.Position = 6;
+			this.alignSmall.Add (this.hboxSmall);
+			this.vbox6.Add (this.alignSmall);
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.alignSmall]));
+			w38.Position = 1;
+			w38.Expand = false;
+			w38.Fill = false;
+			this.alignment1.Add (this.vbox6);
 			this.Add (this.alignment1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

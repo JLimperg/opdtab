@@ -15,6 +15,8 @@ namespace OPDtabGui
 		static string[] sections = new string[] {"Gov", 
 			 "Opp", "FreeSpeakers", "Judges", "Chair"}; 
 		List<Container> widgetsContainer;
+		List<Container> cBig;
+		List<Container> cSmall;
 		AppSettings.GenerateRoundClass settings;
 		int penalty;
 		bool small;
@@ -29,8 +31,13 @@ namespace OPDtabGui
 			small = s;
 			// generate widget containers
 			widgetsContainer = new List<Container>();
-			foreach(string sec in sections) 
+			cBig = new List<Container>();
+			cSmall = new List<Container>();
+			foreach(string sec in sections) { 
 				widgetsContainer.Add((Container)GetField("c"+sec));
+				cBig.Add((Container)GetField("c"+sec+"Big"));
+				cSmall.Add((Container)GetField("c"+sec+"Small"));
+			}
 			
 			// Update Gui after Realized for scrolled window support...
 			this.Realized += delegate(object sender, EventArgs e) {
@@ -60,7 +67,8 @@ namespace OPDtabGui
 						UpdateGuiSection(section,c.Children.Length,d);
 					// append label for adding by D&D
 					if(section == "Judges" || list.Count<3)
-						SetDummyLabel(c, section, "Drag here to add");
+						SetDummyLabel(c, section, small ? 
+							roomData.Judges.Count.ToString() : "Drag here to add");
 				}
 			}
 			else { 
@@ -82,8 +90,7 @@ namespace OPDtabGui
 					throw new NotImplementedException("Don't know how to create widget for data");
 				
 				// tell Debater the room for visitedRooms list..
-				w.SetRoom(roomData.RoundName, roomData);
-				
+				w.SetRoom(roomData.RoundName, roomData);				
 				
 				w.SetupDragDropSource(section, data);
 				w.SetDataTrigger += delegate(Widget sender, object data_) {
@@ -92,7 +99,7 @@ namespace OPDtabGui
 				
 				// Add to container after source, but before Dest
 				Widget wi = (Widget)w;
-				MiscHelpers.AddToContainer(c, wi);
+				MiscHelpers.AddToContainer(c, wi, small);
 								
 				// Drag drop DestSet, needs Container for scrolling support...
 				DragDropHelpers.DestSet(wi,
@@ -172,7 +179,32 @@ namespace OPDtabGui
 		}
 		
 		void UpdateGui() {
+			// set both labels...
 			labelRoomName.Markup = "<b>"+roomData.RoomName+"</b>";					
+			labelRoomNo.Markup = "<big><b>"+(roomData.Index+1)+"</b></big>";
+			// small or big?
+			if(small) {
+				MiscHelpers.SetIsShown(frameBig, false);
+				for(int i=0;i<widgetsContainer.Count;i++) {
+					if(cBig[i].Children.Length>0) {
+						cBig[i].Remove(widgetsContainer[i]);
+						cSmall[i].Add(widgetsContainer[i]);
+					}
+				}
+				MiscHelpers.SetIsShown(alignSmall, true);
+			}
+			else {
+				MiscHelpers.SetIsShown(alignSmall, false);
+				for(int i=0;i<widgetsContainer.Count;i++) {
+					if(cSmall[i].Children.Length>0) {
+						cSmall[i].Remove(widgetsContainer[i]);
+						cBig[i].Add(widgetsContainer[i]);
+					}
+				}
+				MiscHelpers.SetIsShown(frameBig, true);
+			}
+			
+			
 			foreach(string sec in sections)
 				UpdateGuiSection(sec);
 			// update always conflicts, cause we don't know what can happen ;)
@@ -180,18 +212,20 @@ namespace OPDtabGui
 		}	
 		
 		void SetDummyLabel(Container c, string section) {
-			string text = "No "+section;
+			string text = "";
 			switch(section) {
 			case "Gov":
 			case "Opp":
-				text = "Drag complete Team here";
+				text = small ? section : "Drag complete Team here";
 				break;
 			case "FreeSpeakers":
-				text = "Drag Team Member here";
+				text = small ? "F" : "Drag Team Member here";
 				break;
 			case "Chair":
+				text = small ? "C" : "Drag Judge here";
+				break;
 			case "Judges":
-				text = "Drag Judge here";
+				text = small ? roomData.Judges.Count.ToString() : "Drag Judge here";
 				break;
 			}
 			SetDummyLabel(c, section, text);
@@ -199,9 +233,10 @@ namespace OPDtabGui
 		
 		void SetDummyLabel(Container c, string section, string text) {	
 			Label lbl = new Label();
-			lbl.Markup = "<i>"+text+"</i>";
+			lbl.Markup = small ? "<span color=\"#FF6600\"><b><big><big>"+text+"</big></big></b></span>" 
+				: "<i>"+text+"</i>";
 			lbl.SetPadding(5,5);
-			MiscHelpers.AddToContainer(c, lbl);
+			MiscHelpers.AddToContainer(c, lbl, small);
 			// Setup appropiate DragDest
 			DragDropHelpers.DestSet(lbl,
 			             DestDefaults.All,

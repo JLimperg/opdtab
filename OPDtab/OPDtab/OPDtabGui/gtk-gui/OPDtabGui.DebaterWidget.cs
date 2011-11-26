@@ -8,8 +8,6 @@ namespace OPDtabGui
 		private global::Gtk.HBox hbox;
 		private global::Gtk.Alignment alBtn;
 		private global::Gtk.Alignment alConflictBtn;
-		private global::Gtk.Alignment alignment1;
-		private global::Gtk.Label lblQualiInd;
 		private global::Gtk.Alignment alJudgeAvail;
 		private global::Gtk.HBox hboxInfo;
 		private global::Gtk.Label label2;
@@ -27,7 +25,6 @@ namespace OPDtabGui
 			// Container child vbox.Gtk.Box+BoxChild
 			this.hbox = new global::Gtk.HBox ();
 			this.hbox.Name = "hbox";
-			this.hbox.Spacing = 3;
 			// Container child hbox.Gtk.Box+BoxChild
 			this.alBtn = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alBtn.Name = "alBtn";
@@ -43,33 +40,17 @@ namespace OPDtabGui
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child hbox.Gtk.Box+BoxChild
-			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alignment1.Name = "alignment1";
-			// Container child alignment1.Gtk.Container+ContainerChild
-			this.lblQualiInd = new global::Gtk.Label ();
-			this.lblQualiInd.Name = "lblQualiInd";
-			this.lblQualiInd.LabelProp = "";
-			this.alignment1.Add (this.lblQualiInd);
-			this.hbox.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alignment1]));
-			w4.PackType = ((global::Gtk.PackType)(1));
-			w4.Position = 2;
-			w4.Expand = false;
-			w4.Fill = false;
-			// Container child hbox.Gtk.Box+BoxChild
 			this.alJudgeAvail = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alJudgeAvail.Name = "alJudgeAvail";
 			this.hbox.Add (this.alJudgeAvail);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alJudgeAvail]));
-			w5.PackType = ((global::Gtk.PackType)(1));
-			w5.Position = 3;
-			w5.Expand = false;
-			w5.Fill = false;
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alJudgeAvail]));
+			w3.PackType = ((global::Gtk.PackType)(1));
+			w3.Position = 2;
+			w3.Expand = false;
+			w3.Fill = false;
 			this.vbox.Add (this.hbox);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hbox]));
-			w6.Position = 0;
-			w6.Expand = false;
-			w6.Fill = false;
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hbox]));
+			w4.Position = 0;
 			// Container child vbox.Gtk.Box+BoxChild
 			this.hboxInfo = new global::Gtk.HBox ();
 			this.hboxInfo.Name = "hboxInfo";
@@ -79,22 +60,22 @@ namespace OPDtabGui
 			this.label2.Name = "label2";
 			this.label2.LabelProp = "";
 			this.hboxInfo.Add (this.label2);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxInfo [this.label2]));
-			w7.Position = 0;
-			w7.Expand = false;
-			w7.Fill = false;
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hboxInfo [this.label2]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
 			// Container child hboxInfo.Gtk.Box+BoxChild
 			this.vboxInfo = new global::Gtk.VBox ();
 			this.vboxInfo.Name = "vboxInfo";
 			this.vboxInfo.Spacing = 3;
 			this.hboxInfo.Add (this.vboxInfo);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxInfo [this.vboxInfo]));
-			w8.Position = 1;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hboxInfo [this.vboxInfo]));
+			w6.Position = 1;
 			this.vbox.Add (this.hboxInfo);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hboxInfo]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hboxInfo]));
+			w7.Position = 1;
+			w7.Expand = false;
+			w7.Fill = false;
 			this.Add (this.vbox);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
