@@ -1435,6 +1435,7 @@
                                           <widget class="Gtk.Expander" id="expander4">
                                             <property name="MemberName" />
                                             <property name="CanFocus">True</property>
+                                            <property name="Expanded">True</property>
                                             <child>
                                               <widget class="Gtk.Alignment" id="alignment1">
                                                 <property name="MemberName" />

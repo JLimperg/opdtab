@@ -9,9 +9,10 @@ namespace OPDtabData
 		int totalPoints;
 		double avgPoints;
 		List<RoundResultData> results;	
-		// do not use SortedDictionary for roundPoints
+		// do not use SortedDictionary for roundPoints and roundPositions
 		// this keeps the added entries in the correct order (in Ranking PDF)
 		Dictionary<string, int> roundPoints;
+		Dictionary<string, int> roundPositions; // encodes the position in room
 		SortedDictionary<string, bool> availRounds;
 		bool resolved;
 		
@@ -50,6 +51,7 @@ namespace OPDtabData
 			points = new List<int>();
 			SortedDictionary<string, int> teamPoints = new SortedDictionary<string, int>();
 			roundPoints = new Dictionary<string, int>();
+			roundPositions = new Dictionary<string, int>();
 			int n = 0;
 			foreach(RoundResultData rr in results) {
 				if(!availRounds.ContainsKey(rr.RoundName))
@@ -61,11 +63,16 @@ namespace OPDtabData
 					return;
 				}
 				points.Add(rr.AvgSpeakerScore);
-				// try get it...
+				// roundPoints
 				int sum = 0;
 				roundPoints.TryGetValue(rr.RoundName, out sum);
 				sum += rr.AvgSpeakerScore;
 				roundPoints[rr.RoundName] = sum;
+				// roundPositions
+				// simply write the position in here
+				// for teams we're only interested in Gov/Opp/Free, 
+				// see PDF Export in ShowRanking
+				roundPositions[rr.RoundName] = rr.GetPosition();
 				// there are no team points if the speaker was free speakers
 				if(includeTeam && rr.Role != RoundResultData.RoleType.Free)
 					teamPoints[rr.RoundName] = rr.AvgTeamScore;		
@@ -113,6 +120,12 @@ namespace OPDtabData
 			get {				
 				return new List<int>(roundPoints.Values);	
 			}
+		}
+		
+		public List<int> RoundPositions {
+			get {				
+				return new List<int>(roundPositions.Values);	
+			}	
 		}
 		
 		public int TotalPoints {

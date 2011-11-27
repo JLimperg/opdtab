@@ -9,6 +9,7 @@ namespace OPDtabData
 			Gov=0, Opp=1, Free=2, Judge=3	
 		};
 		
+		// Gov/Opp/Free, including teams
 		public static uint[] PosToRoleType = 
 			new uint[] {0, 1, 0, 1, 2, 2, 2, 1, 0, 0, 1}; 
 		
@@ -142,7 +143,6 @@ namespace OPDtabData
 			case RoleType.Judge:
 				return index+9;
 			default:
-				Console.WriteLine("WARNING: Unknown Position.");
 				return -1;
 			}
 		}

@@ -131,6 +131,7 @@ namespace OPDtabGui
 			}
 			if(MiscHelpers.AskYesNo(this, "This will overwrite ALL data! Continue?") == ResponseType.Yes) {
 				Tournament.I = tour;
+				ShowRanking.I.UpdateAll();
 				MiscHelpers.ShowMessage(this, "Backup loaded successfully.", MessageType.Info);	
 			}
 			

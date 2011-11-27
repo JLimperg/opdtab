@@ -418,12 +418,16 @@ namespace OPDtabGui
 					int nPoints=0;
 					if(item.RoundPoints.Count==0) {
 						tmplPointsPerRound.Assign("POINTS","?");
+						tmplPointsPerRound.Assign("POS","");
 						tmplPointsPerRound.Assign("SEP","");
 						tmplPointsPerRound.Out();
 					}
 					else {
 						for(int i=0;i<item.RoundPoints.Count;i++) {
+							string[] PosToStr = new string[] {"G", "O", "F"};
 							tmplPointsPerRound.Assign("POINTS",OPDtabData.MiscHelpers.IntToStr(item.RoundPoints[i]));
+							tmplPointsPerRound.Assign("POS", 
+								PosToStr[(int)RoundResultData.PosToRoleType[item.RoundPositions[i]]]);
 							tmplPointsPerRound.Assign("SEP",i==item.RoundPoints.Count-1?"":separator);
 							tmplPointsPerRound.Out();	
 							nPoints++;
@@ -466,6 +470,7 @@ namespace OPDtabGui
 					int nPoints = 0;
 					if(item.Points==null) {
 						tmplPointsPerRound.Assign("POINTS","?");
+						tmplPointsPerRound.Assign("POS","");
 						tmplPointsPerRound.Assign("SEP","");
 						tmplPointsPerRound.Out();
 					}
@@ -473,7 +478,9 @@ namespace OPDtabGui
 						for(int i=0;i<item.Points.Count;i++) {
 							tmplPointsPerRound.Assign("POINTS",
 								OPDtabData.MiscHelpers.IntToStr(item.Points[i]));
-							tmplPointsPerRound.Assign("SEP",i==item.Points.Count-1?"":separator);
+							tmplPointsPerRound.Assign("POS", 
+								OPDtabData.MiscHelpers.IntToStr(item.RoundPositions[i]+1));
+							tmplPointsPerRound.Assign("SEP", i==item.Points.Count-1?"":separator);
 							tmplPointsPerRound.Out();
 							nPoints++;
 						}
@@ -482,6 +489,7 @@ namespace OPDtabGui
 						// in CSV mode pad with more separators	
 						for(int i=nPoints;i<Tournament.I.Rounds.Count;i++) {
 							tmplPointsPerRound.Assign("POINTS","");
+							tmplPointsPerRound.Assign("POS","");
 							tmplPointsPerRound.Assign("SEP",separator);
 							tmplPointsPerRound.Out();
 						}
