@@ -112,7 +112,7 @@ namespace OPDtabData
 					rooms[j].Judges.Add(judges[judges.Count-1]);
 					judges.RemoveAt(judges.Count-1);
 				}
-				// always go to next room
+				// always go to next room, cyclic
 				j = (j+1) % nRooms;   
 			}	
 			return rooms;

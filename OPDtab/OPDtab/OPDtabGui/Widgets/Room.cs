@@ -29,6 +29,8 @@ namespace OPDtabGui
 			settings = AppSettings.I.GenerateRound;
 			penalty = -1;
 			small = s;
+			MyGridLine.H(tableSmall, 2, tableSmall.NColumns, 1, new Gdk.Color(0,0,0));
+			
 			// generate widget containers
 			widgetsContainer = new List<Container>();
 			cBig = new List<Container>();
@@ -63,12 +65,20 @@ namespace OPDtabGui
 				if(list.Count==0)
 					SetDummyLabel(c, section);
 				else {
-					foreach(RoundDebater d in list)
-						UpdateGuiSection(section,c.Children.Length,d);
+					for(int j=0;j<list.Count;j++)
+					//foreach(RoundDebater d in list)
+						UpdateGuiSection(section,j,list[j]);
 					// append label for adding by D&D
-					if(section == "Judges" || list.Count<3)
-						SetDummyLabel(c, section, small ? 
-							roomData.Judges.Count.ToString() : "Drag here to add");
+					if(small) {
+						if(section == "Judges") {
+							SetDummyLabel(c, section, roomData.Judges.Count.ToString());	
+						}
+						else if(section == "FreeSpeakers" && list.Count<3) {
+							SetDummyLabel(c, section, "F");
+						}
+					}
+					else if(section == "Judges" || list.Count<3)
+						SetDummyLabel(c, section, "Drag here to add");
 				}
 			}
 			else { 
@@ -118,7 +128,7 @@ namespace OPDtabGui
 				};				
 			}
 			// show judge quality by icons
-			if(section=="Judges") {				
+			if(section=="Judges" && !small) {				
 				int nStars = 0;
 				double sumAvgSpkr = 0.0;
 				double sumAvgTeam = 0.0;
@@ -182,6 +192,7 @@ namespace OPDtabGui
 			// set both labels...
 			labelRoomName.Markup = "<b>"+roomData.RoomName+"</b>";					
 			labelRoomNo.Markup = "<big><b>"+(roomData.Index+1)+"</b></big>";
+			labelRoomNoRight.Markup = "<big><b>"+(roomData.Index+1)+"</b></big>";
 			// small or big?
 			if(small) {
 				MiscHelpers.SetIsShown(frameBig, false);
@@ -242,10 +253,17 @@ namespace OPDtabGui
 			             DestDefaults.All,
 			             DragDropHelpers.TgtFromString(section),
 			             Gdk.DragAction.Move);
+			// correctly count the number of "real" widgets in
+			// container, since their might be some more
+			// widgets for layouting in it (in small mode for example)
+			int index = 0;  
+			foreach(Widget w in c) 
+				if(w is IDragDropWidget)
+					index++;
 			lbl.DragDataReceived += delegate(object o, DragDataReceivedArgs args) {
 				object data = DragDropHelpers.Deserialize(args.SelectionData);
-				// save data here
-				SetItem(section, c.Children.Length-1, data);
+				// save data here	
+				SetItem(section, index, data);
 				// delete data there
 				MyButton b = (MyButton)Drag.GetSourceWidget(args.Context);
 				b.Owner.SetData(null);

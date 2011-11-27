@@ -11,10 +11,13 @@ namespace OPDtabData
 		static int nRooms;		
 		static Random random;
 		static int steps;
+		static bool cyclicFree;
 		static List<RoomData>[] existingRounds;
 		static AlgoData data;	
 		
+		
 		public static void Prepare(int randomSeed, int mcSteps, 
+								   bool cyclic,
 		                           RoundData[] rds) {
 			// check rounddata
 			if(rds.Length != 3)
@@ -37,11 +40,11 @@ namespace OPDtabData
 					judges[j*nRooms+i] = rds[j].Rooms[i].Judges;
 				}
 			}			
-			SetOthers(randomSeed, mcSteps, false);
+			SetOthers(randomSeed, mcSteps, false, cyclic);
 		}
 		
 		
-		public static void Prepare(int randomSeed, int mcSteps, List<TeamData> t) {
+		public static void Prepare(int randomSeed, int mcSteps, bool cyclic, List<TeamData> t) {
 			SetTeams(t);
 			// just make empty chairs and judges
 			
@@ -49,7 +52,7 @@ namespace OPDtabData
 				chairs[i] = new RoundDebater();
 				judges[i] = new List<RoundDebater>();
 			}
-			SetOthers(randomSeed, mcSteps, true);
+			SetOthers(randomSeed, mcSteps, true, cyclic);
 		}
 		
 		static void SetTeams(List<TeamData> t) {
@@ -72,10 +75,11 @@ namespace OPDtabData
 				
 		}
 		            
-		static void SetOthers(int randomSeed, int mcSteps, bool useExisting) {
+		static void SetOthers(int randomSeed, int mcSteps, bool useExisting, bool cyclic) {
 			// some other config
 			steps = mcSteps;
 			random = new Random(randomSeed);
+			cyclicFree = cyclic;
 			
 			if(useExisting)
 				existingRounds = new List<RoomData>[Tournament.I.Rounds.Count];
@@ -84,7 +88,6 @@ namespace OPDtabData
 			
 			for(int i=0;i<existingRounds.Length;i++) {
 				existingRounds[i] = Tournament.I.Rounds[i].Rooms;
-				Console.WriteLine("existing: "+existingRounds[i].Count);
 			}
 			// bestConfig is just a try...but Generate() needs a inited bestConfig!
 			bestConfig = DoMonteCarloStep();	
@@ -155,50 +158,104 @@ namespace OPDtabData
 			List<RoomData>[] rounds = {new List<RoomData>(nRooms), 
 				new List<RoomData>(nRooms), 
 				new List<RoomData>(nRooms)};
-			
+								
 			// set rounds with gov/opp 
 			for(int i=0;i<nRooms;i++) {
+				// pools are defined by slices
 				TeamData pool1 = teams[3*i];
 				TeamData pool2 = teams[3*i+1];
 				TeamData pool3 = teams[3*i+2];
 				// Round 1
-				rounds[0].Add(new RoomData(i, pool1, pool2, chairs[i+0*nRooms], judges[i+0*nRooms]));
+				rounds[0].Add(new RoomData(i, pool3, pool2, chairs[i+0*nRooms], judges[i+0*nRooms]));
 				// Round 2 
-				rounds[1].Add(new RoomData(i, pool2, pool3, chairs[i+1*nRooms], judges[i+1*nRooms]));
+				rounds[1].Add(new RoomData(i, pool1, pool3, chairs[i+1*nRooms], judges[i+1*nRooms]));
 				// Round 3
-				rounds[2].Add(new RoomData(i, pool3, pool1, chairs[i+2*nRooms], judges[i+2*nRooms]));
+				rounds[2].Add(new RoomData(i, pool2, pool1, chairs[i+2*nRooms], judges[i+2*nRooms]));
 			}
 			
+			if(cyclicFree)
+				CyclicFreeSpeakers(teams, rounds, nRooms);
+			else
+				NonCyclicFreeSpeakers(teams, rounds, nRooms);
+			
+			return rounds;
+		}
+		
+		static void NonCyclicFreeSpeakers(List<TeamData> teams, List<RoomData>[] rounds, 
+			int nRooms) {
+			
+			// a permutation of 012 ensures that 
+			// the same team member does not always speak on the
+			// same free speaker position
+			List<int> i012 = new List<int>(new int[] {0,1,2});
+			Algorithms.RandomizeArray<int>(i012, random);
+			
+			// cannot work in parallel...?!
+			for(int round=0;round<rounds.Length;round++) {
+				List<RoundDebater>[] freeSpeakers = {
+					new List<RoundDebater>(), // first freeSpeakers for this round
+					new List<RoundDebater>(), // second 
+					new List<RoundDebater>()  // third
+				};
+				for(int room=0;room<nRooms;room++) {
+					// the pools are ordered such that the order of freeSpeaker pools
+					// correspond to the order of rounds, so slicing a la 
+					// 3*room+round works (see above when setting Gov/Opp)
+					for(int i=0;i<3;i++) 
+						freeSpeakers[i].Add(teams[3*room+round][i012[i]]);					
+				}
+				// this makes the freeSpeakers really random without touching
+				// the constraint that each team has equal positions
+				for(int i=0;i<3;i++)
+					Algorithms.RandomizeArray<RoundDebater>(freeSpeakers[i], random);
+				// set the speakers
+				for(int room=0;room<nRooms;room++) {
+					for(int i=0;i<3;i++)
+						rounds[round][room].FreeSpeakers[i] = freeSpeakers[i][room];
+				}
+			}	
+			
+		}
+		
+		static void CyclicFreeSpeakers(List<TeamData> teams, List<RoomData>[] rounds, 
+			int nRooms) {
+			
+			// and distribute freeSpeakers for all three rounds in parallel
 			int offset1 = random.Next(nRooms);
 			int offset2 = random.Next(nRooms);
 			int offset3 = random.Next(nRooms);
 			
-			// and distribute freeSpeakers for all three rounds in parallel
-			for(int i=0;i<nRooms;i++) {
-				TeamData pool1 = teams[3*i];
-				TeamData pool2 = teams[3*i+1];
-				TeamData pool3 = teams[3*i+2];				
-				// Round 1
-				SetFreeSpeakers(i, offset1, rounds[0], pool3);
-				// Round 2
-				SetFreeSpeakers(i, offset2, rounds[1], pool1);
-				// Round 3
-				SetFreeSpeakers(i, offset3, rounds[2], pool2);
-			}
+			// a permutation of 012 ensures that 
+			// the same team member does not always speak on the
+			// same free speaker position
+			List<int> i012 = new List<int>(new int[] {0,1,2});
+			Algorithms.RandomizeArray<int>(i012, random);
 			
-			return rounds;
+			for(int i=0;i<nRooms;i++) {
+ 				TeamData pool1 = teams[3*i];
+				TeamData pool2 = teams[3*i+1];
+				TeamData pool3 = teams[3*i+2];		
+				
+				// Round 1
+				SetFreeSpeakers(i, offset1, rounds[0], pool1, i012);
+				// Round 2
+				SetFreeSpeakers(i, offset2, rounds[1], pool2, i012);
+				// Round 3
+				SetFreeSpeakers(i, offset3, rounds[2], pool3, i012);
+			}	
 		}
-						
-		static void SetFreeSpeakers(int i, int off, List<RoomData> rooms, TeamData freeSpeakerTeam) {
+		
+		static void SetFreeSpeakers(int i, int off, List<RoomData> rooms, 
+			TeamData freeSpeakerTeam, List<int> i012) {
 			
 			// cyclic boundary constraints
 			int l = (i+0+3*off) % nRooms;   
 			int m = (i+1+3*off) % nRooms;   
 			int n = (i+2+3*off) % nRooms;   
 				
-			rooms[l].FreeSpeakers[0] = freeSpeakerTeam[0];
-			rooms[m].FreeSpeakers[1] = freeSpeakerTeam[1];
-			rooms[n].FreeSpeakers[2] = freeSpeakerTeam[2];	
+			rooms[l].FreeSpeakers[0] = freeSpeakerTeam[i012[0]];
+			rooms[m].FreeSpeakers[1] = freeSpeakerTeam[i012[1]];
+			rooms[n].FreeSpeakers[2] = freeSpeakerTeam[i012[2]];	
 		}
 	}
 }

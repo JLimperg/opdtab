@@ -43,14 +43,17 @@ namespace OPDtabGui
 		private global::Gtk.Label GtkLabel;
 		private global::Gtk.Label labelRoomName;
 		private global::Gtk.Alignment alignSmall;
-		private global::Gtk.HBox hboxSmall;
-		private global::Gtk.Label labelRoomNo;
-		private global::Gtk.EventBox cGovSmall;
-		private global::Gtk.EventBox cOppSmall;
-		private global::Gtk.EventBox cFreeSpeakersSmall;
+		private global::Gtk.Table tableSmall;
 		private global::Gtk.EventBox cChairSmall;
+		private global::Gtk.EventBox cFreeSpeakersSmall;
+		private global::Gtk.EventBox cGovSmall;
 		private global::Gtk.EventBox cJudgesSmall;
-		private global::Gtk.Label label5;
+		private global::Gtk.EventBox cOppSmall;
+		private global::Gtk.EventBox eventbox1;
+		private global::Gtk.EventBox eventbox2;
+		private global::Gtk.EventBox eventbox3;
+		private global::Gtk.Label labelRoomNo;
+		private global::Gtk.Label labelRoomNoRight;
 		
 		protected virtual void Build ()
 		{
@@ -61,7 +64,8 @@ namespace OPDtabGui
 			// Container child OPDtabGui.Room.Gtk.Container+ContainerChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment1.Name = "alignment1";
-			this.alignment1.BottomPadding = ((uint)(10));
+			this.alignment1.TopPadding = ((uint)(5));
+			this.alignment1.BottomPadding = ((uint)(5));
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.vbox6 = new global::Gtk.VBox ();
 			this.vbox6.Name = "vbox6";
@@ -289,75 +293,118 @@ namespace OPDtabGui
 			this.alignSmall.Name = "alignSmall";
 			this.alignSmall.LeftPadding = ((uint)(10));
 			// Container child alignSmall.Gtk.Container+ContainerChild
-			this.hboxSmall = new global::Gtk.HBox ();
-			this.hboxSmall.Name = "hboxSmall";
-			this.hboxSmall.Spacing = 6;
-			// Container child hboxSmall.Gtk.Box+BoxChild
+			this.tableSmall = new global::Gtk.Table (((uint)(2)), ((uint)(7)), false);
+			this.tableSmall.Name = "tableSmall";
+			this.tableSmall.ColumnSpacing = ((uint)(6));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.cChairSmall = new global::Gtk.EventBox ();
+			this.cChairSmall.Name = "cChairSmall";
+			this.tableSmall.Add (this.cChairSmall);
+			global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.cChairSmall]));
+			w30.TopAttach = ((uint)(1));
+			w30.BottomAttach = ((uint)(2));
+			w30.LeftAttach = ((uint)(4));
+			w30.RightAttach = ((uint)(5));
+			w30.XOptions = ((global::Gtk.AttachOptions)(4));
+			w30.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.cFreeSpeakersSmall = new global::Gtk.EventBox ();
+			this.cFreeSpeakersSmall.Name = "cFreeSpeakersSmall";
+			this.tableSmall.Add (this.cFreeSpeakersSmall);
+			global::Gtk.Table.TableChild w31 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.cFreeSpeakersSmall]));
+			w31.TopAttach = ((uint)(1));
+			w31.BottomAttach = ((uint)(2));
+			w31.LeftAttach = ((uint)(3));
+			w31.RightAttach = ((uint)(4));
+			w31.XOptions = ((global::Gtk.AttachOptions)(0));
+			w31.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.cGovSmall = new global::Gtk.EventBox ();
+			this.cGovSmall.Name = "cGovSmall";
+			this.tableSmall.Add (this.cGovSmall);
+			global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.cGovSmall]));
+			w32.TopAttach = ((uint)(1));
+			w32.BottomAttach = ((uint)(2));
+			w32.LeftAttach = ((uint)(1));
+			w32.RightAttach = ((uint)(2));
+			w32.XOptions = ((global::Gtk.AttachOptions)(4));
+			w32.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.cJudgesSmall = new global::Gtk.EventBox ();
+			this.cJudgesSmall.Name = "cJudgesSmall";
+			this.tableSmall.Add (this.cJudgesSmall);
+			global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.cJudgesSmall]));
+			w33.TopAttach = ((uint)(1));
+			w33.BottomAttach = ((uint)(2));
+			w33.LeftAttach = ((uint)(5));
+			w33.RightAttach = ((uint)(6));
+			w33.XOptions = ((global::Gtk.AttachOptions)(0));
+			w33.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.cOppSmall = new global::Gtk.EventBox ();
+			this.cOppSmall.Name = "cOppSmall";
+			this.tableSmall.Add (this.cOppSmall);
+			global::Gtk.Table.TableChild w34 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.cOppSmall]));
+			w34.TopAttach = ((uint)(1));
+			w34.BottomAttach = ((uint)(2));
+			w34.LeftAttach = ((uint)(2));
+			w34.RightAttach = ((uint)(3));
+			w34.XOptions = ((global::Gtk.AttachOptions)(4));
+			w34.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.eventbox1 = new global::Gtk.EventBox ();
+			this.eventbox1.WidthRequest = 140;
+			this.eventbox1.Name = "eventbox1";
+			this.tableSmall.Add (this.eventbox1);
+			global::Gtk.Table.TableChild w35 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.eventbox1]));
+			w35.LeftAttach = ((uint)(1));
+			w35.RightAttach = ((uint)(2));
+			w35.XOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.eventbox2 = new global::Gtk.EventBox ();
+			this.eventbox2.WidthRequest = 140;
+			this.eventbox2.Name = "eventbox2";
+			this.tableSmall.Add (this.eventbox2);
+			global::Gtk.Table.TableChild w36 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.eventbox2]));
+			w36.LeftAttach = ((uint)(2));
+			w36.RightAttach = ((uint)(3));
+			w36.XOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.eventbox3 = new global::Gtk.EventBox ();
+			this.eventbox3.WidthRequest = 120;
+			this.eventbox3.Name = "eventbox3";
+			this.tableSmall.Add (this.eventbox3);
+			global::Gtk.Table.TableChild w37 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.eventbox3]));
+			w37.LeftAttach = ((uint)(4));
+			w37.RightAttach = ((uint)(5));
+			w37.XOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableSmall.Gtk.Table+TableChild
 			this.labelRoomNo = new global::Gtk.Label ();
 			this.labelRoomNo.Name = "labelRoomNo";
 			this.labelRoomNo.Xalign = 0F;
 			this.labelRoomNo.LabelProp = global::Mono.Unix.Catalog.GetString ("label3");
-			this.hboxSmall.Add (this.labelRoomNo);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.labelRoomNo]));
-			w30.Position = 0;
-			w30.Expand = false;
-			w30.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.cGovSmall = new global::Gtk.EventBox ();
-			this.cGovSmall.WidthRequest = 150;
-			this.cGovSmall.Name = "cGovSmall";
-			this.hboxSmall.Add (this.cGovSmall);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cGovSmall]));
-			w31.Position = 1;
-			w31.Expand = false;
-			w31.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.cOppSmall = new global::Gtk.EventBox ();
-			this.cOppSmall.WidthRequest = 150;
-			this.cOppSmall.Name = "cOppSmall";
-			this.hboxSmall.Add (this.cOppSmall);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cOppSmall]));
-			w32.Position = 2;
-			w32.Expand = false;
-			w32.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.cFreeSpeakersSmall = new global::Gtk.EventBox ();
-			this.cFreeSpeakersSmall.Name = "cFreeSpeakersSmall";
-			this.hboxSmall.Add (this.cFreeSpeakersSmall);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cFreeSpeakersSmall]));
-			w33.Position = 3;
-			w33.Expand = false;
-			w33.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.cChairSmall = new global::Gtk.EventBox ();
-			this.cChairSmall.WidthRequest = 100;
-			this.cChairSmall.Name = "cChairSmall";
-			this.hboxSmall.Add (this.cChairSmall);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cChairSmall]));
-			w34.Position = 4;
-			w34.Expand = false;
-			w34.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.cJudgesSmall = new global::Gtk.EventBox ();
-			this.cJudgesSmall.Name = "cJudgesSmall";
-			this.hboxSmall.Add (this.cJudgesSmall);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.cJudgesSmall]));
-			w35.Position = 5;
-			w35.Expand = false;
-			w35.Fill = false;
-			// Container child hboxSmall.Gtk.Box+BoxChild
-			this.label5 = new global::Gtk.Label ();
-			this.label5.Name = "label5";
-			this.label5.LabelProp = "";
-			this.hboxSmall.Add (this.label5);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hboxSmall [this.label5]));
-			w36.Position = 6;
-			this.alignSmall.Add (this.hboxSmall);
+			this.tableSmall.Add (this.labelRoomNo);
+			global::Gtk.Table.TableChild w38 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.labelRoomNo]));
+			w38.TopAttach = ((uint)(1));
+			w38.BottomAttach = ((uint)(2));
+			w38.XOptions = ((global::Gtk.AttachOptions)(4));
+			w38.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableSmall.Gtk.Table+TableChild
+			this.labelRoomNoRight = new global::Gtk.Label ();
+			this.labelRoomNoRight.Name = "labelRoomNoRight";
+			this.labelRoomNoRight.Xalign = 1F;
+			this.labelRoomNoRight.Justify = ((global::Gtk.Justification)(1));
+			this.tableSmall.Add (this.labelRoomNoRight);
+			global::Gtk.Table.TableChild w39 = ((global::Gtk.Table.TableChild)(this.tableSmall [this.labelRoomNoRight]));
+			w39.TopAttach = ((uint)(1));
+			w39.BottomAttach = ((uint)(2));
+			w39.LeftAttach = ((uint)(6));
+			w39.RightAttach = ((uint)(7));
+			w39.YOptions = ((global::Gtk.AttachOptions)(0));
+			this.alignSmall.Add (this.tableSmall);
 			this.vbox6.Add (this.alignSmall);
-			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.alignSmall]));
-			w38.Position = 1;
-			w38.Expand = false;
-			w38.Fill = false;
+			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.alignSmall]));
+			w41.Position = 1;
 			this.alignment1.Add (this.vbox6);
 			this.Add (this.alignment1);
 			if ((this.Child != null)) {

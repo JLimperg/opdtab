@@ -43,11 +43,19 @@ namespace OPDtabGui
 					// horizontal add
 					if(t.Children.Length>0)
 						t.NColumns++;
-					Alignment al = new Alignment(0, 0.5f, 1.0f, 1.0f);
-					al.Add(w);
-					t.Attach(al, t.NColumns-1, t.NColumns, 0, 1,
-						AttachOptions.Shrink, AttachOptions.Fill | AttachOptions.Expand, 0,0);
-					w.WidthRequest = 100;
+					// use a bit more complicated layout,
+					// since widthrequest directly on widget
+					// would not allow for expanding on click
+					EventBox eb = new EventBox();
+					eb.WidthRequest = 120;
+					
+					t.Attach(eb, t.NColumns-1, t.NColumns, 0, 1,
+						AttachOptions.Shrink, AttachOptions.Shrink, 0,0);
+					
+					t.Attach(w, t.NColumns-1, t.NColumns, 1, 2,
+						AttachOptions.Fill, AttachOptions.Shrink, 0,0);
+					
+					
 				}
 				else {
 					// vertical add

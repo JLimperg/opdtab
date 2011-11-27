@@ -446,7 +446,8 @@ namespace OPDtabGui
 						GetRoundByName(roundNames[2])};
 					
 					AlgoThreePreRounds.Prepare(sbRandomSeed.ValueAsInt, 
-					                           sbMonteCarloSteps.ValueAsInt, 
+					                           sbMonteCarloSteps.ValueAsInt,
+											   cbCyclicFreeSpeakers.Active,
 			                           		   rds); 
 					// all rounds should have the same teams, checked by Prepare
 					teams = rds[0].AllTeams; 
@@ -464,6 +465,7 @@ namespace OPDtabGui
 					}
 					AlgoThreePreRounds.Prepare(sbRandomSeed.ValueAsInt,
 					                           sbMonteCarloSteps.ValueAsInt,
+											   cbCyclicFreeSpeakers.Active,
 					                           teams);
 					
 						
@@ -1435,6 +1437,7 @@ namespace OPDtabGui
 			foreach(Room room in vboxRooms) {
 				room.Small = cbCompactView.Active;	
 			}
+			UpdateSearchFilter();
 		}
 	}
 }

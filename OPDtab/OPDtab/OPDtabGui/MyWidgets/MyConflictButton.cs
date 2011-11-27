@@ -14,6 +14,7 @@ namespace OPDtabGui
 		public MyConflictButton () 
 		{
 			settings = AppSettings.I.GenerateRound;
+			BorderWidth = 0;
 			Relief = ReliefStyle.None;
 			NoShowAll = true;
 			FocusOnClick = false;
@@ -29,7 +30,7 @@ namespace OPDtabGui
 			}
 				
 			HBox hbox = new HBox();
-			hbox.Spacing = 2;
+			hbox.Spacing = 1;
 			m = new Menu();
 			
 			// this round/room

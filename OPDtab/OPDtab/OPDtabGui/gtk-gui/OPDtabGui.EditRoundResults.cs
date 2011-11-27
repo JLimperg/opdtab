@@ -125,7 +125,6 @@ namespace OPDtabGui
 			this.lblMotion = new global::Gtk.Label ();
 			this.lblMotion.Name = "lblMotion";
 			this.lblMotion.Xalign = 0F;
-			this.lblMotion.LabelProp = "";
 			this.lblMotion.Ellipsize = ((global::Pango.EllipsizeMode)(3));
 			this.lblMotion.WidthChars = 50;
 			this.lblMotion.SingleLineMode = true;

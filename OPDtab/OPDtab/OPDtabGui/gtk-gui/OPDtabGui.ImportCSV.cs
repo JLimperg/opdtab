@@ -96,7 +96,6 @@ namespace OPDtabGui
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.labelFile = new global::Gtk.Label ();
 			this.labelFile.Name = "labelFile";
-			this.labelFile.LabelProp = "";
 			this.labelFile.Ellipsize = ((global::Pango.EllipsizeMode)(2));
 			this.hbox1.Add (this.labelFile);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.labelFile]));

@@ -159,6 +159,7 @@ namespace OPDtabGui
 		}	
 				
 		public void ShowJudgeAvail() {
+			alJudgeAvail.RightPadding = 3;
 			MiscHelpers.SetIsShown(alJudgeAvail, true);
 		}
 		

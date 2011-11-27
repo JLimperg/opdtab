@@ -47,7 +47,6 @@ namespace OPDtabGui
 			w3.Add (w4);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w6 = new global::Gtk.Label ();
-			w6.LabelProp = "";
 			w3.Add (w6);
 			w2.Add (w3);
 			this.btnHide.Add (w2);

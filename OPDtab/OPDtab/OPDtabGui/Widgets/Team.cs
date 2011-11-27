@@ -24,10 +24,14 @@ namespace OPDtabGui
 			Team t = new Team(td, null);
 			// generate abbreviated team name
 			string abbrTeamName = "";
+			int words = 0;
 			foreach(string s in OPDtabData.MiscHelpers.StringToWords(td.TeamName)) {
 				//Console.WriteLine(td.TeamName+" "+s);
 				string tmp = s.Length>2 ? s.Substring(0,2)+". " : s;
-				abbrTeamName = abbrTeamName + tmp;	
+				abbrTeamName = abbrTeamName + tmp;
+				words++;
+				if(words>2)
+					break;
 			}
 			t.btnExpand.LabelText = abbrTeamName;
 			t.lblFullTeamName.Markup = "<small>"+GLib.Markup.EscapeText(td.TeamName)+"</small>";

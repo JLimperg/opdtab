@@ -31,7 +31,6 @@ namespace OPDtabGui
 			this.label = new global::Gtk.Label ();
 			this.label.Name = "label";
 			this.label.Xalign = 0F;
-			this.label.LabelProp = "";
 			this.hbox.Add (this.label);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox [this.label]));
 			w2.Position = 1;
