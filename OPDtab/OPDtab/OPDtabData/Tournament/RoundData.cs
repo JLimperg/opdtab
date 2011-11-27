@@ -54,7 +54,7 @@ namespace OPDtabData
 			
 			// make a hard copy, by default, all are in pool, but keep JudgeAvail
 			foreach(RoundDebater d in aJ) 
-				allJudges.Add(new RoundDebater(d, true, d.JudgeAvail));
+				allJudges.Add(new RoundDebater(d, true, d.JudgeState));
 			
 			foreach(TeamData td in aT)
 				allTeams.Add(new TeamData(td, true));

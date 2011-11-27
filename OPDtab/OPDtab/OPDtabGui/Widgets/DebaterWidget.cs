@@ -10,7 +10,7 @@ namespace OPDtabGui
 	{
 		MyButton btnExpand;
 		MyConflictButton btnConflict;
-		CheckButton cbJudgeAvail;
+		MyAvailJudgeButton cbJudgeAvail;
 		
 		RoundDebater roundDebater;
 		Debater debater;
@@ -65,18 +65,14 @@ namespace OPDtabGui
 			
 			// checkbox availJudges (default not shown, 
 			// activated by ShowJudgeAvail from DebaterPool)
-			cbJudgeAvail = new CheckButton();
-			cbJudgeAvail.Active = roundDebater.JudgeAvail;
-			btnExpand.SetStrikeThrough(!cbJudgeAvail.Active);
-			cbJudgeAvail.Clicked += delegate(object sender, EventArgs e) {
-				roundDebater.JudgeAvail = cbJudgeAvail.Active;
-				btnExpand.SetStrikeThrough(!cbJudgeAvail.Active);
+			cbJudgeAvail = new MyAvailJudgeButton(roundDebater);
+			btnExpand.SetStrikeThrough(!rd.JudgeAvail);
+			cbJudgeAvail.Changed += delegate {
+				btnExpand.SetStrikeThrough(!rd.JudgeAvail);
 			};
 			alJudgeAvail.Add(cbJudgeAvail);
 			alJudgeAvail.NoShowAll = true;
-			
-			
-			
+					
 			// SetIsShown in Realized so that everything is counted correctly by triggered events
 			Realized += delegate(object sender, EventArgs e) {
 				MiscHelpers.SetIsShown(this, roundDebater.IsShown);
@@ -163,11 +159,12 @@ namespace OPDtabGui
 			MiscHelpers.SetIsShown(alJudgeAvail, true);
 		}
 		
-		public bool JudgeAvail {
+		/*public bool JudgeAvail {
 			get {
-				return cbJudgeAvail.Active;
+				return roundDebater.JudgeAvail;
+				//return cbJudgeAvail.Active;
 			}
-		}
+		}*/
 		
 		protected virtual void OnBtnExpandClicked (object sender, System.EventArgs e)
 		{

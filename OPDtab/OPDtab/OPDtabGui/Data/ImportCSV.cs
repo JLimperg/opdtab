@@ -126,7 +126,7 @@ namespace OPDtabGui
 						ok++;
 					}
 					else {
-						Console.WriteLine("Duplicate: "+d);
+						Console.WriteLine("Duplicate: "+d+", "+debaters[i]);
 						dups++;
 						if(cbOverwrite.Active) {
 							debaters[i] = new Debater(d);

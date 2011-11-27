@@ -2615,7 +2615,7 @@
               <widget class="Gtk.Label" id="lblFullTeamName">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label2</property>
+                <property name="LabelProp" translatable="yes">lblFullTeamName</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -3013,7 +3013,6 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Team Member/Parse</property>
-                    <property name="Active">True</property>
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>

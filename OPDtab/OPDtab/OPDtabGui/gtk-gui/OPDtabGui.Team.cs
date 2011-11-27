@@ -49,7 +49,7 @@ namespace OPDtabGui
 			this.lblFullTeamName = new global::Gtk.Label ();
 			this.lblFullTeamName.Name = "lblFullTeamName";
 			this.lblFullTeamName.Xalign = 0F;
-			this.lblFullTeamName.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
+			this.lblFullTeamName.LabelProp = global::Mono.Unix.Catalog.GetString ("lblFullTeamName");
 			this.vboxInfos.Add (this.lblFullTeamName);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vboxInfos [this.lblFullTeamName]));
 			w4.Position = 0;

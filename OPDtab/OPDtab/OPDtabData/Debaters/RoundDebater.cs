@@ -5,8 +5,12 @@ namespace OPDtabData
 	[Serializable]
 	public class RoundDebater : AbstractDebater, IRoomMember
 	{
+		public enum JudgeStateType {
+			Judge=0, NotAvail=1, Chair=2, FirstJudge=3	
+		};
+		
 		bool isShown;
-		bool judgeAvail;
+		JudgeStateType judgeState;
 		[NonSerialized]
 		RoomConflict conflict;
 		[NonSerialized]
@@ -14,7 +18,7 @@ namespace OPDtabData
 		
 		public RoundDebater() : base() {
 			isShown = false;
-			judgeAvail = true;
+			judgeState = JudgeStateType.Judge;
 			isDummy = false;
 		}
 		
@@ -23,19 +27,19 @@ namespace OPDtabData
 			rd.isDummy = true;
 			return rd;
 		}
-		
-		public RoundDebater(AbstractDebater d) : this(d, true, true) 
+				
+		public RoundDebater(AbstractDebater d) : this(d, true, JudgeStateType.Judge) 
 		{
 		}
 		
-		public RoundDebater (AbstractDebater d, bool shown) : this(d, shown, true)
+		public RoundDebater (AbstractDebater d, bool shown) : this(d, shown, JudgeStateType.Judge)
 		{
 		}
 		
-		public RoundDebater (AbstractDebater d, bool shown, bool avail) : base(d)
+		public RoundDebater (AbstractDebater d, bool shown, JudgeStateType state) : base(d)
 		{
 			isShown = shown;
-			judgeAvail = avail;
+			judgeState = state;
 		}
 		
 		
@@ -48,15 +52,26 @@ namespace OPDtabData
 			}
 		}	
 		
+		// this ensure backward compatibility
+		[System.Xml.Serialization.XmlIgnore]
 		public bool JudgeAvail {
 			get {
-				return this.judgeAvail;
+				return judgeState != JudgeStateType.NotAvail;
 			}
 			set {
-				judgeAvail = value;
+				judgeState = value ? JudgeStateType.Judge : JudgeStateType.NotAvail;
 			}
 		}
-
+		
+		public JudgeStateType JudgeState {
+			get {
+				return this.judgeState;
+			}	
+			set {
+				judgeState = value;
+			}
+		}
+		
 		public void SetConflict(RoomConflict rc) {
 			conflict = rc;
 		}

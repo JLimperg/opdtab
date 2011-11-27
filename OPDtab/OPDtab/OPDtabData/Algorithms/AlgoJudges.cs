@@ -10,7 +10,9 @@ namespace OPDtabData
 		static int nMinJudgesPerRoom;
 		static List<RoomData> bestConfig;
 		static List<RoomData> startConfig;
-		static List<RoundDebater> availJudges; 
+		static List<RoundDebater> firstJudges;
+		static List<RoundDebater> otherJudges;
+		static List<RoundDebater> chairJudges;
 		static AlgoData data;	
 			
 		public static void Prepare(int randomSeed, int mcSteps,
@@ -24,10 +26,22 @@ namespace OPDtabData
 			nMinJudgesPerRoom = rd.AllJudges.Count/nRooms; // int division!
 			// determine avail judges from roundData, 
 			// only the ones shown in pool
-			availJudges = new List<RoundDebater>();
+			firstJudges = new List<RoundDebater>();
+			otherJudges = new List<RoundDebater>();
+			chairJudges = new List<RoundDebater>();
 			foreach(RoundDebater judge in rd.AllJudges) {
-				if(judge.IsShown && judge.JudgeAvail) {
-					availJudges.Add(judge);	
+				if(judge.IsShown) {
+					switch(judge.JudgeState) {
+					case RoundDebater.JudgeStateType.FirstJudge:
+						firstJudges.Add(judge);
+						break;
+					case RoundDebater.JudgeStateType.Judge:
+						otherJudges.Add(judge);
+						break;
+					case RoundDebater.JudgeStateType.Chair:
+						chairJudges.Add(judge);
+						break;	
+					}
 				}
 			}
 			// some other config
@@ -41,7 +55,8 @@ namespace OPDtabData
 		public static void Generate(object p) {
 			data = (AlgoData)p;
 			Console.WriteLine("===== Judges started =====");
-			Console.WriteLine("Available judges: "+availJudges.Count);
+			Console.WriteLine("Judges: "+firstJudges.Count+" / "
+				+otherJudges.Count+" / "+chairJudges.Count);
 			OptimizeConfig(); 			
 			data.Finished(bestConfig);
 			//return  bestConfig;
@@ -83,22 +98,64 @@ namespace OPDtabData
 		}
 		
 		static List<RoomData> DoMonteCarloStep() {			
-			
-			// shuffle the available judges
-			Algorithms.RandomizeArray<RoundDebater>(availJudges, random);
-			
-			// make a copy of availJudges and rooms (use startConfig)
+						
+			// make a copy of judges arrays and rooms (use startConfig)
 			List<RoomData> rooms = new List<RoomData>(nRooms);
 			for(int i=0;i<nRooms;i++) 
 				rooms.Add(new RoomData(startConfig[i], true));
 			
-			List<RoundDebater> judges = new List<RoundDebater>(availJudges.Count);
-			foreach(RoundDebater judge in availJudges)
-				judges.Add(new RoundDebater(judge, true));
+			List<RoundDebater> first = new List<RoundDebater>(firstJudges.Count);
+			List<RoundDebater> other = new List<RoundDebater>(otherJudges.Count);
+			List<RoundDebater> chair = new List<RoundDebater>(chairJudges.Count);
+			foreach(RoundDebater judge in firstJudges)
+				first.Add(new RoundDebater(judge, true));
+			foreach(RoundDebater judge in otherJudges)
+				other.Add(new RoundDebater(judge, true));
+			foreach(RoundDebater judge in chairJudges)
+				chair.Add(new RoundDebater(judge, true));
 			
-			// fill rooms with judges
+			// fill chairs and firstjudges
+			// we use a lot of arrays to cover all possible cases...
+			// shuffle the available firstjudges and chair
+			Algorithms.RandomizeArray<RoundDebater>(first, random);
+			Algorithms.RandomizeArray<RoundDebater>(chair, random);
+			
+			// determine rooms to be filled
+			List<int> indicesFirst = new List<int>();
+			List<int> indicesChair = new List<int>();
+			
+			for(int i=0;i<nRooms;i++) {
+				if(rooms[i].Chair==null) 
+					indicesChair.Add(i);
+				if(rooms[i].Judges.Count==0) 
+					indicesFirst.Add(i);
+			}
+			
+			Algorithms.RandomizeArray<int>(indicesChair, random);
+			Algorithms.RandomizeArray<int>(indicesFirst, random);
+			
+			foreach(int i in indicesFirst) {
+				if(first.Count==0)
+					break;
+				rooms[i].Judges.Add(first[0]);
+				first.RemoveAt(0);
+			}
+			foreach(int i in indicesChair) {
+				if(chair.Count==0)
+					break;
+				rooms[i].Chair = chair[0];
+				chair.RemoveAt(0);
+			}
+			
+			// put rest judges in other and shuffle
+			other.AddRange(first);
+			other.AddRange(chair);
+			Algorithms.RandomizeArray<RoundDebater>(other, random);
+			
+			
+			// fill rooms with judges, first the ones with too little judges
 			int j = 0;
-			while(judges.Count>0) {
+			while(other.Count>0) {
 				// choose which room to fill
 				bool flag = true;
 				for(int k=0;k<rooms.Count;k++) {
@@ -109,12 +166,13 @@ namespace OPDtabData
 				}
 				// fill 
 				if(rooms[j].Judges.Count<nMinJudgesPerRoom || flag) {
-					rooms[j].Judges.Add(judges[judges.Count-1]);
-					judges.RemoveAt(judges.Count-1);
+					rooms[j].Judges.Add(other[0]);
+					other.RemoveAt(0);
 				}
 				// always go to next room, cyclic
 				j = (j+1) % nRooms;   
 			}	
+			
 			return rooms;
 		}
 		

@@ -65,7 +65,7 @@ namespace OPDtabData
 			// check and make a hard copy
 			foreach(TeamData td in t) { 
 				if(td.NTeamMembers != 3)
-					throw new Exception("Team '"+td+"' has not exactly 3 members.");
+					throw new Exception("Team '"+td.TeamName+"' has not exactly 3 members.");
 				// teams are going to be in rooms, so all are shown
 				teams.Add(new TeamData(td, true));
 			}	

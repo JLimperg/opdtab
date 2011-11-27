@@ -80,6 +80,7 @@
     <Compile Include="gtk-gui\OPDtabGui.RoundResultSetBest.cs" />
     <Compile Include="gtk-gui\OPDtabGui.DebaterPool.cs" />
     <Compile Include="Widgets\DebaterPool.cs" />
+    <Compile Include="MyWidgets\MyAvailJudgeButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
