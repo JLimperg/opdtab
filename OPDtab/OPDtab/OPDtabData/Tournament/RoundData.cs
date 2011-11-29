@@ -17,6 +17,8 @@ namespace OPDtabData
 		List<RoomData> rooms;
 		List<RoundDebater> allJudges;
 		List<TeamData> allTeams;
+		// save the average points of each position
+		List<double> avgPoints;
 		
 		public RoundData() {
 			// empty (for xml serialization)
@@ -25,6 +27,7 @@ namespace OPDtabData
 			allTeams = new List<TeamData>();
 			allJudges = new List<RoundDebater>();			
 			rooms = new List<RoomData>();
+			avgPoints = new List<double>();
 		}
 		
 		public RoundData (string n, List<Debater> debaters) : this()
@@ -223,16 +226,13 @@ namespace OPDtabData
 			}
 		}
 		
-		public static void AddMemberToTeamList(List<TeamData> teams, RoundDebater d) {
-			TeamData teamData = 
-				teams.FindLast(delegate(TeamData td) {
-					return td.Equals(d.Role.TeamName);	
-				}); 
-			if(teamData != null) 
-				// this might throw an exception
-				teamData.AddMember(d);					
-			else
-				teams.Add(new TeamData(d));	
+		public List<double> AvgPoints {
+			get { 
+				return this.avgPoints;
+			}
+			set {
+				avgPoints = value;
+			}
 		}
 		
 		public string Motion {
@@ -280,7 +280,7 @@ namespace OPDtabData
 	
 
 		#region IItemCompleted implementation
-		[System.Xml.Serialization.XmlIgnore]
+		//[System.Xml.Serialization.XmlIgnore]
 		public bool ItemCompleted
 		{
 			get {
@@ -291,6 +291,18 @@ namespace OPDtabData
 			}
 		}
 		#endregion
+		
+		public static void AddMemberToTeamList(List<TeamData> teams, RoundDebater d) {
+			TeamData teamData = 
+				teams.FindLast(delegate(TeamData td) {
+					return td.Equals(d.Role.TeamName);	
+				}); 
+			if(teamData != null) 
+				// this might throw an exception
+				teamData.AddMember(d);					
+			else
+				teams.Add(new TeamData(d));	
+		}
 }
 }
 

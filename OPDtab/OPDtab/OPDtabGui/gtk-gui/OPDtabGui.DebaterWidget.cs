@@ -8,7 +8,7 @@ namespace OPDtabGui
 		private global::Gtk.HBox hbox;
 		private global::Gtk.Alignment alBtn;
 		private global::Gtk.Alignment alConflictBtn;
-		private global::Gtk.Alignment alJudgeAvail;
+		private global::Gtk.Alignment alJudgeState;
 		private global::Gtk.HBox hboxInfo;
 		private global::Gtk.Label label2;
 		private global::Gtk.VBox vboxInfo;
@@ -40,10 +40,10 @@ namespace OPDtabGui
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child hbox.Gtk.Box+BoxChild
-			this.alJudgeAvail = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
-			this.alJudgeAvail.Name = "alJudgeAvail";
-			this.hbox.Add (this.alJudgeAvail);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alJudgeAvail]));
+			this.alJudgeState = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alJudgeState.Name = "alJudgeState";
+			this.hbox.Add (this.alJudgeState);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alJudgeState]));
 			w3.PackType = ((global::Gtk.PackType)(1));
 			w3.Position = 2;
 			w3.Expand = false;

@@ -85,7 +85,7 @@ namespace OPDtabGui
 				
 				vboxJudges.Add(w);
 				// show checkbox for availability
-				w.ShowJudgeAvail();
+				w.ShowJudgeState();
 				// Judges are hidden by default
 				if(d.IsShown) 
 					w.ShowAll();				

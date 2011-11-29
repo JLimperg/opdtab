@@ -246,12 +246,14 @@ namespace OPDtabData
 		
 		public static string StatAsString(double d) {
 			return double.IsNaN(d) ?"?":
-				String.Format("{0:+0.0;-0.0;0}", d);
+				String.Format(new System.Globalization.CultureInfo("en-US"),
+					"{0:+0.0;-0.0;0}", d);
 		}
 		
 		public static string ErrAsString(double d) {
 			return double.IsNaN(d)?"?":
-						String.Format("{0:0.0}", d);
+						String.Format(new System.Globalization.CultureInfo("en-US"),
+					"{0:0.0}", d);
 		}
 		
 		public string GetPosAsString() {
@@ -284,7 +286,7 @@ namespace OPDtabData
 			// store for roundAvg, 0...8=speakers, 9/10=gov/opp
 			Dictionary<string, List<int>[]> store1 = new Dictionary<string, List<int>[]>();
 			foreach(RoundData rd in Tournament.I.Rounds) {
-				store1[rd.RoundName] = new List<int>[] {
+				store1[rd.RoundName] = new List<int>[] { // eleven lists for 0...8, and teams
 					new List<int>(), new List<int>(), new List<int>(), 
 					new List<int>(), new List<int>(), new List<int>(),
 					new List<int>(), new List<int>(), new List<int>(),
@@ -329,7 +331,8 @@ namespace OPDtabData
 				roundAvg[rN] = new double[11];
 				// i iterates over positions and teams
 				for(int i=0;i<11;i++) {
-					roundAvg[rN][i] = OPDtabData.MiscHelpers.CalcExactAverage(store1[rN][i]);
+					roundAvg[rN][i] = 
+						OPDtabData.MiscHelpers.CalcExactAverage(store1[rN][i]);
 				}
 			}
 			
@@ -353,7 +356,7 @@ namespace OPDtabData
 			}
 			
 			// calculate averages of performance,
-			// is used to predict performance in selected round
+			// is used to "predict" performance in selected round
 			// compare it with result of judge
 			Dictionary<RoundDebater, double> speakerAvg = new Dictionary<RoundDebater, double>();
 			Dictionary<string, double> teamAvg = new Dictionary<string, double>();			
@@ -371,11 +374,18 @@ namespace OPDtabData
 			}
 			
 			// iterate over rounds and rooms
-			// and compare expected points with judge score			
+			// and compare expected points with judge score
+			// also save the calculated averages in round per position
 			Dictionary<Debater, Dictionary<string, List<double>[]>> store4 = 
 				new Dictionary<Debater, Dictionary<string, List<double>[]>>();
 			
 			foreach(RoundData rd in Tournament.I.Rounds) {
+				// save the averages, is shown in ShowRanking
+				double[] avgPoints;
+				if(roundAvg.TryGetValue(rd.RoundName, out avgPoints)) {
+					rd.AvgPoints = new List<double>(avgPoints);	
+				}
+				// iterate over rooms
 				foreach(RoomData room in rd.Rooms) {
 					List<object> data = room.AsOrderedObjects();
 					

@@ -101,7 +101,9 @@ namespace OPDtabGui
 			if(ts.Days>0)
 				prefix = ts.Days+"d ";
 			
-			return 	prefix+String.Format("{0:00}",ts.Hours)+":"+String.Format("{0:00}",ts.Minutes);
+			return 	prefix+String.Format(new System.Globalization.CultureInfo("en-US"),
+				"{0:00}",ts.Hours)+":"+String.Format(new System.Globalization.CultureInfo("en-US"),
+				"{0:00}",ts.Minutes);
 		}
 		
 		protected virtual void OnCbBackupFilesChanged (object sender, System.EventArgs e)

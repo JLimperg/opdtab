@@ -42,7 +42,23 @@ namespace OPDtabGui
 		private global::Gtk.Table tableRounds;
 		private global::Gtk.Label label13;
 		private global::Gtk.Label label5;
-		private global::Gtk.Label GtkLabel4;
+		private global::Gtk.Label GtkLabel5;
+		private global::Gtk.Alignment alignment2;
+		private global::Gtk.Frame frame2;
+		private global::Gtk.Alignment GtkAlignment2;
+		private global::Gtk.Table tableAvgPoints;
+		private global::Gtk.Label label14;
+		private global::Gtk.Label label15;
+		private global::Gtk.Label label16;
+		private global::Gtk.Label label17;
+		private global::Gtk.Label label18;
+		private global::Gtk.Label label19;
+		private global::Gtk.Label label20;
+		private global::Gtk.Label label21;
+		private global::Gtk.Label label22;
+		private global::Gtk.Label label23;
+		private global::Gtk.Label label24;
+		private global::Gtk.Label GtkLabel6;
 		private global::Gtk.Label label4;
 		
 		protected virtual void Build ()
@@ -57,7 +73,7 @@ namespace OPDtabGui
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 0;
+			this.notebook1.CurrentPage = 3;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.vbox3 = new global::Gtk.VBox ();
 			this.vbox3.Name = "vbox3";
@@ -349,13 +365,13 @@ namespace OPDtabGui
 			w41.Expand = false;
 			w41.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.alignment1 = new global::Gtk.Alignment (0F, 0.5F, 0F, 1F);
+			this.alignment1 = new global::Gtk.Alignment (0F, 0F, 0F, 0F);
 			this.alignment1.Name = "alignment1";
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.frame1 = new global::Gtk.Frame ();
 			this.frame1.Name = "frame1";
 			// Container child frame1.Gtk.Container+ContainerChild
-			this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 0F, 0F);
 			this.GtkAlignment1.Name = "GtkAlignment1";
 			this.GtkAlignment1.LeftPadding = ((uint)(12));
 			this.GtkAlignment1.TopPadding = ((uint)(6));
@@ -375,6 +391,8 @@ namespace OPDtabGui
 			global::Gtk.Table.TableChild w42 = ((global::Gtk.Table.TableChild)(this.tableRounds [this.label13]));
 			w42.LeftAttach = ((uint)(2));
 			w42.RightAttach = ((uint)(3));
+			w42.XOptions = ((global::Gtk.AttachOptions)(4));
+			w42.YOptions = ((global::Gtk.AttachOptions)(0));
 			// Container child tableRounds.Gtk.Table+TableChild
 			this.label5 = new global::Gtk.Label ();
 			this.label5.Name = "label5";
@@ -384,23 +402,186 @@ namespace OPDtabGui
 			w43.LeftAttach = ((uint)(3));
 			w43.RightAttach = ((uint)(4));
 			w43.XOptions = ((global::Gtk.AttachOptions)(4));
-			w43.YOptions = ((global::Gtk.AttachOptions)(4));
+			w43.YOptions = ((global::Gtk.AttachOptions)(0));
 			this.GtkAlignment1.Add (this.tableRounds);
 			this.frame1.Add (this.GtkAlignment1);
-			this.GtkLabel4 = new global::Gtk.Label ();
-			this.GtkLabel4.Name = "GtkLabel4";
-			this.GtkLabel4.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Selected Rounds</b>");
-			this.GtkLabel4.UseMarkup = true;
-			this.frame1.LabelWidget = this.GtkLabel4;
+			this.GtkLabel5 = new global::Gtk.Label ();
+			this.GtkLabel5.Name = "GtkLabel5";
+			this.GtkLabel5.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Selected Rounds</b>");
+			this.GtkLabel5.UseMarkup = true;
+			this.frame1.LabelWidget = this.GtkLabel5;
 			this.alignment1.Add (this.frame1);
 			this.vbox2.Add (this.alignment1);
 			global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment1]));
 			w47.Position = 2;
 			w47.Expand = false;
 			w47.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.alignment2 = new global::Gtk.Alignment (0F, 0F, 0F, 0F);
+			this.alignment2.Name = "alignment2";
+			// Container child alignment2.Gtk.Container+ContainerChild
+			this.frame2 = new global::Gtk.Frame ();
+			this.frame2.Name = "frame2";
+			// Container child frame2.Gtk.Container+ContainerChild
+			this.GtkAlignment2 = new global::Gtk.Alignment (0F, 0F, 0F, 0F);
+			this.GtkAlignment2.Name = "GtkAlignment2";
+			this.GtkAlignment2.LeftPadding = ((uint)(12));
+			this.GtkAlignment2.TopPadding = ((uint)(6));
+			this.GtkAlignment2.RightPadding = ((uint)(6));
+			this.GtkAlignment2.BottomPadding = ((uint)(6));
+			// Container child GtkAlignment2.Gtk.Container+ContainerChild
+			this.tableAvgPoints = new global::Gtk.Table (((uint)(12)), ((uint)(2)), false);
+			this.tableAvgPoints.Name = "tableAvgPoints";
+			this.tableAvgPoints.RowSpacing = ((uint)(6));
+			this.tableAvgPoints.ColumnSpacing = ((uint)(6));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label14 = new global::Gtk.Label ();
+			this.label14.Name = "label14";
+			this.label14.Xalign = 0F;
+			this.label14.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Gov1</small>");
+			this.label14.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label14);
+			global::Gtk.Table.TableChild w48 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label14]));
+			w48.TopAttach = ((uint)(1));
+			w48.BottomAttach = ((uint)(2));
+			w48.XOptions = ((global::Gtk.AttachOptions)(4));
+			w48.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label15 = new global::Gtk.Label ();
+			this.label15.Name = "label15";
+			this.label15.Xalign = 0F;
+			this.label15.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Opp1</small>");
+			this.label15.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label15);
+			global::Gtk.Table.TableChild w49 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label15]));
+			w49.TopAttach = ((uint)(2));
+			w49.BottomAttach = ((uint)(3));
+			w49.XOptions = ((global::Gtk.AttachOptions)(4));
+			w49.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label16 = new global::Gtk.Label ();
+			this.label16.Name = "label16";
+			this.label16.Xalign = 0F;
+			this.label16.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Gov2</small>");
+			this.label16.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label16);
+			global::Gtk.Table.TableChild w50 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label16]));
+			w50.TopAttach = ((uint)(3));
+			w50.BottomAttach = ((uint)(4));
+			w50.XOptions = ((global::Gtk.AttachOptions)(4));
+			w50.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label17 = new global::Gtk.Label ();
+			this.label17.Name = "label17";
+			this.label17.Xalign = 0F;
+			this.label17.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Opp2</small>");
+			this.label17.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label17);
+			global::Gtk.Table.TableChild w51 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label17]));
+			w51.TopAttach = ((uint)(4));
+			w51.BottomAttach = ((uint)(5));
+			w51.XOptions = ((global::Gtk.AttachOptions)(4));
+			w51.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label18 = new global::Gtk.Label ();
+			this.label18.Name = "label18";
+			this.label18.Xalign = 0F;
+			this.label18.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Free1</small>");
+			this.label18.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label18);
+			global::Gtk.Table.TableChild w52 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label18]));
+			w52.TopAttach = ((uint)(5));
+			w52.BottomAttach = ((uint)(6));
+			w52.XOptions = ((global::Gtk.AttachOptions)(4));
+			w52.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label19 = new global::Gtk.Label ();
+			this.label19.Name = "label19";
+			this.label19.Xalign = 0F;
+			this.label19.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Free2</small>");
+			this.label19.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label19);
+			global::Gtk.Table.TableChild w53 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label19]));
+			w53.TopAttach = ((uint)(6));
+			w53.BottomAttach = ((uint)(7));
+			w53.XOptions = ((global::Gtk.AttachOptions)(4));
+			w53.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label20 = new global::Gtk.Label ();
+			this.label20.Name = "label20";
+			this.label20.Xalign = 0F;
+			this.label20.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Free3</small>");
+			this.label20.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label20);
+			global::Gtk.Table.TableChild w54 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label20]));
+			w54.TopAttach = ((uint)(7));
+			w54.BottomAttach = ((uint)(8));
+			w54.XOptions = ((global::Gtk.AttachOptions)(4));
+			w54.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label21 = new global::Gtk.Label ();
+			this.label21.Name = "label21";
+			this.label21.Xalign = 0F;
+			this.label21.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Opp3</small>");
+			this.label21.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label21);
+			global::Gtk.Table.TableChild w55 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label21]));
+			w55.TopAttach = ((uint)(8));
+			w55.BottomAttach = ((uint)(9));
+			w55.XOptions = ((global::Gtk.AttachOptions)(4));
+			w55.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label22 = new global::Gtk.Label ();
+			this.label22.Name = "label22";
+			this.label22.Xalign = 0F;
+			this.label22.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Gov3</small>");
+			this.label22.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label22);
+			global::Gtk.Table.TableChild w56 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label22]));
+			w56.TopAttach = ((uint)(9));
+			w56.BottomAttach = ((uint)(10));
+			w56.XOptions = ((global::Gtk.AttachOptions)(4));
+			w56.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label23 = new global::Gtk.Label ();
+			this.label23.Name = "label23";
+			this.label23.Xalign = 0F;
+			this.label23.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Gov</small>");
+			this.label23.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label23);
+			global::Gtk.Table.TableChild w57 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label23]));
+			w57.TopAttach = ((uint)(10));
+			w57.BottomAttach = ((uint)(11));
+			w57.XOptions = ((global::Gtk.AttachOptions)(4));
+			w57.YOptions = ((global::Gtk.AttachOptions)(0));
+			// Container child tableAvgPoints.Gtk.Table+TableChild
+			this.label24 = new global::Gtk.Label ();
+			this.label24.Name = "label24";
+			this.label24.Xalign = 0F;
+			this.label24.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Opp</small>");
+			this.label24.UseMarkup = true;
+			this.tableAvgPoints.Add (this.label24);
+			global::Gtk.Table.TableChild w58 = ((global::Gtk.Table.TableChild)(this.tableAvgPoints [this.label24]));
+			w58.TopAttach = ((uint)(11));
+			w58.BottomAttach = ((uint)(12));
+			w58.XOptions = ((global::Gtk.AttachOptions)(4));
+			w58.YOptions = ((global::Gtk.AttachOptions)(0));
+			this.GtkAlignment2.Add (this.tableAvgPoints);
+			this.frame2.Add (this.GtkAlignment2);
+			this.GtkLabel6 = new global::Gtk.Label ();
+			this.GtkLabel6.Name = "GtkLabel6";
+			this.GtkLabel6.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Average Points</b>");
+			this.GtkLabel6.UseMarkup = true;
+			this.frame2.LabelWidget = this.GtkLabel6;
+			this.alignment2.Add (this.frame2);
+			this.vbox2.Add (this.alignment2);
+			global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.alignment2]));
+			w62.Position = 3;
+			w62.Expand = false;
+			w62.Fill = false;
 			this.notebook1.Add (this.vbox2);
-			global::Gtk.Notebook.NotebookChild w48 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.vbox2]));
-			w48.Position = 3;
+			global::Gtk.Notebook.NotebookChild w63 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.vbox2]));
+			w63.Position = 3;
 			// Notebook tab
 			this.label4 = new global::Gtk.Label ();
 			this.label4.Name = "label4";
@@ -411,8 +592,8 @@ namespace OPDtabGui
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 479;
-			this.DefaultHeight = 756;
+			this.DefaultWidth = 498;
+			this.DefaultHeight = 780;
 			this.Hide ();
 			this.cbTeamsOnlyHighlight.Toggled += new global::System.EventHandler (this.OnCbTeamsOnlyHighlightToggled);
 			this.cbSpeakersOnlyHighlight.Toggled += new global::System.EventHandler (this.OnCbSpeakersOnlyHighlightToggled);

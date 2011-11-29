@@ -452,7 +452,6 @@ namespace OPDtabGui
 			this.expander4 = new global::Gtk.Expander (null);
 			this.expander4.CanFocus = true;
 			this.expander4.Name = "expander4";
-			this.expander4.Expanded = true;
 			// Container child expander4.Gtk.Container+ContainerChild
 			this.alignment1 = new global::Gtk.Alignment (1F, 0.5F, 0F, 1F);
 			this.alignment1.Name = "alignment1";

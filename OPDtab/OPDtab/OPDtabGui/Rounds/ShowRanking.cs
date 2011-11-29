@@ -110,11 +110,11 @@ namespace OPDtabGui
 			if(store.GetIterFromString(out newIter, oldPath))
 				cbSelectMarking.SetActiveIter(newIter);
 			else
-				cbSelectMarking.SetActiveIter(iter0); // root by default
+				cbSelectMarking.SetActiveIter(iter0); // select root by default
 		}
 		
 		public void UpdateAll() {
-			// first update judges
+			// first update judges (for correct stats...)
 			UpdateJudges();
 			// then teams and speakers stuff
 			MiscHelpers.ClearTable(tableRounds);
@@ -144,7 +144,24 @@ namespace OPDtabGui
 				tableRounds.Attach(lblName, 
 				                   2, 3, i+1, i+2,
 				                   AttachOptions.Fill, AttachOptions.Fill, 0, 0);
-				// Stats: Gov/Opp wins
+				// Stats: AvgPoints by Position
+				double[] sumAvgPoints = new double[] {0, 0, 0};
+				tableAvgPoints.Attach(new Label((i+1).ToString()), 1+i, 2+i, 0, 1, 
+					AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				for(uint j=0;j<11;j++) {
+					string text = "?";
+					if(rd.AvgPoints.Count==11 && rd.AvgPoints[(int)j] >= 0) {
+						text = 	String.Format(new System.Globalization.CultureInfo("en-US"), 
+						"{0:0.0}",rd.AvgPoints[(int)j]);
+						sumAvgPoints[(int)RoundResultData.PosToRoleType[j]] += rd.AvgPoints[(int)j];
+					}
+					Label lblAvg = new Label();
+					lblAvg.Markup = "<small>"+text+"</small>";
+					tableAvgPoints.Attach(lblAvg,
+						1+i, 2+i, 1+j, 2+j, AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				}
+				
+				// Stats: Gov/Opp wins, avgPoints Gov/Opp
 				int nGov = 0;
 				int nOpp = 0;
 				foreach(RoomData room in rd.Rooms) {
@@ -153,10 +170,18 @@ namespace OPDtabGui
 					else if(room.BestTeam==1)
 						nOpp++;
 				}
-				Label lblStats = new Label(nGov+" / "+nOpp);
+				Label lblStats = new Label();
+				lblStats.Markup = "<b>"+nGov+"</b> <small>("+
+					String.Format(new System.Globalization.CultureInfo("en-US"), 
+						"{0:0.0}",sumAvgPoints[0])
+					+")</small> / <b>"+nOpp+"</b> <small>("+
+						String.Format(new System.Globalization.CultureInfo("en-US"), 
+						"{0:0.0}",sumAvgPoints[1])
+						+")</small>";
 				tableRounds.Attach(lblStats,
 					3, 4, i+1, i+2,
 					AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				
 			}
 			tableRounds.ShowAll();
 			UpdateTeamsAndSpeakers();
@@ -494,7 +519,9 @@ namespace OPDtabGui
 							tmplPointsPerRound.Out();
 						}
 					}
-					tmplSpeakers.Assign("AVERAGEPOINTS",item.AvgPoints<0?"?":String.Format("{0:0.00}",item.AvgPoints));
+					tmplSpeakers.Assign("AVERAGEPOINTS",item.AvgPoints<0?"?":
+						String.Format(new System.Globalization.CultureInfo("en-US"), 
+						"{0:0.00}",item.AvgPoints));
 					tmplSpeakers.Out();
 					pos++;
 				}	

@@ -7,7 +7,7 @@ using Gdk;
 
 namespace OPDtabGui
 {
-	public class MyAvailJudgeButton : Button
+	public class MyJudgeStateButton : Button
 	{
 		string[] stateToSymbol = new string[] {"J", "X", "C", "1"};
 		string[] stateToDesc = new string[] 
@@ -19,7 +19,7 @@ namespace OPDtabGui
 		
 		public event EventHandler Changed;
 		
-		public MyAvailJudgeButton(RoundDebater rd_) {
+		public MyJudgeStateButton(RoundDebater rd_) {
 			rd = rd_;
 			BorderWidth = 0;
 			Relief = ReliefStyle.None;
@@ -29,6 +29,9 @@ namespace OPDtabGui
 			UpdateGui();
 			SetupMenu();
 			ButtonPressEvent += OnBtnPressed;
+			Changed += delegate {
+				Tournament.I.Save();
+			};
 		}
 		
 		void UpdateGui()  {

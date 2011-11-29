@@ -351,7 +351,7 @@ namespace OPDtabGui
 		                       Widget e) {
 			int i=0;
 			if(e is Container) {
-				VBox c = (VBox)(e is Team ? ((Team)e).GetVboxTeamMembers() : e); 
+				Container c = (Container)(e is Team ? ((Team)e).GetVboxTeamMembers() : e); 
 				foreach(Widget w in c) {
 					if(w is DebaterWidget) {
 						list.Add(GetJudgeVsSpeaker(judge, 

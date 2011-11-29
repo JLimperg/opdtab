@@ -65,11 +65,6 @@ namespace OPDtabData
 			return sum/l.Count;
 		}
 		
-		/*public static double[] CalcMuAndErr(ICollection<double> l) {
-			if(l.Count==0)
-				return new double[] {-1, -1};
-			
-		}*/
 	}
 }
 
