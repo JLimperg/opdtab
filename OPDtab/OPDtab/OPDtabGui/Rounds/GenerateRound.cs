@@ -14,7 +14,7 @@ namespace OPDtabGui
 		AppSettings.GenerateRoundClass settings;
 		AlgoProgress algoProgress;
 		DebaterPool debaterpool;
-				
+		
 		public GenerateRound () : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();	
@@ -25,6 +25,11 @@ namespace OPDtabGui
 			textRoomDetails.Buffer.Text = Tournament.I.RoomDetails;
 			sbRandomSeed.Value = settings.randomSeed;
 			sbMonteCarloSteps.Value = settings.monteCarloSteps;
+			/*Label lbl = new Label();
+			lbl.Markup = "<small>Show Toolbox</small>";
+			lbl.Angle = 90;
+			btnShowToolbox.Add(lbl);*/
+			MiscHelpers.SetIsShown(btnShowToolbox, false);
 			
 			// algoProgress
 			algoProgress = new AlgoProgress();
@@ -1434,10 +1439,23 @@ namespace OPDtabGui
 		
 		protected void OnCbCompactViewToggled (object sender, System.EventArgs e)
 		{
+			// tell the rooms
 			foreach(Room room in vboxRooms) {
 				room.Small = cbCompactView.Active;	
 			}
 			UpdateSearchFilter();
+		}
+
+		protected void OnBtnHideToolboxClicked (object sender, System.EventArgs e)
+		{
+			MiscHelpers.SetIsShown(frameToolbox, false);
+			MiscHelpers.SetIsShown(btnShowToolbox, true);
+		}
+
+		protected void OnBtnShowToolboxClicked (object sender, System.EventArgs e)
+		{
+			MiscHelpers.SetIsShown(btnShowToolbox, false);
+			MiscHelpers.SetIsShown(frameToolbox, true);
 		}
 	}
 }

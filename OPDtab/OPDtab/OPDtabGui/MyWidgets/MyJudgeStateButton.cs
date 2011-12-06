@@ -41,17 +41,17 @@ namespace OPDtabGui
 		void SetupMenu() {
 			m = new Menu();
 			for(int i=0;i<stateToSymbol.Length;i++) {
-				MenuItem mi = new MenuItem(stateToSymbol[i]+" "+
-					stateToDesc[i]);
-				mi.ButtonPressEvent += delegate(object o, ButtonPressEventArgs args) {
-					// find index of mi, clumsy method...?!
-					// using i in delegate does not work...
-					int j=0;
-					foreach(Widget w in m) {
-						if(w.Equals(o)) 
-							break;
-						j++;
-					}
+				MenuItem mi = new MenuItem();
+				Label lbl = new Label();
+				lbl.Markup = "<b>"+stateToSymbol[i]+"</b> "+
+					stateToDesc[i];
+				lbl.Xalign = 0;
+				mi.Add(lbl);
+				mi.Name = i.ToString();
+				mi.ButtonPressEvent += delegate(object o, ButtonPressEventArgs a) {
+					if(a.Event.Button!=1 || a.Event.Type != EventType.ButtonPress)
+						return;
+					int j = int.Parse((o as Widget).Name);
 					rd.JudgeState = (RoundDebater.JudgeStateType)j;
 					UpdateGui();
 					if(Changed != null)
