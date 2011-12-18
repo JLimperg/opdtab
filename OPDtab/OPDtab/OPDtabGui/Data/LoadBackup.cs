@@ -14,10 +14,11 @@ namespace OPDtabGui
 			this.Build ();
 			// determine available backups and append to store
 			string dir = System.IO.Path.GetDirectoryName(AppSettings.I.TournamentFile);
-			string backupPrefix = System.IO.Path.ChangeExtension(AppSettings.I.TournamentFile, "backup");
+			string backupPrefix = System.IO.Path.GetFileName(
+				System.IO.Path.ChangeExtension(AppSettings.I.TournamentFile, "backup"));
 			DateTime now = DateTime.Now;
 			store = new ListStore(typeof(string), typeof(TimeSpan));
-			                                          
+		                                      
 			foreach(string backupFile in Directory.GetFiles(dir, backupPrefix+"*")) {
 				TimeSpan lastWriteAgo = now.Subtract(Directory.GetLastWriteTime(backupFile));
 				store.AppendValues(backupFile, lastWriteAgo);
