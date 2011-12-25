@@ -17,6 +17,7 @@ namespace OPDtabGui
 		bool debaterValid;
 		Dictionary<string, Widget> infoWidgets;
 		public event SetDataTriggerHandler SetDataTrigger;	
+		public event EventHandler JudgeStateChanged;
 		
 		// make an abbreviated and small version of this widget!
 		public static DebaterWidget Small(RoundDebater d, bool canFocus) {
@@ -69,6 +70,8 @@ namespace OPDtabGui
 			btnExpand.SetStrikeThrough(!rd.JudgeAvail);
 			btnJudgeState.Changed += delegate {
 				btnExpand.SetStrikeThrough(!rd.JudgeAvail);
+				if(JudgeStateChanged != null)
+					JudgeStateChanged(this, EventArgs.Empty);
 			};
 			alJudgeState.Add(btnJudgeState);
 			alJudgeState.NoShowAll = true;
@@ -92,7 +95,6 @@ namespace OPDtabGui
 			HBox hboxRole = new HBox();
 			HBox hboxStars = new HBox();
 			hboxStars.Spacing = 0;
-			//hboxRole.Spacing = 6;
 			hboxRole.PackStart(hboxStars, false, false, 0);
 			hboxRole.PackStart(MakeInfoLabel("<i>No Role</i>"), true, true, 0);
 			infoWidgets["roleAndClub"] = hboxRole;

@@ -127,7 +127,7 @@ namespace OPDtabData
 			for(int i=0;i<nRooms;i++) {
 				if(rooms[i].Chair==null) 
 					indicesChair.Add(i);
-				if(rooms[i].Judges.Count==0) 
+				if(rooms[i].Judges.Count==0) // no judges => first judge is to be filled 
 					indicesFirst.Add(i);
 			}
 			
@@ -154,23 +154,33 @@ namespace OPDtabData
 			
 			
 			// fill rooms with judges, first the ones with too little judges
-			int j = 0;
+			bool flag = true;				
 			while(other.Count>0) {
-				// choose which room to fill
-				bool flag = true;
-				for(int k=0;k<rooms.Count;k++) {
-					if(rooms[k].Judges.Count<nMinJudgesPerRoom) {
-						flag = false;
-						break;
-					}	
+				
+				// choose which rooms to fill, first the ones with 
+				// too little judges
+				List<int> indicesOther; 
+				if(flag) {
+					indicesOther = new List<int>(rooms.Count);
+					flag = false;
+					for(int k=0;k<rooms.Count;k++) {
+						if(rooms[k].Judges.Count<nMinJudgesPerRoom) {
+							flag = true;
+							indicesOther.Add(k);
+						}	
+					}
 				}
+				else {
+					indicesOther = new List<int>(System.Linq.Enumerable.Range(0, rooms.Count));
+				}
+				// shuffle!
+				Algorithms.RandomizeArray<int>(indicesOther, random);
 				// fill 
-				if(rooms[j].Judges.Count<nMinJudgesPerRoom || flag) {
-					rooms[j].Judges.Add(other[0]);
+				while(other.Count>0 && indicesOther.Count>0) {
+					rooms[indicesOther[0]].Judges.Add(other[0]);
+					indicesOther.RemoveAt(0);
 					other.RemoveAt(0);
 				}
-				// always go to next room, cyclic
-				j = (j+1) % nRooms;   
 			}	
 			
 			return rooms;

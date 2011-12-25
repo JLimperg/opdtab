@@ -91,7 +91,7 @@ namespace OPDtabGui
 			this.frameGov.Name = "frameGov";
 			this.frameGov.BorderWidth = ((uint)(2));
 			// Container child frameGov.Gtk.Container+ContainerChild
-			this.cGovBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cGovBig = new global::Gtk.Alignment (0F, 0F, 1F, 0F);
 			this.cGovBig.Name = "cGovBig";
 			this.cGovBig.LeftPadding = ((uint)(12));
 			this.cGovBig.RightPadding = ((uint)(6));
@@ -113,7 +113,7 @@ namespace OPDtabGui
 			this.frameOpp.Name = "frameOpp";
 			this.frameOpp.BorderWidth = ((uint)(2));
 			// Container child frameOpp.Gtk.Container+ContainerChild
-			this.cOppBig = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+			this.cOppBig = new global::Gtk.Alignment (0F, 0F, 1F, 0F);
 			this.cOppBig.Name = "cOppBig";
 			this.cOppBig.LeftPadding = ((uint)(12));
 			this.cOppBig.RightPadding = ((uint)(6));

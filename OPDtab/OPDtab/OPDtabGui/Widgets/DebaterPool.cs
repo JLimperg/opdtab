@@ -12,7 +12,7 @@ namespace OPDtabGui
 	{
 		int numTeams;
 		int numJudges;
-		int[] widVboxes = new int[] {0,0};
+		int[] widVboxes = new int[] {200,200};
 		string roundName;
 				
 		public DebaterPool()
@@ -25,6 +25,13 @@ namespace OPDtabGui
 				// make whole DebaterPool to DragDest
 				SetDragDestToAllWidgets();
 			};					
+			// don't know exactly why we need this manual width adjustment
+			vboxTeams.SizeRequested += delegate(object o, SizeRequestedArgs args) {
+				UpdateVboxWidth(0, args.Requisition.Width);
+			};
+			vboxJudges.SizeRequested += delegate(object o, SizeRequestedArgs args) {
+				UpdateVboxWidth(1, args.Requisition.Width);
+			};
 		}
 		
 		void SetDragDestToAllWidgets() {		
@@ -62,7 +69,6 @@ namespace OPDtabGui
 				w.Hidden += delegate(object sender, EventArgs e) {
 					NumTeams--;
 				};
-				w.SizeRequested += VboxChildSizeRequested;
 				vboxTeams.Add(w);
 				// this shows Team widget if necessary
 				w.UpdateTeamMembers();
@@ -81,24 +87,25 @@ namespace OPDtabGui
 				w.Hidden += delegate(object sender, EventArgs e) {
 					NumJudges--;
 				};
-				w.SizeRequested += VboxChildSizeRequested;
-				
+			
 				vboxJudges.Add(w);
-				// show checkbox for availability
+				// show selection of judge state (avail, 1st, chair...)
 				w.ShowJudgeState();
+				w.JudgeStateChanged += delegate {
+					UpdateJudgeCounts();
+				};
 				// Judges are hidden by default
 				if(d.IsShown) 
 					w.ShowAll();				
 			}
 		}
 		
-		void VboxChildSizeRequested(object o, SizeRequestedArgs args) {
-			// Teams or Judges?
-			int i = o is DebaterWidget ? 1 : 0;
-			widVboxes[i] = widVboxes[i]<args.Requisition.Width ? 
-						args.Requisition.Width+25+i*30 : widVboxes[i];
+	  	void UpdateVboxWidth(int i, int width) {
+			widVboxes[i] = width+10+i*20;
+			if(widVboxes[i]<200)
+				widVboxes[i] = 200;
 			if(notebookDragDrop.CurrentPage==i)
-				notebookDragDrop.WidthRequest = widVboxes[i]>200 ? widVboxes[i] : 200;				
+				notebookDragDrop.WidthRequest = widVboxes[i];	
 		}
 		
 		void SetDataTrigger(Widget sender, object data) {
@@ -178,15 +185,38 @@ namespace OPDtabGui
 				return this.numJudges;
 			}
 			set {
-				labelJudgeList.Markup = "<b>Judges</b> ("+value+")";
 				numJudges = value;
 				if(numJudges==0) 
 					notebookDragDrop.CurrentPage = 0;
 				else if(numTeams==0) 
 					notebookDragDrop.CurrentPage = 1;
+				UpdateJudgeCounts();
 			}
 		}
-
+		
+		public void UpdateJudgeCounts() {
+			int nFirstJudge = 0;
+			int nOtherJudge = 0;
+			int nChair = 0;
+			foreach(DebaterWidget dw in vboxJudges) {
+				switch (dw.RoundDebater.JudgeState) {
+				case RoundDebater.JudgeStateType.FirstJudge:
+					nFirstJudge++;
+					break;
+				case RoundDebater.JudgeStateType.Judge:
+					nOtherJudge++;
+					break;
+				case RoundDebater.JudgeStateType.Chair:
+					nChair++;
+					break;
+				}
+			}					
+			labelJudgeList.Markup = "<b>Judges</b> ("+NumJudges+")\n"+
+				"<small><small>1/J/C/X="+nFirstJudge+"/"+
+					nOtherJudge+"/"+nChair+"/"+
+					(NumJudges-nOtherJudge-nFirstJudge-nChair)+"</small></small>";
+		}
+		
 		public int NumTeams {
 			get {
 				return this.numTeams;

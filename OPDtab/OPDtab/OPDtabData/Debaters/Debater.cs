@@ -112,7 +112,7 @@ namespace OPDtabData
 		{
 			// this is not well-tested for awkward cases
 			// visitedRooms should always have the same length as Tournament.I.Rounds,
-			// (* still true? if Debater didn't participate in round, then RoomData.IsEmpty is true
+			// (* still true? if Debater didn't participate in round, then RoomData.IsDummy is true
 			if(rd==null) {
 				visitedRooms.Remove(roundName);
 			}

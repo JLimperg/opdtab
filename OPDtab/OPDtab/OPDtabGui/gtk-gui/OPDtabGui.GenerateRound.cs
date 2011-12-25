@@ -937,7 +937,7 @@ namespace OPDtabGui
 			// Container child btnHideToolbox.Gtk.Container+ContainerChild
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("<small>Hide Toolbox</small>");
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Hide Toolbox");
 			this.label2.UseMarkup = true;
 			this.btnHideToolbox.Add (this.label2);
 			this.btnHideToolbox.Label = null;

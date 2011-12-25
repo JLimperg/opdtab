@@ -9,7 +9,11 @@ namespace OPDtabGui
 {
 	public class MyJudgeStateButton : Button
 	{
-		string[] stateToSymbol = new string[] {"J", "X", "C", "1"};
+		string[] stateToSymbol = new string[] {
+			"J", 
+			"X", 
+			"<span foreground=\"seagreen\">C</span>", 
+			"<span foreground=\"red\">1</span>"};
 		string[] stateToDesc = new string[] 
 			{"Use as Judge", "Not available", "Use as Chair", "Use as first Judge"};
 		

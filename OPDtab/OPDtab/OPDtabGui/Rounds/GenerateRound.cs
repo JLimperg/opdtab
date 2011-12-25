@@ -25,10 +25,6 @@ namespace OPDtabGui
 			textRoomDetails.Buffer.Text = Tournament.I.RoomDetails;
 			sbRandomSeed.Value = settings.randomSeed;
 			sbMonteCarloSteps.Value = settings.monteCarloSteps;
-			/*Label lbl = new Label();
-			lbl.Markup = "<small>Show Toolbox</small>";
-			lbl.Angle = 90;
-			btnShowToolbox.Add(lbl);*/
 			MiscHelpers.SetIsShown(btnShowToolbox, false);
 			
 			// algoProgress

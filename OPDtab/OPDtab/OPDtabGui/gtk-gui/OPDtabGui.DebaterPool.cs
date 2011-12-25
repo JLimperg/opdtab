@@ -27,7 +27,7 @@ namespace OPDtabGui
 			this.notebookDragDrop.WidthRequest = 200;
 			this.notebookDragDrop.CanFocus = true;
 			this.notebookDragDrop.Name = "notebookDragDrop";
-			this.notebookDragDrop.CurrentPage = 0;
+			this.notebookDragDrop.CurrentPage = 1;
 			this.notebookDragDrop.ShowBorder = false;
 			// Container child notebookDragDrop.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
@@ -95,7 +95,7 @@ namespace OPDtabGui
 			// Notebook tab
 			this.labelJudgeList = new global::Gtk.Label ();
 			this.labelJudgeList.Name = "labelJudgeList";
-			this.labelJudgeList.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Judges</b> (0)");
+			this.labelJudgeList.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Judges</b> (0)\n<small><small>1/J/C/X=0/0/0/0</small></small>");
 			this.labelJudgeList.UseMarkup = true;
 			this.notebookDragDrop.SetTabLabel (this.GtkScrolledWindow1, this.labelJudgeList);
 			this.labelJudgeList.ShowAll ();
