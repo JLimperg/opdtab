@@ -176,8 +176,8 @@ namespace OPDtabGui
 				SetHeaderLabel(csv,sbRole,hdRole);
 				SetHeaderLabel(csv,sbExtraInfo, hdExtraInfo);
 				SetHeaderLabel(csv,sbBlackList, hdBlackList);
-				
-				
+				// dispose explicitly to suppress debug warning from CSVReader
+				csv.Dispose();				
 			}
 			catch {		
 				hdFirstName.Text = "?";
