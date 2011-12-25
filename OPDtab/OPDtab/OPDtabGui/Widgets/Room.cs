@@ -66,7 +66,6 @@ namespace OPDtabGui
 					SetDummyLabel(c, section);
 				else {
 					for(int j=0;j<list.Count;j++)
-					//foreach(RoundDebater d in list)
 						UpdateGuiSection(section,j,list[j]);
 					// append label for adding by D&D
 					if(small) {

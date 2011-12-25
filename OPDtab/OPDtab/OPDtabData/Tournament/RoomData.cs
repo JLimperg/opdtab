@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 namespace OPDtabData
 {
 	[Serializable]
@@ -116,7 +117,8 @@ namespace OPDtabData
 				return RoomName+" ("+s1+" vs. "+s2+")";	
 			}
 		}
-
+		
+		[System.Xml.Serialization.XmlIgnore]
 		public TeamData Gov {
 			get {
 				if(gov.IsEmpty)
@@ -132,6 +134,7 @@ namespace OPDtabData
 			}
 		}
 		
+		[System.Xml.Serialization.XmlIgnore]
 		public TeamData Opp {
 			get {
 				if(opp.IsEmpty)
@@ -144,6 +147,29 @@ namespace OPDtabData
 					opp.SetEmpty();
 				else
 					opp = value;
+			}
+		}
+		
+		// this fixes an issue on .Net framework...
+		// due to the weird deailing with IsEmpty and Null elements!
+		// my data design is to blame ;(
+		[System.Xml.Serialization.XmlArrayAttribute("Opp")]
+		public TeamData OppXML {
+			get {
+				return this.opp;
+			}
+			set {
+				opp = value;
+			}
+		}
+		
+		[System.Xml.Serialization.XmlArrayAttribute("Gov")]
+		public TeamData GovXML {
+			get {
+				return this.gov;
+			}
+			set {
+				gov = value;
 			}
 		}
 		
