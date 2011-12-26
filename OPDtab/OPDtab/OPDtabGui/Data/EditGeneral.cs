@@ -47,9 +47,9 @@ namespace OPDtabGui
 			FileChooserDialog dlg = new FileChooserDialog("Choose CSV file", this, FileChooserAction.Save, 
 			                                              "Cancel",ResponseType.Cancel,
 		                            					  "Save",ResponseType.Accept);
-			dlg.SetFilename(System.IO.Path.Combine(Directory.GetCurrentDirectory, "RoundData.csv"));
-			TextWriter tw;
-			string fileName;
+			dlg.SetCurrentFolder(Directory.GetCurrentDirectory());
+			TextWriter tw = null;
+			string fileName = null;
 			if(dlg.Run() == (int)ResponseType.Accept) {
 				// try open the file for writing
 				try {
