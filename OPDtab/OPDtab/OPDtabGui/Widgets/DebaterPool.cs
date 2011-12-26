@@ -199,6 +199,8 @@ namespace OPDtabGui
 			int nOtherJudge = 0;
 			int nChair = 0;
 			foreach(DebaterWidget dw in vboxJudges) {
+				if(!dw.Visible)
+					continue;
 				switch (dw.RoundDebater.JudgeState) {
 				case RoundDebater.JudgeStateType.FirstJudge:
 					nFirstJudge++;

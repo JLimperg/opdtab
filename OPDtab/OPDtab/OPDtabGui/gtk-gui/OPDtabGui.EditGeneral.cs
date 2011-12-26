@@ -13,6 +13,7 @@ namespace OPDtabGui
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.CheckButton cbDeleteTexFile;
 		private global::Gtk.HButtonBox hbuttonbox1;
+		private global::Gtk.Button btnExportRoundData;
 		
 		protected virtual void Build ()
 		{
@@ -104,19 +105,30 @@ namespace OPDtabGui
 			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
 			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
-			this.vbox1.Add (this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox1]));
-			w8.Position = 2;
+			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+			this.btnExportRoundData = new global::Gtk.Button ();
+			this.btnExportRoundData.CanFocus = true;
+			this.btnExportRoundData.Name = "btnExportRoundData";
+			this.btnExportRoundData.UseUnderline = true;
+			this.btnExportRoundData.Label = global::Mono.Unix.Catalog.GetString ("Export all RoundData");
+			this.hbuttonbox1.Add (this.btnExportRoundData);
+			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnExportRoundData]));
 			w8.Expand = false;
 			w8.Fill = false;
+			this.vbox1.Add (this.hbuttonbox1);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox1]));
+			w9.Position = 2;
+			w9.Expand = false;
+			w9.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 476;
-			this.DefaultHeight = 142;
+			this.DefaultHeight = 146;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.btnExportRoundData.Clicked += new global::System.EventHandler (this.OnBtnExportRoundDataClicked);
 		}
 	}
 }

@@ -379,7 +379,7 @@ namespace OPDtabGui
 		void SetupJudgeColumn(int i) {
 			// Setup small DebaterWidget (keep colsize small...)
 			DebaterWidget dw = DebaterWidget.Small(roomData.Judges[(int)i], false); 
-			// add to results, nJudges doesnt matter
+			// add to results, nJudges doesnt matter for judges
 			resultsJudges.Add(dw.Debater.GetRoundResult(roomData.RoundName, i, -1));
 			dataWidgets.Add(dw);
 			// default position

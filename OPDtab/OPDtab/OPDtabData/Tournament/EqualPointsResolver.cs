@@ -35,7 +35,7 @@ namespace OPDtabData
 				if(availRounds[key]) 
 					str += key+"|";
 			}
-			return str+"|"+item.Data;
+			return str+"|"+item.Data; // uses the ToString Method to identify it
 		}		
 		
 		public static string IdRanking(List<KeyValuePair<string, bool>> availRounds,

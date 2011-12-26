@@ -71,14 +71,7 @@ namespace OPDtabData
 				l.Add("<i>Average:</i> "+RoundResultData.JudgeStatsAsMarkup(statsAvg));
 			}	
 			foreach(RoundResultData rr in roundResults) {
-				int roomIndex = -1;
-				foreach(KVP<string, int> kvp in visitedRooms.Store) {
-					if(kvp.Key == rr.RoundName) {
-						roomIndex = kvp.Val;
-						break;
-					}
-				}
-				
+				int roomIndex = GetRoomIndex(rr.RoundName);
 				string room = roomIndex<0 ? "?" : (roomIndex+1).ToString();
 				l.Add(rr.RoundName+", "+room+": "+rr.AsMarkup());	
 			}			
@@ -148,7 +141,18 @@ namespace OPDtabData
 				visitedRooms = value;
 			}
 		}
-
+		
+		public int GetRoomIndex(string roundName) {
+			int roomIndex = -1;
+			foreach(KVP<string, int> kvp in visitedRooms.Store) {
+				if(kvp.Key == roundName) {
+					roomIndex = kvp.Val;
+					break;
+				}
+			}
+			return roomIndex;
+		}	
+		
 		public List<double> StatsAvg {
 			get {
 				return this.statsAvg;

@@ -37,7 +37,9 @@ namespace OPDtabGui
 			ebDebaterPool.Add(debaterpool);
 			ebDebaterPool.ShowAll();
 			
+			
 			// more complex setups
+			SetupFrameToolbox();
 			SetupCbRoundName();
 			SetupEntryFilter();
 			SetupConflictExpander();
@@ -46,6 +48,26 @@ namespace OPDtabGui
 			// use full screen, hopefully that's enough :)
 			Maximize();
 		}	
+		
+		void SetupFrameToolbox() {
+			HBox hbox = new HBox();
+			hbox.Spacing = 3;
+			Label lbl1 = new Label();
+			lbl1.Markup = "<b>Toolbox</b>";
+			hbox.Add(lbl1);
+			Button btn = new Button();
+			btn.Relief = ReliefStyle.None;
+			Label lbl2 = new Label();
+			lbl2.Markup = "<small>Hide</small>";
+			btn.Add(lbl2);
+			btn.Clicked += delegate {
+				MiscHelpers.SetIsShown(frameToolbox, false);
+				MiscHelpers.SetIsShown(btnShowToolbox, true);
+			};
+			hbox.Add(btn);
+			frameToolbox.LabelWidget = hbox;
+			hbox.ShowAll();	
+		}
 		
 		void SetupBreakroundPresets() {
 			string[][] pre = settings.breakConfigPresets;
@@ -273,7 +295,18 @@ namespace OPDtabGui
 		
 		void CheckRoundSelected() {
 			TreeIter iter = TreeIter.Zero;
-			textMotion.Sensitive = cbRoundName.GetActiveIter(out iter);
+			bool flag = cbRoundName.GetActiveIter(out iter);
+			textMotion.Sensitive = flag;
+			btnExportPDF.Sensitive = flag;
+			btnExportSheets.Sensitive = flag;
+			btnVsTeams.Sensitive = flag;
+			btnShuffleRooms.Sensitive = flag;
+			btnShuffleGovOpp.Sensitive = flag;
+			btnAlgoJudges.Sensitive = flag;
+			btnAlgoJudgesClear.Sensitive = flag;
+			btnAlgoFreeSpeakers.Sensitive = flag;
+			btnAlgoFreeSpeakersClear.Sensitive = flag;
+			btnRoundDelete.Sensitive = flag;
 		}
 		
 		protected virtual void OnCbRoundNameFocusChildSet (object o, Gtk.FocusChildSetArgs args)
@@ -1440,12 +1473,6 @@ namespace OPDtabGui
 				room.Small = cbCompactView.Active;	
 			}
 			UpdateSearchFilter();
-		}
-
-		protected void OnBtnHideToolboxClicked (object sender, System.EventArgs e)
-		{
-			MiscHelpers.SetIsShown(frameToolbox, false);
-			MiscHelpers.SetIsShown(btnShowToolbox, true);
 		}
 
 		protected void OnBtnShowToolboxClicked (object sender, System.EventArgs e)
