@@ -120,11 +120,22 @@ namespace OPDtabGui
 		}
 		
 		public static void ClearTable(Table table) {
+			// standard table has only top header
+			ClearTable (table, true, false);	
+		}
+		
+		public static void ClearTable(Table table, bool keepTopRow, bool keepLeftColumn) {
 			// remove everything except headers
 			foreach(Widget w in table) {
 				Table.TableChild c = table[w] as Table.TableChild;	
-				if(c.TopAttach>0)
+				if(keepTopRow && !keepLeftColumn && c.TopAttach>0)
 					table.Remove(w);
+				else if(!keepTopRow && keepLeftColumn && c.LeftAttach>0)
+					table.Remove(w);
+				else if(keepTopRow && keepLeftColumn && c.TopAttach>0 &&  c.LeftAttach>0)
+					table.Remove(w);
+				else if(!keepTopRow && !keepLeftColumn)
+					table.Remove(w);				
 			}
 		}
 		

@@ -7,7 +7,7 @@ namespace OPDtabData
 		static int steps;
 		static Random random;
 		static int nRooms;
-		static int nMinJudgesPerRoom;
+		//static int nMinJudgesPerRoom;
 		static List<RoomData> bestConfig;
 		static List<RoomData> startConfig;
 		static List<RoundDebater> firstJudges;
@@ -23,12 +23,12 @@ namespace OPDtabData
 				startConfig.Add(new RoomData(room, true));		
 			
 			nRooms = startConfig.Count;
-			nMinJudgesPerRoom = rd.AllJudges.Count/nRooms; // int division!
 			// determine avail judges from roundData, 
 			// only the ones shown in pool
 			firstJudges = new List<RoundDebater>();
 			otherJudges = new List<RoundDebater>();
 			chairJudges = new List<RoundDebater>();
+			//int nNotAvail = 0;
 			foreach(RoundDebater judge in rd.AllJudges) {
 				if(judge.IsShown) {
 					switch(judge.JudgeState) {
@@ -41,9 +41,13 @@ namespace OPDtabData
 					case RoundDebater.JudgeStateType.Chair:
 						chairJudges.Add(judge);
 						break;	
-					}
+					//case RoundDebater.JudgeStateType.NotAvail:
+					//	nNotAvail++;
+					//	break;
+					}					
 				}
 			}
+			//nMinJudgesPerRoom = (rd.AllJudges.Count-nNotAvail)/nRooms; // int division!
 			// some other config
 			steps = mcSteps;
 			random = new Random(randomSeed);			
@@ -154,13 +158,23 @@ namespace OPDtabData
 			
 			
 			// fill rooms with judges, first the ones with too little judges
-			bool flag = true;				
+			//bool flag = true;				
 			while(other.Count>0) {
 				
 				// choose which rooms to fill, first the ones with 
 				// too little judges
-				List<int> indicesOther; 
-				if(flag) {
+				List<int> indicesOther = new List<int>(rooms.Count); 
+				// determine minimum number of judges in room
+				int minNumOfJudges = rooms[0].Judges.Count;
+				for(int k=1;k<rooms.Count;k++) 
+					if(minNumOfJudges>rooms[k].Judges.Count)
+						minNumOfJudges = rooms[k].Judges.Count;
+				// add all rooms with that minimum number
+				for(int k=0;k<rooms.Count;k++) 
+					if(minNumOfJudges==rooms[k].Judges.Count)
+						indicesOther.Add(k);				
+				
+				/*if(flag) {
 					indicesOther = new List<int>(rooms.Count);
 					flag = false;
 					for(int k=0;k<rooms.Count;k++) {
@@ -172,7 +186,8 @@ namespace OPDtabData
 				}
 				else {
 					indicesOther = new List<int>(System.Linq.Enumerable.Range(0, rooms.Count));
-				}
+				}*/
+				
 				// shuffle!
 				Algorithms.RandomizeArray<int>(indicesOther, random);
 				// fill 

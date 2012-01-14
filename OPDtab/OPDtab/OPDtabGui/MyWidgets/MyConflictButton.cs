@@ -3,6 +3,7 @@ using Gtk;
 using OPDtabData;
 using System.Collections.Generic;
 using Gdk;
+using System.Text.RegularExpressions;
 
 namespace OPDtabGui
 {
@@ -48,19 +49,41 @@ namespace OPDtabGui
 			}
 			
 			// other Rounds...
-			MenuItem miOther = new MenuItem("Other");
+			MenuItem miOther = new MenuItem();
+			Label lbl = new Label();
+			lbl.Markup = "<i>Other</i>";
+			lbl.Xalign = 0;
+			miOther.Add(lbl);
 			Menu mOther = new Menu();
 			miOther.Submenu = mOther;
 			int validOthers = 0;
-			foreach(string round in rc.Partners2.Keys) {
-				Dictionary<string, List<RoundDebater>> store = rc.Partners2[round].Store;
-				foreach(string room in store.Keys) {
-					MenuItem miRound = new MenuItem(round+", "+room);
-					miRound.Submenu = new Menu();
-					foreach(RoundDebater d in store[room])
-						(miRound.Submenu as Menu).Add(new MenuItem(RoundDebaterToString(d)));		
-					mOther.Add(miRound);
-					validOthers++;
+			
+			// in other Conflicts, it should be okay to iterate using Tournament.I.Rounds
+			foreach(RoundData rd in Tournament.I.Rounds) {
+				RoomConflict.Complex cmplx;
+				if(rc.Partners2.TryGetValue(rd.RoundName, out cmplx)) {
+					Dictionary<string, List<RoundDebater>> store = cmplx.Store;
+					List<string> keys = new List<string>(store.Keys);
+					// sorting is a bit nasty, so that "Room 2" is before "Room 11"	
+					// this is also inefficient, but performance doesn't matter here
+					keys.Sort(delegate(string x, string y) {
+						// try to extract numbers from string
+						List<string> num_x = new List<string>(Regex.Split(x, @"\D+"));
+						List<string> num_y = new List<string>(Regex.Split(y, @"\D+"));
+						num_x.RemoveAll(item => string.IsNullOrWhiteSpace(item));
+						num_y.RemoveAll(item => string.IsNullOrWhiteSpace(item));
+						if(num_x.Count != 1 || num_y.Count != 1)
+							return x.CompareTo(y);
+						return int.Parse(num_x[0]).CompareTo(int.Parse(num_y[0]));
+					});
+					foreach(string room in keys) {
+						MenuItem miRound = new MenuItem(rd.RoundName+", "+room);
+						miRound.Submenu = new Menu();
+						foreach(RoundDebater d in store[room])
+							(miRound.Submenu as Menu).Add(new MenuItem(RoundDebaterToString(d)));		
+						mOther.Add(miRound);
+						validOthers++;
+					}
 				}
 			}
 			

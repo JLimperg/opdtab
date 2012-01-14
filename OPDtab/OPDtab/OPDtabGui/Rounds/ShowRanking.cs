@@ -118,6 +118,7 @@ namespace OPDtabGui
 			UpdateJudges();
 			// then teams and speakers stuff
 			MiscHelpers.ClearTable(tableRounds);
+			MiscHelpers.ClearTable(tableAvgPoints, false, true);
 			ranking = new RankingData();
 			availRounds = ranking.GetAvailRounds();
 			tableRounds.NRows = (uint)availRounds.Count+1;
@@ -184,6 +185,7 @@ namespace OPDtabGui
 				
 			}
 			tableRounds.ShowAll();
+			tableAvgPoints.ShowAll();
 			UpdateTeamsAndSpeakers();
 		}
 		

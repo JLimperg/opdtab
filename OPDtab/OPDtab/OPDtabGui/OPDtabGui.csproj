@@ -81,6 +81,7 @@
     <Compile Include="gtk-gui\OPDtabGui.DebaterPool.cs" />
     <Compile Include="Widgets\DebaterPool.cs" />
     <Compile Include="MyWidgets\MyJudgeStateButton.cs" />
+    <Compile Include="gtk-gui\OPDtabGui.MyDebaterPatternEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

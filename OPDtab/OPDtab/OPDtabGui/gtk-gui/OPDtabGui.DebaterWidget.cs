@@ -4,6 +4,7 @@ namespace OPDtabGui
 {
 	public partial class DebaterWidget
 	{
+		private global::Gtk.Table table;
 		private global::Gtk.VBox vbox;
 		private global::Gtk.HBox hbox;
 		private global::Gtk.Alignment alBtn;
@@ -20,6 +21,9 @@ namespace OPDtabGui
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "OPDtabGui.DebaterWidget";
 			// Container child OPDtabGui.DebaterWidget.Gtk.Container+ContainerChild
+			this.table = new global::Gtk.Table (((uint)(3)), ((uint)(3)), false);
+			this.table.Name = "table";
+			// Container child table.Gtk.Table+TableChild
 			this.vbox = new global::Gtk.VBox ();
 			this.vbox.Name = "vbox";
 			// Container child vbox.Gtk.Box+BoxChild
@@ -75,7 +79,13 @@ namespace OPDtabGui
 			w7.Position = 1;
 			w7.Expand = false;
 			w7.Fill = false;
-			this.Add (this.vbox);
+			this.table.Add (this.vbox);
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table [this.vbox]));
+			w8.TopAttach = ((uint)(1));
+			w8.BottomAttach = ((uint)(2));
+			w8.LeftAttach = ((uint)(1));
+			w8.RightAttach = ((uint)(2));
+			this.Add (this.table);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}

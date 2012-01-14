@@ -20,6 +20,7 @@ namespace OPDtabGui
 		public event EventHandler JudgeStateChanged;
 		
 		// make an abbreviated and small version of this widget!
+		
 		public static DebaterWidget Small(RoundDebater d, bool canFocus) {
 			DebaterWidget dw = new DebaterWidget(d, canFocus, true);
 			dw.btnExpand.LabelText = d.Name.FirstName.Substring(0,1)+". "+

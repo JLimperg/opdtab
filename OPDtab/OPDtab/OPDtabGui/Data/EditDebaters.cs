@@ -85,6 +85,12 @@ namespace OPDtabGui
 				CellRendererEdited(o, args, colNum);
 			};
 			
+			renderer.EditingStarted += delegate(object o, EditingStartedArgs args) {
+				Console.WriteLine("EditingStarted");
+				args.RetVal = MiscHelpers.AskYesNo(this, "A dumb question") == ResponseType.Yes;
+				
+			};
+			
 			if(completion) {
 				renderer.CompletionModel = delegate() {
 					List<string> list = new List<string>();
@@ -136,7 +142,7 @@ namespace OPDtabGui
 				// existing Debater: Update Data in (possibly) existing Rounds
 				// tries to keep data consisting, but there's no guarantee
 				// BlackList/WhiteList and ExtraInfo are not 
-				// used in RoundDebater	
+				// used in RoundDebater, so skip this by colNum<4	
 				if(newDebaterPath==null && colNum<4) {					
 					object p = d.GetType().InvokeMember(prop, BindingFlags.GetProperty, null,
 									                    d, new object[] {});
@@ -239,8 +245,8 @@ namespace OPDtabGui
 					}
 				}
 				// newDebater is entered...
-				else if(colNum<3) {
-					// continue with entering data
+				else if(newDebaterPath != null && colNum<3) {
+					// continue with entering data (goto next column)
 					// as idle so that cells are resized
 					GLib.Idle.Add(delegate {
 						treeDebaters.SetCursor(ConvertStorePathToModelPath(newDebaterPath),
@@ -248,8 +254,8 @@ namespace OPDtabGui
 						return false;
 					});
 				}
-				else {
-					// new Debater entered completely
+				else if(newDebaterPath != null) {
+					// new Debater entered completely (at least all necessary data)
 					iter = TreeIter.Zero;
 					if(store.GetIter(out iter, newDebaterPath)) {
 						// as idle to prevent gtk critical (no idea why this happens)
@@ -284,6 +290,7 @@ namespace OPDtabGui
 				}
 				
 				Tournament.I.Save();
+				
 			}
 			catch(TargetInvocationException e) {
 				MessageDialog md = new MessageDialog(this, DialogFlags.Modal,

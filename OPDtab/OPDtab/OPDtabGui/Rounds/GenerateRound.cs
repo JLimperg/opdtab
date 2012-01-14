@@ -36,8 +36,7 @@ namespace OPDtabGui
 			debaterpool = new DebaterPool();
 			ebDebaterPool.Add(debaterpool);
 			ebDebaterPool.ShowAll();
-			
-			
+						
 			// more complex setups
 			SetupFrameToolbox();
 			SetupCbRoundName();
