@@ -60,12 +60,12 @@ namespace OPDtabData
 			}
 			set {
 				try {
-					BlackList.removePattern(base.Club.Name);
+					BlackList.RemoveClub(base.Club.Name);
 				} 
 				catch {
 				}
 				try {
-					BlackList.addPattern(value.Name);
+					BlackList.AddClub(value.Name);
 				}
 				catch {
 				}

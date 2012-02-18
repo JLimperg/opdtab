@@ -151,7 +151,7 @@ namespace OPDtabGui
 					strings.Add("\""+o+"\"");
 				}
 			}
-			tw.WriteLine(String.Join(",",strings));
+			tw.WriteLine(String.Join(",",strings.ToArray()));
 		}
 		
 		

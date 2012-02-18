@@ -131,7 +131,7 @@ namespace OPDtabGui
 			
 			cbRoundName.Model = storeRounds;
 			cbRoundName.TextColumn = 0;
-			// synchronized Combobox for selection of Round for next Breakround
+			// data-synchronized Combobox for selection of Round for next Breakround
 			cbBreakroundRounds.Model = storeRounds;
 		}
 		

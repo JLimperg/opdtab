@@ -40,13 +40,13 @@ namespace OPDtabGui
 						
 			treeDebaters.Model = modelDebatersSort;
 			
-			SetupDebaterColumn("Name", false);
-			SetupDebaterColumn("Club", true);
-			SetupDebaterColumn("Age", false);
-			SetupDebaterColumn("Role", true);
-			SetupDebaterColumn("BlackList", false);
-			SetupDebaterColumn("WhiteList", false);
-			SetupDebaterColumn("ExtraInfo", false);
+			SetupDebaterColumn("Name", CellRendererTextAdv.Type.Entry);
+			SetupDebaterColumn("Club", CellRendererTextAdv.Type.EntryWithCompletion);
+			SetupDebaterColumn("Age", CellRendererTextAdv.Type.Entry);
+			SetupDebaterColumn("Role", CellRendererTextAdv.Type.EntryWithCompletion);
+			SetupDebaterColumn("BlackList", CellRendererTextAdv.Type.DebaterPattern);
+			SetupDebaterColumn("WhiteList", CellRendererTextAdv.Type.DebaterPattern);
+			SetupDebaterColumn("ExtraInfo", CellRendererTextAdv.Type.Entry);
 			treeDebaters.HeadersClickable = true;
 			treeDebaters.Selection.Mode = SelectionMode.Multiple;
 			
@@ -72,44 +72,20 @@ namespace OPDtabGui
 		
 		
 		
-		void SetupDebaterColumn(string prop, bool completion) {
+		void SetupDebaterColumn(string prop, CellRendererTextAdv.Type type) {
 			int colNum = treeDebaters.Columns.Length;
 						
-			CellRendererTextAdv renderer = new CellRendererTextAdv();
+			CellRendererTextAdv renderer = new CellRendererTextAdv(type, store, colNum);
 			TreeViewColumn col = treeDebaters.AppendColumn(prop,
 			                          renderer,
 			                          CellDataFuncDefault);
 			
 			
-			renderer.Edited += delegate(object o, EditedArgs args) {
-				CellRendererEdited(o, args, colNum);
+			renderer.MyEdited += delegate(CellRendererTextAdv sender, string path, string newText) {
+				CellRendererEdited(sender, path, newText, colNum);	
 			};
-			
-			renderer.EditingStarted += delegate(object o, EditingStartedArgs args) {
-				Console.WriteLine("EditingStarted");
-				args.RetVal = MiscHelpers.AskYesNo(this, "A dumb question") == ResponseType.Yes;
 				
-			};
 			
-			if(completion) {
-				renderer.CompletionModel = delegate() {
-					List<string> list = new List<string>();
-					store.Foreach(
-						delegate(TreeModel model, TreePath path, TreeIter iter) {
-							object o = model.GetValue(iter,0);
-							object p = o.GetType().InvokeMember(col.Title+"Completion",BindingFlags.GetProperty,null,o,null);
-							
-							if(p != null) 
-								if(!list.Contains(p.ToString()))
-									list.Add(p.ToString());
-							return false;
-						});
-					ListStore s = new ListStore(typeof(string));
-					foreach(string str in list) 
-						s.AppendValues(str);	
-					return s;	
-				};
-			}			
 			col.Resizable = true;			
 			col.Clicked += delegate(object sender, EventArgs args) {
 				SetSortColumn(colNum);
@@ -120,9 +96,11 @@ namespace OPDtabGui
 				});			
 		}
 		
-		void CellRendererEdited(object sender, EditedArgs args, int colNum) {
+		void CellRendererEdited(CellRendererTextAdv sender, 
+		                        string pathStr, string newText, int colNum) {
+			
 			TreeModelSort model = (TreeModelSort)treeDebaters.Model;
-			TreePath path = new TreePath(args.Path);
+			TreePath path = new TreePath(pathStr);
 			TreeIter iter = TreeIter.Zero;
 			model.GetIter(out iter, path);
 			
@@ -134,15 +112,16 @@ namespace OPDtabGui
 			
 			try {
 				string prop = treeDebaters.Columns[colNum].Title;
-				// This parses the given new string	
+				// This parses the given new string,
+				// and updates the data in store
 				d.GetType().InvokeMember("Parse"+prop,
 			                             BindingFlags.InvokeMethod, null, d, 
-				                         new object[] {args.NewText});
+				                         new object[] {newText});
 				
 				// existing Debater: Update Data in (possibly) existing Rounds
 				// tries to keep data consisting, but there's no guarantee
 				// BlackList/WhiteList and ExtraInfo are not 
-				// used in RoundDebater, so skip this by colNum<4	
+				// used in RoundDebater, so skip this by condition colNum<4	
 				if(newDebaterPath==null && colNum<4) {					
 					object p = d.GetType().InvokeMember(prop, BindingFlags.GetProperty, null,
 									                    d, new object[] {});
@@ -262,12 +241,14 @@ namespace OPDtabGui
 						GLib.Idle.Add(delegate {
 							store.Remove(ref iter);
 							newDebaterPath = null;
-							if(IsNotInStore(d))
+							if(IsNotInStore(d)) {
 								store.AppendValues(d);
+								SaveDebaters();
+							}
 							else 
 								MiscHelpers.ShowMessage(this, "Debater exists.", MessageType.Error);
 							UpdateDebatersInfo();
-							btnDebaterAdd.GrabFocus();							
+							btnDebaterAdd.GrabFocus();
 							return false;
 						});
 					}
@@ -289,7 +270,9 @@ namespace OPDtabGui
 					model.SetSortColumnId(sortColumn, SortType.Ascending);
 				}
 				
-				Tournament.I.Save();
+				// save data from store if not adding new debater
+				if(newDebaterPath==null)
+					SaveDebaters();
 				
 			}
 			catch(TargetInvocationException e) {
@@ -303,7 +286,7 @@ namespace OPDtabGui
 				if(r == ResponseType.Ok) {
 					// As Idle otherwise Editable isn't destroyed correctly
 					GLib.Idle.Add(delegate {
-						(sender as CellRendererTextAdv).TempEditString = args.NewText;
+						sender.TempEditString = newText;
 						treeDebaters.SetCursor(path,treeDebaters.Columns[colNum],true);				
 						return false;
 					});
@@ -443,6 +426,7 @@ namespace OPDtabGui
 				store.Remove(ref refIter);
 			}				
 			UpdateDebatersInfo();
+			SaveDebaters();
 		}
 		
 		void RemoveDebaterFromRounds(TreeIter storeIter) {
@@ -459,6 +443,9 @@ namespace OPDtabGui
 				RoundDebater rd = round.AllJudges.Find(delegate(RoundDebater obj) {
 					return obj.Equals(d);
 					});	
+				// if not found, continue!
+				if(rd==null)
+					continue;
 				// d is Judge, so check Chair and Judges in rooms
 				foreach(RoomData room in round.Rooms) {
 					if(rd.Equals(room.Chair))
@@ -471,6 +458,8 @@ namespace OPDtabGui
 				// remove from all judges
 				round.AllJudges.Remove(rd);	
 			}
+			
+			
 		}
 		
 		protected void OnBtnSwapRolesClicked (object sender, System.EventArgs e)
@@ -496,7 +485,6 @@ namespace OPDtabGui
 				store.GetValue(storeIter1, 0);
 			EditableDebater d2 = (EditableDebater)
 				store.GetValue(storeIter2, 0);
-			Console.WriteLine("Swapping: "+d1+" "+d2);
 			
 			// swapping it in the store
 			Role tmp = d2.Role;
@@ -558,11 +546,20 @@ namespace OPDtabGui
 		
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
+			/*List<Debater> list = new List<Debater>();
+			foreach(object[] row in store) 
+				list.Add(new Debater((EditableDebater)row[0]));
+			Tournament.I.Debaters = list;*/
+			SaveDebaters();
+			ShowRanking.I.UpdateAll();
+		}
+		
+		void SaveDebaters() {
 			List<Debater> list = new List<Debater>();
 			foreach(object[] row in store) 
 				list.Add(new Debater((EditableDebater)row[0]));
 			Tournament.I.Debaters = list;
-			ShowRanking.I.UpdateAll();
+			Tournament.I.Save();
 		}
 		
 		protected void OnBtnExportCSVClicked (object sender, System.EventArgs e)
@@ -620,8 +617,6 @@ namespace OPDtabGui
 			return s;
 		}
 
-		
-		
 	}
 }
 

@@ -69,7 +69,7 @@ namespace OPDtabGui
 					}
 					catch {
 						d.Club = new Club("None");	
-						d.BlackList.removePattern("None");
+						d.BlackList.RemoveClub("None");
 					}
 					
 					// Age or from Birthday

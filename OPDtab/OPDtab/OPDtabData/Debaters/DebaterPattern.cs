@@ -17,7 +17,7 @@ namespace OPDtabData
 			clubNames = new List<string>();
 		}
 	
-		public bool matches(AbstractDebater debater) {
+		public bool Matches(AbstractDebater debater) {
 			foreach(string c in clubNames) {
 				if(debater.Club.Name.Equals(c))
 					return true;
@@ -29,18 +29,26 @@ namespace OPDtabData
 			return false;
 		}
 		
-		public void addPattern(string cN) {
+		public void AddClub(string cN) {
 			if(!clubNames.Contains(cN))
 				clubNames.Add(cN);
 			else
 				throw new Exception("Pattern already contains ClubName");
 		}
 		
-		public void removePattern(string cN) {
+		public void RemoveClub(string cN) {
 			if(clubNames.Contains(cN)) 
 				clubNames.Remove(cN);
 			else
 				throw new Exception("Pattern does not contain ClubName");
+		}
+		
+		public void RemoveDebater(Name n) {
+			if(debaters.Contains(n)) 
+				debaters.Remove(n);
+			else
+				throw new Exception("Pattern does not contain Debater");
+		
 		}
 		
 		public void ParsePattern(string s) {
@@ -53,14 +61,16 @@ namespace OPDtabData
 			foreach(string p in parts) {
 				string tmp = p.Trim();
 				if(tmp.StartsWith("@")) {
-					string club = tmp.Substring(1); //); //.Trim();
-					// club parser sanitizes...
+					string club = tmp.Substring(1);
 					string[] c = Club.Parse(club);
-					tmpClubNames.Add(c[0]);
+					if(!tmpClubNames.Contains(c[0]))
+						tmpClubNames.Add(c[0]);
 				}
 				else if(tmp != "") {
 					string[] n = Name.Parse(tmp);
-					tmpDebaters.Add(new Name(n[0],n[1]));
+					Name name = new Name(n[0],n[1]);
+					if(!tmpDebaters.Contains(name))
+						tmpDebaters.Add(name);
 				}
 			}
 			

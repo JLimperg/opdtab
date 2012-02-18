@@ -70,8 +70,9 @@ namespace OPDtabGui
 						// try to extract numbers from string
 						List<string> num_x = new List<string>(Regex.Split(x, @"\D+"));
 						List<string> num_y = new List<string>(Regex.Split(y, @"\D+"));
-						num_x.RemoveAll(item => string.IsNullOrWhiteSpace(item));
-						num_y.RemoveAll(item => string.IsNullOrWhiteSpace(item));
+						
+						num_x.RemoveAll(item => string.IsNullOrEmpty(item.Trim()));
+						num_y.RemoveAll(item => string.IsNullOrEmpty(item.Trim()));
 						if(num_x.Count != 1 || num_y.Count != 1)
 							return x.CompareTo(y);
 						return int.Parse(num_x[0]).CompareTo(int.Parse(num_y[0]));

@@ -56,5 +56,7 @@ public partial class MainWindow : Gtk.Window
 	{
 		ShowRanking.I.ShowAll();
 	}	
+
+	
 }
 

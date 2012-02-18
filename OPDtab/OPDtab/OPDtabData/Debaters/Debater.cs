@@ -163,9 +163,9 @@ namespace OPDtabData
 		}
 
 		public bool ConflictsWith(AbstractDebater d) {
-			if(whiteList.matches(d))
+			if(whiteList.Matches(d))
 				return false;
-			if(blackList.matches(d))
+			if(blackList.Matches(d))
 				return true;
 			return false;
 		}
