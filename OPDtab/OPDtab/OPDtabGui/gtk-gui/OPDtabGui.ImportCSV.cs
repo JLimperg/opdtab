@@ -271,6 +271,7 @@ namespace OPDtabGui
 			this.rbTeamMember = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("Team Member/Parse"));
 			this.rbTeamMember.CanFocus = true;
 			this.rbTeamMember.Name = "rbTeamMember";
+			this.rbTeamMember.Active = true;
 			this.rbTeamMember.DrawIndicator = true;
 			this.rbTeamMember.UseUnderline = true;
 			this.rbTeamMember.Group = new global::GLib.SList (global::System.IntPtr.Zero);

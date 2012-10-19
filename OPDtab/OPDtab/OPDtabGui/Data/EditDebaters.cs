@@ -405,9 +405,14 @@ namespace OPDtabGui
 				return;
 			
 			// display warning and hint
-			if(MiscHelpers.AskYesNo(this, "Deleting with existing rounds can lead to inconsistent data. "+
+			if(Tournament.I.Rounds.Count>0 &&
+			   MiscHelpers.AskYesNo(this, "Deleting with existing rounds can lead to inconsistent data. "+
 		                        "Better try renaming of existing debaters or swapping their roles. Continue anyway?")
 				== ResponseType.No) {
+				return;
+			}
+			else if(MiscHelpers.AskYesNo(this, "Do you really want to remove this entry?") ==
+				        ResponseType.No) {
 				return;
 			}		
 							
@@ -546,10 +551,6 @@ namespace OPDtabGui
 		
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			/*List<Debater> list = new List<Debater>();
-			foreach(object[] row in store) 
-				list.Add(new Debater((EditableDebater)row[0]));
-			Tournament.I.Debaters = list;*/
 			SaveDebaters();
 			ShowRanking.I.UpdateAll();
 		}
