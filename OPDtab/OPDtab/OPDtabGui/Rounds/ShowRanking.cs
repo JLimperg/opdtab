@@ -436,6 +436,34 @@ namespace OPDtabGui
 					}
 					tmplTeams.Assign("POS", realPos.ToString());
 					tmplTeams.Assign("NAME", td.TeamName);
+
+					List<int> speakerPos = new List<int>(3);
+					foreach(RoundDebater rd in td) {
+						for(int i=0;i<speakers.Count;i++) {
+							if(rd.Equals(speakers[i].Data))
+								speakerPos.Add(i+1);
+						}
+					}
+					speakerPos.Sort();
+					ITmplBlock tmplSpeakerPos = tmpl.ParseBlock("SPEAKERPOS");
+					if(speakerPos.Count==0) {
+						tmplSpeakerPos.Assign("POS","?");
+						tmplSpeakerPos.Assign("SEP","");
+						tmplSpeakerPos.Out();
+					}
+					else {
+						for(int i=0;i<speakerPos.Count;i++) {
+							tmplSpeakerPos.Assign("POS", speakerPos[i].ToString());
+							tmplSpeakerPos.Assign("SEP", i==speakerPos.Count-1?"":separator);
+							tmplSpeakerPos.Out();
+						}
+					}
+
+					// we divide the avg by three to make it comparable to team position 
+					tmplTeams.Assign("SPEAKERPOSAVG", item.AvgPoints<0?"?":
+						String.Format(new System.Globalization.CultureInfo("en-US"), 
+						"{0:0.0}", OPDtabData.MiscHelpers.CalcExactAverage(speakerPos)/3));
+
 					if(mBreakingTeams.Contains(pos-1))
 						tmplTeams.Assign("BREAKMARK", "Break");
 					else

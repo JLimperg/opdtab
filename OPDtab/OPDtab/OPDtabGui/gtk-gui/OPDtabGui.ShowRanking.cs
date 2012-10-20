@@ -284,6 +284,7 @@ namespace OPDtabGui
 			this.vbox2.Spacing = 6;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
+			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
 			this.btnExportPDF = new global::Gtk.Button ();
@@ -365,7 +366,6 @@ namespace OPDtabGui
 			w41.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0F, 0F, 0F, 0F);
-			this.alignment1.Name = "alignment1";
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.frame1 = new global::Gtk.Frame ();
 			this.frame1.Name = "frame1";

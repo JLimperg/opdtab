@@ -349,17 +349,23 @@ namespace OPDtabGui
 		                       List<int> list, 
 		                       Widget e) {
 			int i=0;
-			if(e is Container) {
-				Container c = (Container)(e is Team ? ((Team)e).GetVboxTeamMembers() : e); 
+			if(e is Container) { // might also be a dummy label
+				bool isTeam = e is Team; // might also be a table (=cFreeSpeakers
+				Container c = (Container)(isTeam ? ((Team)e).GetVboxTeamMembers() : e); 
 				foreach(Widget w in c) {
 					if(w is DebaterWidget) {
-						list.Add(GetJudgeVsSpeaker(judge, 
-						                           (DebaterWidget)w)); 
+						int conflict = GetJudgeVsSpeaker(judge, (DebaterWidget)w); 
+						// cFreeSpeakers as table iterates over debater widgets in
+						// reverse order than vbox/hbox containers, so correct that
+						if(isTeam)
+							list.Add(conflict);
+						else
+							list.Insert(3, conflict); // i=3 is first freeSpeaker index
 						i++;	
 					}
 				}
 			}
-			// pad with zeros...
+			// always pad with zeros...(if we have an imcomplete room)
 			for(int j=i;j<3;j++) {
 				list.Add(0);	
 			}

@@ -1,4 +1,4 @@
-\documentclass[ngerman,twocolumn,paper=a4,11pt]{scrartcl}
+\documentclass[ngerman,twocolumn,paper=a4,10pt]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage[margin=0.5cm]{geometry}
 \usepackage[utf8]{inputenc}
@@ -20,7 +20,7 @@
   \begin{supertabular}{lp{0.75\linewidth}r}
     \toprule
     <!-BEGIN:TEAMS->
-    [POS] & [NAME] \vspace{-0.5em} \newline{\scriptsize
+    [POS] & [NAME]\makebox[0pt][l]{\scriptsize$^{<!-BEGIN:SPEAKERPOS->[POS][SEP]<!-END:SPEAKERPOS->}_{\to[SPEAKERPOSAVG]}$} \vspace{-0.3em} \newline{\scriptsize
       $<!-BEGIN:POINTSPERROUNDTEAM->[POINTS]^{\text{[POS]}}\!\![SEP]\!<!-END:POINTSPERROUNDTEAM->$
     } & \makebox[0pt][r]{$^{\text{\emph{[BREAKMARK]}}}$} [POINTS]\\
     <!-END:TEAMS->
