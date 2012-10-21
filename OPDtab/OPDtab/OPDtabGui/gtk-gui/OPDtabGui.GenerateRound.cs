@@ -719,8 +719,6 @@ namespace OPDtabGui
 			this.textviewBreakConfig.HeightRequest = 150;
 			this.textviewBreakConfig.CanFocus = true;
 			this.textviewBreakConfig.Name = "textviewBreakConfig";
-			this.textviewBreakConfig.Editable = false;
-			this.textviewBreakConfig.CursorVisible = false;
 			this.textviewBreakConfig.AcceptsTab = false;
 			this.GtkScrolledWindow4.Add (this.textviewBreakConfig);
 			this.table3.Add (this.GtkScrolledWindow4);

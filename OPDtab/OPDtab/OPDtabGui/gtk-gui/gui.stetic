@@ -1807,8 +1807,6 @@
                                                             <property name="HeightRequest">150</property>
                                                             <property name="CanFocus">True</property>
                                                             <property name="ShowScrollbars">True</property>
-                                                            <property name="Editable">False</property>
-                                                            <property name="CursorVisible">False</property>
                                                             <property name="AcceptsTab">False</property>
                                                             <property name="Text" translatable="yes" />
                                                           </widget>
