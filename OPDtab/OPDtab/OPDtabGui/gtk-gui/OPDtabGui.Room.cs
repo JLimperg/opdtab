@@ -63,6 +63,7 @@ namespace OPDtabGui
 			this.Name = "OPDtabGui.Room";
 			// Container child OPDtabGui.Room.Gtk.Container+ContainerChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment1.Name = "alignment1";
 			this.alignment1.TopPadding = ((uint)(5));
 			this.alignment1.BottomPadding = ((uint)(5));
 			// Container child alignment1.Gtk.Container+ContainerChild

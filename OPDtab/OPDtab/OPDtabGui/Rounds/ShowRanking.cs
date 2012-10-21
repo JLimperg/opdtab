@@ -436,28 +436,26 @@ namespace OPDtabGui
 					}
 					tmplTeams.Assign("POS", realPos.ToString());
 					tmplTeams.Assign("NAME", td.TeamName);
-
+			
 					List<int> speakerPos = new List<int>(3);
 					foreach(RoundDebater rd in td) {
+						int realPos_=1;
 						for(int i=0;i<speakers.Count;i++) {
+							if(!(i>0 && speakers[i-1].TotalPoints==speakers[i].TotalPoints)) {
+								realPos_ = i+1;
+							}
 							if(rd.Equals(speakers[i].Data))
-								speakerPos.Add(i+1);
+								speakerPos.Add(realPos_);
 						}
 					}
 					speakerPos.Sort();
 					ITmplBlock tmplSpeakerPos = tmpl.ParseBlock("SPEAKERPOS");
-					if(speakerPos.Count==0) {
-						tmplSpeakerPos.Assign("POS","?");
-						tmplSpeakerPos.Assign("SEP","");
+					for(int i=0;i<speakerPos.Count;i++) {
+						tmplSpeakerPos.Assign("POS", speakerPos[i].ToString());
+						tmplSpeakerPos.Assign("SEP", i==speakerPos.Count-1?"":separator);
 						tmplSpeakerPos.Out();
 					}
-					else {
-						for(int i=0;i<speakerPos.Count;i++) {
-							tmplSpeakerPos.Assign("POS", speakerPos[i].ToString());
-							tmplSpeakerPos.Assign("SEP", i==speakerPos.Count-1?"":separator);
-							tmplSpeakerPos.Out();
-						}
-					}
+
 
 					// we divide the avg by three to make it comparable to team position 
 					tmplTeams.Assign("SPEAKERPOSAVG", item.AvgPoints<0?"?":

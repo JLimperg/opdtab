@@ -1,4 +1,4 @@
-\documentclass[ngerman,twocolumn,paper=a4,10pt]{scrartcl}
+\documentclass[ngerman,twocolumn,paper=a4,9pt]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage[margin=0.5cm]{geometry}
 \usepackage[utf8]{inputenc}
@@ -17,7 +17,7 @@
 \end{center}
 \paragraph{Teams}
 \begin{center}
-  \begin{supertabular}{lp{0.75\linewidth}r}
+  \begin{supertabular}{lp{0.65\linewidth}r}
     \toprule
     <!-BEGIN:TEAMS->
     [POS] & [NAME]\makebox[0pt][l]{\scriptsize$^{<!-BEGIN:SPEAKERPOS->[POS][SEP]<!-END:SPEAKERPOS->}_{\to[SPEAKERPOSAVG]}$} \vspace{-0.3em} \newline{\scriptsize
@@ -30,13 +30,13 @@
 
 \paragraph{Redner}
 \begin{center}
-  \begin{supertabular}{lp{0.7\linewidth}r}
+  \begin{supertabular}{lp{0.55\linewidth}r}
     \toprule
     <!-BEGIN:SPEAKERS->
     [POS] & [NAME] \vspace{-0.5em} \newline {\scriptsize
       \emph{[TEAMNAME]}\vspace{-0.8em}\newline
       $<!-BEGIN:POINTSPERROUNDSPEAKER->[POINTS]^{[POS]}\!\![SEP]\!<!-END:POINTSPERROUNDSPEAKER->\to[AVERAGEPOINTS]$
-    } & \makebox[0pt][r]{$^{\text{\emph{[BREAKMARK]}}}$} [POINTS] \\
+    } & \makebox[0pt][r]{$^{\text{\emph{[BREAKMARK]}}}$} [POINTS] \\[-0.15em]
     <!-END:SPEAKERS->
     \bottomrule
   \end{supertabular}

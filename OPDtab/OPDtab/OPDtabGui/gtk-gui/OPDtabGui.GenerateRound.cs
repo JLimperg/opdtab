@@ -485,6 +485,7 @@ namespace OPDtabGui
 			this.expander4.Name = "expander4";
 			// Container child expander4.Gtk.Container+ContainerChild
 			this.alignment1 = new global::Gtk.Alignment (1F, 0.5F, 0F, 1F);
+			this.alignment1.Name = "alignment1";
 			// Container child alignment1.Gtk.Container+ContainerChild
 			this.table2 = new global::Gtk.Table (((uint)(3)), ((uint)(2)), false);
 			this.table2.Name = "table2";
