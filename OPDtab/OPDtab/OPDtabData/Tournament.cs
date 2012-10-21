@@ -16,7 +16,7 @@ namespace OPDtabData
 		List<RoundData> rounds;
 		List<EqualPointsResolver> resolvers;
 		string title;
-		string roomDetails;	
+		List<List<string>> roomDetails;	
 		bool pleaseSave;
 		Timer timer;
 		
@@ -37,21 +37,7 @@ namespace OPDtabData
 			timer.Start();
 			
 			title = "My Tournament";
-			roomDetails = "Raum 1|Ort 1\n"+
-				"Raum 2|Ort 2\n"+
-				"Raum 3|Ort 3\n"+
-				"Raum 4|Ort 4\n"+
-				"Raum 5|Ort 5\n"+
-				"Raum 6|Ort 6\n"+
-				"Raum 7|Ort 7\n"+
-				"Raum 8|Ort 8\n"+
-				"Raum 9|Ort 9\n"+
-				"Raum 10|Ort 10\n"+
-				"Raum 11|Ort 11\n"+
-				"Raum 12|Ort 12\n"+
-				"Raum 13|Ort 13\n"+
-				"Raum 14|Ort 14\n"+
-				"Raum 15|Ort 15\n";
+			roomDetails = new List<List<string>>();
 		}
 		
 		[XmlIgnore]
@@ -153,7 +139,7 @@ namespace OPDtabData
 			}
 		}
 		
-		public string RoomDetails {
+		public List<List<string>> RoomDetails {
 			get {
 				return this.roomDetails;
 			}

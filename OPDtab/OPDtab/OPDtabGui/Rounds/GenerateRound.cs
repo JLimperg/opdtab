@@ -22,7 +22,7 @@ namespace OPDtabGui
 					
 			settings = AppSettings.I.GenerateRound;
 			// small setups
-			textRoomDetails.Buffer.Text = Tournament.I.RoomDetails;
+			//textRoomDetails.Buffer.Text = Tournament.I.RoomDetails;
 			sbRandomSeed.Value = settings.randomSeed;
 			sbMonteCarloSteps.Value = settings.monteCarloSteps;
 			MiscHelpers.SetIsShown(btnShowToolbox, false);
@@ -44,10 +44,55 @@ namespace OPDtabGui
 			SetupConflictExpander();
 			SetupAlgorithmSb();
 			SetupBreakroundPresets();
+			SetupRoomDetails();
 			// use full screen, hopefully that's enough :)
 			Maximize();
 		}	
-		
+
+		void SetupRoomDetails() {
+			// determine max number of rooms
+			int nMaxRooms=0;
+			foreach(Debater d in Tournament.I.Debaters) {
+				if(d.Role.IsTeamMember)
+					nMaxRooms++;
+			}
+			if(nMaxRooms>0)
+				nMaxRooms = 1+(nMaxRooms-1)/9; // integer division
+			foreach(RoundData rd in Tournament.I.Rounds) {
+				if(nMaxRooms<rd.Rooms.Count)
+					nMaxRooms=rd.Rooms.Count;
+			}
+
+			// pad roomDetails with default entries
+			List<List<string>> roomDetails = Tournament.I.RoomDetails;
+			for(int i=roomDetails.Count;i<nMaxRooms;i++) {
+				roomDetails.Add(new List<string>(new string[] 
+				                                 {"Ort "+(i+1), "Beschreibung "+(i+1)}));
+			}
+
+			// create table
+			for(int i=0;i<nMaxRooms;i++) {
+				int i_ = i; // used in delegates
+				tableRoomDetails.Attach(new Label((i+1).ToString()), 0, 1, (uint)i+1, (uint)i+2, 
+				                        AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				Entry e1 = new Entry(roomDetails[i][0]);
+				e1.WidthChars = 10;
+				e1.Changed += delegate(object sender, EventArgs e) {
+					roomDetails[i_][0] = e1.Text;
+				};
+				tableRoomDetails.Attach(e1, 1, 2, (uint)i+1, (uint)i+2, 
+				                        AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				Entry e2 = new Entry(roomDetails[i][1]);
+				e2.WidthChars = 12;
+				tableRoomDetails.Attach(e2, 2, 3, (uint)i+1, (uint)i+2, 
+				                        AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
+				e2.Changed += delegate(object sender, EventArgs e) {
+					roomDetails[i_][1] = e2.Text;
+				};
+			}
+			tableRoomDetails.ShowAll();
+		}
+
 		void SetupFrameToolbox() {
 			HBox hbox = new HBox();
 			hbox.Spacing = 3;
@@ -234,8 +279,7 @@ namespace OPDtabGui
 				list.Add((RoundData)row[1]);
 			Tournament.I.Rounds = list;
 			ShowRanking.I.UpdateCbSelectMarking();
-			// roomDetails
-			Tournament.I.RoomDetails = textRoomDetails.Buffer.Text;
+			// roomDetails are updated on the fly, see SetupRoomDetails()
 		}
 		
 		protected virtual void OnBtnRoundDeleteClicked (object sender, System.EventArgs e)
@@ -846,28 +890,8 @@ namespace OPDtabGui
 		}
 		
 		void WorkOnTemplate(RoundData rd, ITemplate tmpl) {
-			// parse text in textRoomDetails			
-			string[] roomDesc = new string[rd.Rooms.Count];
-			string[] roomTitle = new string[rd.Rooms.Count];
-			string[] lines = textRoomDetails.Buffer.Text.Split(new char[] {'\n'},
-				StringSplitOptions.RemoveEmptyEntries);
-			for(int i=0;i<rd.Rooms.Count;i++) {
-				roomTitle[i] = "";
-				roomDesc[i] = "";
-				
-				if(i<lines.Length) {
-					string[] s = lines[i].Split(new char[] {'|'});
-					if(s.Length==2) {
-						roomTitle[i] = s[0];
-						roomDesc[i] = s[1];	
-					}
-					else if (s.Length==1){
-						roomTitle[i] = s[0];
-						roomDesc[i] = "";
-					}
-				}
-			}			
-			
+			List<List<string>> roomDetails = Tournament.I.RoomDetails;
+
 			ITmplBlock tmplTitle = tmpl.ParseBlock("TITLE");
 			tmplTitle.Assign("V",Tournament.I.Title);
 			tmplTitle.Out();
@@ -881,8 +905,9 @@ namespace OPDtabGui
 				if(room.IsEmpty)
 					continue;
 				tmplRooms.Assign("ROOMNO",(room.Index+1).ToString());
-				tmplRooms.Assign("ROOMDESC",roomDesc[room.Index]);
-				tmplRooms.Assign("ROOMTITLE",roomTitle[room.Index]);
+				// better to have a BIG room in the title...
+				tmplRooms.Assign("ROOMDESC", roomDetails[room.Index][0]);
+				tmplRooms.Assign("ROOMTITLE",roomDetails[room.Index][1]);
 					
 				// Teams
 				if(room.Gov==null) 

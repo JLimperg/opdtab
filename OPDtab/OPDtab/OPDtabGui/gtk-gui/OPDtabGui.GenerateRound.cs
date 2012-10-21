@@ -107,8 +107,11 @@ namespace OPDtabGui
 		private global::Gtk.Label label6;
 		private global::Gtk.Label GtkLabel22;
 		private global::Gtk.Expander expander5;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow5;
-		private global::Gtk.TextView textRoomDetails;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		private global::Gtk.Table tableRoomDetails;
+		private global::Gtk.Label label12;
+		private global::Gtk.Label label15;
+		private global::Gtk.Label label5;
 		private global::Gtk.Label GtkLabel30;
 		private global::Gtk.Label GtkLabel32;
 		private global::Gtk.Frame framePDFExport;
@@ -693,6 +696,7 @@ namespace OPDtabGui
 			this.expander3 = new global::Gtk.Expander (null);
 			this.expander3.CanFocus = true;
 			this.expander3.Name = "expander3";
+			this.expander3.Expanded = true;
 			// Container child expander3.Gtk.Container+ContainerChild
 			this.table3 = new global::Gtk.Table (((uint)(3)), ((uint)(2)), false);
 			this.table3.Name = "table3";
@@ -1040,25 +1044,59 @@ namespace OPDtabGui
 			this.expander5.CanFocus = true;
 			this.expander5.Name = "expander5";
 			// Container child expander5.Gtk.Container+ContainerChild
-			this.GtkScrolledWindow5 = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow5.Name = "GtkScrolledWindow5";
-			this.GtkScrolledWindow5.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow5.Gtk.Container+ContainerChild
-			this.textRoomDetails = new global::Gtk.TextView ();
-			this.textRoomDetails.HeightRequest = 150;
-			this.textRoomDetails.CanFocus = true;
-			this.textRoomDetails.Name = "textRoomDetails";
-			this.textRoomDetails.AcceptsTab = false;
-			this.GtkScrolledWindow5.Add (this.textRoomDetails);
-			this.expander5.Add (this.GtkScrolledWindow5);
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow.WidthRequest = 300;
+			this.GtkScrolledWindow.HeightRequest = 170;
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			global::Gtk.Viewport w125 = new global::Gtk.Viewport ();
+			w125.ShadowType = ((global::Gtk.ShadowType)(0));
+			// Container child GtkViewport1.Gtk.Container+ContainerChild
+			this.tableRoomDetails = new global::Gtk.Table (((uint)(1)), ((uint)(3)), false);
+			this.tableRoomDetails.Name = "tableRoomDetails";
+			this.tableRoomDetails.RowSpacing = ((uint)(1));
+			this.tableRoomDetails.ColumnSpacing = ((uint)(6));
+			// Container child tableRoomDetails.Gtk.Table+TableChild
+			this.label12 = new global::Gtk.Label ();
+			this.label12.Name = "label12";
+			this.label12.Xalign = 0F;
+			this.label12.LabelProp = global::Mono.Unix.Catalog.GetString ("Location");
+			this.tableRoomDetails.Add (this.label12);
+			global::Gtk.Table.TableChild w126 = ((global::Gtk.Table.TableChild)(this.tableRoomDetails [this.label12]));
+			w126.LeftAttach = ((uint)(1));
+			w126.RightAttach = ((uint)(2));
+			w126.XOptions = ((global::Gtk.AttachOptions)(4));
+			w126.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableRoomDetails.Gtk.Table+TableChild
+			this.label15 = new global::Gtk.Label ();
+			this.label15.Name = "label15";
+			this.label15.Xalign = 0F;
+			this.label15.LabelProp = global::Mono.Unix.Catalog.GetString ("Description");
+			this.tableRoomDetails.Add (this.label15);
+			global::Gtk.Table.TableChild w127 = ((global::Gtk.Table.TableChild)(this.tableRoomDetails [this.label15]));
+			w127.LeftAttach = ((uint)(2));
+			w127.RightAttach = ((uint)(3));
+			w127.XOptions = ((global::Gtk.AttachOptions)(4));
+			w127.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child tableRoomDetails.Gtk.Table+TableChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("No");
+			this.tableRoomDetails.Add (this.label5);
+			global::Gtk.Table.TableChild w128 = ((global::Gtk.Table.TableChild)(this.tableRoomDetails [this.label5]));
+			w128.XOptions = ((global::Gtk.AttachOptions)(4));
+			w128.YOptions = ((global::Gtk.AttachOptions)(4));
+			w125.Add (this.tableRoomDetails);
+			this.GtkScrolledWindow.Add (w125);
+			this.expander5.Add (this.GtkScrolledWindow);
 			this.GtkLabel30 = new global::Gtk.Label ();
 			this.GtkLabel30.Name = "GtkLabel30";
 			this.GtkLabel30.LabelProp = global::Mono.Unix.Catalog.GetString ("RoomDetails");
 			this.GtkLabel30.UseUnderline = true;
 			this.expander5.LabelWidget = this.GtkLabel30;
 			this.vbox7.Add (this.expander5);
-			global::Gtk.Box.BoxChild w127 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.expander5]));
-			w127.Position = 5;
+			global::Gtk.Box.BoxChild w132 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.expander5]));
+			w132.Position = 5;
 			this.GtkAlignment9.Add (this.vbox7);
 			this.frameDisplay.Add (this.GtkAlignment9);
 			this.GtkLabel32 = new global::Gtk.Label ();
@@ -1067,10 +1105,10 @@ namespace OPDtabGui
 			this.frameDisplay.LabelWidget = this.GtkLabel32;
 			this.alignmentDisplay.Add (this.frameDisplay);
 			this.vbox6.Add (this.alignmentDisplay);
-			global::Gtk.Box.BoxChild w131 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.alignmentDisplay]));
-			w131.Position = 1;
-			w131.Expand = false;
-			w131.Fill = false;
+			global::Gtk.Box.BoxChild w136 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.alignmentDisplay]));
+			w136.Position = 1;
+			w136.Expand = false;
+			w136.Fill = false;
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.framePDFExport = new global::Gtk.Frame ();
 			this.framePDFExport.Name = "framePDFExport";
@@ -1089,10 +1127,10 @@ namespace OPDtabGui
 			this.btnExportPDF.UseUnderline = true;
 			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString ("Presentation");
 			this.vbox12.Add (this.btnExportPDF);
-			global::Gtk.Box.BoxChild w132 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportPDF]));
-			w132.Position = 0;
-			w132.Expand = false;
-			w132.Fill = false;
+			global::Gtk.Box.BoxChild w137 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportPDF]));
+			w137.Position = 0;
+			w137.Expand = false;
+			w137.Fill = false;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.btnExportSheets = new global::Gtk.Button ();
 			this.btnExportSheets.Sensitive = false;
@@ -1101,10 +1139,10 @@ namespace OPDtabGui
 			this.btnExportSheets.UseUnderline = true;
 			this.btnExportSheets.Label = global::Mono.Unix.Catalog.GetString ("Sheets");
 			this.vbox12.Add (this.btnExportSheets);
-			global::Gtk.Box.BoxChild w133 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportSheets]));
-			w133.Position = 1;
-			w133.Expand = false;
-			w133.Fill = false;
+			global::Gtk.Box.BoxChild w138 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportSheets]));
+			w138.Position = 1;
+			w138.Expand = false;
+			w138.Fill = false;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.btnExportAll = new global::Gtk.Button ();
 			this.btnExportAll.CanFocus = true;
@@ -1112,10 +1150,10 @@ namespace OPDtabGui
 			this.btnExportAll.UseUnderline = true;
 			this.btnExportAll.Label = global::Mono.Unix.Catalog.GetString ("Overview");
 			this.vbox12.Add (this.btnExportAll);
-			global::Gtk.Box.BoxChild w134 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportAll]));
-			w134.Position = 2;
-			w134.Expand = false;
-			w134.Fill = false;
+			global::Gtk.Box.BoxChild w139 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportAll]));
+			w139.Position = 2;
+			w139.Expand = false;
+			w139.Fill = false;
 			// Container child vbox12.Gtk.Box+BoxChild
 			this.expander7 = new global::Gtk.Expander (null);
 			this.expander7.CanFocus = true;
@@ -1132,15 +1170,14 @@ namespace OPDtabGui
 			this.rbJudgesDinA4 = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("A4"));
 			this.rbJudgesDinA4.CanFocus = true;
 			this.rbJudgesDinA4.Name = "rbJudgesDinA4";
-			this.rbJudgesDinA4.Active = true;
 			this.rbJudgesDinA4.DrawIndicator = true;
 			this.rbJudgesDinA4.UseUnderline = true;
 			this.rbJudgesDinA4.Group = new global::GLib.SList (global::System.IntPtr.Zero);
 			this.hbox5.Add (this.rbJudgesDinA4);
-			global::Gtk.Box.BoxChild w135 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA4]));
-			w135.Position = 0;
-			w135.Expand = false;
-			w135.Fill = false;
+			global::Gtk.Box.BoxChild w140 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA4]));
+			w140.Position = 0;
+			w140.Expand = false;
+			w140.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.rbJudgesDinA3 = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("A3"));
 			this.rbJudgesDinA3.CanFocus = true;
@@ -1149,15 +1186,15 @@ namespace OPDtabGui
 			this.rbJudgesDinA3.UseUnderline = true;
 			this.rbJudgesDinA3.Group = this.rbJudgesDinA4.Group;
 			this.hbox5.Add (this.rbJudgesDinA3);
-			global::Gtk.Box.BoxChild w136 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA3]));
-			w136.Position = 1;
-			w136.Expand = false;
-			w136.Fill = false;
+			global::Gtk.Box.BoxChild w141 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA3]));
+			w141.Position = 1;
+			w141.Expand = false;
+			w141.Fill = false;
 			this.vbox13.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w137 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.hbox5]));
-			w137.Position = 0;
-			w137.Expand = false;
-			w137.Fill = false;
+			global::Gtk.Box.BoxChild w142 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.hbox5]));
+			w142.Position = 0;
+			w142.Expand = false;
+			w142.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.vbuttonbox2 = new global::Gtk.VButtonBox ();
 			this.vbuttonbox2.Name = "vbuttonbox2";
@@ -1169,9 +1206,9 @@ namespace OPDtabGui
 			this.btnVsTeams.UseUnderline = true;
 			this.btnVsTeams.Label = global::Mono.Unix.Catalog.GetString ("...Vs Teams");
 			this.vbuttonbox2.Add (this.btnVsTeams);
-			global::Gtk.ButtonBox.ButtonBoxChild w138 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsTeams]));
-			w138.Expand = false;
-			w138.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w143 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsTeams]));
+			w143.Expand = false;
+			w143.Fill = false;
 			// Container child vbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
 			this.btnVsJudges = new global::Gtk.Button ();
 			this.btnVsJudges.CanFocus = true;
@@ -1179,13 +1216,13 @@ namespace OPDtabGui
 			this.btnVsJudges.UseUnderline = true;
 			this.btnVsJudges.Label = global::Mono.Unix.Catalog.GetString ("...Vs Judges");
 			this.vbuttonbox2.Add (this.btnVsJudges);
-			global::Gtk.ButtonBox.ButtonBoxChild w139 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsJudges]));
-			w139.Position = 1;
-			w139.Expand = false;
-			w139.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w144 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsJudges]));
+			w144.Position = 1;
+			w144.Expand = false;
+			w144.Fill = false;
 			this.vbox13.Add (this.vbuttonbox2);
-			global::Gtk.Box.BoxChild w140 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.vbuttonbox2]));
-			w140.Position = 1;
+			global::Gtk.Box.BoxChild w145 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.vbuttonbox2]));
+			w145.Position = 1;
 			this.expander7.Add (this.vbox13);
 			this.GtkLabel36 = new global::Gtk.Label ();
 			this.GtkLabel36.Name = "GtkLabel36";
@@ -1193,8 +1230,8 @@ namespace OPDtabGui
 			this.GtkLabel36.UseUnderline = true;
 			this.expander7.LabelWidget = this.GtkLabel36;
 			this.vbox12.Add (this.expander7);
-			global::Gtk.Box.BoxChild w142 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.expander7]));
-			w142.Position = 3;
+			global::Gtk.Box.BoxChild w147 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.expander7]));
+			w147.Position = 3;
 			this.GtkAlignment10.Add (this.vbox12);
 			this.framePDFExport.Add (this.GtkAlignment10);
 			this.GtkLabel37 = new global::Gtk.Label ();
@@ -1203,18 +1240,18 @@ namespace OPDtabGui
 			this.GtkLabel37.UseMarkup = true;
 			this.framePDFExport.LabelWidget = this.GtkLabel37;
 			this.vbox6.Add (this.framePDFExport);
-			global::Gtk.Box.BoxChild w145 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.framePDFExport]));
-			w145.Position = 2;
-			w145.Expand = false;
-			w145.Fill = false;
+			global::Gtk.Box.BoxChild w150 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.framePDFExport]));
+			w150.Position = 2;
+			w150.Expand = false;
+			w150.Fill = false;
 			this.hbox2.Add (this.vbox6);
-			global::Gtk.Box.BoxChild w146 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
-			w146.Position = 1;
-			w146.Expand = false;
-			w146.Fill = false;
+			global::Gtk.Box.BoxChild w151 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
+			w151.Position = 1;
+			w151.Expand = false;
+			w151.Fill = false;
 			this.vbox4.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w147 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox2]));
-			w147.Position = 1;
+			global::Gtk.Box.BoxChild w152 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox2]));
+			w152.Position = 1;
 			this.GtkAlignment.Add (this.vbox4);
 			this.frameToolbox.Add (this.GtkAlignment);
 			this.GtkLabel38 = new global::Gtk.Label ();
@@ -1223,13 +1260,13 @@ namespace OPDtabGui
 			this.GtkLabel38.UseMarkup = true;
 			this.frameToolbox.LabelWidget = this.GtkLabel38;
 			this.vbox1.Add (this.frameToolbox);
-			global::Gtk.Box.BoxChild w150 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameToolbox]));
-			w150.Position = 1;
+			global::Gtk.Box.BoxChild w155 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameToolbox]));
+			w155.Position = 1;
 			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w151 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-			w151.Position = 2;
-			w151.Expand = false;
-			w151.Fill = false;
+			global::Gtk.Box.BoxChild w156 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+			w156.Position = 2;
+			w156.Expand = false;
+			w156.Fill = false;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
