@@ -1770,7 +1770,6 @@
                                               <widget class="Gtk.Expander" id="expander3">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
-                                                <property name="Expanded">True</property>
                                                 <child>
                                                   <widget class="Gtk.Table" id="table3">
                                                     <property name="MemberName" />
@@ -1935,6 +1934,7 @@
                                                         <property name="MemberName" />
                                                         <property name="IsTextCombo">True</property>
                                                         <property name="Items" translatable="yes" />
+                                                        <signal name="Changed" handler="OnCbBreakroundRoundsChanged" />
                                                       </widget>
                                                       <packing>
                                                         <property name="Position">0</property>

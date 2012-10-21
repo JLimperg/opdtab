@@ -696,7 +696,6 @@ namespace OPDtabGui
 			this.expander3 = new global::Gtk.Expander (null);
 			this.expander3.CanFocus = true;
 			this.expander3.Name = "expander3";
-			this.expander3.Expanded = true;
 			// Container child expander3.Gtk.Container+ContainerChild
 			this.table3 = new global::Gtk.Table (((uint)(3)), ((uint)(2)), false);
 			this.table3.Name = "table3";
@@ -1292,6 +1291,7 @@ namespace OPDtabGui
 			this.btnAlgoFreeSpeakers.Clicked += new global::System.EventHandler (this.OnBtnAlgoFreeSpeakersClicked);
 			this.btnAlgoThreePreRounds.Clicked += new global::System.EventHandler (this.OnBtnAlgoThreePreRoundsClicked);
 			this.btnAlgoBreakround.Clicked += new global::System.EventHandler (this.OnBtnAlgoBreakroundClicked);
+			this.cbBreakroundRounds.Changed += new global::System.EventHandler (this.OnCbBreakroundRoundsChanged);
 			this.btnAlgoBreakroundOnRound.Clicked += new global::System.EventHandler (this.OnBtnAlgoBreakroundOnRoundClicked);
 			this.textMotion.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.OnTextMotionKeyReleaseEvent);
 			this.textMotion.FocusOutEvent += new global::Gtk.FocusOutEventHandler (this.OnTextMotionFocusOutEvent);

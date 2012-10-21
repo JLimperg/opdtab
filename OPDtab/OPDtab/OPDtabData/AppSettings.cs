@@ -54,11 +54,12 @@ namespace OPDtabData
 				new string[] {"LukasHaffert27", "1-2\n3-4\n5-6\n7-8\n10-9\n11-12\n14-13\n16-15\n18-17\n\n"+
 					"17-1\n2-18\n15-3\n4-16\n13-5\n6-14\n12-7\n8-10\n9-11"},
 				new string[] {"LukasHaffert24", "1-2\n3-4\n5-6\n7-8\n9-10\n12-11\n14-13\n16-15\n\n"+
-					"15-1\n2-16\n13-3\n4-14\n11-5\n6-12\n10-7\n8-9"}
+					"15-1\n2-16\n13-3\n4-14\n11-5\n6-12\n10-7\n8-9"},
+				new string[] {"Magdeburg27", "1-2\n3-4\n5-6\n7-8\n10-9\n11-12\n14-13\n16-15\n18-17"}
 			};
 		}
 		
-		[NonSerialized] static int VERSION = 9;
+		[NonSerialized] static int VERSION = 10;
 		[NonSerialized] static AppSettings instance;
 		string tournamentFile;
 		bool deleteTexFile;

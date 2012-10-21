@@ -120,10 +120,22 @@ namespace OPDtabGui
 			}
 			cbBreakPresets.Changed += delegate(object sender, EventArgs a) {
 				int i = (sender as ComboBox).Active;
-				textviewBreakConfig.Buffer.Text = pre[i][1];	
+				textviewBreakConfig.Buffer.Text = pre[i][1];
+				int nRooms = i<4 ? pre[i][1].Split('\n').Length : 0;
+				entryAlgoRoundPrefix.Text = NumberOfRoomsToRoundName(nRooms);
 			};
 		}
-		
+
+		string NumberOfRoomsToRoundName(int n) {
+			switch(n) {
+			case 8: return "Achtelfinale";
+			case 4: return "Viertelfinale";
+			case 2: return "Halbfinale";
+			case 1: return "Finale";
+			default: return "Runde";
+			}
+		}
+
 		void SetupAlgorithmSb() {
 			sbRandomSeed.Alignment = 1f;
 			sbMonteCarloSteps.Alignment = 1f;
@@ -752,13 +764,8 @@ namespace OPDtabGui
 			try {			
 				bool overwrite = cbAlgoOverwriteExisting.Active && storeRounds.IterNChildren()>0;
 				// get round which is basis for next breakround
-				TreeIter iter = TreeIter.Zero;
-				RoundData round;
-				if(storeRounds.GetIterFromString(out iter, cbBreakroundRounds.Active.ToString()))
-					round = (RoundData)storeRounds.GetValue(iter, 1);	
-				else
-					throw new Exception("Can't find selected Round.");
-				
+				RoundData round = GetRoundByIndex(cbBreakroundRounds.Active);
+
 				string roundName = MakeAlgoRoundNames(1, overwrite)[0];	
 				// aggregate teams and judges
 				List<TeamData> teams = new List<TeamData>();
@@ -780,6 +787,7 @@ namespace OPDtabGui
 				else		
 					AddRound(new RoundData(roundName, newRound, teams, judges), false);
 				// update view if necessary
+				TreeIter iter = TreeIter.Zero;
 				if(cbRoundName.GetActiveIter(out iter)) {
 					RoundData rd = (RoundData)storeRounds.GetValue(iter, 1);
 					SetGuiToRound(rd);
@@ -798,14 +806,18 @@ namespace OPDtabGui
 					break;
 				i++;
 			}
+			return GetRoundByIndex(cbBreakroundRounds.Active);
+		}
+
+		RoundData GetRoundByIndex(int i) 
+		{
 			TreeIter iter = TreeIter.Zero;
 			if(storeRounds.GetIterFromString(out iter, i.ToString()))
-				return (RoundData)storeRounds.GetValue(iter, 1);
+				return (RoundData)storeRounds.GetValue(iter, 1);	
 			else
-				throw new Exception("To be overwritten Round not found");
-		
+				throw new Exception("Can't find round with index "+i);
 		}
-		
+
 		void SetRoundByName(RoundData rd) {
 			int i=0;
 			foreach(object[] row in storeRounds) {
@@ -1504,6 +1516,34 @@ namespace OPDtabGui
 			MiscHelpers.SetIsShown(btnShowToolbox, false);
 			MiscHelpers.SetIsShown(frameToolbox, true);
 		}
+
+		protected void OnCbBreakroundRoundsChanged (object sender, EventArgs e)
+		{
+			// get round which is basis for next breakround
+			RoundData round = GetRoundByIndex(cbBreakroundRounds.Active);
+			// we guess the type of the round by the number of non-empty rooms
+			// a break round, however, has at least one empty room!
+			bool flagEmptyFound = false;
+			int nNonEmptyRooms = 0;
+			foreach(RoomData rd in round.Rooms) {
+				bool isEmpty = rd.IsEmpty;
+				if(!flagEmptyFound && isEmpty)
+					flagEmptyFound = true;
+				else if(!isEmpty) {
+					nNonEmptyRooms++;
+				}
+			}
+			// if the round is complety full, 
+			// we keep the simple "Runde" ;) 
+			if(!flagEmptyFound)
+				nNonEmptyRooms=0;
+
+			// next round has half the number of rooms
+			entryAlgoRoundPrefix.Text = NumberOfRoomsToRoundName(nNonEmptyRooms/2);
+		}
+
+
+
 	}
 }
 
