@@ -1520,7 +1520,11 @@ namespace OPDtabGui
 		protected void OnCbBreakroundRoundsChanged (object sender, EventArgs e)
 		{
 			// get round which is basis for next breakround
-			RoundData round = GetRoundByIndex(cbBreakroundRounds.Active);
+			// but only if there's a round selected...(fixes bug when deleting round)
+			int i = cbBreakroundRounds.Active;
+			if(i<0)
+				return;
+			RoundData round = GetRoundByIndex(i);
 			// we guess the type of the round by the number of non-empty rooms
 			// a break round, however, has at least one empty room!
 			bool flagEmptyFound = false;
