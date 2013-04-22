@@ -1,2 +1,3 @@
 bin/
-LumenWorks.Framework.IO/Csv/Resources/ExceptionMessage.resources
+/LumenWorks.Framework.IO/Csv/Resources/ExceptionMessage.resources
+/OPDtab.userprefs
