@@ -19,89 +19,89 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="tmpl\round-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\ranking-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
     </None>
     <None Include="data\.dummy">
-      <DeployService-Deploy>true</DeployService-Deploy>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
     </None>
     <None Include="pdfs\.dummy">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="icons\AppIcon.png" />
     <None Include="tmpl\round-tmpl-withpix.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\judgesvsteams-dina3-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\judgesvsteams-dina4-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\judgesvsjudges-dina4-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\judgesvsjudges-dina3-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\sheets-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\roundsoverview-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="pdfs\logo.png">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="pdfs\sheet-background.pdf_tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="pdfs\sheet-background.pdf">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\debaters-tmpl.tex">
-      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-Deploy>True</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
     </None>
     <None Include="tmpl\debaters-tmpl.csv">
-      <DeployService-Deploy>true</DeployService-Deploy>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
     </None>
     <None Include="tmpl\ranking-tmpl.csv">
-      <DeployService-Deploy>true</DeployService-Deploy>
-      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <DeployService-UseProjectRelativePath>True</DeployService-UseProjectRelativePath>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
     </None>
   </ItemGroup>

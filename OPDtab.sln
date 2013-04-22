@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LumenWorks.Framework.IO", "
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "OPDtabFiles", "OPDtabFiles\OPDtabFiles.mdproj", "{3695B7E3-2FB0-4EEC-8630-28060A9DF293}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99DEBCA9-5CF6-4A10-BC48-3DC2A5592A56}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -40,6 +45,8 @@ Global
 		{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}.Debug|x86.Build.0 = Debug|Any CPU
 		{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = OPDtab\OPDtab.csproj
