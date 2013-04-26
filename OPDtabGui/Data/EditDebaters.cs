@@ -495,12 +495,20 @@ namespace OPDtabGui
 			Role tmp = d2.Role;
 			d2.Role = d1.Role;
 			d1.Role = tmp;	
+
+
+
 						
 			// update in existing rounds (this is ugly due to our data model)
 			// this resets the info about available judges...
 			// any other approach wouldn't be future-proof
 								
 			foreach(RoundData round in Tournament.I.Rounds) {
+				// clear all round results of the debaters in the store!
+				d1.SetRoom(round.RoundName, null);
+				d2.SetRoom(round.RoundName, null);
+
+
 				// always create new instance for each round
 				RoundDebater rd1 = new RoundDebater(d1);
 				RoundDebater rd2 = new RoundDebater(d2);
@@ -515,16 +523,23 @@ namespace OPDtabGui
 					room.ReplaceRoomMember(RoundDebater.Dummy(), rd2);
 				
 				// update also allArrays, the following UpdateAllArrays
-				// relies on consistent arrays
+				// relies on at least consistent arrays
 				round.ReplaceInAllArrays(rd1, RoundDebater.Dummy());
 				round.ReplaceInAllArrays(rd2, new RoundDebater(rd1));
 				round.ReplaceInAllArrays(RoundDebater.Dummy(), new RoundDebater(rd2));
 				
 				// since complicated things can happen above
 				// we make the arrays consistent by brute force
+				// this creates many warnings that round results are cleared,
+				// but the debaters are backed up in store here...complicated, as said
 				round.UpdateAllArrays();
 			}
-			
+
+			// overwrite the changes with the changes from the store
+			SaveDebaters();
+			// and reflect the possible reset of RoundResults
+			ShowRanking.I.UpdateAll();
+
 			// tell the treeview to update, don't know why path and iter is necessary
 			store.EmitRowChanged(store.GetPath(storeIter1), storeIter1);
 			store.EmitRowChanged(store.GetPath(storeIter2), storeIter2);
