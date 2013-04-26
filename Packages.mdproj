@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>PackagingProject</ItemType>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68567371-E1E5-44A1-9F4E-7E475F52350A}</ProjectGuid>
+    <Packages>
+      <Packages>
+        <Package name="Linux Binaries">
+          <Builder targetFile="Packages\OPDtab.tar.gz" platform="Linux" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="OPDtabData\OPDtabData.csproj" />
+              <SolutionItemReference path="OPDtab\OPDtab.csproj" />
+              <SolutionItemReference path="OPDtabGui\OPDtabGui.csproj" />
+              <SolutionItemReference path="LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj" />
+              <SolutionItemReference path="OPDtabFiles\OPDtabFiles.mdproj" />
+            </ChildEntries>
+            <RootEntry path="OPDtab.sln" id=":root:" />
+          </Builder>
+        </Package>
+        <Package name="Windows Binaries">
+          <Builder targetFile="Packages\OPDtab.zip" platform="Windows" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="Packages.mdproj" />
+              <SolutionItemReference path="OPDtab\OPDtab.csproj" />
+              <SolutionItemReference path="OPDtabGui\OPDtabGui.csproj" />
+              <SolutionItemReference path="OPDtabData\OPDtabData.csproj" />
+              <SolutionItemReference path="LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj" />
+              <SolutionItemReference path="OPDtabFiles\OPDtabFiles.mdproj" />
+            </ChildEntries>
+            <RootEntry path="OPDtab.sln" id=":root:" />
+          </Builder>
+        </Package>
+      </Packages>
+    </Packages>
+  </PropertyGroup>
+</Project>

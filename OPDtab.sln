@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Packages", "Packages.mdproj", "{68567371-E1E5-44A1-9F4E-7E475F52350A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -33,6 +35,9 @@ Global
 		{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}.Debug|x86.Build.0 = Debug|Any CPU
 		{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}.Release|x86.ActiveCfg = Release|Any CPU
 		{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}.Release|x86.Build.0 = Release|Any CPU
+		{68567371-E1E5-44A1-9F4E-7E475F52350A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{68567371-E1E5-44A1-9F4E-7E475F52350A}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{68567371-E1E5-44A1-9F4E-7E475F52350A}.Release|x86.ActiveCfg = Release|Any CPU
 		{77FC64CF-9CA1-40E5-842C-F264E6381B8B}.Debug|x86.ActiveCfg = Debug|x86
 		{77FC64CF-9CA1-40E5-842C-F264E6381B8B}.Debug|x86.Build.0 = Debug|x86
 		{77FC64CF-9CA1-40E5-842C-F264E6381B8B}.Release|x86.ActiveCfg = Release|x86
