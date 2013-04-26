@@ -1166,6 +1166,7 @@ namespace OPDtabGui
 			this.rbJudgesDinA4 = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("A4"));
 			this.rbJudgesDinA4.CanFocus = true;
 			this.rbJudgesDinA4.Name = "rbJudgesDinA4";
+			this.rbJudgesDinA4.Active = true;
 			this.rbJudgesDinA4.DrawIndicator = true;
 			this.rbJudgesDinA4.UseUnderline = true;
 			this.rbJudgesDinA4.Group = new global::GLib.SList (global::System.IntPtr.Zero);
