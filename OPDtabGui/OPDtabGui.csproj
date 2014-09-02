@@ -12,31 +12,41 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gdk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="Mono.Posix" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>pango-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>atk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
@@ -67,13 +77,11 @@
     <Compile Include="Widgets\IDragDropWidget.cs" />
     <Compile Include="MyWidgets\MyButton.cs" />
     <Compile Include="MyWidgets\MyGridLine.cs" />
-    <Compile Include="MyWidgets\MyIntLabel.cs" />
     <Compile Include="MyWidgets\MySpinButton.cs" />
     <Compile Include="Widgets\IResultDataWidget.cs" />
     <Compile Include="MyWidgets\MyConflictButton.cs" />
     <Compile Include="Data\LoadBackup.cs" />
     <Compile Include="gtk-gui\OPDtabGui.LoadBackup.cs" />
-    <Compile Include="Rounds\ShowRanking.cs" />
     <Compile Include="gtk-gui\OPDtabGui.ShowRanking.cs" />
     <Compile Include="Widgets\AlgoProgress.cs" />
     <Compile Include="gtk-gui\OPDtabGui.AlgoProgress.cs" />
@@ -84,12 +92,13 @@
     <Compile Include="MyWidgets\MyJudgeStateButton.cs" />
     <Compile Include="Common\DebaterPatternEditor.cs" />
     <Compile Include="gtk-gui\OPDtabGui.DebaterPatternEditor.cs" />
+    <Compile Include="Rounds\ShowRanking.cs" />
+    <Compile Include="MyWidgets\MyIntLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\OPDtabFiles\icons\AppIcon.png" />
     <EmbeddedResource Include="Icons\weather-clear.png" />
     <EmbeddedResource Include="Icons\weather-clear-night.png" />
     <EmbeddedResource Include="Icons\go-next.png" />
@@ -101,6 +110,9 @@
     <EmbeddedResource Include="Icons\help-browser.png" />
     <EmbeddedResource Include="Icons\face-smile.png" />
     <EmbeddedResource Include="Icons\go-previous.png" />
+    <EmbeddedResource Include="..\OPDtab\AppIcon.png">
+      <Link>AppIcon.png</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OPDtabData\OPDtabData.csproj">

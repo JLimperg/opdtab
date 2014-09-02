@@ -61,7 +61,10 @@ namespace OPDtabGui
 			this.labelTeamList.Name = "labelTeamList";
 			this.labelTeamList.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Teams</b> (0)");
 			this.labelTeamList.UseMarkup = true;
-			this.notebookDragDrop.SetTabLabel (this.GtkScrolledWindow, this.labelTeamList);
+			this.notebookDragDrop.SetTabLabel (
+				this.GtkScrolledWindow,
+				this.labelTeamList
+			);
 			this.labelTeamList.ShowAll ();
 			// Container child notebookDragDrop.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
@@ -97,7 +100,10 @@ namespace OPDtabGui
 			this.labelJudgeList.Name = "labelJudgeList";
 			this.labelJudgeList.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Judges</b> (0)\n<small><small>1/J/C/X=0/0/0/0</small></small>");
 			this.labelJudgeList.UseMarkup = true;
-			this.notebookDragDrop.SetTabLabel (this.GtkScrolledWindow1, this.labelJudgeList);
+			this.notebookDragDrop.SetTabLabel (
+				this.GtkScrolledWindow1,
+				this.labelJudgeList
+			);
 			this.labelJudgeList.ShowAll ();
 			this.Add (this.notebookDragDrop);
 			if ((this.Child != null)) {

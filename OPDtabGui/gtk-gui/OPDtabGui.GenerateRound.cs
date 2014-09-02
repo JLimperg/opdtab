@@ -251,7 +251,11 @@ namespace OPDtabGui
 			w12.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w13 = new global::Gtk.Image ();
-			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-new", global::Gtk.IconSize.Menu);
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-new",
+				global::Gtk.IconSize.Menu
+			);
 			w12.Add (w13);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w15 = new global::Gtk.Label ();
@@ -276,7 +280,11 @@ namespace OPDtabGui
 			w21.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w22 = new global::Gtk.Image ();
-			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
+			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-delete",
+				global::Gtk.IconSize.Menu
+			);
 			w21.Add (w22);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w24 = new global::Gtk.Label ();
@@ -453,7 +461,11 @@ namespace OPDtabGui
 			w44.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w45 = new global::Gtk.Image ();
-			w45.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Menu);
+			w45.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-dialog-warning",
+				global::Gtk.IconSize.Menu
+			);
 			w44.Add (w45);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w47 = new global::Gtk.Label ();
@@ -546,7 +558,11 @@ namespace OPDtabGui
 			w60.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w61 = new global::Gtk.Image ();
-			w61.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Menu);
+			w61.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-dialog-warning",
+				global::Gtk.IconSize.Menu
+			);
 			w60.Add (w61);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w63 = new global::Gtk.Label ();
@@ -588,7 +604,11 @@ namespace OPDtabGui
 			w70.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w71 = new global::Gtk.Image ();
-			w71.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Menu);
+			w71.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-dialog-warning",
+				global::Gtk.IconSize.Menu
+			);
 			w70.Add (w71);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w73 = new global::Gtk.Label ();
@@ -1048,7 +1068,11 @@ namespace OPDtabGui
 			global::Gtk.Viewport w125 = new global::Gtk.Viewport ();
 			w125.ShadowType = ((global::Gtk.ShadowType)(0));
 			// Container child GtkViewport1.Gtk.Container+ContainerChild
-			this.tableRoomDetails = new global::Gtk.Table (((uint)(1)), ((uint)(3)), false);
+			this.tableRoomDetails = new global::Gtk.Table (
+				((uint)(1)),
+				((uint)(3)),
+				false
+			);
 			this.tableRoomDetails.Name = "tableRoomDetails";
 			this.tableRoomDetails.RowSpacing = ((uint)(1));
 			this.tableRoomDetails.ColumnSpacing = ((uint)(6));

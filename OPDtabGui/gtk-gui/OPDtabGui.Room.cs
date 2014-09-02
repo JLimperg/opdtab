@@ -200,7 +200,11 @@ namespace OPDtabGui
 			w12.Expand = false;
 			w12.Fill = false;
 			// Container child vbox7.Gtk.Box+BoxChild
-			this.tableJudgeStars = new global::Gtk.Table (((uint)(3)), ((uint)(5)), false);
+			this.tableJudgeStars = new global::Gtk.Table (
+				((uint)(3)),
+				((uint)(5)),
+				false
+			);
 			this.tableJudgeStars.Name = "tableJudgeStars";
 			this.tableJudgeStars.RowSpacing = ((uint)(6));
 			this.tableJudgeStars.ColumnSpacing = ((uint)(6));

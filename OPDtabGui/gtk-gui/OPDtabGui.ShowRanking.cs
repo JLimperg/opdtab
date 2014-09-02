@@ -318,7 +318,11 @@ namespace OPDtabGui
 			w30.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w31 = new global::Gtk.Image ();
-			w31.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-redo", global::Gtk.IconSize.Menu);
+			w31.Pixbuf = global::Stetic.IconLoader.LoadIcon (
+				this,
+				"gtk-redo",
+				global::Gtk.IconSize.Menu
+			);
 			w30.Add (w31);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w33 = new global::Gtk.Label ();
@@ -429,7 +433,11 @@ namespace OPDtabGui
 			this.GtkAlignment2.RightPadding = ((uint)(6));
 			this.GtkAlignment2.BottomPadding = ((uint)(6));
 			// Container child GtkAlignment2.Gtk.Container+ContainerChild
-			this.tableAvgPoints = new global::Gtk.Table (((uint)(12)), ((uint)(2)), false);
+			this.tableAvgPoints = new global::Gtk.Table (
+				((uint)(12)),
+				((uint)(2)),
+				false
+			);
 			this.tableAvgPoints.Name = "tableAvgPoints";
 			this.tableAvgPoints.RowSpacing = ((uint)(6));
 			this.tableAvgPoints.ColumnSpacing = ((uint)(6));
