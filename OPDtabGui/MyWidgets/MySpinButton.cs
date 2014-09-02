@@ -3,9 +3,9 @@ using Gtk;
 using OPDtabData;
 namespace OPDtabGui
 {
-	public class MySpinButton : Gtk.SpinButton, IIntWidget
+	public class MySpinButton : Gtk.SpinButton, INumberWidget
 	{
-		public event EventHandler IntChanged;
+		public event EventHandler NumberChanged;
 		
 		int judgeIndex;
 		int debaterIndex;
@@ -18,8 +18,8 @@ namespace OPDtabGui
 			
 			ValueChanged += delegate(object sender, EventArgs e) {
 				Tournament.I.Save();
-				if(IntChanged != null)
-					IntChanged(this, EventArgs.Empty);
+				if(NumberChanged != null)
+					NumberChanged(this, EventArgs.Empty);
 			};
 			Alignment = 0.5f;
 		}
@@ -45,11 +45,11 @@ namespace OPDtabGui
 		}
 		
 		
-		public int GetInt() {
+		public double GetValue() {
 			return ValueAsInt;	
 		}
 		
-		public void ForceUpdateInt() {
+		public void ForceUpdate() {
 			// not listening to any "parents"
 		}
 	
@@ -65,6 +65,6 @@ namespace OPDtabGui
 				return this.judgeIndex;
 			}
 		}
-}
+	}
 }
 

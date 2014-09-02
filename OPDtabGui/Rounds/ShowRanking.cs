@@ -151,9 +151,8 @@ namespace OPDtabGui
 					AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
 				for(uint j=0;j<11;j++) {
 					string text = "?";
-					if(rd.AvgPoints.Count==11 && rd.AvgPoints[(int)j] >= 0) {
-						text = 	String.Format(new System.Globalization.CultureInfo("en-US"), 
-						"{0:0.0}",rd.AvgPoints[(int)j]);
+					if(rd.AvgPoints.Count == 11 && rd.AvgPoints[(int)j] >= 0) {
+						text = OPDtabData.MiscHelpers.FmtDecimal(rd.AvgPoints[(int)j]);
 						sumAvgPoints[(int)RoundResultData.PosToRoleType[j]] += rd.AvgPoints[(int)j];
 					}
 					Label lblAvg = new Label();
@@ -172,13 +171,11 @@ namespace OPDtabGui
 						nOpp++;
 				}
 				Label lblStats = new Label();
-				lblStats.Markup = "<b>"+nGov+"</b> <small>("+
-					String.Format(new System.Globalization.CultureInfo("en-US"), 
-						"{0:0.0}",sumAvgPoints[0])
-					+")</small> / <b>"+nOpp+"</b> <small>("+
-						String.Format(new System.Globalization.CultureInfo("en-US"), 
-						"{0:0.0}",sumAvgPoints[1])
-						+")</small>";
+				lblStats.Markup = "<b>" + nGov + "</b> <small>(" +
+					OPDtabData.MiscHelpers.FmtDecimal(sumAvgPoints[0]) +
+					")</small> / <b>" + nOpp + "</b> <small>(" +
+					OPDtabData.MiscHelpers.FmtDecimal(sumAvgPoints[1]) +
+					")</small>";
 				tableRounds.Attach(lblStats,
 					3, 4, i+1, i+2,
 					AttachOptions.Shrink, AttachOptions.Shrink, 0, 0);
@@ -311,7 +308,9 @@ namespace OPDtabGui
 			             1, 2, row, row+1, 
 			             AttachOptions.Fill, AttachOptions.Fill, 0, 0);
 			Label lblPoints = new Label();
-			lblPoints.Markup = item.TotalPoints<0 ? "<big><b>?</b></big>" : "<b><big>"+item.TotalPoints+"</big></b>";
+			lblPoints.Markup = item.TotalPoints < 0 ?
+				"<big><b>?</b></big>" :
+				"<b><big>" + OPDtabData.MiscHelpers.FmtDecimal(item.TotalPoints)+"</big></b>";
 			table.Attach(MiscHelpers.MakeBackground(lblPoints), 
 			             2, 3, row, row+1,
 			             AttachOptions.Fill, AttachOptions.Fill, 0, 0);
@@ -458,15 +457,15 @@ namespace OPDtabGui
 
 
 					// we divide the avg by three to make it comparable to team position 
-					tmplTeams.Assign("SPEAKERPOSAVG", item.AvgPoints<0?"?":
-						String.Format(new System.Globalization.CultureInfo("en-US"), 
-						"{0:0.0}", OPDtabData.MiscHelpers.CalcExactAverage(speakerPos)/3));
+					tmplTeams.Assign("SPEAKERPOSAVG", item.AvgPoints < 0 ? "?" :
+						OPDtabData.MiscHelpers.FmtDecimal(OPDtabData.MiscHelpers.CalcExactAverage(speakerPos) / 3)
+					);
 
 					if(mBreakingTeams.Contains(pos-1))
 						tmplTeams.Assign("BREAKMARK", "Break");
 					else
 						tmplTeams.Assign("BREAKMARK", "");
-					tmplTeams.Assign("POINTS", OPDtabData.MiscHelpers.IntToStr(item.TotalPoints));
+					tmplTeams.Assign("POINTS", OPDtabData.MiscHelpers.DoubleToStr(item.TotalPoints));
 					ITmplBlock tmplPointsPerRound = tmpl.ParseBlock("POINTSPERROUNDTEAM");
 					int nPoints=0;
 					if(item.RoundPoints.Count==0) {
@@ -478,7 +477,7 @@ namespace OPDtabGui
 					else {
 						for(int i=0;i<item.RoundPoints.Count;i++) {
 							string[] PosToStr = new string[] {"G", "O", "F"};
-							tmplPointsPerRound.Assign("POINTS",OPDtabData.MiscHelpers.IntToStr(item.RoundPoints[i]));
+							tmplPointsPerRound.Assign("POINTS", OPDtabData.MiscHelpers.DoubleToStr(item.RoundPoints[i]));
 							tmplPointsPerRound.Assign("POS", 
 								PosToStr[(int)RoundResultData.PosToRoleType[item.RoundPositions[i]]]);
 							tmplPointsPerRound.Assign("SEP",i==item.RoundPoints.Count-1?"":separator);
@@ -507,9 +506,9 @@ namespace OPDtabGui
 						realPos = pos;
 					}
 					tmplSpeakers.Assign("POS", realPos.ToString());
-					tmplSpeakers.Assign("NAME", rd.Name.FirstName+" "+rd.Name.LastName);
-					tmplSpeakers.Assign("POINTS", OPDtabData.MiscHelpers.IntToStr(item.TotalPoints));		
-					if(mTeamSpeakers.Contains(pos-1)) 
+					tmplSpeakers.Assign("NAME", rd.Name.FirstName + " " + rd.Name.LastName);
+					tmplSpeakers.Assign("POINTS", OPDtabData.MiscHelpers.DoubleToStr(item.TotalPoints));		
+					if(mTeamSpeakers.Contains(pos - 1)) 
 						tmplSpeakers.Assign("BREAKMARK", "Team");
 					else if (mFreeSpeakers.Contains(pos-1))
 						tmplSpeakers.Assign("BREAKMARK", "Tab");
@@ -530,7 +529,7 @@ namespace OPDtabGui
 					else {
 						for(int i=0;i<item.Points.Count;i++) {
 							tmplPointsPerRound.Assign("POINTS",
-								OPDtabData.MiscHelpers.IntToStr(item.Points[i]));
+								OPDtabData.MiscHelpers.DoubleToStr(item.Points[i]));
 							tmplPointsPerRound.Assign("POS", 
 								OPDtabData.MiscHelpers.IntToStr(item.RoundPositions[i]+1));
 							tmplPointsPerRound.Assign("SEP", i==item.Points.Count-1?"":separator);
@@ -547,9 +546,8 @@ namespace OPDtabGui
 							tmplPointsPerRound.Out();
 						}
 					}
-					tmplSpeakers.Assign("AVERAGEPOINTS",item.AvgPoints<0?"?":
-						String.Format(new System.Globalization.CultureInfo("en-US"), 
-						"{0:0.00}",item.AvgPoints));
+					tmplSpeakers.Assign("AVERAGEPOINTS", item.AvgPoints < 0 ? "?" :
+						OPDtabData.MiscHelpers.FmtDecimal(item.AvgPoints));
 					tmplSpeakers.Out();
 					pos++;
 				}	
@@ -685,7 +683,7 @@ namespace OPDtabGui
 				}
 			}
 			
-			int minPointsForBreak = mFreeSpeakers.Count>0 ? 
+			var minPointsForBreak = mFreeSpeakers.Count>0 ? 
 				speakers[mFreeSpeakers[mFreeSpeakers.Count-1]].TotalPoints :
 					-1;
 			
@@ -750,7 +748,7 @@ namespace OPDtabGui
 					mFreeSpeakers.Add(i);
 				}
 			}	
-			int minPointsForBreak = mFreeSpeakers.Count>0 ? 
+			var minPointsForBreak = mFreeSpeakers.Count>0 ? 
 				speakers[mFreeSpeakers[mFreeSpeakers.Count-1]].TotalPoints :
 					-1;
 			

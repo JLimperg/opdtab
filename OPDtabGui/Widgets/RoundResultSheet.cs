@@ -17,7 +17,7 @@ namespace OPDtabGui
 		 * 11, 12  are SpeakerSum for Gov/Opp
 		 * 13, 14  are Totals for Gov/Opp
 		 * */		
-		List<MyIntLabel> intLabels;		
+		List<MyNumberLabel> labels;		
 		
 		/* dataWidgets: 
 		 * 0 - 8    are DebaterWidgets (ordered as intLabels),
@@ -100,7 +100,7 @@ namespace OPDtabGui
 			// JUDGES
 			// clear all avg parents (9 Speakers, 2 Teams = 11) first
 			for(int i=0;i<11;i++) 
-				intLabels[i].ClearParents();
+				labels[i].ClearParents();
 			
 			// Setup Judge Column (fills resultsJudges)
 			resultsJudges = new List<RoundResultData>();
@@ -122,8 +122,8 @@ namespace OPDtabGui
 			SetSpeakerFrameLabels();
 			
 			// force total sum updates
-			intLabels[intLabels.Count-1].ForceUpdateInt();
-			intLabels[intLabels.Count-2].ForceUpdateInt();					
+			labels[labels.Count-1].ForceUpdate();
+			labels[labels.Count-2].ForceUpdate();					
 			// is complete?
 			CheckCompleteFlags();			
 			// update bestOnes...
@@ -138,8 +138,8 @@ namespace OPDtabGui
 			for(int i=0;i<11;i++)
 				MiscHelpers.SetIsShown(bestOnes[i], false);
 			// determine best team
-			int pGov = intLabels[13].GetInt();
-			int pOpp = intLabels[14].GetInt();
+			var pGov = labels[13].GetValue();
+			var pOpp = labels[14].GetValue();
 			// is one of the teams incomplete?
 			if(pGov<0 || pOpp<0) 
 				return;
@@ -172,13 +172,13 @@ namespace OPDtabGui
 			for(int i=0;i<9;i++)
 				MiscHelpers.SetIsShown(bestOnes[i], false);
 			// continue only if teams are complete 
-			if(intLabels[13].GetInt()<0 || intLabels[14].GetInt()<0) 
+			if(labels[13].GetValue() < 0 || labels [14].GetValue() < 0)
 				return;
 			// determine max points of non-teambreaking speaker
-			int max = -1;
-			List<int> exclude = new List<int>(roomData.BestTeam==1?posOpp:posGov);
+			var max = -1.0;
+			List<int> exclude = new List<int>(roomData.BestTeam == 1 ? posOpp : posGov);
 			for(int i=0;i<9;i++) {
-				int n = intLabels[i].GetInt();
+				var n = labels[i].GetValue();
 				// abort if one is incomplete
 				if(n<0)
 					return;
@@ -192,7 +192,7 @@ namespace OPDtabGui
 			// show all buttons
 			List<int> bestSpeakers = new List<int>();
 			for(int i=0;i<9;i++) {
-				int n = intLabels[i].GetInt();
+				var n = labels[i].GetValue();
 				if(exclude.Contains(i))
 					continue;
 				if(n==max) {
@@ -226,7 +226,7 @@ namespace OPDtabGui
 			toBeChecked.Add(14);
 			
 			foreach(int i in toBeChecked)
-				ok = intLabels[i].GetInt() >= 0  && ok;
+				ok = labels[i].GetValue() >= 0  && ok;
 			if(roomData!=null)
 				roomData.ItemCompleted = ok;
 			// update combobox at parent
@@ -431,7 +431,7 @@ namespace OPDtabGui
 					MySpinButton sb = k<9 ? SetupSbSpeaker(i, k) : 
 						SetupSbTeam(i, k);		
 					// spinbuttons are parents for avg labels..
-					intLabels[k].AddParent(sb);
+					labels[k].AddParent(sb);
 					// nice alignment
 					al = new Alignment(0f,0f,1f,1f);
 					al.LeftPadding = 6;
@@ -447,7 +447,7 @@ namespace OPDtabGui
 				
 		MySpinButton SetupSbSpeaker(int i, int k) {
 			MySpinButton sb = new MySpinButton(-1, 100, 1, i, k);
-			sb.ValueChanged += MySpinbuttonChangedSpeaker;
+			sb.NumberChanged += MySpinbuttonChangedSpeaker;
 			sb.Value = results[k].SpeakerScores[i];	
 			return sb;		
 		}
@@ -467,7 +467,7 @@ namespace OPDtabGui
 		
 		MySpinButton SetupSbTeam(int i, int k) {
 			MySpinButton sb = new MySpinButton(-1, 200, 1, i, k);
-			sb.ValueChanged += MySpinbuttonChangedTeam;
+			sb.NumberChanged += MySpinbuttonChangedTeam;
 			if(k == 9)
 				sb.Value = GetTeamScore(i, posGov);
 			else if(k == 10)
@@ -584,16 +584,16 @@ namespace OPDtabGui
 			lblBestSpeaker = AttachConflictLabel("?", avgColOff+3, 0);
 			
 			// averages for speakers
-			intLabels = new List<MyIntLabel>();
+			labels = new List<MyNumberLabel>();
 			bestOnes = new List<RoundResultSetBest>();
 			for(int i=0;i<debaterRows.Length;i++) {
 				for(uint k=0;k<3;k++) {
 					uint col = avgColOff+k;
 					Gdk.Color color = colBgNone;
-					MyIntLabel lbl = null;
+					MyNumberLabel lbl = null;
 					if(k==RoundResultData.PosToRoleType[i]) {
-						lbl = new MyIntLabel(true);
-						intLabels.Add(lbl);
+						lbl = new MyNumberLabel(true);
+						labels.Add(lbl);
 						color = colBg[k];
 					}						
 					table.Attach(MiscHelpers.MakeBackground(lbl, color), 
@@ -636,7 +636,7 @@ namespace OPDtabGui
 			
 			// connect to intLabels to update completeFlags
 			foreach(int i in new int[] {4,5,6,13,14})
-				intLabels[i].IntChanged += delegate(object sender, EventArgs e) {
+				labels[i].NumberChanged += delegate(object sender, EventArgs e) {
 					CheckCompleteFlags();
 				};
 			
@@ -674,14 +674,14 @@ namespace OPDtabGui
 			
 			// connect to intLabels to update bestOnes
 			for(int i=0;i<9;i++) {
-				intLabels[i].IntChanged += delegate(object sender, EventArgs e) {
+				labels[i].NumberChanged += delegate(object sender, EventArgs e) {
 					UpdateBestSpeaker();
 				};
 			}
-			intLabels[13].IntChanged += delegate(object sender, EventArgs e) {
+			labels[13].NumberChanged += delegate(object sender, EventArgs e) {
 				UpdateBestOnes();
 			};
-			intLabels[14].IntChanged += delegate(object sender, EventArgs e) {
+			labels[14].NumberChanged += delegate(object sender, EventArgs e) {
 				UpdateBestOnes();
 			};
 			
@@ -718,11 +718,11 @@ namespace OPDtabGui
 		}
 		
 		void AttachSumLabel(uint col, uint row, Gdk.Color color, params int[] w) {
-			MyIntLabel sumSpeaker = new MyIntLabel(false); 
+			MyNumberLabel sumSpeaker = new MyNumberLabel(false); 
 			foreach(int i in w) 
-				sumSpeaker.AddParent(intLabels[i]);
+				sumSpeaker.AddParent(labels[i]);
 			
-			intLabels.Add(sumSpeaker);
+			labels.Add(sumSpeaker);
 			table.Attach(MiscHelpers.MakeBackground(sumSpeaker, color),
 			             col, col+1, 
 			             row, row+1,

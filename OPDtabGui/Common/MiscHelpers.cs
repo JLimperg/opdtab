@@ -394,8 +394,6 @@ namespace OPDtabGui
 				eb.Add(w);
 			return eb;
 		}
-		
-		
 	}
 }
 

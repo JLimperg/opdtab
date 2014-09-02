@@ -5,13 +5,13 @@ namespace OPDtabData
 	public class RankingDataItem : IComparable<RankingDataItem> {
 		
 		object data;
-		List<int> points;
-		int totalPoints;
+		List<double> points;
+		double totalPoints;
 		double avgPoints;
 		List<RoundResultData> results;	
 		// do not use SortedDictionary for roundPoints and roundPositions
 		// this keeps the added entries in the correct order (in Ranking PDF)
-		Dictionary<string, int> roundPoints;
+		Dictionary<string, double> roundPoints;
 		Dictionary<string, int> roundPositions; // encodes the position in room
 		SortedDictionary<string, bool> availRounds;
 		bool resolved;
@@ -41,18 +41,19 @@ namespace OPDtabData
 				avgPoints = -1;	
 			}
 			else {
-				totalPoints =0;
-				foreach(int i in points)
+				totalPoints = 0.0;
+				foreach(var i in points)
 					totalPoints += i;
-				avgPoints = (double)totalPoints/points.Count;
+				avgPoints = totalPoints/points.Count;
 			}
 		}
+		
 		void UpdatePointsArray(bool includeTeam) {
-			points = new List<int>();
-			SortedDictionary<string, int> teamPoints = new SortedDictionary<string, int>();
-			roundPoints = new Dictionary<string, int>();
+			points = new List<double>();
+			SortedDictionary<string, double> teamPoints = new SortedDictionary<string, double>();
+			roundPoints = new Dictionary<string, double>();
 			roundPositions = new Dictionary<string, int>();
-			int n = 0;
+			var n = 0;
 			foreach(RoundResultData rr in results) {
 				if(!availRounds.ContainsKey(rr.RoundName))
 					continue;
@@ -64,7 +65,7 @@ namespace OPDtabData
 				}
 				points.Add(rr.AvgSpeakerScore);
 				// roundPoints
-				int sum = 0;
+				double sum = 0;
 				roundPoints.TryGetValue(rr.RoundName, out sum);
 				sum += rr.AvgSpeakerScore;
 				roundPoints[rr.RoundName] = sum;
@@ -110,15 +111,15 @@ namespace OPDtabData
 			}
 		}
 
-		public List<int> Points {
+		public List<double> Points {
 			get {
 				return this.points;
 			}
 		}
 		
-		public List<int> RoundPoints {
+		public List<double> RoundPoints {
 			get {				
-				return new List<int>(roundPoints.Values);	
+				return new List<double>(roundPoints.Values);	
 			}
 		}
 		
@@ -128,7 +129,7 @@ namespace OPDtabData
 			}	
 		}
 		
-		public int TotalPoints {
+		public double TotalPoints {
 			get {
 				return this.totalPoints;
 			}

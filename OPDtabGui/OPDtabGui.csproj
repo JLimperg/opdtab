@@ -93,7 +93,7 @@
     <Compile Include="Common\DebaterPatternEditor.cs" />
     <Compile Include="gtk-gui\OPDtabGui.DebaterPatternEditor.cs" />
     <Compile Include="Rounds\ShowRanking.cs" />
-    <Compile Include="MyWidgets\MyIntLabel.cs" />
+    <Compile Include="MyWidgets\MyNumberLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

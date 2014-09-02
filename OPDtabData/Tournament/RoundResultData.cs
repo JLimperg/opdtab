@@ -110,7 +110,7 @@ namespace OPDtabData
 			}
 		}
 		
-		public int AvgSpeakerScore {
+		public double AvgSpeakerScore {
 			get {
 				if(role == RoundResultData.RoleType.Judge)
 					throw new Exception("Judges don't have averages");
@@ -118,7 +118,7 @@ namespace OPDtabData
 			}
 		}
 
-		public int AvgTeamScore {
+		public double AvgTeamScore {
 			get {
 				if(role == RoundResultData.RoleType.Judge)
 					throw new Exception("Judges don't have averages");
@@ -210,11 +210,11 @@ namespace OPDtabData
 			
 			string tmp = "";
 			if(Role != RoundResultData.RoleType.Judge) {
-				tmp = "<big><b>"+MiscHelpers.IntToStr(AvgSpeakerScore)+
+				tmp = "<big><b>"+MiscHelpers.DoubleToStr(AvgSpeakerScore)+
 					"</b></big> ("+MiscHelpers.IntArrayToString(speakerScores,"+")+") ";
 				
 				if(Role != RoundResultData.RoleType.Free)
-					tmp+= " <b>"+MiscHelpers.IntToStr(AvgTeamScore)+
+					tmp+= " <b>"+MiscHelpers.DoubleToStr(AvgTeamScore)+
 					"</b> ("+MiscHelpers.IntArrayToString(teamScores,"+")+") ";
 				tmp += GetPosAsString();
 			}
@@ -245,15 +245,13 @@ namespace OPDtabData
 		
 		
 		public static string StatAsString(double d) {
-			return double.IsNaN(d) ?"?":
-				String.Format(new System.Globalization.CultureInfo("en-US"),
-					"{0:+0.0;-0.0;0}", d);
+			return double.IsNaN(d) ? "?" :
+				MiscHelpers.FmtDecimal(d);
 		}
 		
 		public static string ErrAsString(double d) {
 			return double.IsNaN(d)?"?":
-						String.Format(new System.Globalization.CultureInfo("en-US"),
-					"{0:0.0}", d);
+						MiscHelpers.FmtDecimal(d);
 		}
 		
 		public string GetPosAsString() {
