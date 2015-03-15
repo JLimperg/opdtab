@@ -1,0 +1,1 @@
+OPD is a German speaking set of rules for debating tournaments, roughly similar to the better known BPS rules. OPDtab helps organizing OPD debating tournaments in an intuitive way. More about OPD can be found [here](http://www.streitkultur.net/opd-service/) (in German).
