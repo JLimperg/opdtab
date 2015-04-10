@@ -1,0 +1,295 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[a4paper, top=3cm, bottom=1cm, left=2cm, right=2cm]{geometry}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\questionsix}[3]{%
+#3%
+
+\medskip%
+
+{%
+  \centering%
+  \begin{tabular}{>{\centering}p{0.13\textwidth}%
+                  >{\centering}p{0.13\textwidth}%
+                  >{\centering}p{0.13\textwidth}%
+                  >{\centering}p{0.13\textwidth}%
+                  >{\centering}p{0.13\textwidth}%
+                  >{\centering\arraybackslash}p{0.13\textwidth}}%
+    $\Box$ & $\Box$ & $\Box$ & $\Box$ & $\Box$ & $\Box$ \\%
+    #1 & & & & & #2%
+  \end{tabular}%
+}%
+}
+
+\newcommand{\questionseven}[4]{%
+#4%
+
+\medskip%
+
+{%
+  \centering%
+  \begin{tabular}{>{\centering}p{0.11\textwidth}%
+                  >{\centering}p{0.11\textwidth}%
+                  >{\centering}p{0.11\textwidth}%
+                  >{\centering}p{0.11\textwidth}%
+                  >{\centering}p{0.11\textwidth}%
+                  >{\centering}p{0.11\textwidth}%
+                  >{\centering\arraybackslash}p{0.11\textwidth}}%
+    $\Box$ & $\Box$ & $\Box$ & $\Box$ & $\Box$ & $\Box$ & $\Box$ \\%
+    #1 & & & #2 & & & #3%
+  \end{tabular}%
+}%
+}
+
+\newcommand{\questionfour}[1]{%
+#1%
+
+\medskip%
+
+{%
+  \centering%
+  \begin{tabular}{>{\centering}p{0.23\textwidth}%
+                  >{\centering}p{0.23\textwidth}%
+                  >{\centering}p{0.23\textwidth}%
+                  >{\centering\arraybackslash}p{0.23\textwidth}}%
+    $\Box$ & $\Box$ & $\Box$ & $\Box$ \\%
+    voll und ganz & eher ja & eher nicht & gar nicht %
+  \end{tabular}%
+}%
+}
+
+\newcommand{\strengthsandweaknesses}[1]{%
+{%
+  \centering%
+  \begin{tabular}{|p{0.45\textwidth}|p{0.45\textwidth}|}%
+    \hline%
+    Was waren aus Deiner Sicht die Stärken des/der Juror*in? &%
+    Was waren aus Deiner Sicht die Schwächen des/der Juror*in? \\%
+    \hline%
+    \bigskip & \\[#1]%
+    \hline%
+  \end{tabular}%
+}%
+}
+
+\newcommand{\feedbackfromfor}[2]{%
+\begin{tabular}{ll}%
+  Feedback \textbf{von}: & #1 \\%
+  Feedback \textbf{für}: & \textbf{#2}%
+\end{tabular}%
+}
+
+\begin{document}
+
+\setlength{\parindent}{0pt}
+
+<!-BEGIN:ROOMS->
+
+  \fancyhf{}
+  \lhead{Raum [ROOM]}
+  \rhead{Runde [ROUND]}
+
+  <!-BEGIN:TEAMSFORCHAIR->
+    \section*{Teams für Hauptjuror*innen}
+
+    \feedbackfromfor{[TEAMNAME] (Team)}{[CHAIRNAME] (HJ)}
+
+    \bigskip
+
+    Liebe Redner*innen,
+
+    \medskip
+
+    alle Juror*innen, insbesondere aber das Chefjurorenteam, stehen euch
+    jederzeit für Lob, Kritik und Anregungen zur Verfügung. Zusätzlich dient
+    dieser Bogen dazu, Kritik und Lob zu den Leistungen der Juror*innen
+    auszusprechen oder weitere Anregungen zu geben. Dieser Bogen ist ein
+    wichtiges Instrument, um eine gerechte und kompetente Bewertung der
+    Debatten zu gewährleisten. Eure Meinung ist uns wichtig, also macht bitte
+    Gebrauch von dieser Möglichkeit. Du kannst gerne die Rückseite für weitere
+    Anmerkungen benutzen!
+
+    \medskip
+    \hrulefill
+    \medskip
+
+    \questionseven{viel zu gut}{genau richtig}{viel zu schlecht}{
+      Die Bewertung/Bepunktung meiner Leistung fand ich\dots
+    }
+    \medskip
+
+    \questionseven{viel zu gut}{genau richtig}{viel zu schlecht}{
+      Die Bewertung/Bepunktung der anderen RednerInnen war\dots
+    }
+    \medskip
+
+    \questionsix{sehr gut}{sehr schlecht}{
+      Das Feedback der Jurorin/des Jurors war aus meiner Sicht\dots
+    }
+    \medskip
+
+    \questionfour{
+      Traust du dem/der Juror*in zu, auch in der nächsten Runde wieder das
+      Feedback zu geben?
+    }
+    \medskip
+
+    \strengthsandweaknesses{6cm}
+
+    \newpage
+  <!-END:TEAMSFORCHAIR->
+
+  <!-BEGIN:FREEFORCHAIR->
+    \section*{Freie Redner*innen für Hauptjuror*innen}
+
+    \feedbackfromfor{[FREENAME] (FR)}{[CHAIRNAME] (HJ)}
+
+    \bigskip
+
+    Liebe Redner*innen,
+
+    \medskip
+
+    alle Juror*innen, insbesondere aber das Chefjurorenteam, stehen euch
+    jederzeit für Lob, Kritik und Anregungen zur Verfügung. Zusätzlich dient
+    dieser Bogen dazu, Kritik und Lob zu den Leistungen der Juror*innen
+    auszusprechen oder weitere Anregungen zu geben. Dieser Bogen ist ein
+    wichtiges Instrument, um eine gerechte und kompetente Bewertung der
+    Debatten zu gewährleisten. Eure Meinung ist uns wichtig, also macht bitte
+    Gebrauch von dieser Möglichkeit. Du kannst gerne die Rückseite für weitere
+    Anmerkungen benutzen!
+
+    \medskip
+    \hrulefill
+    \medskip
+
+    \questionseven{viel zu gut}{genau richtig}{viel zu schlecht}{
+      Die Bewertung/Bepunktung meiner Leistung fand ich\dots
+    }
+    \medskip
+
+    \questionseven{viel zu gut}{genau richtig}{viel zu schlecht}{
+      Die Bewertung/Bepunktung der anderen RednerInnen war\dots
+    }
+    \medskip
+
+    \questionsix{sehr gut}{sehr schlecht}{
+      Das Feedback der Jurorin/des Jurors war aus meiner Sicht\dots
+    }
+    \medskip
+
+    \questionfour{
+      Traust du dem/der Juror*in zu, auch in der nächsten Runde wieder das
+      Feedback zu geben?
+    }
+    \medskip
+
+    \strengthsandweaknesses{6cm}
+
+    \newpage
+  <!-END:FREEFORCHAIR->
+
+  <!-BEGIN:CHAIRFORPANELIST->
+    \section*{Feedback von Hauptjuror*innen für Nebenjuror*innen}
+
+    \feedbackfromfor{[CHAIRNAME] (HJ)}{[PANELISTNAME] (NJ)}
+
+    \bigskip
+
+    Liebe Hauptjuror*innen,
+
+    \medskip
+
+    wir, das Chefjurorenteam, stehen euch jederzeit für
+    Lob, Kritik und Anregungen zur Verfügung. Zugleich sind wir auf eure
+    Mithilfe angewiesen, um eine gerechte und kompetente Bewertung aller
+    Debatten zu gewährleisten. Deshalb dient dieser Bogen dazu, Kritik und Lob
+    zu den Leistungen eurer Mitjuror*innen auszusprechen oder weitere
+    Anregungen zu geben. Eure Meinung ist uns wichtig, also macht bitte
+    Gebrauch von dieser Möglichkeit. Auch die Rückseite steht Euch für weitere
+    Anmerkungen zur Verfügung.
+
+    \medskip
+    \hrulefill
+    \medskip
+
+    \questionsix{völlig}{gar nicht}{
+      Die Bewertungen der Rednerleistungen durch den/die Juror*in waren für
+      mich nachvollziehbar.
+    }
+    \medskip
+
+    \questionsix{völlig}{gar nicht}{
+      Der/die Juror*in hat sich konstruktiv in die Jurierdiskussion
+      eingebracht.
+    }
+    \medskip
+
+    \questionfour{
+      Traust du dem/der Juror*in zu, in der nächsten Runde Feedback zu geben?
+    }
+    \medskip
+
+    \strengthsandweaknesses{9cm}
+
+    \newpage
+  <!-END:CHAIRFORPANELIST->
+
+  <!-BEGIN:PANELISTFORJUDGE->
+    \section*{Feedback von Nebenjuror*innen für Mitjuror*innen}
+
+    \feedbackfromfor{[PANELISTNAME] (NJ)}{[JUDGENAME]}
+
+    \bigskip
+
+    Liebe Nebenjuror*innen,
+
+    \medskip
+
+    wir, das Chefjurorenteam, stehen euch jederzeit für
+    Lob, Kritik und Anregungen zur Verfügung. Zugleich sind wir auf eure
+    Mithilfe angewiesen, um eine gerechte und kompetente Bewertung aller
+    Debatten zu gewährleisten. Deshalb dient dieser Bogen dazu, Kritik und Lob
+    zu den Leistungen eurer Mitjuror*innen auszusprechen oder weitere
+    Anregungen zu geben. Eure Meinung ist uns wichtig, also macht bitte
+    Gebrauch von dieser Möglichkeit. Auch die Rückseite steht Euch für weitere
+    Anmerkungen zur Verfügung.
+
+    \medskip
+    \hrulefill
+    \medskip
+
+    \questionsix{völlig}{gar nicht}{
+      Die Bewertungen der Rednerleistungen durch den/die Juror*in waren für
+      mich nachvollziehbar.
+    }
+    \medskip
+
+    \questionsix{völlig}{gar nicht}{
+      Der/die Juror*in hat die Jurierdiskussion konstruktiv moderiert.
+    }
+    \medskip
+
+    \questionsix{sehr gut}{sehr schlecht}{
+      Das Feedback der Jurorin/des Jurors war aus meiner Sicht\dots
+    }
+    \medskip
+
+    \questionfour{
+      Traust du dem/der Juror*in zu, auch in der nächsten Runde wieder das
+      Feedback zu geben?
+    }
+    \medskip
+
+    \strengthsandweaknesses{8cm}
+
+    \newpage
+  <!-END:PANELISTFORJUDGE->
+<!-END:ROOMS->
+\end{document}

@@ -354,6 +354,7 @@ namespace OPDtabGui
 			textMotion.Sensitive = flag;
 			btnExportPDF.Sensitive = flag;
 			btnExportSheets.Sensitive = flag;
+			btnExportFeedback.Sensitive = flag;
 			btnVsTeams.Sensitive = flag;
 			btnShuffleRooms.Sensitive = flag;
 			btnShuffleGovOpp.Sensitive = flag;
@@ -880,28 +881,26 @@ namespace OPDtabGui
 			ShowRanking.I.ShowAll();			
 		}
 				
-		protected virtual void OnBtnExportPDFClicked (object sender, System.EventArgs e)
-		{			
+		protected virtual void OnBtnExportPDFClicked(object sender, System.EventArgs e) {			
 			TreeIter iter = TreeIter.Zero;
 			if(!cbRoundName.GetActiveIter(out iter))
 				return;
 			RoundData rd = (RoundData)storeRounds.GetValue(iter, 1);
 			
 			try {
-				ITemplate tmplRound = MiscHelpers.GetTemplate("round");
-				WorkOnTemplate(rd, tmplRound);				
+				GenerateRoundPDF(rd);				
 				MiscHelpers.AskShowTemplate(this,
-					"Round PDF successfully generated, see "+
+					"Round PDF successfully generated, see " +
 					"pdfs/<RoundName>-round.pdf",
 					MiscHelpers.MakePDFfromTemplate(rd.RoundName)
-					);
-			}
-			catch(Exception ex) {
-				MiscHelpers.ShowMessage(this, "Could not generate Round Presentation as PDF: "+ex.Message, MessageType.Error);
+				);
+			} catch(Exception ex) {
+				MiscHelpers.ShowMessage(this, "Could not generate Round Presentation as PDF: " + ex.Message, MessageType.Error);
 			}
 		}
 		
-		void WorkOnTemplate(RoundData rd, ITemplate tmpl) {
+		void GenerateRoundPDF(RoundData rd) {
+			ITemplate tmpl = MiscHelpers.GetTemplate("round");
 			List<List<string>> roomDetails = Tournament.I.RoomDetails;
 
 			ITmplBlock tmplTitle = tmpl.ParseBlock("TITLE");
@@ -980,8 +979,103 @@ namespace OPDtabGui
 			}
 			tmplMotion.Out();
 		}
+		
+		protected virtual void OnBtnExportFeedbackClicked(object sender, System.EventArgs e) {
+			TreeIter iter = TreeIter.Zero;
+			if(!cbRoundName.GetActiveIter(out iter))
+				return;
+			RoundData rd = (RoundData)storeRounds.GetValue(iter, 1);
 			
+			try {
+				GenerateFeedbackPDF(rd);
+				MiscHelpers.AskShowTemplate(this,
+					"Feedback PDF successfully generated, see " +
+					"pdfs/<RoundName>-feedback.pdf",
+					MiscHelpers.MakePDFfromTemplate(rd.RoundName)
+				);
+			} catch(Exception ex) {
+				MiscHelpers.ShowMessage(this, "Could not generate Feedback PDF: " + ex.Message, MessageType.Error);
+			}
+		}
+
+		void GenerateFeedbackPDF(RoundData rd) {
+			ITemplate tmpl = MiscHelpers.GetTemplate("feedback");
+
+			ITmplBlock tmplRooms = tmpl.ParseBlock("ROOMS");
+			foreach(RoomData room in rd.Rooms) {
+				if(room.IsEmpty)
+					continue;
+
+				tmplRooms.Assign("ROOM", Tournament.I.RoomDetails[room.Index][0]);
+				tmplRooms.Assign("ROUND", rd.RoundName);
+				string chairname =
+					room.Chair != null ? NameToString(room.Chair.Name) : "?";
+
+				// Teams for chair
+				ITmplBlock tmplTeamsForChair = tmpl.ParseBlock("TEAMSFORCHAIR");
+				if(room.Gov != null) {
+					tmplTeamsForChair.Assign("CHAIRNAME", chairname);
+					tmplTeamsForChair.Assign("TEAMNAME", room.Gov.TeamName);
+					tmplTeamsForChair.Out();
+				}
+				if(room.Opp != null) {
+					tmplTeamsForChair.Assign("CHAIRNAME", chairname);
+					tmplTeamsForChair.Assign("TEAMNAME", room.Opp.TeamName);
+					tmplTeamsForChair.Out();
+				}
+
+				// Free speakers for chair
+				ITmplBlock tmplFreeForChair = tmpl.ParseBlock("FREEFORCHAIR");
+				foreach(RoundDebater free in room.FreeSpeakers) {
+					tmplFreeForChair.Assign("CHAIRNAME", chairname);
+					tmplFreeForChair.Assign("FREENAME", NameToString(free.Name));
+					tmplFreeForChair.Out();
+				}
+
+				var judges = room.Judges;
+				if(judges.Count >= 1) {
+					// Chair for panelists
+					ITmplBlock tmplChairForPanelist = tmpl.ParseBlock("CHAIRFORPANELIST");
+
+					for(int i = 0; i < judges.Count; i++) {
+						var judge = judges[i];
+						tmplChairForPanelist.Assign("CHAIRNAME", chairname);
+						tmplChairForPanelist.Assign("PANELISTNAME", NameToString(judge.Name));
+						tmplChairForPanelist.Out();
+					}
+
+					// Panelists for other judges
+					ITmplBlock tmplPanelistForJudge = tmpl.ParseBlock("PANELISTFORJUDGE");
+					for(int i = 0; i < judges.Count; i++) {
+						var feedbackingJudge = judges[i];
+						
+						var chair = room.Chair;
+						if(chair != null) {
+							tmplPanelistForJudge.Assign("PANELISTNAME",
+									NameToString(feedbackingJudge.Name));
+							tmplPanelistForJudge.Assign("JUDGENAME",
+									NameToString(chair.Name));
+							tmplPanelistForJudge.Out();
+						}
+						
+						for(int j = 0; j < judges.Count; j++) {
+							if(i == j)
+								continue;
+
+							var feedbackedJudge = judges[j];
+							tmplPanelistForJudge.Assign("PANELISTNAME",
+									NameToString(feedbackingJudge.Name));
+							tmplPanelistForJudge.Assign("JUDGENAME",
+									NameToString(feedbackedJudge.Name));
+							tmplPanelistForJudge.Out();
+						}
+					}
+				}
+			}
 			
+			tmplRooms.Out();
+		}
+
 		string NameToString(Name n) {
 			return n.FirstName+" "+n.LastName;
 		}

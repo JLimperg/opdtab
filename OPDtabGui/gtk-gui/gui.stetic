@@ -2516,6 +2516,23 @@
                                               </packing>
                                             </child>
                                             <child>
+                                              <widget class="Gtk.Button" id="btnExportFeedback">
+                                                <property name="MemberName" />
+                                                <property name="Sensitive">False</property>
+                                                <property name="CanFocus">True</property>
+                                                <property name="Type">TextOnly</property>
+                                                <property name="Label" translatable="yes">Feedback</property>
+                                                <property name="UseUnderline">True</property>
+                                                <signal name="Clicked" handler="OnBtnExportFeedbackClicked" />
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">3</property>
+                                                <property name="AutoSize">True</property>
+                                                <property name="Expand">False</property>
+                                                <property name="Fill">False</property>
+                                              </packing>
+                                            </child>
+                                            <child>
                                               <widget class="Gtk.Expander" id="expander7">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
@@ -2624,7 +2641,7 @@
                                                 </child>
                                               </widget>
                                               <packing>
-                                                <property name="Position">3</property>
+                                                <property name="Position">4</property>
                                                 <property name="AutoSize">True</property>
                                               </packing>
                                             </child>

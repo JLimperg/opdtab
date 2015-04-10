@@ -120,6 +120,7 @@ namespace OPDtabGui
 		private global::Gtk.Button btnExportPDF;
 		private global::Gtk.Button btnExportSheets;
 		private global::Gtk.Button btnExportAll;
+		private global::Gtk.Button btnExportFeedback;
 		private global::Gtk.Expander expander7;
 		private global::Gtk.VBox vbox13;
 		private global::Gtk.HBox hbox5;
@@ -1175,6 +1176,18 @@ namespace OPDtabGui
 			w139.Expand = false;
 			w139.Fill = false;
 			// Container child vbox12.Gtk.Box+BoxChild
+			this.btnExportFeedback = new global::Gtk.Button ();
+			this.btnExportFeedback.Sensitive = false;
+			this.btnExportFeedback.CanFocus = true;
+			this.btnExportFeedback.Name = "btnExportFeedback";
+			this.btnExportFeedback.UseUnderline = true;
+			this.btnExportFeedback.Label = global::Mono.Unix.Catalog.GetString ("Feedback");
+			this.vbox12.Add (this.btnExportFeedback);
+			global::Gtk.Box.BoxChild w140 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.btnExportFeedback]));
+			w140.Position = 3;
+			w140.Expand = false;
+			w140.Fill = false;
+			// Container child vbox12.Gtk.Box+BoxChild
 			this.expander7 = new global::Gtk.Expander (null);
 			this.expander7.CanFocus = true;
 			this.expander7.Name = "expander7";
@@ -1190,15 +1203,14 @@ namespace OPDtabGui
 			this.rbJudgesDinA4 = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("A4"));
 			this.rbJudgesDinA4.CanFocus = true;
 			this.rbJudgesDinA4.Name = "rbJudgesDinA4";
-			this.rbJudgesDinA4.Active = true;
 			this.rbJudgesDinA4.DrawIndicator = true;
 			this.rbJudgesDinA4.UseUnderline = true;
 			this.rbJudgesDinA4.Group = new global::GLib.SList (global::System.IntPtr.Zero);
 			this.hbox5.Add (this.rbJudgesDinA4);
-			global::Gtk.Box.BoxChild w140 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA4]));
-			w140.Position = 0;
-			w140.Expand = false;
-			w140.Fill = false;
+			global::Gtk.Box.BoxChild w141 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA4]));
+			w141.Position = 0;
+			w141.Expand = false;
+			w141.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.rbJudgesDinA3 = new global::Gtk.RadioButton (global::Mono.Unix.Catalog.GetString ("A3"));
 			this.rbJudgesDinA3.CanFocus = true;
@@ -1207,15 +1219,15 @@ namespace OPDtabGui
 			this.rbJudgesDinA3.UseUnderline = true;
 			this.rbJudgesDinA3.Group = this.rbJudgesDinA4.Group;
 			this.hbox5.Add (this.rbJudgesDinA3);
-			global::Gtk.Box.BoxChild w141 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA3]));
-			w141.Position = 1;
-			w141.Expand = false;
-			w141.Fill = false;
-			this.vbox13.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w142 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.hbox5]));
-			w142.Position = 0;
+			global::Gtk.Box.BoxChild w142 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.rbJudgesDinA3]));
+			w142.Position = 1;
 			w142.Expand = false;
 			w142.Fill = false;
+			this.vbox13.Add (this.hbox5);
+			global::Gtk.Box.BoxChild w143 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.hbox5]));
+			w143.Position = 0;
+			w143.Expand = false;
+			w143.Fill = false;
 			// Container child vbox13.Gtk.Box+BoxChild
 			this.vbuttonbox2 = new global::Gtk.VButtonBox ();
 			this.vbuttonbox2.Name = "vbuttonbox2";
@@ -1227,9 +1239,9 @@ namespace OPDtabGui
 			this.btnVsTeams.UseUnderline = true;
 			this.btnVsTeams.Label = global::Mono.Unix.Catalog.GetString ("...Vs Teams");
 			this.vbuttonbox2.Add (this.btnVsTeams);
-			global::Gtk.ButtonBox.ButtonBoxChild w143 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsTeams]));
-			w143.Expand = false;
-			w143.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w144 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsTeams]));
+			w144.Expand = false;
+			w144.Fill = false;
 			// Container child vbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
 			this.btnVsJudges = new global::Gtk.Button ();
 			this.btnVsJudges.CanFocus = true;
@@ -1237,13 +1249,13 @@ namespace OPDtabGui
 			this.btnVsJudges.UseUnderline = true;
 			this.btnVsJudges.Label = global::Mono.Unix.Catalog.GetString ("...Vs Judges");
 			this.vbuttonbox2.Add (this.btnVsJudges);
-			global::Gtk.ButtonBox.ButtonBoxChild w144 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsJudges]));
-			w144.Position = 1;
-			w144.Expand = false;
-			w144.Fill = false;
-			this.vbox13.Add (this.vbuttonbox2);
-			global::Gtk.Box.BoxChild w145 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.vbuttonbox2]));
+			global::Gtk.ButtonBox.ButtonBoxChild w145 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox2 [this.btnVsJudges]));
 			w145.Position = 1;
+			w145.Expand = false;
+			w145.Fill = false;
+			this.vbox13.Add (this.vbuttonbox2);
+			global::Gtk.Box.BoxChild w146 = ((global::Gtk.Box.BoxChild)(this.vbox13 [this.vbuttonbox2]));
+			w146.Position = 1;
 			this.expander7.Add (this.vbox13);
 			this.GtkLabel36 = new global::Gtk.Label ();
 			this.GtkLabel36.Name = "GtkLabel36";
@@ -1251,8 +1263,8 @@ namespace OPDtabGui
 			this.GtkLabel36.UseUnderline = true;
 			this.expander7.LabelWidget = this.GtkLabel36;
 			this.vbox12.Add (this.expander7);
-			global::Gtk.Box.BoxChild w147 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.expander7]));
-			w147.Position = 3;
+			global::Gtk.Box.BoxChild w148 = ((global::Gtk.Box.BoxChild)(this.vbox12 [this.expander7]));
+			w148.Position = 4;
 			this.GtkAlignment10.Add (this.vbox12);
 			this.framePDFExport.Add (this.GtkAlignment10);
 			this.GtkLabel37 = new global::Gtk.Label ();
@@ -1261,18 +1273,18 @@ namespace OPDtabGui
 			this.GtkLabel37.UseMarkup = true;
 			this.framePDFExport.LabelWidget = this.GtkLabel37;
 			this.vbox6.Add (this.framePDFExport);
-			global::Gtk.Box.BoxChild w150 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.framePDFExport]));
-			w150.Position = 2;
-			w150.Expand = false;
-			w150.Fill = false;
-			this.hbox2.Add (this.vbox6);
-			global::Gtk.Box.BoxChild w151 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
-			w151.Position = 1;
+			global::Gtk.Box.BoxChild w151 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.framePDFExport]));
+			w151.Position = 2;
 			w151.Expand = false;
 			w151.Fill = false;
-			this.vbox4.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w152 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox2]));
+			this.hbox2.Add (this.vbox6);
+			global::Gtk.Box.BoxChild w152 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
 			w152.Position = 1;
+			w152.Expand = false;
+			w152.Fill = false;
+			this.vbox4.Add (this.hbox2);
+			global::Gtk.Box.BoxChild w153 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox2]));
+			w153.Position = 1;
 			this.GtkAlignment.Add (this.vbox4);
 			this.frameToolbox.Add (this.GtkAlignment);
 			this.GtkLabel38 = new global::Gtk.Label ();
@@ -1281,13 +1293,13 @@ namespace OPDtabGui
 			this.GtkLabel38.UseMarkup = true;
 			this.frameToolbox.LabelWidget = this.GtkLabel38;
 			this.vbox1.Add (this.frameToolbox);
-			global::Gtk.Box.BoxChild w155 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameToolbox]));
-			w155.Position = 1;
+			global::Gtk.Box.BoxChild w156 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frameToolbox]));
+			w156.Position = 1;
 			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w156 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-			w156.Position = 2;
-			w156.Expand = false;
-			w156.Fill = false;
+			global::Gtk.Box.BoxChild w157 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+			w157.Position = 2;
+			w157.Expand = false;
+			w157.Fill = false;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -1326,6 +1338,7 @@ namespace OPDtabGui
 			this.btnExportPDF.Clicked += new global::System.EventHandler (this.OnBtnExportPDFClicked);
 			this.btnExportSheets.Clicked += new global::System.EventHandler (this.OnBtnExportSheetsClicked);
 			this.btnExportAll.Clicked += new global::System.EventHandler (this.OnBtnExportAllClicked);
+			this.btnExportFeedback.Clicked += new global::System.EventHandler (this.OnBtnExportFeedbackClicked);
 			this.btnVsTeams.Clicked += new global::System.EventHandler (this.OnBtnVsTeamsClicked);
 			this.btnVsJudges.Clicked += new global::System.EventHandler (this.OnBtnVsJudgesClicked);
 		}

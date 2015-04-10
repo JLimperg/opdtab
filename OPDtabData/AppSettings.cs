@@ -160,7 +160,7 @@ namespace OPDtabData
 			instance = settings;
 			// init template engine
 			TemplatePool.Singleton(Path.Combine(Directory.GetCurrentDirectory(), 
-			                                    "tmpl")+Path.DirectorySeparatorChar, 10);
+			                                    "tmpl")+Path.DirectorySeparatorChar, 20);
     	}
 
 	}
