@@ -8,13 +8,16 @@
     <Packages>
       <Packages>
         <Package name="Linux Binaries">
-          <Builder targetFile="Packages\opdtab_bin_linux-x86.tar.bz2" platform="Linux" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
+          <Builder targetFile="Packages\opdtab_bin_linux-x86.tar" platform="Linux" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
             <ChildEntries>
               <SolutionItemReference path="OPDtab\OPDtab.csproj" />
               <SolutionItemReference path="OPDtabGui\OPDtabGui.csproj" />
               <SolutionItemReference path="OPDtabData\OPDtabData.csproj" />
               <SolutionItemReference path="LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj" />
             </ChildEntries>
+            <ExcludedFiles>
+              <File>OPDtab,Binaries,opdtab</File>
+            </ExcludedFiles>
             <RootEntry path="OPDtab.sln" id=":root:" />
           </Builder>
         </Package>
