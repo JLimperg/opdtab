@@ -1044,30 +1044,16 @@ namespace OPDtabGui
 						tmplChairForPanelist.Out();
 					}
 
-					// Panelists for other judges
-					ITmplBlock tmplPanelistForJudge = tmpl.ParseBlock("PANELISTFORJUDGE");
+					// Panelists for chairs
+					ITmplBlock tmplPanelistForChair = tmpl.ParseBlock("PANELISTFORCHAIR");
 					for(int i = 0; i < judges.Count; i++) {
-						var feedbackingJudge = judges[i];
-						
 						var chair = room.Chair;
 						if(chair != null) {
-							tmplPanelistForJudge.Assign("PANELISTNAME",
-									NameToString(feedbackingJudge.Name));
-							tmplPanelistForJudge.Assign("JUDGENAME",
+							tmplPanelistForChair.Assign("PANELISTNAME",
+									NameToString(judges[i].Name));
+							tmplPanelistForChair.Assign("CHAIRNAME",
 									NameToString(chair.Name));
-							tmplPanelistForJudge.Out();
-						}
-						
-						for(int j = 0; j < judges.Count; j++) {
-							if(i == j)
-								continue;
-
-							var feedbackedJudge = judges[j];
-							tmplPanelistForJudge.Assign("PANELISTNAME",
-									NameToString(feedbackingJudge.Name));
-							tmplPanelistForJudge.Assign("JUDGENAME",
-									NameToString(feedbackedJudge.Name));
-							tmplPanelistForJudge.Out();
+							tmplPanelistForChair.Out();
 						}
 					}
 				}
