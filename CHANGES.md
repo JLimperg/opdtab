@@ -1,3 +1,8 @@
+# 1.1.2
+
+  * Fixes multiple issues with the Linux binary package which prevented the
+    program from starting.
+
 # 1.1.1
 
   * New feature: Feedback sheet generation. Feedback sheets for every
@@ -7,8 +12,8 @@
     sheet generation aids in avoiding confusion with incorrectly or
     incompletely filled in forms by filling in all the important
     organisational information beforehand.
-  * Fixes a bug where the correct Mono runtime autodetection would fail to
-    choose the correct runtime version.
+  * Fixes a bug where the Mono runtime autodetection would fail to choose the
+    correct runtime version.
   * Minor documentation improvements.
 
 # 1.1.0
