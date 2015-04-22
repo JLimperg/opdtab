@@ -17,8 +17,10 @@
 VERSION_PATTERN='^v([0-9]+.[0-9]+.[0-9]+)$'
 PACKAGES_PROJECT_FILE='Packages.mdproj'
 PACKAGEDIR='Packages'
-LINUX_PACKAGE='opdtab_bin_linux-x86.tar'
-WINDOWS_PACKAGE='opdtab_bin_windows-x86.zip'
+LINUX_PREFIX='opdtab_bin_linux-x86'
+LINUX_PACKAGE="${LINUX_PREFIX}.tar"
+WINDOWS_PREFIX='opdtab_bin_windows-x86'
+WINDOWS_PACKAGE="${WINDOWS_PREFIX}.zip"
 LAUNCHSCRIPT='opdtab'
 
 function die() {
@@ -46,6 +48,7 @@ mdtool build "${PACKAGES_PROJECT_FILE}"
 # Add launch script to linux package and compress.
 
 tar -rC "${PACKAGEDIR}" -f "${PACKAGEDIR}/${LINUX_PACKAGE}" "${LAUNCHSCRIPT}" \
+  --transform "s,${LAUNCHSCRIPT},${LINUX_PREFIX}/${LAUNCHSCRIPT}," \
   || die "Unable to add launchscript to linux tarball."
 bzip2 -9 "${PACKAGEDIR}/${LINUX_PACKAGE}" \
   || die "Unable to compress linux package using bzip2."
@@ -53,9 +56,9 @@ bzip2 -9 "${PACKAGEDIR}/${LINUX_PACKAGE}" \
 # Name tarballs properly.
 
 mv "${PACKAGEDIR}/${LINUX_PACKAGE}.bz2" \
-   "${PACKAGEDIR}/opdtab_bin_linux-x86_${version_string}.tar.bz2" \
+   "${PACKAGEDIR}/${LINUX_PREFIX}_${version_string}.tar.bz2" \
    || die "Unable to rename linux package."
 
 mv "${PACKAGEDIR}/${WINDOWS_PACKAGE}" \
-   "${PACKAGEDIR}/opdtab_bin_windows-x86_${version_string}.zip" \
+   "${PACKAGEDIR}/${WINDOWS_PREFIX}_${version_string}.zip" \
    || die "Unable to rename windows package."
