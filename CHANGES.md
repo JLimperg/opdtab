@@ -1,3 +1,8 @@
+# 1.1.3
+
+  * Fixes a bug where chairs were listed as main judges and main judges as
+    panelists on generated feedback sheets.
+
 # 1.1.2
 
   * Fixes multiple issues with the Linux binary package which prevented the
