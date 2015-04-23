@@ -1006,55 +1006,77 @@ namespace OPDtabGui
 				if(room.IsEmpty)
 					continue;
 
-				tmplRooms.Assign("ROOM", Tournament.I.RoomDetails[room.Index][0]);
+				var roomName = Tournament.I.RoomDetails[room.Index][0];
+				tmplRooms.Assign("ROOM", roomName);
 				tmplRooms.Assign("ROUND", rd.RoundName);
-				string chairname =
-					room.Chair != null ? NameToString(room.Chair.Name) : "?";
 
-				// Teams for chair
-				ITmplBlock tmplTeamsForChair = tmpl.ParseBlock("TEAMSFORCHAIR");
+				/* In the following, the main judge is the one giving feedback to the
+				 * teams. They are the first judge listed in the judges array;
+				 * the panelists are the other judges.
+				 */
+				var judges = room.Judges;
+				if(judges == null || judges.Count == 0) {
+					Console.WriteLine("Warning: no judges in room {0}", roomName);
+					continue;
+				}
+
+				string mainJudgeName = NameToString(judges[0].Name);
+
+				// Teams for main judge
+				ITmplBlock tmplTeamsForMainJudge = tmpl.ParseBlock("TEAMSFORMAIN");
 				if(room.Gov != null) {
-					tmplTeamsForChair.Assign("CHAIRNAME", chairname);
-					tmplTeamsForChair.Assign("TEAMNAME", room.Gov.TeamName);
-					tmplTeamsForChair.Out();
+					tmplTeamsForMainJudge.Assign("MAINNAME", mainJudgeName);
+					tmplTeamsForMainJudge.Assign("TEAMNAME", room.Gov.TeamName);
+					tmplTeamsForMainJudge.Out();
 				}
 				if(room.Opp != null) {
-					tmplTeamsForChair.Assign("CHAIRNAME", chairname);
-					tmplTeamsForChair.Assign("TEAMNAME", room.Opp.TeamName);
-					tmplTeamsForChair.Out();
+					tmplTeamsForMainJudge.Assign("MAINNAME", mainJudgeName);
+					tmplTeamsForMainJudge.Assign("TEAMNAME", room.Opp.TeamName);
+					tmplTeamsForMainJudge.Out();
 				}
 
-				// Free speakers for chair
-				ITmplBlock tmplFreeForChair = tmpl.ParseBlock("FREEFORCHAIR");
+				// Free speakers for main judge
+				ITmplBlock tmplFreeForMainJudge = tmpl.ParseBlock("FREEFORMAIN");
 				foreach(RoundDebater free in room.FreeSpeakers) {
-					tmplFreeForChair.Assign("CHAIRNAME", chairname);
-					tmplFreeForChair.Assign("FREENAME", NameToString(free.Name));
-					tmplFreeForChair.Out();
+					tmplFreeForMainJudge.Assign("MAINNAME", mainJudgeName);
+					tmplFreeForMainJudge.Assign("FREENAME", NameToString(free.Name));
+					tmplFreeForMainJudge.Out();
 				}
 
-				var judges = room.Judges;
-				if(judges.Count >= 1) {
-					// Chair for panelists
-					ITmplBlock tmplChairForPanelist = tmpl.ParseBlock("CHAIRFORPANELIST");
+				if(judges.Count >= 2) {
+					// Main judge for panelists
+					ITmplBlock tmplMainJudgeForPanelists = tmpl.ParseBlock("MAINFORPANELIST");
 
-					for(int i = 0; i < judges.Count; i++) {
+					for(int i = 1; i < judges.Count; i++) {
 						var judge = judges[i];
-						tmplChairForPanelist.Assign("CHAIRNAME", chairname);
-						tmplChairForPanelist.Assign("PANELISTNAME", NameToString(judge.Name));
-						tmplChairForPanelist.Out();
+						tmplMainJudgeForPanelists.Assign("MAINNAME", mainJudgeName);
+						tmplMainJudgeForPanelists.Assign("PANELISTNAME", NameToString(judge.Name));
+						tmplMainJudgeForPanelists.Out();
 					}
 
-					// Panelists for chairs
-					ITmplBlock tmplPanelistForChair = tmpl.ParseBlock("PANELISTFORCHAIR");
-					for(int i = 0; i < judges.Count; i++) {
-						var chair = room.Chair;
-						if(chair != null) {
-							tmplPanelistForChair.Assign("PANELISTNAME",
-									NameToString(judges[i].Name));
-							tmplPanelistForChair.Assign("CHAIRNAME",
-									NameToString(chair.Name));
-							tmplPanelistForChair.Out();
-						}
+					var chair = room.Chair;
+					if(chair != null) {
+						// Main judge for chair
+						tmplMainJudgeForPanelists.Assign("MAINNAME", mainJudgeName);
+						tmplMainJudgeForPanelists.Assign("PANELISTNAME", NameToString(chair.Name));
+						tmplMainJudgeForPanelists.Out();
+					}
+
+					// Panelists for main judge
+					ITmplBlock tmplPanelistForMainJudge = tmpl.ParseBlock("PANELISTFORMAIN");
+					for(int i = 1; i < judges.Count; i++) {
+						tmplPanelistForMainJudge.Assign("PANELISTNAME",
+								NameToString(judges[i].Name));
+						tmplPanelistForMainJudge.Assign("MAINNAME", mainJudgeName);
+						tmplPanelistForMainJudge.Out();
+					}
+
+					// Chair for main judge
+					if(chair != null) {
+						tmplPanelistForMainJudge.Assign("PANELISTNAME",
+								NameToString(chair.Name));
+						tmplPanelistForMainJudge.Assign("MAINNAME", mainJudgeName);
+						tmplPanelistForMainJudge.Out();
 					}
 				}
 			}
