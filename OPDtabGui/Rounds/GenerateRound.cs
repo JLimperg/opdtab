@@ -1054,27 +1054,11 @@ namespace OPDtabGui
 						tmplMainJudgeForPanelists.Out();
 					}
 
-					var chair = room.Chair;
-					if(chair != null) {
-						// Main judge for chair
-						tmplMainJudgeForPanelists.Assign("MAINNAME", mainJudgeName);
-						tmplMainJudgeForPanelists.Assign("PANELISTNAME", NameToString(chair.Name));
-						tmplMainJudgeForPanelists.Out();
-					}
-
 					// Panelists for main judge
 					ITmplBlock tmplPanelistForMainJudge = tmpl.ParseBlock("PANELISTFORMAIN");
 					for(int i = 1; i < judges.Count; i++) {
 						tmplPanelistForMainJudge.Assign("PANELISTNAME",
 								NameToString(judges[i].Name));
-						tmplPanelistForMainJudge.Assign("MAINNAME", mainJudgeName);
-						tmplPanelistForMainJudge.Out();
-					}
-
-					// Chair for main judge
-					if(chair != null) {
-						tmplPanelistForMainJudge.Assign("PANELISTNAME",
-								NameToString(chair.Name));
 						tmplPanelistForMainJudge.Assign("MAINNAME", mainJudgeName);
 						tmplPanelistForMainJudge.Out();
 					}

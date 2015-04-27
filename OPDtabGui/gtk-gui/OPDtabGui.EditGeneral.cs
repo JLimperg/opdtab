@@ -103,7 +103,6 @@ namespace OPDtabGui
 			w7.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
-			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
 			this.btnExportRoundData = new global::Gtk.Button ();
