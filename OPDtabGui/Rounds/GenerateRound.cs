@@ -1063,9 +1063,9 @@ namespace OPDtabGui
 						tmplPanelistForMainJudge.Out();
 					}
 				}
+
+				tmplRooms.Out();
 			}
-			
-			tmplRooms.Out();
 		}
 
 		string NameToString(Name n) {
