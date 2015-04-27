@@ -43,7 +43,8 @@ version_string=$(echo "$describe_string" | sed -re "s/${VERSION_PATTERN}/\\1/")
 
 # Generate the binary packages.
 
-mdtool build "${PACKAGES_PROJECT_FILE}"
+mdtool build "${PACKAGES_PROJECT_FILE}" \
+  || die "Build failure. See previous output for detailed information."
 
 # Add launch script to linux package and compress.
 
