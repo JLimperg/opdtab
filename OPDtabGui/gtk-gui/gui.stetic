@@ -5,8 +5,8 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../../OPDtabData/bin/Debug/OPDtabData.dll" />
-    <widget-library name="../bin/Debug/OPDtabGui.dll" internal="true" />
+    <widget-library name="../../OPDtabData/bin/Release/OPDtabData.dll" />
+    <widget-library name="../bin/Release/OPDtabGui.dll" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="AppIcon">
@@ -5064,7 +5064,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="OPDtabGui.ShowRanking" design-size="498 780">
+  <widget class="Gtk.Window" id="OPDtabGui.ShowRanking" design-size="616 780">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">ShowRanking</property>
@@ -5107,7 +5107,6 @@
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
-                    <signal name="Toggled" handler="OnCbTeamsOnlyHighlightToggled" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -5267,7 +5266,6 @@
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
-                    <signal name="Toggled" handler="OnCbSpeakersOnlyHighlightToggled" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -5502,7 +5500,7 @@
             <child>
               <widget class="Gtk.HButtonBox" id="hbuttonbox1">
                 <property name="MemberName" />
-                <property name="Size">3</property>
+                <property name="Size">4</property>
                 <property name="LayoutStyle">Start</property>
                 <child>
                   <widget class="Gtk.Button" id="btnExportPDF">
@@ -5542,10 +5540,24 @@
                     <property name="Icon">stock:gtk-redo Menu</property>
                     <property name="Label" translatable="yes">Update All</property>
                     <property name="UseUnderline">True</property>
-                    <signal name="Clicked" handler="OnBtnUpdateClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="btnResultsCSVExport">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Export Round Results</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBtnResultsCSVExportClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
@@ -5579,7 +5591,6 @@
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
                     <property name="Items" translatable="yes" />
-                    <signal name="Changed" handler="OnCbSelectMarkingChanged" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>

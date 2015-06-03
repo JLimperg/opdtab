@@ -1,0 +1,4 @@
+"Round","Venue","Main Judge","Secondary Judge 1", "Secondary Judge 2","Secondary Judge 3","Gov","Opp","Free Speaker 1","Free Speaker 2","Free Speaker 3","Gov Result","Opp Result","Free Speaker 1 Result","Free Speaker 2 Result","Free Speaker 3 Result"
+<!-BEGIN:ROOMS->
+"[ROUND]","[VENUE]","[JUDGE1]","[JUDGE2]","[JUDGE3]","[JUDGE4]","[GOV]","[OPP]","[FREE1]","[FREE2]","[FREE3]","[GOVRESULT]","[OPPRESULT]","[FREE1RESULT]","[FREE2RESULT]","[FREE3RESULT]"
+<!-END:ROOMS->

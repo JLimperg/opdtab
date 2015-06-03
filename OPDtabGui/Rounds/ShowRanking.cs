@@ -561,11 +561,122 @@ namespace OPDtabGui
 			}	
 		}
 		
+		private void ExportResultsCSV() {
+			const int maxJudgesPerRoom = 4;
+			
+			try {
+				List<RoundData> rounds = Tournament.I.Rounds;
+				
+				var tmpl = MiscHelpers.GetTemplate("round-results", MiscHelpers.TemplateType.CSV);
+				var roomsTmpl = tmpl.ParseBlock("ROOMS");
+				
+				for(var roundNum = 0; roundNum < rounds.Count; roundNum++) {
+					var round = rounds[roundNum];
+
+					foreach(RoomData venue in round.Rooms) {
+						roomsTmpl.Assign("ROUND", roundNum.ToString());
+						roomsTmpl.Assign("VENUE", venue.RoomName);
+						
+						var judges = venue.Judges;
+						for(var i = 0; i < maxJudgesPerRoom; i++) {
+							var name =
+								judges.Count > i && judges[i] != null
+									? judges[i].Name.ToString()
+									: "";
+							roomsTmpl.Assign("JUDGE" + (i + 1), name);
+						}
+					
+						var gov = venue.Gov;
+						var govName = gov == null ? "?" : gov.TeamName;
+						var govPoints = gov == null ? null : GetTeamAveragePoints(roundNum, gov);
+						var govPointsStr = govPoints == null ? "?" : OPDtabData.MiscHelpers.DoubleToStr(govPoints.Value);
+						roomsTmpl.Assign("GOV", govName);
+						roomsTmpl.Assign("GOVRESULT", govPointsStr);
+					
+						var opp = venue.Opp;
+						var oppName = opp == null ? "?" : opp.TeamName;
+						var oppPoints = opp == null ? null : GetTeamAveragePoints(roundNum, opp);
+						var oppPointsStr = oppPoints == null ? "?" : OPDtabData.MiscHelpers.DoubleToStr(oppPoints.Value);
+						roomsTmpl.Assign("OPP", oppName);
+						roomsTmpl.Assign("OPPRESULT", oppPointsStr);
+					
+						var frees = venue.FreeSpeakers;
+					
+						var free1 = frees.Count >= 1 ? frees[0] : null;
+						var free1Name = free1 == null ? "?" : free1.Name.ToString();
+						var free1Result = free1 == null ? null : GetDebaterAveragePoints(roundNum, free1);
+						var free1ResultStr = free1Result == null ? "?" : OPDtabData.MiscHelpers.DoubleToStr(free1Result.Value);
+						roomsTmpl.Assign("FREE1", free1Name);
+						roomsTmpl.Assign("FREE1RESULT", free1ResultStr);
+					
+						var free2 = frees.Count >= 2 ? frees[1] : null;
+						var free2Name = free2 == null ? "?" : free2.Name.ToString();
+						var free2Result = free2 == null ? null : GetDebaterAveragePoints(roundNum, free2);
+						var free2ResultStr = free2Result == null ? "?" : OPDtabData.MiscHelpers.DoubleToStr(free2Result.Value);
+						roomsTmpl.Assign("FREE2", free2Name);
+						roomsTmpl.Assign("FREE2RESULT", free2ResultStr);
+					
+						var free3 = frees.Count >= 3 ? frees[2] : null;
+						var free3Name = free3 == null ? "?" : free3.Name.ToString();
+						var free3Result = free3 == null ? null : GetDebaterAveragePoints(roundNum, free3);
+						var free3ResultStr = free3Result == null ? "?" : OPDtabData.MiscHelpers.DoubleToStr(free3Result.Value);
+						roomsTmpl.Assign("FREE3", free3Name);
+						roomsTmpl.Assign("FREE3RESULT", free3ResultStr);
+					
+						roomsTmpl.Out();
+					}
+				}
+			
+				MiscHelpers.AskShowTemplate(this, 
+					"Results Export successfully generated, see pdfs/round-results.csv.",
+					MiscHelpers.MakeExportFromTemplate()
+				);
+			} catch(Exception ex) {
+				MiscHelpers.ShowMessage(this,
+				  "Could not export Results: " + ex.Message, MessageType.Error);
+			}
+		}
+		
+		private double? GetTeamAveragePoints(int roundIndex, TeamData team) {
+			if(team.Count <= 0) {
+				return null;	
+			}
+			
+			var aDebater = Tournament.I.FindDebater(team[0]);
+			var teamResults = aDebater.RoundResults;
+			if (teamResults == null || teamResults.Count <= roundIndex
+			    || teamResults[roundIndex] == null) {
+				return null;
+			}
+			var avgTeamScore = teamResults[roundIndex].AvgTeamScore;
+			
+			double totalAvgSpeakerScore = 0;
+			foreach(var debater in team) {
+				var results = Tournament.I.FindDebater(debater).RoundResults;
+				if (results == null || results.Count <= roundIndex
+				    || results[roundIndex] == null) {
+					return null;
+				}
+				totalAvgSpeakerScore += results[roundIndex].AvgSpeakerScore;
+			}
+			return new Nullable<double>(avgTeamScore + totalAvgSpeakerScore);
+		}
+		
+		private double? GetDebaterAveragePoints(int roundIndex, RoundDebater debater) {
+			var debaterConv = Tournament.I.FindDebater(debater);
+			var results = debaterConv == null ? null : debaterConv.RoundResults;
+			var results_ = results == null || results.Count <= roundIndex ? null : results[roundIndex];
+			return results_ == null ? null : new Nullable<double>(results_.AvgSpeakerScore);
+		}
+		
 		protected virtual void OnBtnUpdateClicked (object sender, System.EventArgs e)
 		{
 			UpdateAll();
 		}
-				
+		
+		protected void OnBtnResultsCSVExportClicked(object sender, System.EventArgs e) {
+			ExportResultsCSV();
+		}		
 		
 		protected void OnCbTeamsOnlyHighlightToggled (object sender, System.EventArgs e)
 		{
