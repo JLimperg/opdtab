@@ -12,9 +12,10 @@
 #
 # The version number is automatically determined by looking at the
 # current commit's annotated tag. The tag must be "va.b.c", where
-# a.b.c is the version number.
+# a.b.c is the version number. An additional release candidite specifier
+# (va.b.c-rd) may be included, where d is a number.
 
-VERSION_PATTERN='^v([0-9]+.[0-9]+.[0-9]+)$'
+VERSION_PATTERN='^v([0-9]+.[0-9]+.[0-9]+(-r[0-9]+)?)$'
 PACKAGES_PROJECT_FILE='Packages.mdproj'
 PACKAGEDIR='Packages'
 LINUX_PREFIX='opdtab_bin_linux-x86'
