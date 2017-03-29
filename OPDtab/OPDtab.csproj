@@ -11,7 +11,6 @@
     <AssemblyName>OPDtab</AssemblyName>
     <StartupObject>OPDtab.MainClass</StartupObject>
     <CodePage>65001</CodePage>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,21 +38,14 @@
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gdk-sharp-2.0</Package>
-    </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>glade-sharp-2.0</Package>
     </Reference>
-    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>pango-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>atk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -69,16 +61,6 @@
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="ui\OPDtabGui.csproj">
-      <Project>{AFF08B04-7815-4C08-9373-D8176666AD65}</Project>
-      <Name>OPDtabGui</Name>
-    </ProjectReference>
-    <ProjectReference Include="ata\OPDtabData.csproj">
-      <Project>{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}</Project>
-      <Name>OPDtabData</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="tmpl\round-tmpl.tex">
       <DeployService-Deploy>true</DeployService-Deploy>
@@ -206,5 +188,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OPDtabData\OPDtabData.csproj">
+      <Project>{469038BA-7FEB-4EDD-A4B5-E9A3B40405B1}</Project>
+      <Name>OPDtabData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OPDtabGui\OPDtabGui.csproj">
+      <Project>{AFF08B04-7815-4C08-9373-D8176666AD65}</Project>
+      <Name>OPDtabGui</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
