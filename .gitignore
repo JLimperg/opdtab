@@ -1,5 +1,6 @@
 bin/
 /LumenWorks.Framework.IO/Csv/Resources/ExceptionMessage.resources
+*/obj/
 /OPDtab.userprefs
 /Packages/*
 !/Packages/opdtab
