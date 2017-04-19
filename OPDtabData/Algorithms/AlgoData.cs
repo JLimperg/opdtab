@@ -1,4 +1,3 @@
-using System;
 namespace OPDtabData
 {
 	public delegate void AlgoDataUpdateHandler(double percentage, string infoMarkup);

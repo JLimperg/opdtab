@@ -9,16 +9,19 @@ namespace OPDtabData
 		
 		public Club () {
 		}
-			
-		public Club(string str) {
-			string[] s = Parse(str);
-			Name = s[0];
-			City = s[1];
+
+		public Club(string name) {
+			this.name = name;
+		}
+
+		public Club(string name, string city) {
+			this.name = name;
+			this.city = city;
 		}
 		
 		public string City {
 			get {
-				return this.city;
+				return city;
 			}
 			set {
 				city = value;
@@ -27,7 +30,7 @@ namespace OPDtabData
 
 		public string Name {
 			get {
-				return this.name;
+				return name;
 			}
 			set {
 				name = value;
@@ -62,29 +65,65 @@ namespace OPDtabData
 			else
 				return "";
 		}
+
+		public enum ParseError
+		{
+			Null,
+			MoreThanOneComma,
+			EmptyClubComponent,
+			Empty,
+			Unspecified
+		}
+
+		public static string ParseErrorDescription(ParseError e)
+		{
+			switch (e) {
+				case ParseError.MoreThanOneComma:
+					return "Club contains more than one comma";
+				case ParseError.EmptyClubComponent:
+					return "Club name or city is empty.";
+				case ParseError.Empty:
+					return "Club cannot be empty.";
+				case ParseError.Unspecified:
+					return "Unable to parse club.";
+				default:
+					throw new Exception("impossible");
+			}
+		}
 		
-		public static string[] Parse(string s) {
-			if(s == null)
+		public static Either<ParseError, Club> Parse(string s) {
+			if (s == null) {
 				throw new ArgumentNullException();
-			string[] parts = s.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-			if(parts.Length>2) {
-				throw new FormatException("Club contains more than one comma");
 			}
-			else if(parts.Length==2) {
-				string cN = MiscHelpers.SanitizeString(parts[0]); 
-				string cC = MiscHelpers.SanitizeString(parts[1]); 
-				if(cN=="" || cC=="")
-					throw new FormatException("No ClubName or ClubCity found");
-				return new string[] {cN, cC};
+
+			var parts = s.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+
+			if (parts.Length>2) {
+				return Either<ParseError, Club>.Left(ParseError.MoreThanOneComma);
 			}
-			else if(parts.Length==1) {
-				string cN = MiscHelpers.SanitizeString(parts[0]);
-				if(cN=="")
-					throw new FormatException("No ClubName found");
-				return new string[] {cN, null};
+
+			if (parts.Length==2) {
+				var cN = MiscHelpers.SanitizeString(parts[0]);
+				var cC = MiscHelpers.SanitizeString(parts[1]);
+
+				if(cN=="" || cC=="") {
+					return Either<ParseError, Club>.Left(ParseError.EmptyClubComponent);
+				}
+
+				return Either<ParseError, Club>.Right(new Club(cN, cC));
 			}
-			else 
-				throw new FormatException("Club not parsable");	
+
+			if (parts.Length==1) {
+				var cN = MiscHelpers.SanitizeString(parts[0]);
+
+				if(cN=="") {
+					return Either<ParseError, Club>.Left(ParseError.Empty);
+				}
+
+				return Either<ParseError, Club>.Right(new Club(cN));
+			}
+
+			return Either<ParseError, Club>.Left(ParseError.Unspecified);
 		}
 		
 		public bool IsEmpty {

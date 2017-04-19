@@ -57,12 +57,12 @@ namespace OPDtabGui
             		line++;
 					EditableDebater d = new EditableDebater();
 					
-					d.Name = new Name(csv[sbLastName.ValueAsInt]+", "+csv[sbFirstName.ValueAsInt]);
+					d.Name = new Name(csv[sbFirstName.ValueAsInt], csv[sbLastName.ValueAsInt]);
 					
 					// Club 
 					try {
 						if(cbCity.Active)
-							d.Club = new Club(csv[sbClub.ValueAsInt]+", "+csv[sbCity.ValueAsInt]);
+							d.Club = new Club(csv[sbClub.ValueAsInt], csv[sbCity.ValueAsInt]);
 						else {
 							d.Club = new Club(csv[sbClub.ValueAsInt]);
 						}
@@ -74,9 +74,10 @@ namespace OPDtabGui
 					
 					// Age or from Birthday
 					try {
-						if(cbAge.Active) 
-							d.ParseAge(csv[sbAge.ValueAsInt]);
-						
+						if (cbAge.Active) {
+							d.Age = uint.Parse(csv [sbAge.ValueAsInt]);
+						}
+
 						if(cbBirthday.Active) { 
 							DateTime bday = DateTime.ParseExact(csv[sbBirthday.ValueAsInt],
 						    	                                entryBdayFormat.Text,
@@ -89,11 +90,11 @@ namespace OPDtabGui
 						
 					}
 					catch {}
-							
+
 					// Role
 					if(cbRole.Active) {
 						if(rbTeamMember.Active) {
-							d.ParseRole(csv[sbRole.ValueAsInt]);
+							d.Role = OPDtabData.Role.Parse(csv [sbRole.ValueAsInt]);
 						}
 						else if(rbJudge.Active) {
 							int judgeQuality = 0;
@@ -112,8 +113,9 @@ namespace OPDtabGui
 							entryExtraInfoDefault.Text : csv[sbExtraInfo.ValueAsInt]; 
 					
 					// BlackList
-					if(cbBlackList.Active)
-						d.ParseBlackList(csv[sbBlackList.ValueAsInt]);
+					if(cbBlackList.Active) {
+						d.BlackList = DebaterPattern.Parse(csv[sbBlackList.ValueAsInt]);
+					}
 					
 					
 					// save it

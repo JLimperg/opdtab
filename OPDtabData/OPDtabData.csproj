@@ -69,6 +69,7 @@
     <Compile Include="Tournament\EqualPointsResolver.cs" />
     <Compile Include="Algorithms\AlgoBreakroundOnRound.cs" />
     <Compile Include="Algorithms\AlgoShuffle.cs" />
+    <Compile Include="Common\Either.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />

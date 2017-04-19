@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using Gtk;
 using System.Collections.Generic;
-using OPDtabData;
 namespace OPDtabGui
 {
 		
@@ -38,6 +37,10 @@ namespace OPDtabGui
 		                                           Gdk.Rectangle background_area, 
 		                                           Gdk.Rectangle cell_area, CellRendererState flags)
 		{
+			if (evnt == null) {
+				return null;
+			}
+
 			TreeView tree = widget as TreeView;
 					
 			if(type == Type.DebaterPattern) {				

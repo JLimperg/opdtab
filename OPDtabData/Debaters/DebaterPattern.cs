@@ -8,13 +8,17 @@ namespace OPDtabData
 	[Serializable]
 	public class DebaterPattern : IComparable
 	{
-		List<Name> debaters;
-		List<string> clubNames;
+		List<Name> debaters = new List<Name>();
+		List<string> clubNames = new List<string>();
 		
 		public DebaterPattern ()
 		{
-			debaters = new List<Name>();
-			clubNames = new List<string>();
+		}
+
+		public DebaterPattern(List<Name> debaters, List<string> clubNames)
+		{
+			this.debaters = debaters;
+			this.clubNames = clubNames;
 		}
 	
 		public bool Matches(AbstractDebater debater) {
@@ -30,52 +34,52 @@ namespace OPDtabData
 		}
 		
 		public void AddClub(string cN) {
-			if(!clubNames.Contains(cN))
+			if(!clubNames.Contains(cN)) {
 				clubNames.Add(cN);
-			else
-				throw new Exception("Pattern already contains ClubName");
+			}
 		}
 		
 		public void RemoveClub(string cN) {
-			if(clubNames.Contains(cN)) 
+			if(clubNames.Contains(cN)) {
 				clubNames.Remove(cN);
-			else
-				throw new Exception("Pattern does not contain ClubName");
+			}
+		}
+
+		public void AddDebater(Name n) {
+			if (!debaters.Contains(n)) {
+				debaters.Add(n);
+			}
 		}
 		
 		public void RemoveDebater(Name n) {
-			if(debaters.Contains(n)) 
+			if(debaters.Contains(n)) {
 				debaters.Remove(n);
-			else
-				throw new Exception("Pattern does not contain Debater");
-		
+			}
 		}
 		
-		public void ParsePattern(string s) {
-			if(s==null)
+		public static DebaterPattern Parse(string s) {
+			if (s==null) {
 				throw new ArgumentNullException();
-			string[] parts = s.Split(';');
-			List<string> tmpClubNames = new List<string>();
-			List<Name> tmpDebaters = new List<Name>();
-			
-			foreach(string p in parts) {
-				string tmp = p.Trim();
-				if(tmp.StartsWith("@")) {
-					string club = tmp.Substring(1);
-					string[] c = Club.Parse(club);
-					if(!tmpClubNames.Contains(c[0]))
-						tmpClubNames.Add(c[0]);
-				}
-				else if(tmp != "") {
-					string[] n = Name.Parse(tmp);
-					Name name = new Name(n[0],n[1]);
-					if(!tmpDebaters.Contains(name))
-						tmpDebaters.Add(name);
-				}
 			}
-			
-			clubNames = tmpClubNames;
-			debaters = tmpDebaters;
+
+
+			var parts = s.Split(';');
+			var ret = new DebaterPattern();
+
+			foreach (string p in parts) {
+				var tmp = p.Trim();
+				if (tmp.StartsWith("@", StringComparison.Ordinal)) {
+					Club.Parse(tmp.Substring(1)).Do(
+						club => ret.AddClub(club.Name));
+				}
+				else if (tmp != "") {
+					Name.Parse(tmp).Do(ret.AddDebater);
+				}
+				// TODO The above swallows errors if Club.Parse() or
+				// Name.Parse() fail.
+			}
+
+			return ret;
 		}
 		
 		public List<string> ClubNames {
@@ -98,13 +102,13 @@ namespace OPDtabData
 
 		public override string ToString() 
 		{
-			List<string> tmpItems = new List<string>();
+			var tmpItems = new List<string>();
 			
 			foreach(string c in clubNames) 
 				tmpItems.Add("@"+c);
 			foreach(Name n in debaters) 
 				tmpItems.Add(n.ToString());			
-			return String.Join("; ",tmpItems.ToArray());
+			return string.Join("; ",tmpItems.ToArray());
 		}
 	
 

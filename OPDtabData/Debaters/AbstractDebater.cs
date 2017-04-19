@@ -1,9 +1,4 @@
 using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Serialization.Formatters.Binary;
 namespace OPDtabData
 {
 		
@@ -22,11 +17,13 @@ namespace OPDtabData
 		}
 				
 		public AbstractDebater(AbstractDebater d) {
-			// make a nice copy, but be lazy and use Parse methods...
-			name = new Name(d.Name.ToString());
+			// TODO create proper copying methods for Name, Club, Role, etc.
+			name = new Name(d.Name.FirstName, d.Name.LastName);
 			age = d.Age;
-			club = new Club(d.Club.ToString());
-			role = new Role(d.Role.ToString());
+			club = new Club(d.Club.Name, d.Club.City);
+			role = d.Role.IsJudge ?
+			        new Role(d.Role.JudgeQuality) :
+			        new Role(d.Role.TeamName);
 		}
 		
 		public bool IsEmpty {

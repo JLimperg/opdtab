@@ -4,42 +4,38 @@ namespace OPDtabData
 	[Serializable]
 	public class Role : IComparable
 	{
-		int judgeQuality;
+		int judgeQuality = -1;
 		string teamName;
-		
-		
-		
-		public Role ()
+
+		public Role()
 		{
-			JudgeQuality = -1;
-			TeamName = null;
 		}
-		
-		public Role(string str) {
-			Parse(str);
+
+		public Role(int judgeQuality)
+		{
+			this.judgeQuality = judgeQuality;
 		}
-			
+
+		public Role(string teamName)
+		{
+			this.teamName = teamName;
+		}
+
 		public bool IsJudge {
 			get {
 				return TeamName==null && JudgeQuality>=0;
 			}
 		}
-		
+
 		public bool IsTeamMember {
 			get {
 				return TeamName!=null;		
 			}
 		}
-		
-		/*public bool IsNothing {
-			get {
-				return TeamName==null && JudgeQuality<0;	
-			}
-		}*/
-		
+
 		public int JudgeQuality {
 			get {
-				return this.judgeQuality;
+				return judgeQuality;
 			}
 			set {
 				judgeQuality = value;
@@ -48,43 +44,42 @@ namespace OPDtabData
 
 		public string TeamName {
 			get {
-				return this.teamName;
+				return teamName;
 			}
 			set {
 				teamName = value;
 			}
 		}
 
-		
-		
 		public override string ToString ()
 		{
-			if(TeamName!=null)
+			if (TeamName!=null) {
 				return TeamName;
-			else if(JudgeQuality>=0) 
-				return "#"+JudgeQuality.ToString();
-			else
-				return "";
+			}
+
+			if (JudgeQuality >= 0) {
+				return "#" + JudgeQuality.ToString();
+			}
+
+			return "";
 		}
 		
-		void Parse(string s) {
+		public static Role Parse(string s) {
 			s = s.Trim();
-			char[] whitespace = new char[] {' '};
-			if(s.StartsWith("#")) {
-				// Judge
-				TeamName = null;
-				JudgeQuality = (int)uint.Parse(s.Substring(1));
+
+			if (s.StartsWith("#", StringComparison.Ordinal)) {
+				return new Role((int)uint.Parse(s.Substring(1)));
+				// FIXME unsafe: uint.Parse can fail
 			}
-			else if(s.Length>0) {
+
+			if(s.Length>0) {
 				// TeamMember
-				JudgeQuality = -1;
-				TeamName = String.Join(" ",s.Split(whitespace,StringSplitOptions.RemoveEmptyEntries));		
+				return new Role(
+					string.Join(" ", s.Split(new char [] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+				);
 			}
-			else {
-				// No Role
-				TeamName = null;
-				JudgeQuality = -1;
-			}
+
+			return new Role();
 		}
 		
 		#region IComparable implementation

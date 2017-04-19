@@ -34,21 +34,20 @@ namespace OPDtabGui
 			this.Modal = true;
 			this.Decorated = true; 
 			this.Title = "Press Esc to close";
-					
-			alAdd = new Alignment(0,0,0,0);			
+
+			alAdd = new Alignment(0,0,0,0);
 			Button btnAdd = new Button();
 			Image im = new Image();
 			im.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-add", IconSize.Menu);
 			btnAdd.Add(im);
 			btnAdd.Clicked += OnBtnAddClicked;
 			alAdd.Add (btnAdd);
-			
+
 			pattern = new DebaterPattern();
 			try {
-				pattern.ParsePattern(p);	
+				pattern = DebaterPattern.Parse(p);
 			}
-			catch {
-			}				
+			catch { }
 			UpdateGui();
 		}
 		
@@ -65,9 +64,9 @@ namespace OPDtabGui
 				hbox.PackStart(btn, false, false, 0);
 				hbox.PackStart(new Label("@"), false, false, 0);
 				hbox.PackStart(new Label(c), false, false, 0);
-				vbox.PackStart(hbox, false, false, 0);				
+				vbox.PackStart(hbox, false, false, 0);
 			}
-			
+
 			foreach(Name n in pattern.Debaters) {
 				HBox hbox = new HBox();
 				hbox.Spacing = 3;
@@ -78,13 +77,13 @@ namespace OPDtabGui
 				hbox.PackStart(btn, false, false, 0);
 				hbox.PackStart(new Label(n.ToString()), false, false, 0);
 				vbox.PackStart(hbox, false, false, 0);	
-			}			
+			}
 			vbox.PackStart(alAdd, false, false, 0);
 			
 			vbox.ShowAll();	
 			GtkScrolledWindow.Vadjustment.Value = GtkScrolledWindow.Vadjustment.Upper;
 		}
-		
+
 		protected void OnBtnAddClicked (object sender, System.EventArgs e)
 		{
 			// create combobox selection by aggregating clubs
@@ -96,12 +95,8 @@ namespace OPDtabGui
 				debaters.Add(d.Name.ToString());
 			}
 			clubs.Sort();
-			debaters.Sort();			
-			
-			//AppendCombobox(clubs);
-			//AppendCombobox(debaters);
-			
-			
+			debaters.Sort();
+
 			ListStore store = new ListStore(typeof(string)); 
 			foreach(string c in clubs)
 				store.AppendValues(c);
@@ -121,7 +116,7 @@ namespace OPDtabGui
 			btnOk.Add(im);
 			btnOk.Clicked += delegate {
 				try {
-					pattern.ParsePattern(pattern+"; "+cb.ActiveText);
+					pattern = DebaterPattern.Parse(pattern + "; " + cb.ActiveText);
 				}
 				catch(Exception ex) {
 					MiscHelpers.ShowMessage(this, 
@@ -163,7 +158,7 @@ namespace OPDtabGui
 			btnOk.Add(im);
 			btnOk.Clicked += delegate {
 				try {
-					pattern.ParsePattern(pattern+"; "+cb.ActiveText);
+					pattern = DebaterPattern.Parse(pattern + "; " + cb.ActiveText);
 				}
 				catch(Exception ex) {
 					MiscHelpers.ShowMessage(this, 

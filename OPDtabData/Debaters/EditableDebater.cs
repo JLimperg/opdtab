@@ -1,4 +1,3 @@
-using System;
 namespace OPDtabData
 {
 	public class EditableDebater : Debater
@@ -10,34 +9,6 @@ namespace OPDtabData
 		
 		public EditableDebater(Debater d) : base(d) 
 		{
-		}
-		
-		public void ParseBlackList(string s) {
-			BlackList.ParsePattern(s);
-		}
-		
-		public void ParseWhiteList(string s) {
-			WhiteList.ParsePattern(s);	
-		}
-				
-		public void ParseAge(string s) {
-			Age = uint.Parse(s);
-		}
-		
-		public void ParseName(string s) {
-			Name = new Name(s);
-		}
-		
-		public void ParseClub(string s) {
-			Club = new Club(s);
-		}	
-		
-		public void ParseRole(string s) {
-			Role = new Role(s);	
-		}
-		
-		public void ParseExtraInfo(string s) {
-			ExtraInfo = s.Trim();	
 		}
 		
 		public string RoleCompletion {
@@ -59,16 +30,8 @@ namespace OPDtabData
 				return base.Club;
 			}
 			set {
-				try {
-					BlackList.RemoveClub(base.Club.Name);
-				} 
-				catch {
-				}
-				try {
-					BlackList.AddClub(value.Name);
-				}
-				catch {
-				}
+				BlackList.RemoveClub(base.Club.Name);
+				BlackList.AddClub(value.Name);
 				base.Club = value;
 			}
 		}

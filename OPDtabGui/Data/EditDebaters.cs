@@ -6,22 +6,171 @@ using OPDtabData;
 
 namespace OPDtabGui
 {
-	public partial class EditDebaters : Gtk.Window
+	public partial class EditDebaters : Window
 	{
-		
-		OPDtabData.AppSettings.EditDebatersClass editDebatersSettings;
+
+		/*
+		 * The following interface, class and struct allow us to interact with the table model, which consists of one
+		 * EditableDebater per table row. A column of the table represents one property of an EditableDebater and
+		 * is described by a title and one ColumnInfo object. The latter specifies how the property is to be
+		 * rendered, how it can be retrieved from an EditableDebater and parsed from a string.
+		 *
+		 * Retrieving a property gives us an IDebaterProperty which implements IComparable. Its Set method can be
+		 * used to set the corresponding property of a Debater to the retrieved value. UnsafeSetRoundDebater does the same
+		 * if RoundDebaters have the corresponding property.
+		 *
+		 * The DebaterProperty<T> class wraps a value of type T, implementing the IDebaterProperty interface by
+		 * incorporating information on how to set an EditableDebater's corresponding property to the wrapped value.
+		 */
+
+		interface IDebaterProperty : IComparable {
+			void Set(Debater debater);
+			void UnsafeSetRoundDebater(RoundDebater debater);
+		}
+
+		class DebaterProperty<T> : IDebaterProperty where T : IComparable
+		{
+			public readonly T prop;
+			public readonly Action<Debater, T> set;
+			public readonly Action<RoundDebater, T> setRoundDebater;
+
+			public DebaterProperty(
+				T prop,
+				Action<Debater, T> set,
+				Action<RoundDebater, T> setRoundDebater)
+			{
+				this.prop = prop;
+				this.set = set;
+				this.setRoundDebater = setRoundDebater;
+			}
+
+			public int CompareTo(object obj)
+			{
+				return prop.CompareTo(obj);
+			}
+
+			public void Set(Debater debater)
+			{
+				set(debater, prop);
+			}
+
+			public void UnsafeSetRoundDebater(RoundDebater debater)
+			{
+				setRoundDebater(debater, prop);
+			}
+
+			public override string ToString() {
+				return prop.ToString();
+			}
+
+			public override bool Equals(object obj)
+			{
+				return prop.Equals(obj);
+			}
+
+			public override int GetHashCode()
+			{
+				return prop.GetHashCode();
+			}
+		}
+
+		struct ColumnInfo
+		{
+			public CellRendererTextAdv.Type cellRendererType;
+			public Func<EditableDebater, IDebaterProperty> get;
+			public Action<EditableDebater, string> parseAndSet;
+		}
+
+
+		AppSettings.EditDebatersClass editDebatersSettings;
 		TreePath newDebaterPath;
 		ListStore store;
 		Entry entryDebatersFilter;
-		
-		public EditDebaters() : base(Gtk.WindowType.Toplevel)
+
+		// The following dictionary represents the list of columns in the tree view. It is morally constant, but
+		// const dictionaries aren't yet a thing.
+		Dictionary<string, ColumnInfo> columns;
+
+		// TODO Currently, all the parsing functions simply swallow errors,
+		// doing nothing if an error is encountered. It might me nicer to
+		// give some feedback to the user.
+		public EditDebaters() : base(WindowType.Toplevel)
 		{
-			this.Build ();
+			columns = new Dictionary<string, ColumnInfo> {
+				{"Name", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.Entry,
+					get = e => new DebaterProperty<Name>(
+							e.Name,
+							(e1, name) => e1.Name = name,
+							(e1, name) => e1.Name = name),
+					parseAndSet = (e, name) => {
+						OPDtabData.Name.Parse(name).Do(n => e.Name = n);
+					}
+				}},
+				{"Club", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.EntryWithCompletion,
+					get = e => new DebaterProperty<Club>(
+							e.Club,
+							(e1, club) => e1.Club = club,
+							(e1, club) => e1.Club = club),
+					parseAndSet = (e, club) => {
+						Club.Parse(club).Do(c => e.Club = c);
+					}
+				}},
+				{"Age", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.Entry,
+					get = e => new DebaterProperty<uint>(
+							e.Age,
+							(e1, age) => e1.Age = age,
+							(e1, age) => e1.Age = age),
+						parseAndSet = (e, age) => {
+							try {
+								e.Age = uint.Parse(age);
+							} catch (FormatException) {}
+						}
+				}},
+				{"Role", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.EntryWithCompletion,
+					get = e => new DebaterProperty<Role>(
+							e.Role,
+							(e1, role) => e1.Role = role,
+							(e1, role) => e1.Role = role),
+					parseAndSet = (e, role) => {
+						e.Role = OPDtabData.Role.Parse(role);
+					}
+				}},
+				{"BlackList", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.DebaterPattern,
+					get = e => new DebaterProperty<DebaterPattern>(
+							e.BlackList,
+							(e1, bl) => e1.BlackList = bl,
+							(_, __) => { throw new Exception(
+								"Attempt to set BlackList property of RoundDebater."); }),
+					parseAndSet = (e, bl) => e.BlackList = DebaterPattern.Parse(bl)}},
+				{"WhiteList", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.DebaterPattern,
+					get = e => new DebaterProperty<DebaterPattern>(
+							e.WhiteList,
+							(e1, wl) => e1.WhiteList = wl,
+							(_, __) => { throw new Exception(
+								"Attempt to set WhiteList property of RoundDebater."); }),
+					parseAndSet = (e, wl) => e.WhiteList = DebaterPattern.Parse(wl)}},
+				{"ExtraInfo", new ColumnInfo{
+					cellRendererType = CellRendererTextAdv.Type.Entry,
+					get = e => new DebaterProperty<string>(
+							e.ExtraInfo,
+							(e1, info) => e1.ExtraInfo = info,
+							(_, __) => { throw new Exception(
+								"Attempt to set ExtraInfo property of RoundDebater."); }),
+					parseAndSet = (e, info) => e.ExtraInfo = info.Trim()}}
+			};
+
+			Build ();
 			editDebatersSettings = AppSettings.I.EditDebaters;
-			entryDebatersFilter = MiscHelpers.MakeFilterEntry();
+			entryDebatersFilter = MiscHelpers.MakeFilterEntry ();
 			entryDebatersFilter.Changed += OnEntryDebatersFilterChanged;
-			cEntryFilter.Add(entryDebatersFilter);
-			cEntryFilter.ShowAll();
+			cEntryFilter.Add (entryDebatersFilter);
+			cEntryFilter.ShowAll ();
 			InitTreeDebaters();
 		}
 		
@@ -39,14 +188,10 @@ namespace OPDtabGui
 			TreeModelSort modelDebatersSort = new TreeModelSort(modelDebatersFilter);
 						
 			treeDebaters.Model = modelDebatersSort;
-			
-			SetupDebaterColumn("Name", CellRendererTextAdv.Type.Entry);
-			SetupDebaterColumn("Club", CellRendererTextAdv.Type.EntryWithCompletion);
-			SetupDebaterColumn("Age", CellRendererTextAdv.Type.Entry);
-			SetupDebaterColumn("Role", CellRendererTextAdv.Type.EntryWithCompletion);
-			SetupDebaterColumn("BlackList", CellRendererTextAdv.Type.DebaterPattern);
-			SetupDebaterColumn("WhiteList", CellRendererTextAdv.Type.DebaterPattern);
-			SetupDebaterColumn("ExtraInfo", CellRendererTextAdv.Type.Entry);
+
+			foreach (var col in columns) {
+				SetupDebaterColumn (col.Key, col.Value.cellRendererType);
+			}
 			treeDebaters.HeadersClickable = true;
 			treeDebaters.Selection.Mode = SelectionMode.Multiple;
 			
@@ -86,10 +231,8 @@ namespace OPDtabGui
 			};
 				
 			
-			col.Resizable = true;			
-			col.Clicked += delegate(object sender, EventArgs args) {
-				SetSortColumn(colNum);
-			};
+			col.Resizable = true;
+			col.Clicked += ((_, __) => SetSortColumn(colNum));
 			(treeDebaters.Model as TreeModelSort).SetSortFunc(colNum,
 				delegate(TreeModel model, TreeIter a, TreeIter b) {
 					return SortDebaters(model,a,b,colNum);
@@ -105,26 +248,22 @@ namespace OPDtabGui
 			model.GetIter(out iter, path);
 			
 			EditableDebater d = (EditableDebater)model.GetValue(iter, 0);
-			// only save old data in rd if editing
-			RoundDebater rd = null;
-			if(newDebaterPath==null && colNum<4)
-				rd = new RoundDebater(d);
+
 			
 			try {
-				string prop = treeDebaters.Columns[colNum].Title;
+				ColumnInfo prop = columns[treeDebaters.Columns[colNum].Title];
 				// This parses the given new string,
 				// and updates the data in store
-				d.GetType().InvokeMember("Parse"+prop,
-			                             BindingFlags.InvokeMethod, null, d, 
-				                         new object[] {newText});
+				prop.parseAndSet (d, newText);
 				
 				// existing Debater: Update Data in (possibly) existing Rounds
 				// tries to keep data consisting, but there's no guarantee
 				// BlackList/WhiteList and ExtraInfo are not 
 				// used in RoundDebater, so skip this by condition colNum<4	
-				if(newDebaterPath==null && colNum<4) {					
-					object p = d.GetType().InvokeMember(prop, BindingFlags.GetProperty, null,
-									                    d, new object[] {});
+				if(newDebaterPath==null && colNum<4) {
+					var rd = new EditableDebater (d);
+					var p = prop.get(d);
+
 					// Only simple Renaming of Role is possible if Rounds exist
 					if(colNum==3 
 					   && Tournament.I.Rounds.Count>0 
@@ -159,15 +298,12 @@ namespace OPDtabGui
 						// need a temporary flag, throwing exceptions in delegates doesnt work...
 						// the following flag stuff isn't elegant, but it should work
 						bool flag = false;
-						model.Foreach(delegate(TreeModel model_, TreePath path_, TreeIter iter_) {
+						model.Foreach((model_, _, iter_) => {
 							if(!iter.Equals(iter_)) {
 								EditableDebater d_ = (EditableDebater)model_.GetValue(iter_,0);
 								if(d_.Equals(d)) {
 									// reset to old value...
-									object old = rd.GetType().InvokeMember(prop,BindingFlags.GetProperty,
-									                                       null, rd, new object[]{});
-									d.GetType().InvokeMember(prop, BindingFlags.SetProperty, null, d, 
-											                 new object[] {old});
+									prop.get (rd).Set (d);
 									flag = true;
 									return true;
 								}
@@ -185,8 +321,7 @@ namespace OPDtabGui
 								if(rd_==null)
 									continue;
 								if(rd_.Equals(rd)) {
-									rd_.GetType().InvokeMember(prop, BindingFlags.SetProperty, null, rd_, 
-									                         new object[] {p});
+									p.UnsafeSetRoundDebater(rd_);
 								}
 								if(rd_.Role.TeamName==rd.Role.TeamName) 
 									rd_.Role.TeamName=d.Role.TeamName;
@@ -196,8 +331,7 @@ namespace OPDtabGui
 							foreach(TeamData team in round.AllTeams) {
 								foreach(RoundDebater rd_ in team) {
 									if(rd_.Equals(rd)) {
-										rd_.GetType().InvokeMember(prop, BindingFlags.SetProperty, null, rd_, 
-									                             new object[] {p});
+										p.UnsafeSetRoundDebater(rd_);
 									}
 									if(rd_.Role.TeamName==rd.Role.TeamName) 
 										rd_.Role.TeamName=d.Role.TeamName;
@@ -207,8 +341,7 @@ namespace OPDtabGui
 						else if(rd.Role.IsJudge) {
 							foreach(RoundDebater rd_ in round.AllJudges) {
 								if(rd_.Equals(rd)) {
-									rd_.GetType().InvokeMember(prop, BindingFlags.SetProperty, null, rd_, 
-										                     new object[] {p});
+									p.UnsafeSetRoundDebater(rd_);
 								}
 							}
 						}
@@ -311,9 +444,10 @@ namespace OPDtabGui
 		
 		void CellDataFuncDefault(TreeViewColumn column, CellRenderer cell, TreeModel model, TreeIter iter)
 		{
-			object o = model.GetValue(iter,0);
-			object prop = o.GetType().InvokeMember(column.Title,BindingFlags.GetProperty,null,o,null);
-			(cell as CellRendererText).Text = prop.ToString();
+			var debater = (EditableDebater)model.GetValue(iter,0);
+			var cellText = (CellRendererText)cell;
+			var val = columns[column.Title].get(debater);
+			cellText.Text = val != null ? val.ToString() : "?";
 		}
 		
 		void SetSortColumn(int colNum) {
@@ -350,17 +484,17 @@ namespace OPDtabGui
 			EditableDebater d_a = (EditableDebater)model.GetValue(a,0);
 			EditableDebater d_b = (EditableDebater)model.GetValue(b,0);
 			if(d_a!=null && d_b!=null) {
-				string prop = treeDebaters.Columns[col].Title;	
-				IComparable c_a = (IComparable)d_a.GetType().InvokeMember(prop,BindingFlags.GetProperty,null,d_a,null);
-				IComparable c_b = (IComparable)d_b.GetType().InvokeMember(prop,BindingFlags.GetProperty,null,d_b,null);
+				ColumnInfo prop = columns[treeDebaters.Columns[col].Title];
+				IComparable c_a = prop.get (d_a);
+				IComparable c_b = prop.get (d_b);
 				
 				int compare = c_a.CompareTo(c_b);
 				int lastSortCol = editDebatersSettings.lastSortCol;				
 				
 				if(lastSortCol != -1 && compare == 0) {
-					string propLast = treeDebaters.Columns[lastSortCol].Title;	
-					IComparable c_a_last = (IComparable)d_a.GetType().InvokeMember(propLast,BindingFlags.GetProperty,null,d_a,null);
-					IComparable c_b_last = (IComparable)d_b.GetType().InvokeMember(propLast,BindingFlags.GetProperty,null,d_b,null);
+					ColumnInfo propLast = columns[treeDebaters.Columns[lastSortCol].Title];
+					IComparable c_a_last = propLast.get (d_a);
+					IComparable c_b_last = propLast.get (d_b);
 					
 					SortType lastSortOrder = editDebatersSettings.lastSortOrder;						
 					if(treeDebaters.Columns[col].SortOrder == lastSortOrder)
@@ -388,7 +522,7 @@ namespace OPDtabGui
 		
 		
 		
-		protected virtual void OnBtnDebaterAddClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnDebaterAddClicked (object sender, EventArgs e)
 		{
 			if(newDebaterPath != null)
 				return;
@@ -399,7 +533,7 @@ namespace OPDtabGui
 			treeDebaters.SetCursor(ConvertStorePathToModelPath(newDebaterPath),treeDebaters.Columns[0],true);
 		}
 		
-		protected virtual void OnBtnDebaterRemoveClicked (object sender, System.EventArgs e)
+		protected virtual void OnBtnDebaterRemoveClicked (object sender, EventArgs e)
 		{
 			if(treeDebaters.Selection.CountSelectedRows() == 0)
 				return;
@@ -467,7 +601,7 @@ namespace OPDtabGui
 			
 		}
 		
-		protected void OnBtnSwapRolesClicked (object sender, System.EventArgs e)
+		protected void OnBtnSwapRolesClicked (object sender, EventArgs e)
 		{
 			TreePath[] r = treeDebaters.Selection.GetSelectedRows();
 			if(r.Length != 2) {
@@ -546,7 +680,7 @@ namespace OPDtabGui
 		}
 		
 		
-		protected virtual void OnEntryDebatersFilterChanged (object sender, System.EventArgs e)
+		protected virtual void OnEntryDebatersFilterChanged (object sender, EventArgs e)
 		{
 			((treeDebaters.Model as TreeModelSort).Model as TreeModelFilter).Refilter();
 			UpdateDebatersInfo();
@@ -564,7 +698,7 @@ namespace OPDtabGui
 			return sort.ConvertChildPathToPath(filter.ConvertChildPathToPath(path));
 		}
 		
-		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		protected virtual void OnDeleteEvent (object o, DeleteEventArgs args)
 		{
 			SaveDebaters();
 			ShowRanking.I.UpdateAll();
@@ -578,12 +712,12 @@ namespace OPDtabGui
 			Tournament.I.Save();
 		}
 		
-		protected void OnBtnExportCSVClicked (object sender, System.EventArgs e)
+		protected void OnBtnExportCSVClicked (object sender, EventArgs e)
 		{
 			DoTheExport(MiscHelpers.TemplateType.CSV);
 		}
 		
-		protected void OnBtnExportPDFClicked (object sender, System.EventArgs e)
+		protected void OnBtnExportPDFClicked (object sender, EventArgs e)
 		{
 			DoTheExport(MiscHelpers.TemplateType.PDF);			
 		}

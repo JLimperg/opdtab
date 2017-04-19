@@ -6,15 +6,7 @@ namespace OPDtabData
 		string firstName;
 		string lastName;
 		
-		public Name() {			
-		}
-		
-		
-		
-		public Name(string str) {
-			string[] s = Parse(str);
-			FirstName = s[0];
-			LastName = s[1];
+		public Name() {
 		}
 		
 		public Name(string fN, string lN) {
@@ -79,30 +71,65 @@ namespace OPDtabData
 				lastName = value;
 			}
 		}
+
+		public enum ParseError
+		{
+			MoreThanOneComma,
+			EmptyNameComponent,
+			TooMuchWhitespace,
+			Unspecified
+		}
+
+		public static string ParseErrorDescription(ParseError err)
+		{
+			switch (err) {
+			case ParseError.MoreThanOneComma:
+				return "Name contains more than one comma.";
+			case ParseError.EmptyNameComponent:
+				return "Either first name or last name is empty.";
+			case ParseError.TooMuchWhitespace:
+				return "Can't split into a pattern of the form 'FirstName LastName'.";
+			case ParseError.Unspecified:
+				return "Unable to parse name.";
+			default:
+				throw new Exception("impossible");
+			}
+		}
 		
-		public static string[] Parse(string s) {
-			// small parser for names
-			if(s == null)
+		public static Either<ParseError, Name> Parse(string s) {
+			if (s == null) {
 				throw new ArgumentNullException();
-			string[] parts = s.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-			if(parts.Length>2) {
-				throw new FormatException("Name contains more than one comma");
 			}
-			else if(parts.Length==2) {
-				string lN = MiscHelpers.SanitizeString(parts[0]);
-				string fN = MiscHelpers.SanitizeString(parts[1]);
-				if(fN=="" || lN=="")
-					throw new FormatException("No LastName or FirstName found");
-				return new string[] {fN, lN};
+
+
+			var parts = s.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+
+			if (parts.Length > 2) {
+				return Either<ParseError, Name>.Left(ParseError.MoreThanOneComma);
 			}
-			else if(parts.Length==1) {
-				string[] n = MiscHelpers.StringToWords(parts[0]); 
-				if(n.Length!=2)
-					throw new FormatException("No split in 'FirstName LastName' possible, too many whitespaces");
-				return n;
+
+			if (parts.Length==2) {
+				var lN = MiscHelpers.SanitizeString(parts[0]);
+				var fN = MiscHelpers.SanitizeString(parts[1]);
+
+				if (fN == "" || lN == "") {
+					return Either<ParseError, Name>.Left(ParseError.EmptyNameComponent);
+				}
+
+				return Either<ParseError, Name>.Right(new Name(fN, lN));
 			}
-			else 
-				throw new FormatException("Name not parsable");	
+
+			if (parts.Length==1) {
+				var n = MiscHelpers.StringToWords(parts[0]);
+
+				if (n.Length != 2) {
+					return Either<ParseError, Name>.Left(ParseError.TooMuchWhitespace);
+				}
+
+				return Either<ParseError, Name>.Right(new Name(n[0], n[1]));
+			}
+
+			return Either<ParseError, Name>.Left(ParseError.Unspecified);
 		}
 
 		#region IComparable implementation

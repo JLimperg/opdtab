@@ -23,11 +23,12 @@ namespace OPDtabData
 		public Debater(Debater d) : base(d)  {
 			InitFields();	
 			// ALWAYS COPY!
+			// TODO implement proper copying
 			extraInfo = d.ExtraInfo;
 			roundResults = new List<RoundResultData>(d.RoundResults);
 			visitedRooms = new MyDictionary<string, int>(d.VisitedRooms);
-			blackList.ParsePattern(d.BlackList.ToString());
-			whiteList.ParsePattern(d.WhiteList.ToString());
+			blackList = DebaterPattern.Parse(d.BlackList.ToString());
+			whiteList = DebaterPattern.Parse(d.WhiteList.ToString());
 		}
 		
 		void InitFields() {
