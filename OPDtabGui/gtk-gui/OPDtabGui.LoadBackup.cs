@@ -5,19 +5,31 @@ namespace OPDtabGui
 	public partial class LoadBackup
 	{
 		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.HBox hbox1;
+
 		private global::Gtk.ComboBox cbBackupFiles;
+
 		private global::Gtk.Button btnLoad;
+
 		private global::Gtk.Frame frame1;
+
 		private global::Gtk.Alignment GtkAlignment;
+
 		private global::Gtk.Table table1;
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
+
 		private global::Gtk.VBox vboxRounds;
+
 		private global::Gtk.Label label1;
+
 		private global::Gtk.Label labelDebaters;
+
 		private global::Gtk.Label labelRounds;
+
 		private global::Gtk.Label GtkLabel1;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

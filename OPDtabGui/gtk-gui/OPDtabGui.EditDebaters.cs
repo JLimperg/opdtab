@@ -5,203 +5,167 @@ namespace OPDtabGui
 	public partial class EditDebaters
 	{
 		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.HBox hbox1;
+
 		private global::Gtk.HButtonBox hbuttonbox1;
+
 		private global::Gtk.Button btnDebaterAdd;
+
 		private global::Gtk.Button btnDebaterRemove;
+
 		private global::Gtk.Button btnSwapRoles;
+
 		private global::Gtk.Alignment cEntryFilter;
+
 		private global::Gtk.Label lblDebatersInfo;
+
 		private global::Gtk.Button btnExportCSV;
+
 		private global::Gtk.Button btnExportPDF;
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
 		private global::Gtk.TreeView treeDebaters;
-		
-		protected virtual void Build ()
+
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget OPDtabGui.EditDebaters
 			this.Name = "OPDtabGui.EditDebaters";
-			this.Title = global::Mono.Unix.Catalog.GetString ("EditDebaters");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("OPDtabGui.AppIcon.png");
+			this.Title = global::Mono.Unix.Catalog.GetString("EditDebaters");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource("OPDtabGui.AppIcon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			this.Modal = true;
 			// Container child OPDtabGui.EditDebaters.Gtk.Container+ContainerChild
-			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1 = new global::Gtk.HBox();
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
+			this.hbuttonbox1 = new global::Gtk.HButtonBox();
+			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.btnDebaterAdd = new global::Gtk.Button ();
+			this.btnDebaterAdd = new global::Gtk.Button();
 			this.btnDebaterAdd.CanFocus = true;
 			this.btnDebaterAdd.Name = "btnDebaterAdd";
 			this.btnDebaterAdd.UseUnderline = true;
-			// Container child btnDebaterAdd.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w1 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w2 = new global::Gtk.HBox ();
-			w2.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w3 = new global::Gtk.Image ();
-			w3.Pixbuf = global::Stetic.IconLoader.LoadIcon (
-				this,
-				"gtk-add",
-				global::Gtk.IconSize.Menu
-			);
-			w2.Add (w3);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w5 = new global::Gtk.Label ();
-			w5.LabelProp = global::Mono.Unix.Catalog.GetString ("Add");
-			w5.UseUnderline = true;
-			w2.Add (w5);
-			w1.Add (w2);
-			this.btnDebaterAdd.Add (w1);
-			this.hbuttonbox1.Add (this.btnDebaterAdd);
-			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterAdd]));
-			w9.Expand = false;
-			w9.Fill = false;
+			this.btnDebaterAdd.Label = global::Mono.Unix.Catalog.GetString("Add");
+			global::Gtk.Image w1 = new global::Gtk.Image();
+			w1.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-add", global::Gtk.IconSize.Menu);
+			this.btnDebaterAdd.Image = w1;
+			this.hbuttonbox1.Add(this.btnDebaterAdd);
+			global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterAdd]));
+			w2.Expand = false;
+			w2.Fill = false;
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.btnDebaterRemove = new global::Gtk.Button ();
+			this.btnDebaterRemove = new global::Gtk.Button();
 			this.btnDebaterRemove.CanFocus = true;
 			this.btnDebaterRemove.Name = "btnDebaterRemove";
 			this.btnDebaterRemove.UseUnderline = true;
-			// Container child btnDebaterRemove.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w11 = new global::Gtk.HBox ();
-			w11.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (
-				this,
-				"gtk-remove",
-				global::Gtk.IconSize.Menu
-			);
-			w11.Add (w12);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w14 = new global::Gtk.Label ();
-			w14.LabelProp = global::Mono.Unix.Catalog.GetString ("Remove");
-			w14.UseUnderline = true;
-			w11.Add (w14);
-			w10.Add (w11);
-			this.btnDebaterRemove.Add (w10);
-			this.hbuttonbox1.Add (this.btnDebaterRemove);
-			global::Gtk.ButtonBox.ButtonBoxChild w18 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterRemove]));
-			w18.Position = 1;
-			w18.Expand = false;
-			w18.Fill = false;
+			this.btnDebaterRemove.Label = global::Mono.Unix.Catalog.GetString("Remove");
+			global::Gtk.Image w3 = new global::Gtk.Image();
+			w3.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-remove", global::Gtk.IconSize.Menu);
+			this.btnDebaterRemove.Image = w3;
+			this.hbuttonbox1.Add(this.btnDebaterRemove);
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterRemove]));
+			w4.Position = 1;
+			w4.Expand = false;
+			w4.Fill = false;
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.btnSwapRoles = new global::Gtk.Button ();
+			this.btnSwapRoles = new global::Gtk.Button();
 			this.btnSwapRoles.CanFocus = true;
 			this.btnSwapRoles.Name = "btnSwapRoles";
 			this.btnSwapRoles.UseUnderline = true;
-			// Container child btnSwapRoles.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w19 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w20 = new global::Gtk.HBox ();
-			w20.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w21 = new global::Gtk.Image ();
-			w21.Pixbuf = global::Stetic.IconLoader.LoadIcon (
-				this,
-				"gtk-refresh",
-				global::Gtk.IconSize.Menu
-			);
-			w20.Add (w21);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w23 = new global::Gtk.Label ();
-			w23.LabelProp = global::Mono.Unix.Catalog.GetString ("Swap Roles");
-			w23.UseUnderline = true;
-			w20.Add (w23);
-			w19.Add (w20);
-			this.btnSwapRoles.Add (w19);
-			this.hbuttonbox1.Add (this.btnSwapRoles);
-			global::Gtk.ButtonBox.ButtonBoxChild w27 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnSwapRoles]));
-			w27.Position = 2;
-			w27.Expand = false;
-			w27.Fill = false;
-			this.hbox1.Add (this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbuttonbox1]));
-			w28.Position = 0;
+			this.btnSwapRoles.Label = global::Mono.Unix.Catalog.GetString("Swap Roles");
+			global::Gtk.Image w5 = new global::Gtk.Image();
+			w5.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			this.btnSwapRoles.Image = w5;
+			this.hbuttonbox1.Add(this.btnSwapRoles);
+			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnSwapRoles]));
+			w6.Position = 2;
+			w6.Expand = false;
+			w6.Fill = false;
+			this.hbox1.Add(this.hbuttonbox1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbuttonbox1]));
+			w7.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.cEntryFilter = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.cEntryFilter = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.cEntryFilter.Name = "cEntryFilter";
-			this.hbox1.Add (this.cEntryFilter);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cEntryFilter]));
-			w29.PackType = ((global::Gtk.PackType)(1));
-			w29.Position = 1;
+			this.hbox1.Add(this.cEntryFilter);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cEntryFilter]));
+			w8.PackType = ((global::Gtk.PackType)(1));
+			w8.Position = 1;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.lblDebatersInfo = new global::Gtk.Label ();
+			this.lblDebatersInfo = new global::Gtk.Label();
 			this.lblDebatersInfo.Name = "lblDebatersInfo";
-			this.lblDebatersInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("lblDebatersInfo");
-			this.hbox1.Add (this.lblDebatersInfo);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblDebatersInfo]));
-			w30.PackType = ((global::Gtk.PackType)(1));
-			w30.Position = 2;
-			w30.Expand = false;
-			w30.Fill = false;
+			this.lblDebatersInfo.LabelProp = global::Mono.Unix.Catalog.GetString("lblDebatersInfo");
+			this.hbox1.Add(this.lblDebatersInfo);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblDebatersInfo]));
+			w9.PackType = ((global::Gtk.PackType)(1));
+			w9.Position = 2;
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnExportCSV = new global::Gtk.Button ();
+			this.btnExportCSV = new global::Gtk.Button();
 			this.btnExportCSV.CanFocus = true;
 			this.btnExportCSV.Name = "btnExportCSV";
 			this.btnExportCSV.UseUnderline = true;
-			this.btnExportCSV.Label = global::Mono.Unix.Catalog.GetString ("Export as CSV");
-			this.hbox1.Add (this.btnExportCSV);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
-			w31.PackType = ((global::Gtk.PackType)(1));
-			w31.Position = 3;
-			w31.Expand = false;
-			w31.Fill = false;
+			this.btnExportCSV.Label = global::Mono.Unix.Catalog.GetString("Export as CSV");
+			this.hbox1.Add(this.btnExportCSV);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
+			w10.PackType = ((global::Gtk.PackType)(1));
+			w10.Position = 3;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnExportPDF = new global::Gtk.Button ();
+			this.btnExportPDF = new global::Gtk.Button();
 			this.btnExportPDF.CanFocus = true;
 			this.btnExportPDF.Name = "btnExportPDF";
 			this.btnExportPDF.UseUnderline = true;
-			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString ("Export as PDF");
-			this.hbox1.Add (this.btnExportPDF);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
-			w32.PackType = ((global::Gtk.PackType)(1));
-			w32.Position = 4;
-			w32.Expand = false;
-			w32.Fill = false;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w33.Position = 0;
-			w33.Expand = false;
-			w33.Fill = false;
+			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString("Export as PDF");
+			this.hbox1.Add(this.btnExportPDF);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
+			w11.PackType = ((global::Gtk.PackType)(1));
+			w11.Position = 4;
+			w11.Expand = false;
+			w11.Fill = false;
+			this.vbox1.Add(this.hbox1);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.treeDebaters = new global::Gtk.TreeView ();
+			this.treeDebaters = new global::Gtk.TreeView();
 			this.treeDebaters.CanFocus = true;
 			this.treeDebaters.Name = "treeDebaters";
 			this.treeDebaters.EnableSearch = false;
 			this.treeDebaters.RulesHint = true;
-			this.GtkScrolledWindow.Add (this.treeDebaters);
-			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
-			w35.Position = 1;
-			this.Add (this.vbox1);
+			this.GtkScrolledWindow.Add(this.treeDebaters);
+			this.vbox1.Add(this.GtkScrolledWindow);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			w14.Position = 1;
+			this.Add(this.vbox1);
 			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 1104;
 			this.DefaultHeight = 707;
-			this.Show ();
-			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-			this.btnDebaterAdd.Clicked += new global::System.EventHandler (this.OnBtnDebaterAddClicked);
-			this.btnDebaterRemove.Clicked += new global::System.EventHandler (this.OnBtnDebaterRemoveClicked);
-			this.btnSwapRoles.Clicked += new global::System.EventHandler (this.OnBtnSwapRolesClicked);
-			this.btnExportPDF.Clicked += new global::System.EventHandler (this.OnBtnExportPDFClicked);
-			this.btnExportCSV.Clicked += new global::System.EventHandler (this.OnBtnExportCSVClicked);
+			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.btnDebaterAdd.Clicked += new global::System.EventHandler(this.OnBtnDebaterAddClicked);
+			this.btnDebaterRemove.Clicked += new global::System.EventHandler(this.OnBtnDebaterRemoveClicked);
+			this.btnSwapRoles.Clicked += new global::System.EventHandler(this.OnBtnSwapRolesClicked);
+			this.btnExportPDF.Clicked += new global::System.EventHandler(this.OnBtnExportPDFClicked);
+			this.btnExportCSV.Clicked += new global::System.EventHandler(this.OnBtnExportCSVClicked);
 		}
 	}
 }

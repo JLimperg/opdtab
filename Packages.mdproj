@@ -7,30 +7,62 @@
     <ProjectGuid>{68567371-E1E5-44A1-9F4E-7E475F52350A}</ProjectGuid>
     <Packages>
       <Packages>
-        <Package name="Linux Binaries">
-          <Builder targetFile="Packages\opdtab_bin_linux-x86.tar" platform="Linux" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
+        <Package>
+          <Builder>
             <ChildEntries>
-              <SolutionItemReference path="OPDtab\OPDtab.csproj" />
-              <SolutionItemReference path="OPDtabGui\OPDtabGui.csproj" />
-              <SolutionItemReference path="OPDtabData\OPDtabData.csproj" />
-              <SolutionItemReference path="LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj" />
+              <SolutionItemReference>
+                <path>OPDtab\OPDtab.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>OPDtabGui\OPDtabGui.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>OPDtabData\OPDtabData.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj</path>
+              </SolutionItemReference>
             </ChildEntries>
             <ExcludedFiles>
               <File>OPDtab,Binaries,opdtab</File>
             </ExcludedFiles>
-            <RootEntry path="OPDtab.sln" id=":root:" />
+            <RootEntry>
+              <path>OPDtab.sln</path>
+              <id>:root:</id>
+            </RootEntry>
+            <targetFile>Packages\opdtab_bin_linux-x86.tar</targetFile>
+            <platform>Linux</platform>
+            <configuration>Release|x86</configuration>
+            <ctype>BinariesZipPackageBuilder</ctype>
           </Builder>
+          <name>Linux Binaries</name>
         </Package>
-        <Package name="Microsoft Windows Binaries">
-          <Builder targetFile="Packages\opdtab_bin_windows-x86.zip" platform="Windows" configuration="Release|x86" ctype="BinariesZipPackageBuilder">
+        <Package>
+          <Builder>
             <ChildEntries>
-              <SolutionItemReference path="OPDtab\OPDtab.csproj" />
-              <SolutionItemReference path="OPDtabGui\OPDtabGui.csproj" />
-              <SolutionItemReference path="OPDtabData\OPDtabData.csproj" />
-              <SolutionItemReference path="LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj" />
+              <SolutionItemReference>
+                <path>OPDtab\OPDtab.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>OPDtabGui\OPDtabGui.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>OPDtabData\OPDtabData.csproj</path>
+              </SolutionItemReference>
+              <SolutionItemReference>
+                <path>LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj</path>
+              </SolutionItemReference>
             </ChildEntries>
-            <RootEntry path="OPDtab.sln" id=":root:" />
+            <RootEntry>
+              <path>OPDtab.sln</path>
+              <id>:root:</id>
+            </RootEntry>
+            <targetFile>Packages\opdtab_bin_windows-x86.zip</targetFile>
+            <platform>Windows</platform>
+            <configuration>Release|x86</configuration>
+            <ctype>BinariesZipPackageBuilder</ctype>
           </Builder>
+          <name>Microsoft Windows Binaries</name>
         </Package>
       </Packages>
     </Packages>

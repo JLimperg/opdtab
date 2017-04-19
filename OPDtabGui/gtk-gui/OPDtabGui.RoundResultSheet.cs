@@ -5,55 +5,103 @@ namespace OPDtabGui
 	public partial class RoundResultSheet
 	{
 		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.Table table;
+
 		private global::Gtk.EventBox ebFree1;
+
 		private global::Gtk.Frame frame7;
+
 		private global::Gtk.Alignment cFree1;
+
 		private global::Gtk.Label GtkLabel6;
+
 		private global::Gtk.EventBox ebFree2;
+
 		private global::Gtk.Frame frame8;
+
 		private global::Gtk.Alignment cFree2;
+
 		private global::Gtk.Label GtkLabel7;
+
 		private global::Gtk.EventBox ebFree3;
+
 		private global::Gtk.Frame frame9;
+
 		private global::Gtk.Alignment cFree3;
+
 		private global::Gtk.Label GtkLabel8;
+
 		private global::Gtk.EventBox ebGov1;
+
 		private global::Gtk.Frame frame1;
+
 		private global::Gtk.Alignment cGov1;
+
 		private global::Gtk.Label lblGov1;
+
 		private global::Gtk.EventBox ebGov2;
+
 		private global::Gtk.Frame frame3;
+
 		private global::Gtk.Alignment cGov2;
+
 		private global::Gtk.Label lblGov2;
+
 		private global::Gtk.EventBox ebGov3;
+
 		private global::Gtk.Frame frame11;
+
 		private global::Gtk.Alignment cGov3;
+
 		private global::Gtk.Label lblGov3;
+
 		private global::Gtk.EventBox ebOpp1;
+
 		private global::Gtk.Frame frame2;
+
 		private global::Gtk.Alignment cOpp1;
+
 		private global::Gtk.Label lblOpp1;
+
 		private global::Gtk.EventBox ebOpp2;
+
 		private global::Gtk.Frame frame6;
+
 		private global::Gtk.Alignment cOpp2;
+
 		private global::Gtk.Label lblOpp2;
+
 		private global::Gtk.EventBox ebOpp3;
+
 		private global::Gtk.Frame frame10;
+
 		private global::Gtk.Alignment cOpp3;
+
 		private global::Gtk.Label lblOpp3;
+
 		private global::Gtk.EventBox ebTeamGov;
+
 		private global::Gtk.Frame frame12;
+
 		private global::Gtk.Alignment cTeamGov;
+
 		private global::Gtk.Label GtkLabel11;
+
 		private global::Gtk.EventBox ebTeamOpp;
+
 		private global::Gtk.Frame frame13;
+
 		private global::Gtk.Alignment cTeamOpp;
+
 		private global::Gtk.Label GtkLabel12;
+
 		private global::Gtk.Label label4;
+
 		private global::Gtk.Label label5;
+
 		private global::Gtk.Label lblNoRoomData;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

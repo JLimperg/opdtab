@@ -5,8 +5,9 @@ namespace OPDtabGui
 	public partial class RoundResultSetBest
 	{
 		private global::Gtk.HBox hbox;
+
 		private global::Gtk.Image image;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

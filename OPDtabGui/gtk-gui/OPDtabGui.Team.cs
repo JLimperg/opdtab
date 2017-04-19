@@ -5,14 +5,21 @@ namespace OPDtabGui
 	public partial class Team
 	{
 		private global::Gtk.VBox vbox;
+
 		private global::Gtk.HBox hbox;
+
 		private global::Gtk.Alignment alBtn;
+
 		private global::Gtk.Alignment alConflictBtn;
+
 		private global::Gtk.VBox vboxInfos;
+
 		private global::Gtk.Label lblFullTeamName;
+
 		private global::Gtk.Alignment alignment3;
+
 		private global::Gtk.VBox vboxTeamMembers;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

@@ -5,26 +5,45 @@ namespace OPDtabGui
 	public partial class EditRoundResults
 	{
 		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.HBox hbox1;
+
 		private global::Gtk.Frame frame1;
+
 		private global::Gtk.Alignment GtkAlignment;
+
 		private global::Gtk.ComboBox cbRounds;
+
 		private global::Gtk.Label GtkLabel;
+
 		private global::Gtk.Frame frame2;
+
 		private global::Gtk.Alignment GtkAlignment1;
+
 		private global::Gtk.ComboBox cbRooms;
+
 		private global::Gtk.Label GtkLabel1;
+
 		private global::Gtk.HBox hbox2;
+
 		private global::Gtk.Frame frameChair;
+
 		private global::Gtk.Alignment cChair;
+
 		private global::Gtk.Label GtkLabel2;
+
 		private global::Gtk.Frame frame4;
+
 		private global::Gtk.Alignment GtkAlignment3;
+
 		private global::Gtk.Label lblMotion;
+
 		private global::Gtk.Label GtkLabel3;
+
 		private global::Gtk.ScrolledWindow scrolledwindow2;
+
 		private global::Gtk.EventBox ebResultSheet;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

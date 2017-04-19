@@ -5,16 +5,25 @@ namespace OPDtabGui
 	public partial class EditGeneral
 	{
 		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.Table table1;
+
 		private global::Gtk.Entry entryTournamentFile;
+
 		private global::Gtk.Entry entryTournamentTitle;
+
 		private global::Gtk.Label label3;
+
 		private global::Gtk.Label label4;
+
 		private global::Gtk.HBox hbox1;
+
 		private global::Gtk.CheckButton cbDeleteTexFile;
+
 		private global::Gtk.HButtonBox hbuttonbox1;
+
 		private global::Gtk.Button btnExportRoundData;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

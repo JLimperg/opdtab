@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <stetic-interface>
   <configuration>
-    <images-root-path>../../OPDtabGui</images-root-path>
+    <images-root-path>..</images-root-path>
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../../OPDtabData/bin/Release/OPDtabData.dll" />
-    <widget-library name="../bin/Release/OPDtabGui.dll" internal="true" />
+    <widget-library name="../../OPDtabData/bin/Debug/OPDtabData.dll" />
+    <widget-library name="../bin/Debug/OPDtabGui.dll" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="AppIcon">

@@ -5,9 +5,11 @@ namespace OPDtabGui
 	public partial class MyButton
 	{
 		private global::Gtk.HBox hbox;
+
 		private global::Gtk.Image image;
+
 		private global::Gtk.Label label;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

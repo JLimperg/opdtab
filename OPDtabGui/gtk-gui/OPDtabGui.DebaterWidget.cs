@@ -5,15 +5,23 @@ namespace OPDtabGui
 	public partial class DebaterWidget
 	{
 		private global::Gtk.Table table;
+
 		private global::Gtk.VBox vbox;
+
 		private global::Gtk.HBox hbox;
+
 		private global::Gtk.Alignment alBtn;
+
 		private global::Gtk.Alignment alConflictBtn;
+
 		private global::Gtk.Alignment alJudgeState;
+
 		private global::Gtk.HBox hboxInfo;
+
 		private global::Gtk.Label label2;
+
 		private global::Gtk.VBox vboxInfo;
-		
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
