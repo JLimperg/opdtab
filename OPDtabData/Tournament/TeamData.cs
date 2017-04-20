@@ -210,7 +210,18 @@ namespace OPDtabData
 				throw new NotImplementedException ();
 			}
 		}
-		#endregion		
+		#endregion
+
+		// This method is required for XML serialisation because TeamData
+		// implements IEnumerable.
+		public void Add(object obj) {
+			if (obj is RoundDebater) {
+				Add((RoundDebater)obj);
+			} else {
+				throw new ArgumentException(
+					"TeamData.Add(object) called with argument which is not a RoundDebater.");
+			}
+		}
 	}
 }
 
