@@ -2,41 +2,47 @@
 
 OPDtab is the premier (and, as far as I'm aware, only) tabbing software for
 debating competitions in the format Offene Parlamentarische Debatte (OPD), used
-primarily in German-speaking countries. This document contains technical
-documentation only; for a user's guide see
-[https://code.google.com/p/opdtab/w/list](https://code.google.com/p/opdtab/w/list).
+primarily in German-speaking countries.
+
+## User Documentation
+
+This document contains technical documentation only. A user's guide (in German)
+consisting mostly of video tutorials is available at the project's old [Google
+Code website](https://code.google.com/archive/p/opdtab/wikis). Beware that the
+guide is for an older version, so some details will differ; however, most of
+the content is still relevant to current OPDtab.
 
 ## Installation
 
-1. Obtain a binary archive from
-   [https://github.com/JLimperg/opdtab/releases](https://github.com/JLimperg/opdtab/releases)
-   or build it yourself, as described below.
+1. Download a [binary archive](https://github.com/JLimperg/opdtab/releases)
+   or build OPDtab yourself, as described below.
 2. Unpack the archive in a directory of your choice.
 3. Install the dependencies listed below.
 4. On Windows, execute `OPDtab.exe`. On Linux, execute `opdtab`.
 
 ### Dependencies
 
-1. .NET Framework 4.0
+1. .NET Framework 4.0/Mono
    1. Linux: Usually a package named 'mono' or something similar. Usually
       preinstalled. Should also be pulled in as a dependency of gtk-sharp
-      below. Direct downloads available from the [Mono
-      project](http://www.mono-project.com/download/#download-lin).
+      below. [Direct
+      download](http://www.mono-project.com/download/#download-lin) available
+      from the Mono project
    2. Windows:
       [Installer](http://www.microsoft.com/en-us/download/details.aspx?id=17851).
       Usually preinstalled.
 2. [Gtk# for .NET](http://www.mono-project.com/docs/gui/gtksharp/), version 2
-   1. Linux: Usually a package named 'gtk-sharp' or similar. Direct downloads
-      available from the [Mono
-      project](http://www.mono-project.com/download/#download-lin).
+   1. Linux: Usually a package named 'gtk-sharp' or similar. [Direct
+      download](http://www.mono-project.com/download/#download-lin) available
+      from the Mono project.
    2. Windows: [Installer](http://www.mono-project.com/download/#download-win).
 3. LaTeX
-   1. Linux: [TeXLive](https://www.tug.org/texlive/), usually provided as a
-      package. Note that the TeXLive distribution is usually split into
-      multiple packages. If you want to make sure that the PDF export works,
-      install all of them.
+   1. Linux: [TeXLive](https://www.tug.org/texlive/), should be provided by
+      your distribution's package manager. The TeXLive distribution is usually
+      split into multiple packages; install them all to make sure that the PDF
+      export works.
    2. Windows: [MiKTeX](http://miktex.org/). Either choose the full
-      installation or make sure that MiKTeX can install missing packages as
+      installation or make sure that MiKTeX can download missing packages as
       required.
 
 ## Building
