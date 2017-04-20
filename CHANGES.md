@@ -1,11 +1,23 @@
+# 1.1.4
+
+  * Improvements to generated feedback forms:
+    - Chairs do not give or receive feedback any longer.
+    - Rooms are now correctly displayed.
+    - Feedback forms are now ordered by room rather than form type.
+  * New feature: export results as CSV.
+  * Switch to .NET version 4.0 (from 2.0).
+  * Fix a bug where adding a new debater would crash the programme.
+  * Fix a bug where tournament data could not be saved.
+  * Fix the message printed to the console on startup.
+
 # 1.1.3
 
-  * Fixes a bug where chairs were listed as main judges and main judges as
+  * Fix a bug where chairs were listed as main judges and main judges as
     panelists on generated feedback sheets.
 
 # 1.1.2
 
-  * Fixes multiple issues with the Linux binary package which prevented the
+  * Fix multiple issues with the Linux binary package which prevented the
     program from starting.
 
 # 1.1.1
@@ -17,7 +29,7 @@
     sheet generation aids in avoiding confusion with incorrectly or
     incompletely filled in forms by filling in all the important
     organisational information beforehand.
-  * Fixes a bug where the Mono runtime autodetection would fail to choose the
+  * Fix a bug where the Mono runtime autodetection would fail to choose the
     correct runtime version.
   * Minor documentation improvements.
 
