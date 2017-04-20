@@ -1,3 +1,7 @@
+# 1.1.5
+
+  * Fix a bug where the application would not start on Windows.
+
 # 1.1.4
 
   * Improvements to generated feedback forms:

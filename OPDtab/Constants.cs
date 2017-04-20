@@ -2,7 +2,7 @@
 {
 	public static class Constants
 	{
-		public const string VersionString = "1.1.4";
+		public const string VersionString = "1.1.5";
 		public const string Website = "https://github.com/JLimperg/opdtab";
 		public const string LegalInfo =
 			"This work is licensed under GPLv3\n" +
