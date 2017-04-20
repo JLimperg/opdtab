@@ -4,208 +4,227 @@
 public partial class MainWindow
 {
 	private global::Gtk.VBox vbox1;
+
 	private global::Gtk.Frame frame1;
+
 	private global::Gtk.Alignment GtkAlignment;
+
 	private global::Gtk.VBox vbox2;
+
 	private global::Gtk.Table table4;
+
 	private global::Gtk.Button btnDataDebaters;
+
 	private global::Gtk.Button btnDataGeneral;
+
 	private global::Gtk.Button btnDataImportCSV;
+
 	private global::Gtk.Button btnDataLoadBackup;
+
 	private global::Gtk.Label GtkLabel4;
+
 	private global::Gtk.Frame frame2;
+
 	private global::Gtk.Alignment GtkAlignment1;
+
 	private global::Gtk.VBox vbox3;
+
 	private global::Gtk.HButtonBox hbuttonbox2;
+
 	private global::Gtk.Table table1;
+
 	private global::Gtk.Button btnEditRoundResults;
+
 	private global::Gtk.Button btnGenerateRound;
+
 	private global::Gtk.Button btnShowRanking;
+
 	private global::Gtk.Label GtkLabel10;
-	
-	protected virtual void Build ()
+
+	protected virtual void Build()
 	{
-		global::Stetic.Gui.Initialize (this);
+		global::Stetic.Gui.Initialize(this);
 		// Widget MainWindow
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("OPDtab");
-		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("OPDtab.AppIcon.png");
+		this.Title = "OPDtab";
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource("OPDtab.AppIcon.png");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 		// Container child MainWindow.Gtk.Container+ContainerChild
-		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1 = new global::Gtk.VBox();
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.frame1 = new global::Gtk.Frame ();
+		this.frame1 = new global::Gtk.Frame();
 		this.frame1.Name = "frame1";
 		// Container child frame1.Gtk.Container+ContainerChild
-		this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+		this.GtkAlignment = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 		this.GtkAlignment.Name = "GtkAlignment";
 		this.GtkAlignment.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
-		this.vbox2 = new global::Gtk.VBox ();
+		this.vbox2 = new global::Gtk.VBox();
 		this.vbox2.Name = "vbox2";
 		this.vbox2.Spacing = 6;
 		// Container child vbox2.Gtk.Box+BoxChild
-		this.table4 = new global::Gtk.Table (((uint)(2)), ((uint)(2)), false);
+		this.table4 = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
 		this.table4.Name = "table4";
 		this.table4.RowSpacing = ((uint)(6));
 		this.table4.ColumnSpacing = ((uint)(6));
 		// Container child table4.Gtk.Table+TableChild
-		this.btnDataDebaters = new global::Gtk.Button ();
+		this.btnDataDebaters = new global::Gtk.Button();
 		this.btnDataDebaters.CanFocus = true;
 		this.btnDataDebaters.Name = "btnDataDebaters";
 		this.btnDataDebaters.UseUnderline = true;
-		this.btnDataDebaters.Label = global::Mono.Unix.Catalog.GetString ("Debaters");
-		this.table4.Add (this.btnDataDebaters);
-		global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table4 [this.btnDataDebaters]));
+		this.btnDataDebaters.Label = "Debaters";
+		this.table4.Add(this.btnDataDebaters);
+		global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table4[this.btnDataDebaters]));
 		w1.LeftAttach = ((uint)(1));
 		w1.RightAttach = ((uint)(2));
 		w1.XOptions = ((global::Gtk.AttachOptions)(4));
 		w1.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table4.Gtk.Table+TableChild
-		this.btnDataGeneral = new global::Gtk.Button ();
+		this.btnDataGeneral = new global::Gtk.Button();
 		this.btnDataGeneral.CanFocus = true;
 		this.btnDataGeneral.Name = "btnDataGeneral";
 		this.btnDataGeneral.UseUnderline = true;
-		this.btnDataGeneral.Label = global::Mono.Unix.Catalog.GetString ("General");
-		this.table4.Add (this.btnDataGeneral);
-		global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table4 [this.btnDataGeneral]));
+		this.btnDataGeneral.Label = "General";
+		this.table4.Add(this.btnDataGeneral);
+		global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table4[this.btnDataGeneral]));
 		w2.XOptions = ((global::Gtk.AttachOptions)(4));
 		w2.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table4.Gtk.Table+TableChild
-		this.btnDataImportCSV = new global::Gtk.Button ();
+		this.btnDataImportCSV = new global::Gtk.Button();
 		this.btnDataImportCSV.CanFocus = true;
 		this.btnDataImportCSV.Name = "btnDataImportCSV";
 		this.btnDataImportCSV.UseUnderline = true;
-		this.btnDataImportCSV.Label = global::Mono.Unix.Catalog.GetString ("Import CSV");
-		this.table4.Add (this.btnDataImportCSV);
-		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table4 [this.btnDataImportCSV]));
+		this.btnDataImportCSV.Label = "Import CSV";
+		this.table4.Add(this.btnDataImportCSV);
+		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table4[this.btnDataImportCSV]));
 		w3.TopAttach = ((uint)(1));
 		w3.BottomAttach = ((uint)(2));
 		w3.XOptions = ((global::Gtk.AttachOptions)(4));
 		w3.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table4.Gtk.Table+TableChild
-		this.btnDataLoadBackup = new global::Gtk.Button ();
+		this.btnDataLoadBackup = new global::Gtk.Button();
 		this.btnDataLoadBackup.CanFocus = true;
 		this.btnDataLoadBackup.Name = "btnDataLoadBackup";
 		this.btnDataLoadBackup.UseUnderline = true;
-		this.btnDataLoadBackup.Label = global::Mono.Unix.Catalog.GetString ("Load Backup");
-		this.table4.Add (this.btnDataLoadBackup);
-		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table4 [this.btnDataLoadBackup]));
+		this.btnDataLoadBackup.Label = "Load Backup";
+		this.table4.Add(this.btnDataLoadBackup);
+		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table4[this.btnDataLoadBackup]));
 		w4.TopAttach = ((uint)(1));
 		w4.BottomAttach = ((uint)(2));
 		w4.LeftAttach = ((uint)(1));
 		w4.RightAttach = ((uint)(2));
 		w4.XOptions = ((global::Gtk.AttachOptions)(4));
 		w4.YOptions = ((global::Gtk.AttachOptions)(4));
-		this.vbox2.Add (this.table4);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.table4]));
+		this.vbox2.Add(this.table4);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.table4]));
 		w5.Position = 0;
 		w5.Expand = false;
 		w5.Fill = false;
-		this.GtkAlignment.Add (this.vbox2);
-		this.frame1.Add (this.GtkAlignment);
-		this.GtkLabel4 = new global::Gtk.Label ();
+		this.GtkAlignment.Add(this.vbox2);
+		this.frame1.Add(this.GtkAlignment);
+		this.GtkLabel4 = new global::Gtk.Label();
 		this.GtkLabel4.Name = "GtkLabel4";
-		this.GtkLabel4.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Data</b>");
+		this.GtkLabel4.LabelProp = "<b>Data</b>";
 		this.GtkLabel4.UseMarkup = true;
 		this.frame1.LabelWidget = this.GtkLabel4;
-		this.vbox1.Add (this.frame1);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame1]));
+		this.vbox1.Add(this.frame1);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.frame1]));
 		w8.Position = 0;
 		w8.Expand = false;
 		w8.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.frame2 = new global::Gtk.Frame ();
+		this.frame2 = new global::Gtk.Frame();
 		this.frame2.Name = "frame2";
 		// Container child frame2.Gtk.Container+ContainerChild
-		this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+		this.GtkAlignment1 = new global::Gtk.Alignment(0F, 0F, 1F, 1F);
 		this.GtkAlignment1.Name = "GtkAlignment1";
 		this.GtkAlignment1.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment1.Gtk.Container+ContainerChild
-		this.vbox3 = new global::Gtk.VBox ();
+		this.vbox3 = new global::Gtk.VBox();
 		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.hbuttonbox2 = new global::Gtk.HButtonBox ();
+		this.hbuttonbox2 = new global::Gtk.HButtonBox();
 		this.hbuttonbox2.Name = "hbuttonbox2";
 		this.hbuttonbox2.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
-		this.vbox3.Add (this.hbuttonbox2);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbuttonbox2]));
+		this.vbox3.Add(this.hbuttonbox2);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbuttonbox2]));
 		w9.Position = 0;
 		w9.Expand = false;
 		w9.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.table1 = new global::Gtk.Table (((uint)(2)), ((uint)(2)), false);
+		this.table1 = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
 		this.table1.Name = "table1";
 		this.table1.RowSpacing = ((uint)(6));
 		this.table1.ColumnSpacing = ((uint)(6));
 		// Container child table1.Gtk.Table+TableChild
-		this.btnEditRoundResults = new global::Gtk.Button ();
+		this.btnEditRoundResults = new global::Gtk.Button();
 		this.btnEditRoundResults.CanFocus = true;
 		this.btnEditRoundResults.Name = "btnEditRoundResults";
 		this.btnEditRoundResults.UseUnderline = true;
-		this.btnEditRoundResults.Label = global::Mono.Unix.Catalog.GetString ("Edit Results");
-		this.table1.Add (this.btnEditRoundResults);
-		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.btnEditRoundResults]));
+		this.btnEditRoundResults.Label = "Edit Results";
+		this.table1.Add(this.btnEditRoundResults);
+		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1[this.btnEditRoundResults]));
 		w10.TopAttach = ((uint)(1));
 		w10.BottomAttach = ((uint)(2));
 		w10.XOptions = ((global::Gtk.AttachOptions)(4));
 		w10.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table1.Gtk.Table+TableChild
-		this.btnGenerateRound = new global::Gtk.Button ();
+		this.btnGenerateRound = new global::Gtk.Button();
 		this.btnGenerateRound.CanFocus = true;
 		this.btnGenerateRound.Name = "btnGenerateRound";
 		this.btnGenerateRound.UseUnderline = true;
-		this.btnGenerateRound.Label = global::Mono.Unix.Catalog.GetString ("Generate Round");
-		this.table1.Add (this.btnGenerateRound);
-		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.btnGenerateRound]));
+		this.btnGenerateRound.Label = "Generate Round";
+		this.table1.Add(this.btnGenerateRound);
+		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1[this.btnGenerateRound]));
 		w11.XOptions = ((global::Gtk.AttachOptions)(4));
 		w11.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table1.Gtk.Table+TableChild
-		this.btnShowRanking = new global::Gtk.Button ();
+		this.btnShowRanking = new global::Gtk.Button();
 		this.btnShowRanking.CanFocus = true;
 		this.btnShowRanking.Name = "btnShowRanking";
 		this.btnShowRanking.UseUnderline = true;
-		this.btnShowRanking.Label = global::Mono.Unix.Catalog.GetString ("Show Ranking");
-		this.table1.Add (this.btnShowRanking);
-		global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1 [this.btnShowRanking]));
+		this.btnShowRanking.Label = "Show Ranking";
+		this.table1.Add(this.btnShowRanking);
+		global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1[this.btnShowRanking]));
 		w12.LeftAttach = ((uint)(1));
 		w12.RightAttach = ((uint)(2));
 		w12.XOptions = ((global::Gtk.AttachOptions)(4));
 		w12.YOptions = ((global::Gtk.AttachOptions)(4));
-		this.vbox3.Add (this.table1);
-		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.table1]));
+		this.vbox3.Add(this.table1);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.table1]));
 		w13.Position = 1;
 		w13.Expand = false;
 		w13.Fill = false;
-		this.GtkAlignment1.Add (this.vbox3);
-		this.frame2.Add (this.GtkAlignment1);
-		this.GtkLabel10 = new global::Gtk.Label ();
+		this.GtkAlignment1.Add(this.vbox3);
+		this.frame2.Add(this.GtkAlignment1);
+		this.GtkLabel10 = new global::Gtk.Label();
 		this.GtkLabel10.Name = "GtkLabel10";
-		this.GtkLabel10.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Rounds</b>");
+		this.GtkLabel10.LabelProp = "<b>Rounds</b>";
 		this.GtkLabel10.UseMarkup = true;
 		this.frame2.LabelWidget = this.GtkLabel10;
-		this.vbox1.Add (this.frame2);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.frame2]));
+		this.vbox1.Add(this.frame2);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.frame2]));
 		w16.Position = 1;
 		w16.Expand = false;
 		w16.Fill = false;
-		this.Add (this.vbox1);
-		if ((this.Child != null)) {
-			this.Child.ShowAll ();
+		this.Add(this.vbox1);
+		if ((this.Child != null))
+		{
+			this.Child.ShowAll();
 		}
 		this.DefaultWidth = 300;
 		this.DefaultHeight = 220;
-		this.Show ();
-		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.btnDataLoadBackup.Clicked += new global::System.EventHandler (this.OnBtnDataLoadBackupClicked);
-		this.btnDataImportCSV.Clicked += new global::System.EventHandler (this.OnBtnDataImportJudgesClicked);
-		this.btnDataGeneral.Clicked += new global::System.EventHandler (this.OnBtnDataGeneralClicked);
-		this.btnDataDebaters.Clicked += new global::System.EventHandler (this.OnBtnDataDebatersClicked);
-		this.btnShowRanking.Clicked += new global::System.EventHandler (this.OnBtnShowRankingClicked);
-		this.btnGenerateRound.Clicked += new global::System.EventHandler (this.OnBtnGenerateRoundClicked);
-		this.btnEditRoundResults.Clicked += new global::System.EventHandler (this.OnBtnEditRoundResultsClicked);
+		this.Show();
+		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.btnDataLoadBackup.Clicked += new global::System.EventHandler(this.OnBtnDataLoadBackupClicked);
+		this.btnDataImportCSV.Clicked += new global::System.EventHandler(this.OnBtnDataImportJudgesClicked);
+		this.btnDataGeneral.Clicked += new global::System.EventHandler(this.OnBtnDataGeneralClicked);
+		this.btnDataDebaters.Clicked += new global::System.EventHandler(this.OnBtnDataDebatersClicked);
+		this.btnShowRanking.Clicked += new global::System.EventHandler(this.OnBtnShowRankingClicked);
+		this.btnGenerateRound.Clicked += new global::System.EventHandler(this.OnBtnGenerateRoundClicked);
+		this.btnEditRoundResults.Clicked += new global::System.EventHandler(this.OnBtnEditRoundResultsClicked);
 	}
 }

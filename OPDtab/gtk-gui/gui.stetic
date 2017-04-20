@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <stetic-interface>
   <configuration>
-    <images-root-path>../../OPDtab</images-root-path>
+    <images-root-path>..</images-root-path>
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
@@ -45,7 +45,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">Debaters</property>
+                            <property name="Label">Debaters</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnDataDebatersClicked" />
                           </widget>
@@ -68,7 +68,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">General</property>
+                            <property name="Label">General</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnDataGeneralClicked" />
                           </widget>
@@ -89,7 +89,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">Import CSV</property>
+                            <property name="Label">Import CSV</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnDataImportJudgesClicked" />
                           </widget>
@@ -112,7 +112,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">Load Backup</property>
+                            <property name="Label">Load Backup</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnDataLoadBackupClicked" />
                           </widget>

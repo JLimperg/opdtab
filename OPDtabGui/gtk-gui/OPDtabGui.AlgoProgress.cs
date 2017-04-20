@@ -14,59 +14,60 @@ namespace OPDtabGui
 
 		private global::Gtk.ProgressBar progressbar;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget OPDtabGui.AlgoProgress
-			global::Stetic.BinContainer.Attach (this);
+			global::Stetic.BinContainer.Attach(this);
 			this.Name = "OPDtabGui.AlgoProgress";
 			// Container child OPDtabGui.AlgoProgress.Gtk.Container+ContainerChild
-			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2 = new global::Gtk.HBox();
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild
-			this.label = new global::Gtk.Label ();
+			this.label = new global::Gtk.Label();
 			this.label.Name = "label";
 			this.label.Xalign = 0F;
-			this.label.LabelProp = global::Mono.Unix.Catalog.GetString ("Working...");
-			this.hbox2.Add (this.label);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label]));
+			this.label.LabelProp = "Working...";
+			this.hbox2.Add(this.label);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label]));
 			w1.Position = 0;
 			// Container child hbox2.Gtk.Box+BoxChild
-			this.btnHide = new global::Gtk.Button ();
+			this.btnHide = new global::Gtk.Button();
 			this.btnHide.CanFocus = true;
 			this.btnHide.Name = "btnHide";
 			this.btnHide.UseUnderline = true;
-			global::Gtk.Image w2 = new global::Gtk.Image ();
-			w2.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
+			global::Gtk.Image w2 = new global::Gtk.Image();
+			w2.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-close", global::Gtk.IconSize.Menu);
 			this.btnHide.Image = w2;
-			this.hbox2.Add (this.btnHide);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.btnHide]));
+			this.hbox2.Add(this.btnHide);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.btnHide]));
 			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
-			this.vbox1.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
+			this.vbox1.Add(this.hbox2);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox2]));
 			w4.Position = 0;
 			w4.Expand = false;
 			w4.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.progressbar = new global::Gtk.ProgressBar ();
+			this.progressbar = new global::Gtk.ProgressBar();
 			this.progressbar.Name = "progressbar";
-			this.vbox1.Add (this.progressbar);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.progressbar]));
+			this.vbox1.Add(this.progressbar);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.progressbar]));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
-			this.Add (this.vbox1);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.vbox1);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
-			this.Hide ();
-			this.btnHide.Clicked += new global::System.EventHandler (this.OnBtnHideClicked);
+			this.Hide();
+			this.btnHide.Clicked += new global::System.EventHandler(this.OnBtnHideClicked);
 		}
 	}
 }

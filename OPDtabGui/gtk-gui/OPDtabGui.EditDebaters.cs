@@ -33,7 +33,7 @@ namespace OPDtabGui
 			global::Stetic.Gui.Initialize(this);
 			// Widget OPDtabGui.EditDebaters
 			this.Name = "OPDtabGui.EditDebaters";
-			this.Title = global::Mono.Unix.Catalog.GetString("EditDebaters");
+			this.Title = "EditDebaters";
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource("OPDtabGui.AppIcon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			this.Modal = true;
@@ -47,19 +47,18 @@ namespace OPDtabGui
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.hbuttonbox1 = new global::Gtk.HButtonBox();
-			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
 			this.btnDebaterAdd = new global::Gtk.Button();
 			this.btnDebaterAdd.CanFocus = true;
 			this.btnDebaterAdd.Name = "btnDebaterAdd";
 			this.btnDebaterAdd.UseUnderline = true;
-			this.btnDebaterAdd.Label = global::Mono.Unix.Catalog.GetString("Add");
+			this.btnDebaterAdd.Label = "Add";
 			global::Gtk.Image w1 = new global::Gtk.Image();
 			w1.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-add", global::Gtk.IconSize.Menu);
 			this.btnDebaterAdd.Image = w1;
 			this.hbuttonbox1.Add(this.btnDebaterAdd);
-			global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterAdd]));
+			global::Gtk.ButtonBox.ButtonBoxChild w2 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnDebaterAdd]));
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
@@ -67,12 +66,12 @@ namespace OPDtabGui
 			this.btnDebaterRemove.CanFocus = true;
 			this.btnDebaterRemove.Name = "btnDebaterRemove";
 			this.btnDebaterRemove.UseUnderline = true;
-			this.btnDebaterRemove.Label = global::Mono.Unix.Catalog.GetString("Remove");
+			this.btnDebaterRemove.Label = "Remove";
 			global::Gtk.Image w3 = new global::Gtk.Image();
 			w3.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-remove", global::Gtk.IconSize.Menu);
 			this.btnDebaterRemove.Image = w3;
 			this.hbuttonbox1.Add(this.btnDebaterRemove);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnDebaterRemove]));
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnDebaterRemove]));
 			w4.Position = 1;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -81,31 +80,31 @@ namespace OPDtabGui
 			this.btnSwapRoles.CanFocus = true;
 			this.btnSwapRoles.Name = "btnSwapRoles";
 			this.btnSwapRoles.UseUnderline = true;
-			this.btnSwapRoles.Label = global::Mono.Unix.Catalog.GetString("Swap Roles");
+			this.btnSwapRoles.Label = "Swap Roles";
 			global::Gtk.Image w5 = new global::Gtk.Image();
 			w5.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-refresh", global::Gtk.IconSize.Menu);
 			this.btnSwapRoles.Image = w5;
 			this.hbuttonbox1.Add(this.btnSwapRoles);
-			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnSwapRoles]));
+			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnSwapRoles]));
 			w6.Position = 2;
 			w6.Expand = false;
 			w6.Fill = false;
 			this.hbox1.Add(this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.hbuttonbox1]));
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.hbuttonbox1]));
 			w7.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.cEntryFilter = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.cEntryFilter.Name = "cEntryFilter";
 			this.hbox1.Add(this.cEntryFilter);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cEntryFilter]));
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.cEntryFilter]));
 			w8.PackType = ((global::Gtk.PackType)(1));
 			w8.Position = 1;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.lblDebatersInfo = new global::Gtk.Label();
 			this.lblDebatersInfo.Name = "lblDebatersInfo";
-			this.lblDebatersInfo.LabelProp = global::Mono.Unix.Catalog.GetString("lblDebatersInfo");
+			this.lblDebatersInfo.LabelProp = "lblDebatersInfo";
 			this.hbox1.Add(this.lblDebatersInfo);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblDebatersInfo]));
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.lblDebatersInfo]));
 			w9.PackType = ((global::Gtk.PackType)(1));
 			w9.Position = 2;
 			w9.Expand = false;
@@ -115,9 +114,9 @@ namespace OPDtabGui
 			this.btnExportCSV.CanFocus = true;
 			this.btnExportCSV.Name = "btnExportCSV";
 			this.btnExportCSV.UseUnderline = true;
-			this.btnExportCSV.Label = global::Mono.Unix.Catalog.GetString("Export as CSV");
+			this.btnExportCSV.Label = "Export as CSV";
 			this.hbox1.Add(this.btnExportCSV);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportCSV]));
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.btnExportCSV]));
 			w10.PackType = ((global::Gtk.PackType)(1));
 			w10.Position = 3;
 			w10.Expand = false;
@@ -127,15 +126,15 @@ namespace OPDtabGui
 			this.btnExportPDF.CanFocus = true;
 			this.btnExportPDF.Name = "btnExportPDF";
 			this.btnExportPDF.UseUnderline = true;
-			this.btnExportPDF.Label = global::Mono.Unix.Catalog.GetString("Export as PDF");
+			this.btnExportPDF.Label = "Export as PDF";
 			this.hbox1.Add(this.btnExportPDF);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnExportPDF]));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.btnExportPDF]));
 			w11.PackType = ((global::Gtk.PackType)(1));
 			w11.Position = 4;
 			w11.Expand = false;
 			w11.Fill = false;
 			this.vbox1.Add(this.hbox1);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
 			w12.Position = 0;
 			w12.Expand = false;
 			w12.Fill = false;
@@ -151,10 +150,11 @@ namespace OPDtabGui
 			this.treeDebaters.RulesHint = true;
 			this.GtkScrolledWindow.Add(this.treeDebaters);
 			this.vbox1.Add(this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
 			w14.Position = 1;
 			this.Add(this.vbox1);
-			if ((this.Child != null)) {
+			if ((this.Child != null))
+			{
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 1104;

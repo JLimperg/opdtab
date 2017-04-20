@@ -20,67 +20,68 @@ namespace OPDtabGui
 
 		private global::Gtk.VBox vboxTeamMembers;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget OPDtabGui.Team
-			global::Stetic.BinContainer.Attach (this);
+			global::Stetic.BinContainer.Attach(this);
 			this.Name = "OPDtabGui.Team";
 			// Container child OPDtabGui.Team.Gtk.Container+ContainerChild
-			this.vbox = new global::Gtk.VBox ();
+			this.vbox = new global::Gtk.VBox();
 			this.vbox.Name = "vbox";
 			// Container child vbox.Gtk.Box+BoxChild
-			this.hbox = new global::Gtk.HBox ();
+			this.hbox = new global::Gtk.HBox();
 			this.hbox.Name = "hbox";
 			// Container child hbox.Gtk.Box+BoxChild
-			this.alBtn = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alBtn = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alBtn.Name = "alBtn";
-			this.hbox.Add (this.alBtn);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alBtn]));
+			this.hbox.Add(this.alBtn);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox[this.alBtn]));
 			w1.Position = 0;
 			// Container child hbox.Gtk.Box+BoxChild
-			this.alConflictBtn = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alConflictBtn = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alConflictBtn.Name = "alConflictBtn";
-			this.hbox.Add (this.alConflictBtn);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox [this.alConflictBtn]));
+			this.hbox.Add(this.alConflictBtn);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox[this.alConflictBtn]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
-			this.vbox.Add (this.hbox);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hbox]));
+			this.vbox.Add(this.hbox);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox[this.hbox]));
 			w3.Position = 0;
 			// Container child vbox.Gtk.Box+BoxChild
-			this.vboxInfos = new global::Gtk.VBox ();
+			this.vboxInfos = new global::Gtk.VBox();
 			this.vboxInfos.Name = "vboxInfos";
 			// Container child vboxInfos.Gtk.Box+BoxChild
-			this.lblFullTeamName = new global::Gtk.Label ();
+			this.lblFullTeamName = new global::Gtk.Label();
 			this.lblFullTeamName.Name = "lblFullTeamName";
 			this.lblFullTeamName.Xalign = 0F;
-			this.lblFullTeamName.LabelProp = global::Mono.Unix.Catalog.GetString ("lblFullTeamName");
-			this.vboxInfos.Add (this.lblFullTeamName);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vboxInfos [this.lblFullTeamName]));
+			this.lblFullTeamName.LabelProp = "lblFullTeamName";
+			this.vboxInfos.Add(this.lblFullTeamName);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vboxInfos[this.lblFullTeamName]));
 			w4.Position = 0;
 			w4.Expand = false;
 			w4.Fill = false;
 			// Container child vboxInfos.Gtk.Box+BoxChild
-			this.alignment3 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.alignment3 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 			this.alignment3.Name = "alignment3";
 			this.alignment3.LeftPadding = ((uint)(10));
 			// Container child alignment3.Gtk.Container+ContainerChild
-			this.vboxTeamMembers = new global::Gtk.VBox ();
+			this.vboxTeamMembers = new global::Gtk.VBox();
 			this.vboxTeamMembers.Name = "vboxTeamMembers";
-			this.alignment3.Add (this.vboxTeamMembers);
-			this.vboxInfos.Add (this.alignment3);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vboxInfos [this.alignment3]));
+			this.alignment3.Add(this.vboxTeamMembers);
+			this.vboxInfos.Add(this.alignment3);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vboxInfos[this.alignment3]));
 			w6.Position = 1;
-			this.vbox.Add (this.vboxInfos);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vboxInfos]));
+			this.vbox.Add(this.vboxInfos);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox[this.vboxInfos]));
 			w7.Position = 1;
-			this.Add (this.vbox);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.vbox);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
-			this.Hide ();
+			this.Hide();
 		}
 	}
 }

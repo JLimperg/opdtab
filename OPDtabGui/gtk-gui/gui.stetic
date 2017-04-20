@@ -41,7 +41,7 @@
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-add Menu</property>
-                    <property name="Label" translatable="yes">Add</property>
+                    <property name="Label">Add</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBtnDebaterAddClicked" />
                   </widget>
@@ -56,7 +56,7 @@
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-remove Menu</property>
-                    <property name="Label" translatable="yes">Remove</property>
+                    <property name="Label">Remove</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBtnDebaterRemoveClicked" />
                   </widget>
@@ -72,7 +72,7 @@
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-refresh Menu</property>
-                    <property name="Label" translatable="yes">Swap Roles</property>
+                    <property name="Label">Swap Roles</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBtnSwapRolesClicked" />
                   </widget>
@@ -119,7 +119,7 @@
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Export as CSV</property>
+                <property name="Label">Export as CSV</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnExportCSVClicked" />
               </widget>
@@ -136,7 +136,7 @@
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Export as PDF</property>
+                <property name="Label">Export as PDF</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnExportPDFClicked" />
               </widget>
@@ -180,7 +180,7 @@
   </widget>
   <widget class="Gtk.Window" id="OPDtabGui.EditGeneral" design-size="476 146">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">EditGeneral</property>
+    <property name="Title">EditGeneral</property>
     <property name="Icon">resource:OPDtabGui.AppIcon.png</property>
     <property name="WindowPosition">Center</property>
     <property name="Modal">True</property>
@@ -242,7 +242,7 @@
               <widget class="Gtk.Label" id="label3">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">Tournament Title</property>
+                <property name="LabelProp">Tournament Title</property>
               </widget>
               <packing>
                 <property name="AutoSize">True</property>
@@ -260,7 +260,7 @@
               <widget class="Gtk.Label" id="label4">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">Tournament File</property>
+                <property name="LabelProp">Tournament File</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -292,7 +292,7 @@
               <widget class="Gtk.CheckButton" id="cbDeleteTexFile">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Delete Tex File after PDF Generation</property>
+                <property name="Label">Delete Tex File after PDF Generation</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -320,7 +320,7 @@
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Export all RoundData</property>
+                <property name="Label">Export all RoundData</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnExportRoundDataClicked" />
               </widget>
@@ -2836,7 +2836,7 @@
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">Choose...</property>
+                            <property name="Label">Choose...</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnChooseFileClicked" />
                           </widget>
@@ -2873,7 +2873,7 @@
                           <widget class="Gtk.CheckButton" id="cbHasHeaders">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
-                            <property name="Label" translatable="yes">Headers in first line</property>
+                            <property name="Label">Headers in first line</property>
                             <property name="Active">True</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
@@ -2891,7 +2891,7 @@
                           <widget class="Gtk.CheckButton" id="cbOverwrite">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
-                            <property name="Label" translatable="yes">Overwrite existing</property>
+                            <property name="Label">Overwrite existing</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -2967,7 +2967,7 @@
               <widget class="Gtk.CheckButton" id="cbAge">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Age</property>
+                <property name="Label">Age</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -2990,7 +2990,7 @@
               <widget class="Gtk.CheckButton" id="cbBirthday">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Birthday</property>
+                <property name="Label">Birthday</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3013,7 +3013,7 @@
               <widget class="Gtk.CheckButton" id="cbBlackList">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">BlackList</property>
+                <property name="Label">BlackList</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3036,7 +3036,7 @@
               <widget class="Gtk.CheckButton" id="cbCity">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">City</property>
+                <property name="Label">City</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3059,7 +3059,7 @@
               <widget class="Gtk.CheckButton" id="cbExtraInfo">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">ExtraInfo</property>
+                <property name="Label">ExtraInfo</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3082,7 +3082,7 @@
               <widget class="Gtk.CheckButton" id="cbRole">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Role</property>
+                <property name="Label">Role</property>
                 <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
@@ -3106,7 +3106,7 @@
               <widget class="Gtk.Entry" id="entryBdayFormat">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Text" translatable="yes">dd.MM.yyyy</property>
+                <property name="Text">dd.MM.yyyy</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">●</property>
               </widget>
@@ -3157,7 +3157,7 @@
                   <widget class="Gtk.RadioButton" id="rbTeamMember">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Label" translatable="yes">Team Member/Parse</property>
+                    <property name="Label">Team Member/Parse</property>
                     <property name="Active">True</property>
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
@@ -3173,7 +3173,7 @@
                   <widget class="Gtk.RadioButton" id="rbJudge">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Label" translatable="yes">Judge</property>
+                    <property name="Label">Judge</property>
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
@@ -3205,7 +3205,7 @@
               <widget class="Gtk.Label" id="hdAge">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label6</property>
+                <property name="LabelProp">label6</property>
               </widget>
               <packing>
                 <property name="TopAttach">5</property>
@@ -3226,7 +3226,7 @@
               <widget class="Gtk.Label" id="hdBirthday">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label7</property>
+                <property name="LabelProp">label7</property>
               </widget>
               <packing>
                 <property name="TopAttach">6</property>
@@ -3247,7 +3247,7 @@
               <widget class="Gtk.Label" id="hdBlackList">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label8</property>
+                <property name="LabelProp">label8</property>
               </widget>
               <packing>
                 <property name="TopAttach">9</property>
@@ -3269,7 +3269,7 @@
               <widget class="Gtk.Label" id="hdCity">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label5</property>
+                <property name="LabelProp">label5</property>
               </widget>
               <packing>
                 <property name="TopAttach">4</property>
@@ -3290,7 +3290,7 @@
               <widget class="Gtk.Label" id="hdClub">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label4</property>
+                <property name="LabelProp">label4</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -3311,7 +3311,7 @@
               <widget class="Gtk.Label" id="hdExtraInfo">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label8</property>
+                <property name="LabelProp">label8</property>
               </widget>
               <packing>
                 <property name="TopAttach">8</property>
@@ -3333,7 +3333,7 @@
               <widget class="Gtk.Label" id="hdFirstName">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label2</property>
+                <property name="LabelProp">label2</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -3354,7 +3354,7 @@
               <widget class="Gtk.Label" id="hdLastName">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label3</property>
+                <property name="LabelProp">label3</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -3375,7 +3375,7 @@
               <widget class="Gtk.Label" id="hdRole">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">label8</property>
+                <property name="LabelProp">label8</property>
               </widget>
               <packing>
                 <property name="TopAttach">7</property>
@@ -3396,7 +3396,7 @@
               <widget class="Gtk.Label" id="label2">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">FirstName</property>
+                <property name="LabelProp">FirstName</property>
               </widget>
               <packing>
                 <property name="TopAttach">1</property>
@@ -3416,7 +3416,7 @@
               <widget class="Gtk.Label" id="label3">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">LastName</property>
+                <property name="LabelProp">LastName</property>
               </widget>
               <packing>
                 <property name="TopAttach">2</property>
@@ -3436,7 +3436,7 @@
               <widget class="Gtk.Label" id="label4">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">Club</property>
+                <property name="LabelProp">Club</property>
               </widget>
               <packing>
                 <property name="TopAttach">3</property>
@@ -3455,7 +3455,7 @@
             <child>
               <widget class="Gtk.Label" id="label7">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Field</property>
+                <property name="LabelProp">Field</property>
               </widget>
               <packing>
                 <property name="AutoSize">True</property>
@@ -3472,7 +3472,7 @@
             <child>
               <widget class="Gtk.Label" id="label8">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Column</property>
+                <property name="LabelProp">Column</property>
               </widget>
               <packing>
                 <property name="LeftAttach">1</property>
@@ -3492,7 +3492,7 @@
               <widget class="Gtk.Label" id="labelHeader">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">Header</property>
+                <property name="LabelProp">Header</property>
               </widget>
               <packing>
                 <property name="LeftAttach">2</property>
@@ -3770,7 +3770,7 @@
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">Import CSV</property>
+            <property name="Label">Import CSV</property>
             <property name="UseUnderline">True</property>
             <signal name="Clicked" handler="OnBtnImportCSVClicked" />
           </widget>
@@ -6067,7 +6067,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="OPDtabGui.AlgoProgress" design-size="300 51">
+  <widget class="Gtk.Bin" id="OPDtabGui.AlgoProgress" design-size="300 54">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>

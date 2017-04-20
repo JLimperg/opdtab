@@ -24,119 +24,121 @@ namespace OPDtabGui
 
 		private global::Gtk.Button btnExportRoundData;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget OPDtabGui.EditGeneral
 			this.Name = "OPDtabGui.EditGeneral";
-			this.Title = global::Mono.Unix.Catalog.GetString ("EditGeneral");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("OPDtabGui.AppIcon.png");
+			this.Title = "EditGeneral";
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource("OPDtabGui.AppIcon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 			this.Modal = true;
 			// Container child OPDtabGui.EditGeneral.Gtk.Container+ContainerChild
-			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.table1 = new global::Gtk.Table (((uint)(2)), ((uint)(2)), false);
+			this.table1 = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entryTournamentFile = new global::Gtk.Entry ();
+			this.entryTournamentFile = new global::Gtk.Entry();
 			this.entryTournamentFile.CanFocus = true;
 			this.entryTournamentFile.Name = "entryTournamentFile";
 			this.entryTournamentFile.IsEditable = true;
 			this.entryTournamentFile.InvisibleChar = '●';
-			this.table1.Add (this.entryTournamentFile);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryTournamentFile]));
+			this.table1.Add(this.entryTournamentFile);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entryTournamentFile]));
 			w1.TopAttach = ((uint)(1));
 			w1.BottomAttach = ((uint)(2));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entryTournamentTitle = new global::Gtk.Entry ();
+			this.entryTournamentTitle = new global::Gtk.Entry();
 			this.entryTournamentTitle.CanFocus = true;
 			this.entryTournamentTitle.Name = "entryTournamentTitle";
 			this.entryTournamentTitle.IsEditable = true;
 			this.entryTournamentTitle.InvisibleChar = '●';
-			this.table1.Add (this.entryTournamentTitle);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryTournamentTitle]));
+			this.table1.Add(this.entryTournamentTitle);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1[this.entryTournamentTitle]));
 			w2.LeftAttach = ((uint)(1));
 			w2.RightAttach = ((uint)(2));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label3 = new global::Gtk.Label ();
+			this.label3 = new global::Gtk.Label();
 			this.label3.Name = "label3";
 			this.label3.Xalign = 0F;
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Tournament Title");
-			this.table1.Add (this.label3);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.label3]));
+			this.label3.LabelProp = "Tournament Title";
+			this.table1.Add(this.label3);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1[this.label3]));
 			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label4 = new global::Gtk.Label ();
+			this.label4 = new global::Gtk.Label();
 			this.label4.Name = "label4";
 			this.label4.Xalign = 0F;
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Tournament File");
-			this.table1.Add (this.label4);
-			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.label4]));
+			this.label4.LabelProp = "Tournament File";
+			this.table1.Add(this.label4);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1[this.label4]));
 			w4.TopAttach = ((uint)(1));
 			w4.BottomAttach = ((uint)(2));
 			w4.XOptions = ((global::Gtk.AttachOptions)(4));
 			w4.YOptions = ((global::Gtk.AttachOptions)(4));
-			this.vbox1.Add (this.table1);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.table1]));
+			this.vbox1.Add(this.table1);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.table1]));
 			w5.Position = 0;
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1 = new global::Gtk.HBox();
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.cbDeleteTexFile = new global::Gtk.CheckButton ();
+			this.cbDeleteTexFile = new global::Gtk.CheckButton();
 			this.cbDeleteTexFile.CanFocus = true;
 			this.cbDeleteTexFile.Name = "cbDeleteTexFile";
-			this.cbDeleteTexFile.Label = global::Mono.Unix.Catalog.GetString ("Delete Tex File after PDF Generation");
+			this.cbDeleteTexFile.Label = "Delete Tex File after PDF Generation";
 			this.cbDeleteTexFile.DrawIndicator = true;
 			this.cbDeleteTexFile.UseUnderline = true;
-			this.hbox1.Add (this.cbDeleteTexFile);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.cbDeleteTexFile]));
+			this.hbox1.Add(this.cbDeleteTexFile);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.cbDeleteTexFile]));
 			w6.Position = 0;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			this.vbox1.Add(this.hbox1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
 			w7.Position = 1;
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbuttonbox1 = new global::Gtk.HButtonBox ();
+			this.hbuttonbox1 = new global::Gtk.HButtonBox();
+			this.hbuttonbox1.Name = "hbuttonbox1";
 			this.hbuttonbox1.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(3));
 			// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-			this.btnExportRoundData = new global::Gtk.Button ();
+			this.btnExportRoundData = new global::Gtk.Button();
 			this.btnExportRoundData.CanFocus = true;
 			this.btnExportRoundData.Name = "btnExportRoundData";
 			this.btnExportRoundData.UseUnderline = true;
-			this.btnExportRoundData.Label = global::Mono.Unix.Catalog.GetString ("Export all RoundData");
-			this.hbuttonbox1.Add (this.btnExportRoundData);
-			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1 [this.btnExportRoundData]));
+			this.btnExportRoundData.Label = "Export all RoundData";
+			this.hbuttonbox1.Add(this.btnExportRoundData);
+			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox1[this.btnExportRoundData]));
 			w8.Expand = false;
 			w8.Fill = false;
-			this.vbox1.Add (this.hbuttonbox1);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox1]));
+			this.vbox1.Add(this.hbuttonbox1);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbuttonbox1]));
 			w9.Position = 2;
 			w9.Expand = false;
 			w9.Fill = false;
-			this.Add (this.vbox1);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.vbox1);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 476;
 			this.DefaultHeight = 146;
-			this.Show ();
-			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-			this.btnExportRoundData.Clicked += new global::System.EventHandler (this.OnBtnExportRoundDataClicked);
+			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.btnExportRoundData.Clicked += new global::System.EventHandler(this.OnBtnExportRoundDataClicked);
 		}
 	}
 }
